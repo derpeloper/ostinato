@@ -9,7 +9,7 @@ const fs = require('fs');
 
 const { token } = require('../env.json')
 
-const clientId = '1459993892484288512'; 
+const clientId = 'YOUR CLIENT ID'; 
 const guildId = 'YOUR GUILD ID'; 
 
 module.exports = (client) => {
