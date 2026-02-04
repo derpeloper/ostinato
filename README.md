@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/derpeloper/ostinato/main/logo.png" alt="ostinato logo" width="600">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/ad085efe-2380-4b85-b0a4-84164faa4c55">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/98f6cbda-4544-40b1-a6e9-a2fd90951467">
+  </picture>
 </p>
 
 # ostinato
