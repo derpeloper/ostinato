@@ -9,8 +9,8 @@ const fs = require('fs');
 
 const { token } = require('../env.json')
 
-const clientId = '1459993892484288512'; 
-const guildId = 'YOUR GUILD ID'; 
+const clientId = 'YOUR CLIENT ID'; // replace "YOUR CLIENT ID" with your bot's client id. 
+const guildId = 'YOUR GUILD ID'; // replace "YOUR GUILD ID" with your guild's id if you want it to work in only one server.
 
 module.exports = (client) => {
     client.handleCommands = async (commandFolders, path) => {
@@ -44,4 +44,5 @@ module.exports = (client) => {
             }
         })();
     };
+
 };
