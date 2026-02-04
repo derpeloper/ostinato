@@ -25,7 +25,7 @@ if you want 100% uptime and total control, host it yourself. you'll get access t
 2. run `cd ostinato` then run `npm install`. this might take a while, go grab a coffee.
 3. edit the `token` in `src/env.json` to your actual discord bot token. make sure you give it the right permissions: priority speaker, connect, read message history, and speak. otherwise it'll just be a silent observer.
 4. run this command to download the engine (and maybe go get that donut now): `git clone https://github.com/supertone-inc/supertonic.git && cd supertonic && git clone https://huggingface.co/Supertone/supertonic-2 assets && cd nodejs && npm install`.
-5. restart your powershell or command prompt. don't ask why, just do it.
+5. run `cd ../../`
 6. finally, run `node src/index.js` to bring it to life.
 
 ## configuration (self-host only)
@@ -43,3 +43,4 @@ may contain traces of nuts and bolts. the hosted version will not have 24/7 upti
 ## credits
 
 - **Supertonic 2** by **Supertone** — the high-quality tts engine doing the heavy lifting.
+
