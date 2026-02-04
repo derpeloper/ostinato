@@ -1,12 +1,9 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/ad085efe-2380-4b85-b0a4-84164faa4c55">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/98f6cbda-4544-4b85-b0a4-84164faa4c55">
-    <img alt="ostinato logo" src="https://github.com/user-attachments/assets/ad085efe-2380-4b85-b0a4-84164faa4c55" width="600">
-  </picture>
+  <a href="https://discord.com/oauth2/authorize?client_id=1459993892484288512">
+    <img src="https://github.com/user-attachments/assets/ad085efe-2380-4b85-b0a4-84164faa4c55#gh-dark-mode-only" width="600" alt="ostinato logo">
+    <img src="https://github.com/user-attachments/assets/98f6cbda-4544-4b85-b0a4-84164faa4c55#gh-light-mode-only" width="600" alt="ostinato logo">
+  </a>
 </p>
-
-# ostinato
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
