@@ -3,9 +3,24 @@
  * @description main entry point for the discord bot. initializes the client, loads handlers, and logs in.
  * "warning: may contain traces of nuts and bolts."
  */
-const { Client, GatewayIntentBits, Collection } = require(`discord.js`);
+const { Client, GatewayIntentBits, Collection, Options } = require(`discord.js`);
 const fs = require('fs');
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] }); 
+const client = new Client({ intents: [
+    GatewayIntentBits.Guilds, 
+    GatewayIntentBits.GuildMessages, 
+    GatewayIntentBits.MessageContent, 
+    GatewayIntentBits.GuildVoiceStates
+], makeCache: Options.cacheWithLimits({ 
+    MessageManager: 0,
+    PresenceManager: 0,
+    ThreadManager: 0,
+    ReactionManager: 0,
+    GuildScheduledEventManager: 0,
+    StageInstanceManager: 0,
+    GuildInviteManager: 0,
+    GuildBanManager: 0,
+    GuildStickerManager: 0
+}) }); 
 
 client.commands = new Collection();
 

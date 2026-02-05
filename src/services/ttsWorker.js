@@ -116,7 +116,7 @@ parentPort.on('message', async (msg) => {
     if (msg.type === 'initialize') {
         await initialize();
     } else if (msg.type === 'generate') {
-        const { requestId, text, userId, voiceId, speed } = msg;
+        const { requestId, text, userId, voiceId, speed, lang: forcedLang } = msg;
 
         let targetSpeed = speed;
         if (targetSpeed === undefined || targetSpeed === null) {
@@ -148,18 +148,25 @@ parentPort.on('message', async (msg) => {
                 // This prevents hard OOM crashes.
             }
 
-            const detection = detectLanguage(text);
-            let detectedLang = detection ? detection.language : null;
-            
-            let defaultLang = config.defaultLang;
-            if (defaultLang === undefined || defaultLang === null) {
-                 console.warn('[TTSWorker] config.defaultLang is missing. falling back to backend default: "en"');
-                 defaultLang = 'en';
-            }
+            let lang = null;
+            let detectedLang = null;
 
-            let lang = defaultLang;
-            if (detectedLang && supportedLangs.includes(detectedLang)) {
-                lang = detectedLang;
+            if (forcedLang && supportedLangs.includes(forcedLang)) {
+                lang = forcedLang;
+            } else {
+                const detection = detectLanguage(text);
+                detectedLang = detection ? detection.language : null;
+                
+                let defaultLang = config.defaultLang;
+                if (defaultLang === undefined || defaultLang === null) {
+                     console.warn('[TTSWorker] config.defaultLang is missing. falling back to backend default: "en"');
+                     defaultLang = 'en';
+                }
+
+                lang = defaultLang;
+                if (detectedLang && supportedLangs.includes(detectedLang)) {
+                    lang = detectedLang;
+                }
             }
 
             const voiceStyle = getVoiceStyle(userId, voiceId);

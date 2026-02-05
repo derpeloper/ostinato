@@ -31,6 +31,20 @@ db.exec(`
         voice TEXT NOT NULL,
         PRIMARY KEY (user, guild, voice)
     );
+
+    CREATE TABLE IF NOT EXISTS speeds (
+        user TEXT NOT NULL,
+        guild TEXT NOT NULL,
+        speed REAL NOT NULL,
+        PRIMARY KEY (user, guild, speed)
+    );
+
+    CREATE TABLE IF NOT EXISTS langs (
+        user TEXT NOT NULL,
+        guild TEXT NOT NULL,
+        lang TEXT NOT NULL,
+        PRIMARY KEY (user, guild, lang)
+    );
 `);
 
 console.log('[Database] Initialized better-sqlite3 database at ' + path.join(dataDir, 'database.db'));

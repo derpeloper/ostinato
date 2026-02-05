@@ -27,7 +27,7 @@ const container = new ContainerBuilder()
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('we only store your nickname and voice preferences locally. preferences are per-server, so your embarrassing nickname in one server won\'t follow you to your serious work server. we don\'t collect, sell, or share anything else. your secrets are safe, largely because we wouldn\'t know what to do with them anyway.')
+        .setContent('we only store your nickname, voice, speed, and language preferences locally. preferences are per-server, so your embarrassing nickname in one server won\'t follow you to your serious work server. we don\'t collect, sell, or share anything else. your secrets are safe, largely because we wouldn\'t know what to do with them anyway.')
     )
 
     .addSeparatorComponents(separator => separator
@@ -49,7 +49,7 @@ const container = new ContainerBuilder()
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('-# bot version: 0.67.9-beta\n-# github: [derpeloper/ostinato](https://github.com/derpeloper/ostinato)\n-# supertonic version: 2\n\n-# this bot is in beta, expect frequent updates, changes, bugs, and outages')
+        .setContent('-# bot version: 0.83.5-beta\n-# github: [derpeloper/ostinato](https://github.com/derpeloper/ostinato)\n-# supertonic version: 2\n\n-# this bot is in beta, expect frequent updates, changes, bugs, and outages')
     )
 
 module.exports = {

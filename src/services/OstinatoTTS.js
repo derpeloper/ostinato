@@ -57,6 +57,7 @@ class OstinatoTTS {
 
         console.log('[OstinatoTTS] Initializing Worker...');
         await this.startWorker();
+        this.startHeartbeat();
     }
 
     async startWorker() {
@@ -132,13 +133,16 @@ class OstinatoTTS {
         }
     }
 
-    async generateAudio(text, userId, voiceId) {
+    async generateAudio(text, userId, voiceId, speed, lang) {
         if (!this.initialized) await this.initialize();
 
-        let speed = config.ttsSpeed;
-        if (speed === undefined || speed === null) {
-            console.warn('[OstinatoTTS] config.ttsSpeed is missing. falling back to backend default: 1.16');
-            speed = 1.16;
+        let finalSpeed = speed;
+        if (finalSpeed === undefined || finalSpeed === null || isNaN(finalSpeed)) {
+             finalSpeed = config.ttsSpeed;
+             if (finalSpeed === undefined || finalSpeed === null) {
+                 console.warn('[OstinatoTTS] config.ttsSpeed is missing. falling back to backend default: 1.16');
+                 finalSpeed = 1.16;
+             }
         }
 
         return new Promise((resolve, reject) => {
@@ -151,7 +155,8 @@ class OstinatoTTS {
                 text,
                 userId,
                 voiceId,
-                speed: speed
+                speed: finalSpeed,
+                lang: lang // Pass the forced language if set
             });
         });
     }
@@ -261,10 +266,26 @@ class OstinatoTTS {
                      console.error('[OstinatoTTS] DB Voice fetch error:', dbErr);
                 }
 
-                console.log(`[OstinatoTTS] Requesting generation for ${message.author.username} (Voice: ${voiceId || 'Default'})...`);
+                let speed = null;
+                try {
+                    const speedRow = db.prepare('SELECT speed FROM speeds WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
+                    if (speedRow) speed = speedRow.speed;
+                } catch (dbErr) {
+                     console.error('[OstinatoTTS] DB Speed fetch error:', dbErr);
+                }
+
+                let lang = null;
+                try {
+                    const langRow = db.prepare('SELECT lang FROM langs WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
+                    if (langRow) lang = langRow.lang;
+                } catch (dbErr) {
+                     console.error('[OstinatoTTS] DB Lang fetch error:', dbErr);
+                }
+
+                console.log(`[OstinatoTTS] Requesting generation for ${message.author.username} (Voice: ${voiceId || 'Default'} | Speed: ${speed || 'Default'} | Lang: ${lang || 'Auto'})...`);
                 const start = Date.now();
                 
-                const { buffer, lang, detected } = await this.generateAudio(fullContent, message.author.id, voiceId);
+                const { buffer, lang: usedLang, detected } = await this.generateAudio(fullContent, message.author.id, voiceId, speed, lang);
                 
                 if (!buffer) {
                      console.log(`[OstinatoTTS] Worker returned no audio. Text: "${fullContent}" | Detected: ${detected} | Supported: ${this.supportedLangs}`);
@@ -378,6 +399,33 @@ class OstinatoTTS {
                 } catch (e) { }
             }
             this.playbackQueues.delete(guildId);
+        }
+    }
+
+    startHeartbeat() {
+        // "stayin' alive, stayin' alive."
+        setInterval(async () => {
+            if (!this.initialized || !this.worker) return;
+            
+            // silently generate "alive" to keep memory pages hot.
+            // we don't await this because we ideally don't care about the result,
+            // but we need to ensure the worker actually processes it.
+            try {
+                // we use a junk user id (0) and null voice id to just hit the default path.
+                // console.log('[OstinatoTTS] Pulse check...'); 
+                await this.generateAudio("alive", "0", null, null, null);
+            } catch (e) {
+                // silent failure is fine here.
+            }
+        }, 3 * 60 * 1000); // 3 minutes
+    }
+
+    clearQueue(guildId) {
+        if (this.playbackQueues.has(guildId)) {
+            const queueData = this.playbackQueues.get(guildId);
+            queueData.queue = []; // empty the array
+            queueData.player.stop(); // stop current audio
+            console.log(`[OstinatoTTS] Queue cleared for guild ${guildId}. "silence is golden."`);
         }
     }
 }
