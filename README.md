@@ -1,7 +1,7 @@
 <p align="center">
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://private-user-images.githubusercontent.com/174086417/544825652-6bb7711b-6f2c-4239-94e0-40f86a2bf688.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzAxOTM5MDEsIm5iZiI6MTc3MDE5MzYwMSwicGF0aCI6Ii8xNzQwODY0MTcvNTQ0ODI1NjUyLTZiYjc3MTFiLTZmMmMtNDIzOS05NGUwLTQwZjg2YTJiZjY4OC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMjA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDIwNFQwODI2NDFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01MTkwNTljYTlkMzc1M2ZlZjFjZGM5OWEzY2I5NmM0YTJmYjI5ZGRlY2M3NjIwNDk4NzI1MGRmNzMzYjM2N2E1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.FUW93enO1TEByZoD_J-806r8HJ6AElGRioS6gUf_qjI">
-<source media="(prefers-color-scheme: light)" srcset="https://private-user-images.githubusercontent.com/174086417/544825653-5929bc54-799e-4a75-877c-c8ab60422fb7.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzAxOTM5MDEsIm5iZiI6MTc3MDE5MzYwMSwicGF0aCI6Ii8xNzQwODY0MTcvNTQ0ODI1NjUzLTU5MjliYzU0LTc5OWUtNGE3NS04NzdjLWM4YWI2MDQyMmZiNy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMjA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDIwNFQwODI2NDFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yNWYzODQ3YTJiOWIzZmQyNWZmNTQzODRkZGVjZDNiNGU4MDRjZjA4NzJmOGI2MjVlYzNlODRkMTU2OTA4ZjNjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ENx9GR4AY4qsm9hyPkbw6gJHMv_9bs6jKVkjKO3YyFE">
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/derpeloper/ostinato/refs/heads/main/assets/logo_dark.png">
+<source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/derpeloper/ostinato/refs/heads/main/assets/logo_light.png">
 <img alt="ostinato logo" src="https://github.com/user-attachments/assets/ad085efe-2380-4b85-b0a4-84164faa4c55" width="600">
 </picture>
 </p>
@@ -57,3 +57,4 @@ may contain traces of nuts and bolts. the hosted version will not have 24/7 upti
 ## credits
 
 - **Supertonic 2** by **Supertone** — the high-quality tts engine doing the heavy lifting.
+
