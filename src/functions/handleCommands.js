@@ -8,9 +8,7 @@ const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
 
 const { token } = require('../env.json')
-
-const clientId = 'YOUR CLIENT ID'; 
-const guildId = 'YOUR GUILD ID'; 
+const config = require('../config');
 
 module.exports = (client) => {
     client.handleCommands = async (commandFolders, path) => {
@@ -32,17 +30,25 @@ module.exports = (client) => {
             try {
                 console.log('[Command Handler] Started refreshing application (/) commands.');
 
-                await rest.put(
-                    Routes.applicationCommands(clientId), {
-                        body: client.commandArray
-                    },
-                );
+                if (config.guildId) {
+                    await rest.put(
+                        Routes.applicationGuildCommands(config.clientId, config.guildId), {
+                            body: client.commandArray
+                        },
+                    );
+                    console.log(`[Command Handler] Successfully reloaded application (/) commands for guild: ${config.guildId}`);
+                } else {
+                    await rest.put(
+                        Routes.applicationCommands(config.clientId), {
+                            body: client.commandArray
+                        },
+                    );
+                     console.log('[Command Handler] Successfully reloaded application (/) commands globally.');
+                }
 
-                console.log('[Command Handler] Successfully reloaded application (/) commands.');
             } catch (error) {
                 console.error(error);
             }
         })();
     };
-
 };

@@ -167,6 +167,18 @@ class OstinatoTTS {
         const originalContent = message.content;
         
         const guildId = message.guild.id;
+
+        try {
+            const setting = db.prepare('SELECT restricted FROM restrictions WHERE guild = ?').get(guildId);
+            if (setting && setting.restricted === 1) {
+                if (!message.member.voice.selfMute && !message.member.voice.serverMute) {
+                     console.log(`[OstinatoTTS] Ignored non-muted user ${message.author.username} in restricted guild.`);
+                     return;
+                }
+            }
+        } catch (err) {
+            console.error('[OstinatoTTS] Error checking restrictions:', err);
+        }
         
         const existingQueue = this.playbackQueues.get(guildId);
         const lastSpeaker = existingQueue ? existingQueue.lastSpeakerId : null;

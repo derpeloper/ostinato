@@ -21,8 +21,6 @@ module.exports = {
 
         const isMuted = member.voice.mute || member.voice.selfMute;
         
-        if (!isMuted) return;
-        
         try {
             console.log(`[TTS Event] Processing message from ${message.author.username}: ${message.content}`);
             await ostinato.processMessage(message);

@@ -45,6 +45,12 @@ db.exec(`
         lang TEXT NOT NULL,
         PRIMARY KEY (user, guild, lang)
     );
+
+    CREATE TABLE IF NOT EXISTS restrictions (
+        guild TEXT NOT NULL,
+        restricted INTEGER NOT NULL,
+        PRIMARY KEY (guild)
+    );
 `);
 
 console.log('[Database] Initialized better-sqlite3 database at ' + path.join(dataDir, 'database.db'));

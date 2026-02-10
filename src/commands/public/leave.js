@@ -19,6 +19,13 @@ module.exports = {
             return await interaction.reply({ content: 'i am not in a voice channel. are you hearing voices?', flags: MessageFlags.Ephemeral });
         }
 
+        const botChannelId = connection.joinConfig.channelId;
+        const userChannelId = interaction.member.voice.channelId;
+
+        if (!userChannelId || userChannelId !== botChannelId) {
+            return await interaction.reply({ content: 'you must be in the same voice channel as me to disconnect me. nice try.', flags: MessageFlags.Ephemeral });
+        }
+
         try {
             ostinato.handleBotDisconnect(guildId); // Uses the existing clean-up logic
             await interaction.reply({ content: 'goodbye.', flags: MessageFlags.Ephemeral });

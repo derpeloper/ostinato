@@ -27,9 +27,25 @@ const container = new ContainerBuilder()
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('we only store your nickname, voice, speed, and language preferences locally. preferences are per-server, so your embarrassing nickname in one server won\'t follow you to your serious work server. we don\'t collect, sell, or share anything else. your secrets are safe, largely because we wouldn\'t know what to do with them anyway.')
+        .setContent('### user data')
     )
 
+    .addTextDisplayComponents(textDisplay => textDisplay
+        .setContent('we locally store your preferences (nickname, voice, speed, language) per-server. so your chaotic settings here won\'t leak elsewhere.')
+    )
+
+    .addTextDisplayComponents(textDisplay => textDisplay
+        .setContent('### guild data')
+    )
+
+    .addTextDisplayComponents(textDisplay => textDisplay
+        .setContent('we only store the guild identifier to keep track of the "muted-only" setting. that is the full extent of our surveillance state.')
+    )
+
+    .addTextDisplayComponents(textDisplay => textDisplay
+        .setContent('-# we do not sell or share data. your secrets are safe, largely because they are boring.')
+    )
+    
     .addSeparatorComponents(separator => separator
         .setSpacing(SeparatorSpacingSize.Small)
         .setDivider(false)
@@ -49,7 +65,7 @@ const container = new ContainerBuilder()
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('-# bot version: 0.83.5-beta\n-# github: [derpeloper/ostinato](https://github.com/derpeloper/ostinato)\n-# supertonic version: 2\n\n-# this bot is in beta, expect frequent updates, changes, bugs, and outages')
+        .setContent('-# bot version: 0.95.7-beta\n-# github: [derpeloper/ostinato](https://github.com/derpeloper/ostinato)\n-# supertonic version: 2\n\n-# this bot is in beta, expect frequent updates, changes, bugs, and outages')
     )
 
 module.exports = {

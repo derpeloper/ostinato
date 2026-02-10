@@ -7,13 +7,20 @@
 
 module.exports = {
 
+    // -- core identity --------------------------------------------------------
+    // who am i? and where do i belong?
+
+    clientId: 'YOUR CLIENT ID', // id: the bot's unique identifier.
+    guildId:  null,                  // scope: specific guild id for local commands (null for global).
+
+
     // -- engine settings ------------------------------------------------------
     // customize how the voice sounds and behaves.
 
     ttsSpeed:    1.16,  // rate: how fast the model reads messages (float)
     ttsVolume:   5.89,  // gain: loud enough to be heard, quiet enough to be sane.
-    ttsQuality:  6,     // depth: 1 to 50. 6 is the "magic" spot for efficiency.
-    defaultLang: 'en',  // fallback: used if language detection is disabled.
+    ttsQuality:  15,     // depth: 1 to 50. 6 is the "magic" spot for efficiency.
+    defaultLang: 'en',  // fallback: [en, es, pt, ko, fr] supported only.
 
 
     // -- resource safety ------------------------------------------------------

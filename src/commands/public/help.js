@@ -14,6 +14,8 @@ const messages = {
     lang: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# lang')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('changes the language of the tts for your account. \n\nsupported languages: english, portuguese, korean, french, spanish. \n\n-# language preferences are per-server instead of being universal.')),
     clear: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# clear')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('clears the tts queue for the current server. \n\nrequires **Manage Messages** permission.')),
     leave: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# leave')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('forces the bot to disconnect from the voice channel.')),
+    restrict: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# restrict')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('restricts tts usage to only muted users. \n\nrequires **Manage Channels** permission.')),
+    unrestrict: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# unrestrict')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('allows everyone to use tts. \n\nrequires **Manage Channels** permission.')),
 }
 
 module.exports = {
@@ -36,7 +38,9 @@ module.exports = {
             { name: 'speed', value: 'speed' },
             { name: 'lang', value: 'lang' },
             { name: 'clear', value: 'clear' },
-            { name: 'leave', value: 'leave' }
+            { name: 'leave', value: 'leave' },
+            { name: 'restrict', value: 'restrict' },
+            { name: 'unrestrict', value: 'unrestrict' }
         ];
         const filtered = commands.filter(command => command.name.toLowerCase().includes(focusedValue.toLowerCase()));
         await interaction.respond(
