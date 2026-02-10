@@ -21,13 +21,8 @@ _note: this is hosted on my personal machine. expect outages for maintenance, bu
 
 ## commands
 
-- `/voice`: pick your favorite voice model. choose the one that sounds the least like a robot.
-- `/speed`: talk fast or talk slow. set your personal tts speed. zoom zoom.
-- `/lang`: hablas español? set your preferred language for tts output.
-- `/name`: tell the bot what to call you. set a custom nickname so the bot knows who is speaking when it announces "<name> says:".
-- `/clear`: shut it up. immediately stops the current speech and clears the queue. silence is golden. requires "Manage Messages" permission.
-- `/leave`: kick the bot out of the voice channel. bye rights.
-- `/info`: legal mumbo jumbo, version info, and credits. basically the boring stuff.
+- run `/help` in a server where the bot is present to see a full list of commands.
+- for a detailed breakdown of commands for both moderators/admins and the general public, refer to the `src/commands` folder in this repository.
 
 ## self-hosting
 
@@ -43,8 +38,8 @@ the engine is a bit hungry. on my machine, it sits between **~300mb and ~600mb o
 2. run `cd ostinato` then run `npm install`. this might take a while, go grab a coffee.
 3. edit your config files:
    - in `src/env.json`, replace `token` with your actual discord bot token.
-   - in `src/functions/handleCommands.js`, replace `"YOUR CLIENT ID"` with your bot's client id.
-   - **optional**: in `src/functions/handleCommands.js`, you can also add your server's id where it says `"YOUR GUILD ID"` if you only want the bot in one server (and want the commands to show up instantly).
+   - in `src/config.js`, replace `clientId` with your bot's client id.
+   - **optional**: in `src/config.js`, you can also set `guildId` to your server's id if you only want the bot in one server (and want the commands to show up instantly). otherwise, leave it as `null`.
    - make sure you give the bot the right permissions: priority speaker, connect, read message history, and speak. otherwise, it'll just be a silent observer.
 4. run this command to download the engine (and maybe go get that donut now): `git clone https://github.com/supertone-inc/supertonic.git && cd supertonic && git clone https://huggingface.co/Supertone/supertonic-2 assets && cd nodejs && npm install`.
 5. run `cd ../../` to get back to the main folder.
