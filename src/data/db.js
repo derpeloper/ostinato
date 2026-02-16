@@ -51,6 +51,11 @@ db.exec(`
         restricted INTEGER NOT NULL,
         PRIMARY KEY (guild)
     );
+
+    CREATE TABLE IF NOT EXISTS disabled (
+        user TEXT NOT NULL,
+        PRIMARY KEY (user)
+    );
 `);
 
 console.log('[Database] Initialized better-sqlite3 database at ' + path.join(dataDir, 'database.db'));

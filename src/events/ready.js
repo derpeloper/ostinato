@@ -1,10 +1,10 @@
-const { ActivityType } = require('discord.js');
-
 /**
  * @file ready.js
  * @description event handler for when the client is ready. sets the bot's status and logs a ready message.
  * "i'm ready, i'm ready!"
  */
+const { ActivityType } = require('discord.js');
+
 module.exports = {
     name: 'clientReady',
     once: true,

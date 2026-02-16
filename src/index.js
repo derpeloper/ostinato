@@ -41,7 +41,7 @@ require('./data/db');
         console.error('Failed to initialize OstinatoTTS:', e);
     }
     
-        for (file of functions) {
+    for (const file of functions) {
         require(`./functions/${file}`)(client);
     }
     

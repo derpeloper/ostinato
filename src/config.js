@@ -10,8 +10,8 @@ module.exports = {
     // -- core identity --------------------------------------------------------
     // who am i? and where do i belong?
 
-    clientId: 'YOUR CLIENT ID', // id: the bot's unique identifier.
-    guildId:  null,                  // scope: specific guild id for local commands (null for global).
+    clientId: 'your client id', // id: the bot's unique identifier.
+    guildId:  null, // scope: specific guild id for local commands (null for global).
 
 
     // -- engine settings ------------------------------------------------------

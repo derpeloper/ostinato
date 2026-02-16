@@ -16,6 +16,9 @@ const messages = {
     leave: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# leave')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('forces the bot to disconnect from the voice channel.')),
     restrict: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# restrict')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('restricts tts usage to only muted users. \n\nrequires **Manage Channels** permission.')),
     unrestrict: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# unrestrict')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('allows everyone to use tts. \n\nrequires **Manage Channels** permission.')),
+    skip: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# skip')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('skips the currently playing tts message. \n\nrequires **Manage Messages** permission.')),
+    tts: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# tts')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('manage your tts preferences. \n\n`/tts on`: turn on tts for your messages.\n`/tts off`: turn off tts for your messages.')),
+    settings: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# settings')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('displays your current tts settings (voice, name, speed, lang).')),
 }
 
 module.exports = {
@@ -38,6 +41,9 @@ module.exports = {
             { name: 'speed', value: 'speed' },
             { name: 'lang', value: 'lang' },
             { name: 'clear', value: 'clear' },
+            { name: 'skip', value: 'skip' },
+            { name: 'tts', value: 'tts' },
+            { name: 'settings', value: 'settings' },
             { name: 'leave', value: 'leave' },
             { name: 'restrict', value: 'restrict' },
             { name: 'unrestrict', value: 'unrestrict' }

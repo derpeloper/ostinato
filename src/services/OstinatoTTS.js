@@ -9,6 +9,7 @@ const { createAudioResource, StreamType, joinVoiceChannel, getVoiceConnection, A
 const { Readable } = require('stream');
 const config = require('../config');
 const db = require('../data/db');
+const { cleanText } = require('../utils/cleanText');
 
 class Semaphore {
     constructor(max) {
@@ -50,14 +51,35 @@ class OstinatoTTS {
         this.pendingRequests = new Map();
         this.requestIdCounter = 0;
         this.sampleRate = 24000;
+        this.initializationPromise = null;
+        this.cache = new Map();
+
+        this.DEFAULT_VOICES = [
+            'F1', 'F2', 'F3', 'F4', 'F5',
+            'M1', 'M2', 'M3', 'M4', 'M5'
+        ];
+    }
+
+    getDefaultVoice(userId) {
+        const idx = Number(BigInt(userId) % 10n);
+        return this.DEFAULT_VOICES[idx];
     }
 
     async initialize() {
         if (this.initialized) return;
+        if (this.initializationPromise) return this.initializationPromise;
 
         console.log('[OstinatoTTS] Initializing Worker...');
-        await this.startWorker();
-        this.startHeartbeat();
+        this.initializationPromise = (async () => {
+            try {
+                await this.startWorker();
+                this.startHeartbeat();
+            } catch (error) {
+                this.initializationPromise = null;
+                throw error;
+            }
+        })();
+        return this.initializationPromise;
     }
 
     async startWorker() {
@@ -93,14 +115,44 @@ class OstinatoTTS {
                 console.log('[OstinatoTTS] Worker died. Restarting in 1 second...');
                 this.initialized = false;
                 this.worker = null;
+                this.initializationPromise = null;
                 
-                for (const [requestId, request] of this.pendingRequests.entries()) {
-                    request.reject(new Error('Worker crashed during generation'));
-                }
+                const requestsToRetry = Array.from(this.pendingRequests.entries());
                 this.pendingRequests.clear();
 
                 await new Promise(r => setTimeout(r, 1000));
-                this.startWorker();
+                
+                // Restart worker
+                this.initializationPromise = (async () => {
+                    try {
+                        await this.startWorker();
+                    } catch (err) {
+                        this.initializationPromise = null;
+                        console.error('[OstinatoTTS] Failed to restart worker:', err);
+                    }
+                })();
+                
+                try {
+                    await this.initializationPromise;
+                    console.log(`[OstinatoTTS] Re-queueing ${requestsToRetry.length} failed requests...`);
+                    for (const [requestId, req] of requestsToRetry) {
+                        if (req.args) {
+                            try {
+                               const { buffer, lang, detected } = await this.generateAudio(...req.args);
+                               req.resolve({ buffer, lang, detected });
+                            } catch (err) {
+                               req.reject(err);
+                            }
+                        } else {
+                            req.reject(new Error('Worker crashed and request could not be retried'));
+                        }
+                    }
+                } catch (e) {
+                    // if restart failed
+                     for (const [requestId, req] of requestsToRetry) {
+                         req.reject(new Error('Worker crashed and failed to restart'));
+                     }
+                }
             });
 
             this.worker.postMessage({ type: 'initialize' });
@@ -147,7 +199,11 @@ class OstinatoTTS {
 
         return new Promise((resolve, reject) => {
             const requestId = this.requestIdCounter++;
-            this.pendingRequests.set(requestId, { resolve, reject });
+            this.pendingRequests.set(requestId, { 
+                resolve, 
+                reject,
+                args: [text, userId, voiceId, speed, lang]
+            });
             
             this.worker.postMessage({
                 type: 'generate',
@@ -156,7 +212,7 @@ class OstinatoTTS {
                 userId,
                 voiceId,
                 speed: finalSpeed,
-                lang: lang // Pass the forced language if set
+                lang: lang
             });
         });
     }
@@ -165,19 +221,47 @@ class OstinatoTTS {
         if (!this.initialized) await this.initialize();
 
         const originalContent = message.content;
+        const cleanContent = cleanText(message.content, message);
+        
+        if (!cleanContent) return;
         
         const guildId = message.guild.id;
 
         try {
-            const setting = db.prepare('SELECT restricted FROM restrictions WHERE guild = ?').get(guildId);
-            if (setting && setting.restricted === 1) {
+            const restrictedKey = `restricted:${guildId}`;
+            let isRestricted = false;
+            if (this.cache.has(restrictedKey)) {
+                isRestricted = this.cache.get(restrictedKey);
+            } else {
+                const setting = db.prepare('SELECT restricted FROM restrictions WHERE guild = ?').get(guildId);
+                if (setting && setting.restricted === 1) isRestricted = true;
+                this.cache.set(restrictedKey, isRestricted);
+                setTimeout(() => this.cache.delete(restrictedKey), 600000);
+            }
+
+            if (isRestricted) {
                 if (!message.member.voice.selfMute && !message.member.voice.serverMute) {
-                     console.log(`[OstinatoTTS] Ignored non-muted user ${message.author.username} in restricted guild.`);
                      return;
                 }
             }
+
+            const disabledKey = `disabled:${message.author.id}`;
+            let isDisabled = false;
+            
+            if (this.cache.has(disabledKey)) {
+                 isDisabled = this.cache.get(disabledKey);
+            } else {
+                const disabled = db.prepare('SELECT user FROM disabled WHERE user = ?').get(message.author.id);
+                if (disabled) isDisabled = true;
+                this.cache.set(disabledKey, isDisabled);
+                setTimeout(() => this.cache.delete(disabledKey), 600000);
+            }
+
+            if (isDisabled) {
+                return;
+            }
         } catch (err) {
-            console.error('[OstinatoTTS] Error checking restrictions:', err);
+            console.error('[OstinatoTTS] Error checking restrictions/disabled:', err);
         }
         
         const existingQueue = this.playbackQueues.get(guildId);
@@ -204,6 +288,7 @@ class OstinatoTTS {
                 player: player,
                 connection: null,
                 currentIsLong: false,
+                currentTextLength: 0,
                 lastSpeakerId: null 
             });
         }
@@ -211,6 +296,10 @@ class OstinatoTTS {
         const queueData = this.playbackQueues.get(guildId);
         
         let connection = getVoiceConnection(guildId);
+        
+        if (connection && message.member.voice.channel.id !== connection.joinConfig.channelId) {
+             return;
+        }
         if (!connection) {
             if (message.member.voice.channel) {
                 console.log(`[OstinatoTTS] Joining VC: ${message.member.voice.channel.name}`);
@@ -247,7 +336,7 @@ class OstinatoTTS {
         const sub = connection.subscribe(queueData.player);
         if (!sub) console.warn('[OstinatoTTS] Failed to subscribe player to connection.');
         
-        const isLong = originalContent.length > 175;
+        const isLong = cleanContent.length > 200;
 
         if (queueData.isPlaying && queueData.currentIsLong) {
             console.log(`[OstinatoTTS] Interrupting long message.`);
@@ -258,53 +347,83 @@ class OstinatoTTS {
             await this.processingSemaphore.acquire();
             try {
                 let nameToUse = message.author.username;
-                try {
-                    const nameRow = db.prepare('SELECT name FROM names WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
-                    if (nameRow) nameToUse = nameRow.name;
-                } catch (dbErr) {
-                    console.error('[OstinatoTTS] DB Name fetch error:', dbErr);
+                
+                const nameKey = `name:${message.author.id}:${guildId}`;
+                if (this.cache.has(nameKey)) {
+                    nameToUse = this.cache.get(nameKey);
+                } else {
+                    try {
+                        const nameRow = db.prepare('SELECT name FROM names WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
+                        if (nameRow) nameToUse = nameRow.name;
+                        this.cache.set(nameKey, nameToUse);
+                        setTimeout(() => this.cache.delete(nameKey), 600000); // 10 min cache
+                    } catch (dbErr) {
+                        console.error('[OstinatoTTS] DB Name fetch error:', dbErr);
+                    }
                 }
 
-                let fullContent = originalContent;
+                let fullContent = cleanContent;
                 if (shouldAnnounceName) {
-                    fullContent = `${nameToUse} said: ${originalContent}`;
+                    if (cleanContent === 'sent a link') {
+                         fullContent = `${nameToUse} sent a link`;
+                    } else {
+                         fullContent = `${nameToUse} said: ${cleanContent}`;
+                    }
                 }
 
                 let voiceId = null;
-                try {
-                    const voiceRow = db.prepare('SELECT voice FROM voices WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
-                    if (voiceRow) voiceId = voiceRow.voice;
-                } catch (dbErr) {
-                     console.error('[OstinatoTTS] DB Voice fetch error:', dbErr);
+                const voiceKey = `voice:${message.author.id}:${guildId}`;
+                if (this.cache.has(voiceKey)) {
+                    voiceId = this.cache.get(voiceKey);
+                } else {
+                    try {
+                        const voiceRow = db.prepare('SELECT voice FROM voices WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
+                        if (voiceRow) voiceId = voiceRow.voice;
+                        this.cache.set(voiceKey, voiceId);
+                        setTimeout(() => this.cache.delete(voiceKey), 600000);
+                    } catch (dbErr) {
+                         console.error('[OstinatoTTS] DB Voice fetch error:', dbErr);
+                    }
                 }
 
                 let speed = null;
-                try {
-                    const speedRow = db.prepare('SELECT speed FROM speeds WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
-                    if (speedRow) speed = speedRow.speed;
-                } catch (dbErr) {
-                     console.error('[OstinatoTTS] DB Speed fetch error:', dbErr);
+                const speedKey = `speed:${message.author.id}:${guildId}`;
+                if (this.cache.has(speedKey)) {
+                    speed = this.cache.get(speedKey);
+                } else {
+                    try {
+                        const speedRow = db.prepare('SELECT speed FROM speeds WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
+                        if (speedRow) speed = speedRow.speed;
+                        this.cache.set(speedKey, speed);
+                        setTimeout(() => this.cache.delete(speedKey), 600000);
+                    } catch (dbErr) {
+                         console.error('[OstinatoTTS] DB Speed fetch error:', dbErr);
+                    }
                 }
 
                 let lang = null;
-                try {
-                    const langRow = db.prepare('SELECT lang FROM langs WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
-                    if (langRow) lang = langRow.lang;
-                } catch (dbErr) {
-                     console.error('[OstinatoTTS] DB Lang fetch error:', dbErr);
+                const langKey = `lang:${message.author.id}:${guildId}`;
+                if (this.cache.has(langKey)) {
+                    lang = this.cache.get(langKey);
+                } else {
+                    try {
+                        const langRow = db.prepare('SELECT lang FROM langs WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
+                        if (langRow) lang = langRow.lang;
+                        this.cache.set(langKey, lang);
+                        setTimeout(() => this.cache.delete(langKey), 600000);
+                    } catch (dbErr) {
+                         console.error('[OstinatoTTS] DB Lang fetch error:', dbErr);
+                    }
                 }
 
-                console.log(`[OstinatoTTS] Requesting generation for ${message.author.username} (Voice: ${voiceId || 'Default'} | Speed: ${speed || 'Default'} | Lang: ${lang || 'Auto'})...`);
+
                 const start = Date.now();
                 
                 const { buffer, lang: usedLang, detected } = await this.generateAudio(fullContent, message.author.id, voiceId, speed, lang);
                 
                 if (!buffer) {
-                     console.log(`[OstinatoTTS] Worker returned no audio. Text: "${fullContent}" | Detected: ${detected} | Supported: ${this.supportedLangs}`);
                      return null;
                 }
-
-                console.log(`[OstinatoTTS] Received ${buffer.length} bytes in ${Date.now() - start}ms. Lang: ${lang}`);
                 
                 const resource = createAudioResource(Readable.from([buffer]), { inlineVolume: true });
                 
@@ -333,7 +452,7 @@ class OstinatoTTS {
         })();
 
         queueData.lastSpeakerId = message.author.id;
-        queueData.queue.push({ task: taskPromise, isLong });
+        queueData.queue.push({ task: taskPromise, isLong, textLength: cleanContent.length });
 
         if (!queueData.isPlaying) {
             this.playNext(guildId);
@@ -353,18 +472,16 @@ class OstinatoTTS {
         queueData.isPlaying = true;
         const item = queueData.queue[0]; 
         queueData.currentIsLong = item.isLong;
+        queueData.currentTextLength = item.textLength;
         
         try {
             const resource = await item.task;
             queueData.queue.shift(); 
 
             if (resource) {
-                console.log(`[OstinatoTTS] Playing...`);
                 
-                // Monitor resource for errors that might kill the stream silently
                 resource.playStream.on('error', (error) => {
                     console.error('[OstinatoTTS] Audio Resource Stream Error:', error);
-                    // Force skip to next if stream dies
                     this.playNext(guildId); 
                 });
 
@@ -429,16 +546,31 @@ class OstinatoTTS {
             } catch (e) {
                 // silent failure is fine here.
             }
-        }, 3 * 60 * 1000); // 3 minutes
+        }, 3 * 60 * 1000);
     }
 
     clearQueue(guildId) {
         if (this.playbackQueues.has(guildId)) {
             const queueData = this.playbackQueues.get(guildId);
-            queueData.queue = []; // empty the array
-            queueData.player.stop(); // stop current audio
+            queueData.queue = [];
+            queueData.player.stop();
             console.log(`[OstinatoTTS] Queue cleared for guild ${guildId}. "silence is golden."`);
         }
+    }
+
+    skip(guildId) {
+        if (!this.playbackQueues.has(guildId)) return 'NOT_PLAYING';
+
+        const queueData = this.playbackQueues.get(guildId);
+        
+        if (!queueData.isPlaying) return 'NOT_PLAYING';
+
+        if (queueData.currentTextLength < 35) {
+            return 'TOO_SHORT';
+        }
+
+        queueData.player.stop();
+        return 'SKIPPED';
     }
 }
 

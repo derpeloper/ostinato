@@ -8,6 +8,8 @@
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
+> **current version**: v1.0.0 (official release)
+
 [add the bot to your server](https://discord.com/oauth2/authorize?client_id=1459993892484288512)
 _note: this is hosted on my personal machine. expect outages for maintenance, bug fixes, or if my power goes out. you have been warned._
 
@@ -55,6 +57,12 @@ check `src/config.js` to change the internal engine settings.
 - `defaultLang`: fallback language if detection fails.
 - `maxConcurrency`: how many messages are processed at once to prevent a backed-up queue.
 - `workerMemoryLimit`: memory cap for the worker before it restarts. keeps the ram gremlins at bay.
+
+## issues & contributions
+
+found a bug? have a suggestion? bot exploded? feel free to [open an issue](https://github.com/derpeloper/ostinato/issues) and let me know.
+
+you are also welcome to fork this repository for your own use. explore, experiment, break things. it's open source for a reason.
 
 ## disclaimer
 

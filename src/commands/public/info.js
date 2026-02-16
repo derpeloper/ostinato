@@ -10,11 +10,11 @@ const container = new ContainerBuilder()
     .setAccentColor(0x337c97)
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('# information')
+        .setContent('# ostinato')
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('a simple, open-sourced bot that utilises supertonic as a tts inference. it does exactly what it says on the tin, assuming the tin is made of code.')
+        .setContent('*giving a voice to the voiceless. and the socially awkward.*')
     )
 
     .addSeparatorComponents(separator => separator
@@ -27,23 +27,15 @@ const container = new ContainerBuilder()
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('### user data')
+        .setContent('**your stuff** (stored locally per-server)\n- **voice**: so you don\'t sound like a generic robot.\n- **speed**: zoom zoom or slow motion.\n- **name**: your alter ego.\n- **language**: for when you want to sound fancy.')
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('we locally store your preferences (nickname, voice, speed, language) per-server. so your chaotic settings here won\'t leak elsewhere.')
+        .setContent('**boring system data**\n- **opt-out**: we remember if you told us to shut up (`/tts off`).\n- **guild settings**: just to know if we should ignore unmuted people.')
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('### guild data')
-    )
-
-    .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('we only store the guild identifier to keep track of the "muted-only" setting. that is the full extent of our surveillance state.')
-    )
-
-    .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('-# we do not sell or share data. your secrets are safe, largely because they are boring.')
+        .setContent('-# we do not log your messages, generate audio files, or sell your data. your secrets are safe, mostly because they are probably boring.')
     )
     
     .addSeparatorComponents(separator => separator
@@ -56,7 +48,7 @@ const container = new ContainerBuilder()
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('adhere to discord\'s tos, and this bot is provided "as-is". use it wisely, or don\'t. we aren\'t your parents.')
+        .setContent('provided "as-is". adhere to discord tos. or don\'t. we aren\'t your parents.')
     )
     
     .addSeparatorComponents(separator => separator
@@ -65,7 +57,7 @@ const container = new ContainerBuilder()
     )
 
     .addTextDisplayComponents(textDisplay => textDisplay
-        .setContent('-# bot version: 0.95.7-beta\n-# github: [derpeloper/ostinato](https://github.com/derpeloper/ostinato)\n-# supertonic version: 2\n\n-# this bot is in beta, expect frequent updates, changes, bugs, and outages')
+        .setContent('-# version: 1.0.0 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely.')
     )
 
 module.exports = {

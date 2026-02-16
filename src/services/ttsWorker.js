@@ -142,10 +142,8 @@ parentPort.on('message', async (msg) => {
                 memLimit = 1610612736;
             }
 
-            if (used.heapUsed > memLimit) { // Soft Limit
+            if (used.heapUsed > memLimit) {
                 console.warn('[TTSWorker] Memory high. Recycling worker after this request.');
-                // We will exit after sending the response to let the main process restart us fresh.
-                // This prevents hard OOM crashes.
             }
 
             let lang = null;
@@ -189,7 +187,6 @@ parentPort.on('message', async (msg) => {
                 detected: detectedLang
             });
 
-            // Check memory again after generation, if it spiked heavily or was already high, exit.
             const finalUsed = process.memoryUsage();
             let finalMemLimit = config.workerMemoryLimit;
             if (finalMemLimit === undefined || finalMemLimit === null) {
@@ -211,7 +208,7 @@ function logWorkerMemory() {
     console.log(`[TTSWorker] Memory: RSS ${(used.rss / 1024 / 1024).toFixed(2)}MB | Heap ${(used.heapUsed / 1024 / 1024).toFixed(2)}MB`);
 }
 
-setInterval(logWorkerMemory, 5 * 60 * 1000);
+// setInterval(logWorkerMemory, 5 * 60 * 1000);
 
 process.on('unhandledRejection', (reason, promise) => {
     console.error('[TTSWorker] Unhandled Rejection at:', promise, 'reason:', reason);
