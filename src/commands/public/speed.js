@@ -5,14 +5,19 @@
  */
 const { SlashCommandBuilder, MessageFlags } = require('discord.js')
 const db = require('../../data/db');
+const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('speed')
         .setDescription('change the speed of the tts for your account')
+        .setNameLocalizations(getCommandLocalizations('public', 'speed').nameLocalizations)
+        .setDescriptionLocalizations(getCommandLocalizations('public', 'speed').descriptionLocalizations)
         .addNumberOption(option => option
             .setName('value')
             .setDescription('the speed multiplier (0.5 to 2.0)')
+            .setNameLocalizations(getOptionLocalizations('public', 'speed', 'value').nameLocalizations)
+            .setDescriptionLocalizations(getOptionLocalizations('public', 'speed', 'value').descriptionLocalizations)
             .setMinValue(0.5)
             .setMaxValue(2.0)
             .setRequired(true)
@@ -31,14 +36,14 @@ module.exports = {
             const info = updateSpeed();
 
             if (info.changes > 0) {
-                await interaction.reply({ content: `speed set to **${speedValue}x**.`, flags: MessageFlags.Ephemeral });
+                await interaction.reply({ content: localize(interaction.locale, 'responses.public.speed.success', { speedValue }), flags: MessageFlags.Ephemeral });
             } else {
-                 await interaction.reply({ content: `you are already at **${speedValue}x** speed.`, flags: MessageFlags.Ephemeral });
+                 await interaction.reply({ content: localize(interaction.locale, 'responses.public.speed.duplicate', { speedValue }), flags: MessageFlags.Ephemeral });
             }
             
         } catch (error) {
             console.error(error);
-             await interaction.reply({ content: `failed to save speed setting. (db error)`, flags: MessageFlags.Ephemeral });
+             await interaction.reply({ content: localize(interaction.locale, 'responses.public.speed.error'), flags: MessageFlags.Ephemeral });
         }
     }
 }

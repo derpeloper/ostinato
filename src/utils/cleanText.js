@@ -10,7 +10,6 @@ const abbreviations = {
     'tbh': 'to be honest',
     'rn': 'right now',
     'imo': 'in my opinion',
-    'imho': 'in my humble opinion',
     'btw': 'by the way',
     'afk': 'away from keyboard',
     'omg': 'oh my god',
@@ -28,8 +27,6 @@ const abbreviations = {
     'ig': 'i guess',
     'fr': 'for real',
     'ong': 'on god',
-    'cap': 'lie',
-    'no cap': 'no lie'
 };
 
 const urlRegex = /(https?:\/\/[^\s]+)/g;

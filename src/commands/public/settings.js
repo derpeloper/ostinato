@@ -7,11 +7,14 @@ const { SlashCommandBuilder, ContainerBuilder, MessageFlags, SeparatorSpacingSiz
 const config = require('../../config');
 const ostinato = require('../../services/OstinatoTTS');
 const db = require('../../data/db');
+const { localize, getCommandLocalizations } = require('../../localization/localize');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('settings')
-        .setDescription('check your current tts settings'),
+        .setDescription('check your current tts settings')
+        .setNameLocalizations(getCommandLocalizations('public', 'settings').nameLocalizations)
+        .setDescriptionLocalizations(getCommandLocalizations('public', 'settings').descriptionLocalizations),
     
     async execute(interaction) {
         const userId = interaction.user.id;
@@ -23,12 +26,12 @@ module.exports = {
         try {
             const row = db.prepare('SELECT voice FROM voices WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(userId, guildId);
             if (row) {
-                voiceDisplay = `\`${row.voice}\` (Default: \`${defaultVoice}\`)`;
+                voiceDisplay = localize(interaction.locale, 'responses.public.settings.setFormat', { value: row.voice, defaultValue: defaultVoice });
             } else {
-                voiceDisplay = `\`Not set\` (Default: \`${defaultVoice}\`)`;
+                voiceDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultVoice });
             }
         } catch (e) {
-            voiceDisplay = `\`Not set\` (Default: \`${defaultVoice}\`)`;
+            voiceDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultVoice });
         }
 
         // -- NAME --
@@ -37,12 +40,12 @@ module.exports = {
         try {
             const row = db.prepare('SELECT name FROM names WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(userId, guildId);
             if (row) {
-                 nameDisplay = `\`${row.name}\` (Default: \`${defaultName}\`)`;
+                 nameDisplay = localize(interaction.locale, 'responses.public.settings.setFormat', { value: row.name, defaultValue: defaultName });
             } else {
-                 nameDisplay = `\`Not set\` (Default: \`${defaultName}\`)`;
+                 nameDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultName });
             }
         } catch (e) {
-             nameDisplay = `\`Not set\` (Default: \`${defaultName}\`)`;
+             nameDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultName });
         }
 
         // -- SPEED --
@@ -51,12 +54,12 @@ module.exports = {
         try {
             const row = db.prepare('SELECT speed FROM speeds WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(userId, guildId);
             if (row) {
-                speedDisplay = `\`${row.speed}\` (Default: \`${defaultSpeed}\`)`;
+                speedDisplay = localize(interaction.locale, 'responses.public.settings.setFormat', { value: row.speed, defaultValue: defaultSpeed });
             } else {
-                speedDisplay = `\`Not set\` (Default: \`${defaultSpeed}\`)`;
+                speedDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultSpeed });
             }
         } catch (e) {
-            speedDisplay = `\`Not set\` (Default: \`${defaultSpeed}\`)`;
+            speedDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultSpeed });
         }
 
         // -- LANG --
@@ -65,34 +68,34 @@ module.exports = {
         try {
             const row = db.prepare('SELECT lang FROM langs WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(userId, guildId);
             if (row) {
-                langDisplay = `\`${row.lang}\` (Default: \`${defaultLang}\`)`;
+                langDisplay = localize(interaction.locale, 'responses.public.settings.setFormat', { value: row.lang, defaultValue: defaultLang });
             } else {
-                langDisplay = `\`Not set\` (Default: \`${defaultLang}\`)`;
+                langDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultLang });
             }
         } catch (e) {
-            langDisplay = `\`Not set\` (Default: \`${defaultLang}\`)`;
+            langDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultLang });
         }
 
         const container = new ContainerBuilder()
             .setAccentColor(0x337c97)
             .addTextDisplayComponents(textDisplay => textDisplay
-                .setContent('# settings')
+                .setContent(localize(interaction.locale, 'responses.public.settings.title'))
             )
             .addSeparatorComponents(separator => separator
                 .setSpacing(SeparatorSpacingSize.Small)
                 .setDivider(false)
             )
             .addTextDisplayComponents(textDisplay => textDisplay
-                .setContent(`**voice**: ${voiceDisplay}`)
+                .setContent(localize(interaction.locale, 'responses.public.settings.voice', { value: voiceDisplay }))
             )
             .addTextDisplayComponents(textDisplay => textDisplay
-                .setContent(`**name**: ${nameDisplay}`)
+                .setContent(localize(interaction.locale, 'responses.public.settings.name', { value: nameDisplay }))
             )
             .addTextDisplayComponents(textDisplay => textDisplay
-                .setContent(`**speed**: ${speedDisplay}`)
+                .setContent(localize(interaction.locale, 'responses.public.settings.speed', { value: speedDisplay }))
             )
             .addTextDisplayComponents(textDisplay => textDisplay
-                .setContent(`**lang**: ${langDisplay}`)
+                .setContent(localize(interaction.locale, 'responses.public.settings.lang', { value: langDisplay }))
             );
 
         await interaction.reply({

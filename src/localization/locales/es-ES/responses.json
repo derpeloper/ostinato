@@ -1,0 +1,97 @@
+{
+  "mods": {
+    "clear": {
+      "success": "cola limpiada.",
+      "error": "falló al limpiar la cola."
+    },
+    "restrict": {
+      "success": "tts restringido a usuarios silenciados.",
+      "error": "falló al restringir tts."
+    },
+    "skip": {
+      "success": "saltado.",
+      "tooShort": "mensaje muy corto para saltar (< 35 chars).",
+      "notPlaying": "no hay nada reproduciéndose.",
+      "error": "error al saltar.",
+      "unknown": "falló al saltar."
+    },
+    "unrestrict": {
+      "success": "sin restricciones de tts.",
+      "error": "falló al quitar restricción."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "información del comando no encontrada.",
+      "commands": {
+        "help": "estoy seguro de que este comando se explica por sí mismo. proporciona información sobre los comandos de este bot.",
+        "voice": "cambia la voz de tu cuenta. \n\nsi tienes curiosidad sobre cómo suenan, visita la página de [voces](https://supertone-inc.github.io/supertonic-py/voices/) de supertonic.\n\n-# la voz solo afecta al servidor actual.",
+        "info": "proporciona información sobre el bot, políticas e términos del servicio.",
+        "name": "cambia el nombre de tu cuenta. \n\n-# el nombre es solo para este servidor para proteger tu privacidad.",
+        "speed": "cambia la velocidad del tts. \n\nel valor debe estar entre **0.5** y **2.0**. \n\n-# la velocidad es solo para este servidor.",
+        "lang": "cambia el idioma del tts. \n\nidiomas: inglés, portugués, coreano, francés, español. \n\n-# el idioma es solo para este servidor.",
+        "clear": "limpia la cola de tts de este servidor. \n\nrequiere permiso de **Gestionar Mensajes**.",
+        "leave": "desconecta el bot del canal de voz.",
+        "restrict": "restringe el tts solo a usuarios silenciados. \n\nrequiere permiso de **Gestionar Canales**.",
+        "unrestrict": "permite el tts para todos. \n\nrequiere permiso de **Gestionar Canales**.",
+        "skip": "salta el mensaje actual. \n\nrequiere permiso de **Gestionar Mensajes**.",
+        "tts": "gestiona tus preferencias de tts. \n\n`/tts on`: activa el tts para tus mensajes.\n`/tts off`: desactiva el tts para tus mensajes.",
+        "settings": "muestra tus ajustes actuales de tts (voz, nombre, velocidad, idioma)."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*dando voz a los que no la tienen. y a los socialmente incómodos.*",
+      "privacyHeader": "## política de privacidad",
+      "privacySettings": "**tus cosas** (por servidor)\n- **voz**: para no sonar a robot.\n- **velocidad**: cámara rápida o lenta.\n- **nombre**: tu alter ego.\n- **idioma**: para sonar elegante.",
+      "privacySystem": "**datos del sistema**\n- **opt-out**: recordamos si nos callaste (`/tts off`).\n- **ajustes del servidor**: para saber a quién ignorar.",
+      "privacyFooter": "-# no guardamos mensajes, audios, ni datos. tus secretos están a salvo.",
+      "tosHeader": "## términos de servicio",
+      "tosBody": "es lo que hay. obedece los tos de discord. o no. no somos tu madre.",
+      "versionFooter": "-# versión: 1.2.6 | motor: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# ¿errores? probablemente. ¿características? definitivamente."
+    },
+    "lang": {
+      "invalid": "código de idioma inválido.",
+      "success": "idioma establecido en **{langCode}**.",
+      "duplicate": "ya usas **{langCode}**.",
+      "error": "error al guardar."
+    },
+    "leave": {
+      "notInVoice": "no estoy en un canal de voz.",
+      "differentVoice": "no estamos en el mismo canal de voz.",
+      "success": "adiós.",
+      "error": "me costó salir."
+    },
+    "name": {
+      "success": "nombre establecido como **{name}**.",
+      "duplicate": "ya tienes el nombre **{name}**.",
+      "error": "error al guardar el nombre."
+    },
+    "settings": {
+      "title": "# ajustes",
+      "voice": "**voz**: {value}",
+      "name": "**nombre**: {value}",
+      "speed": "**velocidad**: {value}",
+      "lang": "**idioma**: {value}",
+      "defaultFormat": "`No establecido` (Por defecto: `{defaultValue}`)",
+      "setFormat": "`{value}` (Por defecto: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "velocidad ahora en **{speedValue}x**.",
+      "duplicate": "ya usas la velocidad **{speedValue}x**.",
+      "error": "error guardando la velocidad."
+    },
+    "tts": {
+      "alreadyOff": "tts ya estaba **apagado**.",
+      "turnedOff": "tts ahora está **apagado**.",
+      "alreadyOn": "tts ya estaba **encendido**.",
+      "turnedOn": "tts ahora está **encendido**.",
+      "error": "error actualizando ajustes."
+    },
+    "voice": {
+      "success": "voz **{voiceId}** guardada.",
+      "duplicate": "ya usas la voz **{voiceId}**.",
+      "error": "voz no guardada."
+    }
+  }
+}

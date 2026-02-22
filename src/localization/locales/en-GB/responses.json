@@ -1,0 +1,97 @@
+{
+  "mods": {
+    "clear": {
+      "success": "queue cleared.",
+      "error": "failed to clear the queue."
+    },
+    "restrict": {
+      "success": "tts restricted to muted users only.",
+      "error": "failed to restrict tts."
+    },
+    "skip": {
+      "success": "skipped.",
+      "tooShort": "message is too short to skip (< 35 chars).",
+      "notPlaying": "nothing is playing right now.",
+      "error": "an error occurred while trying to skip.",
+      "unknown": "failed to skip."
+    },
+    "unrestrict": {
+      "success": "tts restrictions lifted.",
+      "error": "failed to unrestrict tts."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "command info not found.",
+      "commands": {
+        "help": "im pretty sure this command is self-explanatory. it provides information about commands that this bot has to offer.",
+        "voice": "changes the voice for your account. \n\nif you are curious about how the voices sound like, you may refer to supertonic's [voices](https://supertone-inc.github.io/supertonic-py/voices/) page.\n\n-# voice preferences only affects the guild you use the command in so you can have different preferences per guild.",
+        "info": "provides information about the bot, including the notices for the terms of service and privacy policy.",
+        "name": "changes the name for your account. \n\n-# name preferences are per-server instead of being universal. this is to protect your privacy.",
+        "speed": "changes the speed of the tts for your account. \n\nvalue must be between **0.5** and **2.0**. \n\n-# speeds are per-server instead of being universal.",
+        "lang": "changes the language of the tts for your account. \n\nsupported languages: english, portuguese, korean, french, spanish. \n\n-# language preferences are per-server instead of being universal.",
+        "clear": "clears the tts queue for the current server. \n\nrequires **Manage Messages** permission.",
+        "leave": "forces the bot to disconnect from the voice channel.",
+        "restrict": "restricts tts usage to only muted users. \n\nrequires **Manage Channels** permission.",
+        "unrestrict": "allows everyone to use tts. \n\nrequires **Manage Channels** permission.",
+        "skip": "skips the currently playing tts message. \n\nrequires **Manage Messages** permission.",
+        "tts": "manage your tts preferences. \n\n`/tts on`: turn on tts for your messages.\n`/tts off`: turn off tts for your messages.",
+        "settings": "displays your current tts settings (voice, name, speed, lang)."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*giving a voice to the voiceless. and the socially awkward.*",
+      "privacyHeader": "## privacy policy",
+      "privacySettings": "**your stuff** (stored locally per-server)\n- **voice**: so you don't sound like a generic robot.\n- **speed**: zoom zoom or slow motion.\n- **name**: your alter ego.\n- **language**: for when you want to sound fancy.",
+      "privacySystem": "**boring system data**\n- **opt-out**: we remember if you told us to shut up (`/tts off`).\n- **guild settings**: just to know if we should ignore unmuted people.",
+      "privacyFooter": "-# we do not log your messages, generate audio files, or sell your data. your secrets are safe, mostly because they are probably boring.",
+      "tosHeader": "## terms of service",
+      "tosBody": "provided \"as-is\". adhere to discord tos. or don't. we aren't your parents.",
+      "versionFooter": "-# version: 1.2.6 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
+    },
+    "lang": {
+      "invalid": "that language code is invalid.",
+      "success": "language preferences set to **{langCode}**.",
+      "duplicate": "you already have **{langCode}** set as your preferred language.",
+      "error": "failed to save language setting. (db error)"
+    },
+    "leave": {
+      "notInVoice": "i am not in a voice channel. are you hearing voices?",
+      "differentVoice": "you must be in the same voice channel as me to disconnect me. nice try.",
+      "success": "goodbye.",
+      "error": "i struggled to leave. this is awkward."
+    },
+    "name": {
+      "success": "your name has been set to **{name}**.",
+      "duplicate": "you already have the name **{name}** set.",
+      "error": "there was an error saving your name."
+    },
+    "settings": {
+      "title": "# settings",
+      "voice": "**voice**: {value}",
+      "name": "**name**: {value}",
+      "speed": "**speed**: {value}",
+      "lang": "**lang**: {value}",
+      "defaultFormat": "`Not set` (Default: `{defaultValue}`)",
+      "setFormat": "`{value}` (Default: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "speed set to **{speedValue}x**.",
+      "duplicate": "you are already at **{speedValue}x** speed.",
+      "error": "failed to save speed setting. (db error)"
+    },
+    "tts": {
+      "alreadyOff": "tts is already **off** for you.",
+      "turnedOff": "tts is now **off** for you.",
+      "alreadyOn": "tts is already **on** for you.",
+      "turnedOn": "tts is now **on** for you.",
+      "error": "failed to update settings."
+    },
+    "voice": {
+      "success": "selected voice **{voiceId}** has been saved.",
+      "duplicate": "you already have the voice **{voiceId}** set.",
+      "error": "selected voice **{voiceId}** was not saved. (error while saving to db)."
+    }
+  }
+}

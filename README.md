@@ -8,7 +8,7 @@
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
-> **current version**: v1.0.0 (official release)
+> **current version**: v1.2.6 (official release)
 
 [add the bot to your server](https://discord.com/oauth2/authorize?client_id=1459993892484288512)
 _note: this is hosted on my personal machine. expect outages for maintenance, bug fixes, or if my power goes out. you have been warned._
@@ -16,6 +16,7 @@ _note: this is hosted on my personal machine. expect outages for maintenance, bu
 ## features
 
 - **supertonic tts**: powered by the supertonic engine to provide high-quality, human-sounding voices. it's like magic, but with actual code.
+- **localization**: fully translated across 5 languages (english, spanish, french, portuguese, korean).
 - **voice customization**: change the voice model, speed, and language to fit your vibe.
 - **persistent settings**: remembers your preferences per server, because nobody likes repeating themselves.
 - **crash resilience**: it tries heavily not to crash. emphasize on "tries". auto-restarts the worker if it trips over its own shoelaces.

@@ -5,14 +5,19 @@
  */
 const { SlashCommandBuilder, MessageFlags } = require('discord.js')
 const db = require('../../data/db');
+const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('lang')
         .setDescription('change the language of the tts for your account')
+        .setNameLocalizations(getCommandLocalizations('public', 'lang').nameLocalizations)
+        .setDescriptionLocalizations(getCommandLocalizations('public', 'lang').descriptionLocalizations)
         .addStringOption(option => option
             .setName('language')
             .setDescription('the language to use')
+            .setNameLocalizations(getOptionLocalizations('public', 'lang', 'language').nameLocalizations)
+            .setDescriptionLocalizations(getOptionLocalizations('public', 'lang', 'language').descriptionLocalizations)
             .setAutocomplete(true)
             .setRequired(true)
         ),
@@ -37,10 +42,9 @@ module.exports = {
         const userId = interaction.user.id;
         const guildId = interaction.guild.id;
         
-        // simple validation to prevent junk data
         const validLangs = ['en', 'pt', 'ko', 'fr', 'es'];
         if (!validLangs.includes(langCode)) {
-             return await interaction.reply({ content: `that language code is invalid.`, flags: MessageFlags.Ephemeral });
+             return await interaction.reply({ content: localize(interaction.locale, 'responses.public.lang.invalid'), flags: MessageFlags.Ephemeral });
         }
 
         try {
@@ -52,14 +56,14 @@ module.exports = {
             const info = updateLang();
 
             if (info.changes > 0) {
-                await interaction.reply({ content: `language preferences set to **${langCode}**.`, flags: MessageFlags.Ephemeral });
+                await interaction.reply({ content: localize(interaction.locale, 'responses.public.lang.success', { langCode }), flags: MessageFlags.Ephemeral });
             } else {
-                 await interaction.reply({ content: `you already have **${langCode}** set as your preferred language.`, flags: MessageFlags.Ephemeral });
+                 await interaction.reply({ content: localize(interaction.locale, 'responses.public.lang.duplicate', { langCode }), flags: MessageFlags.Ephemeral });
             }
             
         } catch (error) {
             console.error(error);
-             await interaction.reply({ content: `failed to save language setting. (db error)`, flags: MessageFlags.Ephemeral });
+             await interaction.reply({ content: localize(interaction.locale, 'responses.public.lang.error'), flags: MessageFlags.Ephemeral });
         }
     }
 }

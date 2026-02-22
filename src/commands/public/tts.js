@@ -5,20 +5,27 @@
  */
 const { SlashCommandBuilder, MessageFlags } = require('discord.js');
 const db = require('../../data/db');
+const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('tts')
         .setDescription('manage your tts preferences')
+        .setNameLocalizations(getCommandLocalizations('public', 'tts').nameLocalizations)
+        .setDescriptionLocalizations(getCommandLocalizations('public', 'tts').descriptionLocalizations)
         .addSubcommand(subcommand =>
             subcommand
                 .setName('on')
                 .setDescription('turn on tts for your messages')
+                .setNameLocalizations(getOptionLocalizations('public', 'tts', 'on').nameLocalizations)
+                .setDescriptionLocalizations(getOptionLocalizations('public', 'tts', 'on').descriptionLocalizations)
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('off')
                 .setDescription('turn off tts for your messages')
+                .setNameLocalizations(getOptionLocalizations('public', 'tts', 'off').nameLocalizations)
+                .setDescriptionLocalizations(getOptionLocalizations('public', 'tts', 'off').descriptionLocalizations)
         ),
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
@@ -29,22 +36,22 @@ module.exports = {
 
             if (subcommand === 'off') {
                 if (row) {
-                    await interaction.reply({ content: 'tts is already **off** for you.', flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.alreadyOff'), flags: MessageFlags.Ephemeral });
                 } else {
                     db.prepare('INSERT OR IGNORE INTO disabled (user) VALUES (?)').run(userId);
-                    await interaction.reply({ content: 'tts is now **off** for you.', flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.turnedOff'), flags: MessageFlags.Ephemeral });
                 }
             } else if (subcommand === 'on') {
                 if (!row) {
-                    await interaction.reply({ content: 'tts is already **on** for you.', flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.alreadyOn'), flags: MessageFlags.Ephemeral });
                 } else {
                     db.prepare('DELETE FROM disabled WHERE user = ?').run(userId);
-                    await interaction.reply({ content: 'tts is now **on** for you.', flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.turnedOn'), flags: MessageFlags.Ephemeral });
                 }
             }
         } catch (error) {
             console.error('[TTS Command] Error:', error);
-            await interaction.reply({ content: 'failed to update settings.', flags: MessageFlags.Ephemeral });
+            await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.error'), flags: MessageFlags.Ephemeral });
         }
     }
 }

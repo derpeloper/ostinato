@@ -5,11 +5,14 @@
  */
 const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require('discord.js');
 const db = require('../../data/db');
+const { localize, getCommandLocalizations } = require('../../localization/localize');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('unrestrict')
         .setDescription('enable tts for users who arent muted')
+        .setNameLocalizations(getCommandLocalizations('mods', 'unrestrict').nameLocalizations)
+        .setDescriptionLocalizations(getCommandLocalizations('mods', 'unrestrict').descriptionLocalizations)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
     async execute(interaction, client) {
         const guildId = interaction.guild.id;
@@ -17,10 +20,10 @@ module.exports = {
         try {
             const stmt = db.prepare('INSERT OR REPLACE INTO restrictions (guild, restricted) VALUES (?, 0)');
             stmt.run(guildId);
-            await interaction.reply({ content: 'tts restrictions lifted.', flags: MessageFlags.Ephemeral });
+            await interaction.reply({ content: localize(interaction.locale, 'responses.mods.unrestrict.success'), flags: MessageFlags.Ephemeral });
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: 'failed to unrestrict tts.', flags: MessageFlags.Ephemeral });
+            await interaction.reply({ content: localize(interaction.locale, 'responses.mods.unrestrict.error'), flags: MessageFlags.Ephemeral });
         }
     }
 }

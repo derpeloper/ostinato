@@ -240,7 +240,7 @@ class OstinatoTTS {
             }
 
             if (isRestricted) {
-                if (!message.member.voice.selfMute && !message.member.voice.serverMute) {
+                if (!message.member?.voice?.selfMute && !message.member?.voice?.serverMute) {
                      return;
                 }
             }
@@ -297,11 +297,15 @@ class OstinatoTTS {
         
         let connection = getVoiceConnection(guildId);
         
-        if (connection && message.member.voice.channel.id !== connection.joinConfig.channelId) {
-             return;
+        if (connection) {
+             const botChannelId = message.guild.members.me?.voice?.channelId || connection.joinConfig.channelId;
+             if (message.member?.voice?.channelId !== botChannelId) {
+                  return;
+             }
         }
+        
         if (!connection) {
-            if (message.member.voice.channel) {
+            if (message.member?.voice?.channel) {
                 console.log(`[OstinatoTTS] Joining VC: ${message.member.voice.channel.name}`);
                 connection = joinVoiceChannel({
                     channelId: message.member.voice.channel.id,

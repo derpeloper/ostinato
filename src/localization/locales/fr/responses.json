@@ -1,0 +1,97 @@
+{
+  "mods": {
+    "clear": {
+      "success": "file effacée.",
+      "error": "échec ."
+    },
+    "restrict": {
+      "success": "tts restreint aux muets.",
+      "error": "échec ."
+    },
+    "skip": {
+      "success": "passé.",
+      "tooShort": "message trop court (< 35 chars).",
+      "notPlaying": "rien n'est joué.",
+      "error": "erreur lors du passage.",
+      "unknown": "échec."
+    },
+    "unrestrict": {
+      "success": "restrictions tts levées.",
+      "error": "échec."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "info introuvable.",
+      "commands": {
+        "help": "cette commande s'explique d'elle-même. informations générales.",
+        "voice": "modifie la voix. \n\nréférez-vous à la page des [voix](https://supertone-inc.github.io/supertonic-py/voices/).\n\n-# préférences de voix par serveur.",
+        "info": "fournit des informations sur le bot, conditions d'utilisation et politique de confidentialité.",
+        "name": "modifie le nom. \n\n-# préférences de nom par serveur pour votre confidentialité.",
+        "speed": "modifie la vitesse de tts. \n\nvaleur entre **0.5** et **2.0**. \n\n-# préférences par serveur.",
+        "lang": "modifie la langue. \n\nlangues : anglais, portugais, coréen, français, espagnol. \n\n-# préférences par serveur.",
+        "clear": "efface la file tts. \n\nnécessite la permission **Gérer les messages**.",
+        "leave": "déconnecte le bot.",
+        "restrict": "restreint le tts aux muets. \n\nnécessite la permission **Gérer les salons**.",
+        "unrestrict": "autorise le tts pour tous. \n\nnécessite la permission **Gérer les salons**.",
+        "skip": "passe le message actuel. \n\nnécessite la permission **Gérer les messages**.",
+        "tts": "gère vos préférences tts. \n\n`/tts on` : activer.\n`/tts off` : désactiver.",
+        "settings": "affiche vos paramètres (voix, nom, vitesse, langue)."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*donne une voix aux sans-voix.*",
+      "privacyHeader": "## confidentialité",
+      "privacySettings": "**vos infos** (par serveur)\n- **voix**: pas un robot.\n- **vitesse**: lenteur.\n- **nom**: alter ego.\n- **langue**: originalité.",
+      "privacySystem": "**données du système**\n- **opt-out**: nous nous souvenons de (`/tts off`).\n- **serveur**: ignorer les muets.",
+      "privacyFooter": "-# aucun message enregistré ni données vendues. vos secrets sont en sécurité.",
+      "tosHeader": "## cgu",
+      "tosBody": "fourni tel quel. suivez les cgu de discord.",
+      "versionFooter": "-# version: 1.2.6 | moteur: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# des bugs? probablement. des fonctionnalités? très certainement."
+    },
+    "lang": {
+      "invalid": "code invalide.",
+      "success": "langue définie sur **{langCode}**.",
+      "duplicate": "vous utilisez déjà **{langCode}**.",
+      "error": "échec sauvegarde."
+    },
+    "leave": {
+      "notInVoice": "pas en vocal.",
+      "differentVoice": "nous ne sommes pas dans le même canal vocal.",
+      "success": "au revoir.",
+      "error": "erreur de départ."
+    },
+    "name": {
+      "success": "nom défini sur **{name}**.",
+      "duplicate": "vous utilisez déjà **{name}**.",
+      "error": "erreur sauvegarde."
+    },
+    "settings": {
+      "title": "# paramètres",
+      "voice": "**voix**: {value}",
+      "name": "**nom**: {value}",
+      "speed": "**vitesse**: {value}",
+      "lang": "**langue**: {value}",
+      "defaultFormat": "`Non défini` (Défaut: `{defaultValue}`)",
+      "setFormat": "`{value}` (Défaut: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "vitesse sur **{speedValue}x**.",
+      "duplicate": "vitesse déjà à **{speedValue}x**.",
+      "error": "erreur sauvegarde."
+    },
+    "tts": {
+      "alreadyOff": "tts déjà **désactivé**.",
+      "turnedOff": "tts **désactivé**.",
+      "alreadyOn": "tts déjà **activé**.",
+      "turnedOn": "tts **activé**.",
+      "error": "erreur mise à jour."
+    },
+    "voice": {
+      "success": "voix **{voiceId}** sauvegardée.",
+      "duplicate": "voix déjà sur **{voiceId}**.",
+      "error": "erreur sauvegarde."
+    }
+  }
+}

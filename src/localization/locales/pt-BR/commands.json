@@ -1,0 +1,98 @@
+{
+  "mods": {
+    "clear": {
+      "name": "limpar",
+      "description": "limpa a fila do tts para este servidor"
+    },
+    "restrict": {
+      "name": "restringir",
+      "description": "desativa o tts para os usuários que não estão mutados"
+    },
+    "skip": {
+      "name": "pular",
+      "description": "pula a mensagem que está tocando no momento"
+    },
+    "unrestrict": {
+      "name": "desrestringir",
+      "description": "ativa o tts para os usuários que não estão mutados"
+    }
+  },
+  "public": {
+    "help": {
+      "name": "ajuda",
+      "description": "fornece informações sobre os comandos",
+      "options": {
+        "command": {
+          "name": "comando",
+          "description": "o comando sobre o qual obter informações"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "fornece informações sobre o bot"
+    },
+    "lang": {
+      "name": "idioma",
+      "description": "muda o idioma do tts para a sua conta",
+      "options": {
+        "language": {
+          "name": "idioma",
+          "description": "o idioma a ser usado"
+        }
+      }
+    },
+    "leave": {
+      "name": "sair",
+      "description": "desconecta o bot do canal de voz"
+    },
+    "name": {
+      "name": "nome",
+      "description": "muda o nome para as suas mensagens",
+      "options": {
+        "name": {
+          "name": "nome",
+          "description": "o nome a ser usado"
+        }
+      }
+    },
+    "settings": {
+      "name": "config",
+      "description": "verifique suas configurações atuais do tts"
+    },
+    "speed": {
+      "name": "velocidade",
+      "description": "muda a velocidade do tts para a sua conta",
+      "options": {
+        "value": {
+          "name": "valor",
+          "description": "o multiplicador de velocidade (0.5 a 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "gerencie suas preferências do tts",
+      "options": {
+        "on": {
+          "name": "ligar",
+          "description": "liga o tts para as suas mensagens"
+        },
+        "off": {
+          "name": "desligar",
+          "description": "desliga o tts para as suas mensagens"
+        }
+      }
+    },
+    "voice": {
+      "name": "voz",
+      "description": "muda a voz para a sua conta",
+      "options": {
+        "voice": {
+          "name": "voz",
+          "description": "a voz a ser usada"
+        }
+      }
+    }
+  }
+}

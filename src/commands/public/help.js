@@ -1,64 +1,103 @@
 /**
  * @file help.js
- * @description provides information about commands that this bot has to offer.
- * "help! i need somebody. help! not just anybody."
+ * @description provides information for all commands.
+ * "when all else fails, read the manual."
  */
-const { SlashCommandBuilder, MessageFlags, ContainerBuilder, SeparatorSpacingSize } = require('discord.js')
-
-const messages = {
-    help: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# help')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('im pretty sure this command is self-explanatory. it provides information about commands that this bot has to offer.')),
-    voice: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# voice')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('changes the voice for your account. \n\nif you are curious about how the voices sound like, you may refer to supertonic\'s [voices](https://supertone-inc.github.io/supertonic-py/voices/) page.\n\n-# voice preferences only affects the guild you use the command in so you can have different preferences per guild.')),
-    info: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# info')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('provides information about the bot, including the notices for the terms of service and privacy policy.')),
-    name: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# name')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('changes the name for your account. \n\n-# name preferences are per-server instead of being universal. this is to protect your privacy.')),
-    speed: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# speed')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('changes the speed of the tts for your account. \n\nvalue must be between **0.5** and **2.0**. \n\n-# speeds are per-server instead of being universal.')),
-    lang: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# lang')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('changes the language of the tts for your account. \n\nsupported languages: english, portuguese, korean, french, spanish. \n\n-# language preferences are per-server instead of being universal.')),
-    clear: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# clear')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('clears the tts queue for the current server. \n\nrequires **Manage Messages** permission.')),
-    leave: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# leave')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('forces the bot to disconnect from the voice channel.')),
-    restrict: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# restrict')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('restricts tts usage to only muted users. \n\nrequires **Manage Channels** permission.')),
-    unrestrict: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# unrestrict')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('allows everyone to use tts. \n\nrequires **Manage Channels** permission.')),
-    skip: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# skip')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('skips the currently playing tts message. \n\nrequires **Manage Messages** permission.')),
-    tts: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# tts')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('manage your tts preferences. \n\n`/tts on`: turn on tts for your messages.\n`/tts off`: turn off tts for your messages.')),
-    settings: new ContainerBuilder().setAccentColor(0x337c97).addTextDisplayComponents(textDisplay => textDisplay.setContent('# settings')).addSeparatorComponents(separator => separator.setSpacing(SeparatorSpacingSize.Large).setDivider(true)).addTextDisplayComponents(textDisplay => textDisplay.setContent('displays your current tts settings (voice, name, speed, lang).')),
-}
+const { SlashCommandBuilder, ContainerBuilder, MessageFlags, SeparatorSpacingSize } = require('discord.js');
+const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('help')
         .setDescription('provides information for commands')
+        .setNameLocalizations(getCommandLocalizations('public', 'help').nameLocalizations)
+        .setDescriptionLocalizations(getCommandLocalizations('public', 'help').descriptionLocalizations)
         .addStringOption(option => option
             .setName('command')
             .setDescription('the command to get information about')
+            .setNameLocalizations(getOptionLocalizations('public', 'help', 'command').nameLocalizations)
+            .setDescriptionLocalizations(getOptionLocalizations('public', 'help', 'command').descriptionLocalizations)
             .setAutocomplete(true)
-            .setRequired(true)
+            .setRequired(false)
         ),
-    async autocomplete(interaction, client) {
+    async autocomplete(interaction) {
         const focusedValue = interaction.options.getFocused();
-        const commands = [
-            { name: 'help', value: 'help' },
-            { name: 'info', value: 'info' },
-            { name: 'name', value: 'name' },
-            { name: 'voice', value: 'voice' },
-            { name: 'speed', value: 'speed' },
-            { name: 'lang', value: 'lang' },
-            { name: 'clear', value: 'clear' },
-            { name: 'skip', value: 'skip' },
-            { name: 'tts', value: 'tts' },
-            { name: 'settings', value: 'settings' },
-            { name: 'leave', value: 'leave' },
-            { name: 'restrict', value: 'restrict' },
-            { name: 'unrestrict', value: 'unrestrict' }
+        const choices = [
+            { id: 'help', group: 'public' },
+            { id: 'voice', group: 'public' },
+            { id: 'info', group: 'public' },
+            { id: 'name', group: 'public' },
+            { id: 'speed', group: 'public' },
+            { id: 'lang', group: 'public' },
+            { id: 'clear', group: 'mods' },
+            { id: 'leave', group: 'public' },
+            { id: 'restrict', group: 'mods' },
+            { id: 'unrestrict', group: 'mods' },
+            { id: 'skip', group: 'mods' },
+            { id: 'tts', group: 'public' },
+            { id: 'settings', group: 'public' }
         ];
-        const filtered = commands.filter(command => command.name.toLowerCase().includes(focusedValue.toLowerCase()));
-        await interaction.respond(
-            filtered.map(command => ({ name: command.name, value: command.value })),
+        
+        const locale = interaction.locale;
+        
+        const localizedChoices = choices.map(choice => {
+            const locs = getCommandLocalizations(choice.group, choice.id).nameLocalizations;
+            const locName = locs[locale] || choice.id;
+            return { name: locName, value: choice.id };
+        });
+
+        const filtered = localizedChoices.filter(choice => 
+            choice.name.toLowerCase().startsWith(focusedValue.toLowerCase()) || 
+            choice.value.toLowerCase().startsWith(focusedValue.toLowerCase())
         );
+
+        await interaction.respond(filtered.slice(0, 25));
     },
-    async execute(interaction, client) {
-        const commandName = interaction.options.getString('command');
-        if (messages[commandName]) {
-             await interaction.reply({ components: [messages[commandName]], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
+    async execute(interaction) {
+        const command = interaction.options.getString('command');
+        const locale = interaction.locale;
+
+        const getHelpComponent = (cmdName) => {
+            const pubCommands = ['help', 'voice', 'info', 'name', 'speed', 'lang', 'leave', 'tts', 'settings'];
+            const cmdGroup = pubCommands.includes(cmdName) ? 'public' : 'mods';
+            
+            const locs = getCommandLocalizations(cmdGroup, cmdName).nameLocalizations;
+            const titleName = locs[locale] || cmdName;
+
+            return new ContainerBuilder()
+                .setAccentColor(0x337c97)
+                .addTextDisplayComponents(textDisplay => textDisplay
+                    .setContent(`# ${titleName}`)
+                )
+                .addSeparatorComponents(separator => separator
+                    .setSpacing(SeparatorSpacingSize.Large)
+                    .setDivider(true)
+                )
+                .addTextDisplayComponents(textDisplay => textDisplay
+                    .setContent(localize(locale, `responses.public.help.commands.${cmdName}`))
+                );
+        };
+
+        if (!command) {
+            await interaction.reply({
+                components: [getHelpComponent('help')],
+                flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2]
+            });
+            return;
+        }
+
+        const validCommands = ['help', 'voice', 'info', 'name', 'speed', 'lang', 'clear', 'leave', 'restrict', 'unrestrict', 'skip', 'tts', 'settings'];
+        
+        if (validCommands.includes(command.toLowerCase())) {
+            await interaction.reply({
+                components: [getHelpComponent(command.toLowerCase())],
+                flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2]
+            });
         } else {
-             await interaction.reply({ content: 'command info not found.', flags: MessageFlags.Ephemeral });
+            await interaction.reply({
+                content: localize(locale, 'responses.public.help.notFound'),
+                flags: MessageFlags.Ephemeral
+            });
         }
     }
 }

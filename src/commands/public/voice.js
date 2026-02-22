@@ -5,14 +5,19 @@
  */
 const { SlashCommandBuilder, MessageFlags } = require('discord.js')
 const db = require('../../data/db');
+const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('voice')
         .setDescription('change the voice for your account')
+        .setNameLocalizations(getCommandLocalizations('public', 'voice').nameLocalizations)
+        .setDescriptionLocalizations(getCommandLocalizations('public', 'voice').descriptionLocalizations)
         .addStringOption(option => option
             .setName('voice')
             .setDescription('the voice to use')
+            .setNameLocalizations(getOptionLocalizations('public', 'voice', 'voice').nameLocalizations)
+            .setDescriptionLocalizations(getOptionLocalizations('public', 'voice', 'voice').descriptionLocalizations)
             .setAutocomplete(true)
             .setRequired(true)
         ),
@@ -51,14 +56,14 @@ module.exports = {
             const info = updateVoice();
 
             if (info.changes > 0) {
-                await interaction.reply({ content: `selected voice **${voiceId}** has been saved.`, flags: MessageFlags.Ephemeral });
+                await interaction.reply({ content: localize(interaction.locale, 'responses.public.voice.success', { voiceId }), flags: MessageFlags.Ephemeral });
             } else {
-                 await interaction.reply({ content: `you already have the voice **${voiceId}** set.`, flags: MessageFlags.Ephemeral });
+                 await interaction.reply({ content: localize(interaction.locale, 'responses.public.voice.duplicate', { voiceId }), flags: MessageFlags.Ephemeral });
             }
             
         } catch (error) {
             console.error(error);
-             await interaction.reply({ content: `selected voice **${voiceId}** was not saved. (error while saving to db).`, flags: MessageFlags.Ephemeral });
+             await interaction.reply({ content: localize(interaction.locale, 'responses.public.voice.error', { voiceId }), flags: MessageFlags.Ephemeral });
         }
     }
 }

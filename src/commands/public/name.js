@@ -5,14 +5,19 @@
  */
 const { SlashCommandBuilder, MessageFlags } = require('discord.js')
 const db = require('../../data/db');
+const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('name')
         .setDescription('changes the name for your messages')
+        .setNameLocalizations(getCommandLocalizations('public', 'name').nameLocalizations)
+        .setDescriptionLocalizations(getCommandLocalizations('public', 'name').descriptionLocalizations)
         .addStringOption(option => option
             .setName('name')
             .setDescription('the name to use')
+            .setNameLocalizations(getOptionLocalizations('public', 'name', 'name').nameLocalizations)
+            .setDescriptionLocalizations(getOptionLocalizations('public', 'name', 'name').descriptionLocalizations)
             .setMaxLength(60)
             .setRequired(true)
         ),
@@ -30,14 +35,14 @@ module.exports = {
             const info = updateName();
 
             if (info.changes > 0) {
-                await interaction.reply({ content: `your name has been set to **${name}**.`, flags: MessageFlags.Ephemeral });
+                await interaction.reply({ content: localize(interaction.locale, 'responses.public.name.success', { name }), flags: MessageFlags.Ephemeral });
             } else {
-                 await interaction.reply({ content: `you already have the name **${name}** set.`, flags: MessageFlags.Ephemeral });
+                 await interaction.reply({ content: localize(interaction.locale, 'responses.public.name.duplicate', { name }), flags: MessageFlags.Ephemeral });
             }
 
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: 'there was an error saving your name.', flags: MessageFlags.Ephemeral });
+            await interaction.reply({ content: localize(interaction.locale, 'responses.public.name.error'), flags: MessageFlags.Ephemeral });
         }
     }
 }

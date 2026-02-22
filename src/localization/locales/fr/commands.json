@@ -1,0 +1,98 @@
+{
+  "mods": {
+    "clear": {
+      "name": "effacer",
+      "description": "vide la file d'attente tts pour ce serveur"
+    },
+    "restrict": {
+      "name": "restreindre",
+      "description": "désactive le tts pour les utilisateurs qui ne sont pas en sourdine"
+    },
+    "skip": {
+      "name": "passer",
+      "description": "passe le message actuellement en cours de lecture"
+    },
+    "unrestrict": {
+      "name": "retablir",
+      "description": "active le tts pour les utilisateurs qui ne sont pas en sourdine"
+    }
+  },
+  "public": {
+    "help": {
+      "name": "aide",
+      "description": "fournit des informations sur les commandes",
+      "options": {
+        "command": {
+          "name": "commande",
+          "description": "la commande sur laquelle obtenir des informations"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "fournit des informations sur le bot"
+    },
+    "lang": {
+      "name": "langue",
+      "description": "modifie la langue du tts pour votre compte",
+      "options": {
+        "language": {
+          "name": "langue",
+          "description": "la langue à utiliser"
+        }
+      }
+    },
+    "leave": {
+      "name": "quitter",
+      "description": "déconnecte le bot du salon vocal"
+    },
+    "name": {
+      "name": "nom",
+      "description": "modifie le nom pour vos messages",
+      "options": {
+        "name": {
+          "name": "nom",
+          "description": "le nom à utiliser"
+        }
+      }
+    },
+    "settings": {
+      "name": "parametres",
+      "description": "vérifie vos paramètres tts actuels"
+    },
+    "speed": {
+      "name": "vitesse",
+      "description": "modifie la vitesse du tts pour votre compte",
+      "options": {
+        "value": {
+          "name": "valeur",
+          "description": "le multiplicateur de vitesse (0.5 à 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "gérez vos préférences tts",
+      "options": {
+        "on": {
+          "name": "activer",
+          "description": "active le tts pour vos messages"
+        },
+        "off": {
+          "name": "desactiver",
+          "description": "désactive le tts pour vos messages"
+        }
+      }
+    },
+    "voice": {
+      "name": "voix",
+      "description": "modifie la voix pour votre compte",
+      "options": {
+        "voice": {
+          "name": "voix",
+          "description": "la voix à utiliser"
+        }
+      }
+    }
+  }
+}
