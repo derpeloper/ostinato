@@ -48,7 +48,7 @@
       "privacyFooter": "-# we do not log your messages, generate audio files, or sell your data. your secrets are safe, mostly because they are probably boring.",
       "tosHeader": "## terms of service",
       "tosBody": "provided \"as-is\". adhere to discord tos. or don't. we aren't your parents.",
-      "versionFooter": "-# version: 1.2.6 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
+      "versionFooter": "-# version: 1.2.7 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
     },
     "lang": {
       "invalid": "that language code is invalid.",

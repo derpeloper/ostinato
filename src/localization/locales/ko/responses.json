@@ -48,7 +48,7 @@
       "privacyFooter": "-# 귀하의 메시지를 기록하거나, 오디오 파일을 생성하거나, 데이터를 판매하지 않습니다. 귀하의 비밀은 안전합니다. 왜냐하면 아마 지루할 것이기 때문입니다.",
       "tosHeader": "## 서비스 약관",
       "tosBody": "\"있는 그대로\" 제공됩니다. discord 서비스 약관을 준수하세요. 아니면 말고요. 우리는 당신의 부모가 아닙니다.",
-      "versionFooter": "-# 버전: 1.2.6 | 엔진: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# 버그? 아마도요. 기능? 확실합니다."
+      "versionFooter": "-# 버전: 1.2.7 | 엔진: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# 버그? 아마도요. 기능? 확실합니다."
     },
     "lang": {
       "invalid": "잘못된 언어 코드입니다.",

@@ -122,7 +122,6 @@ class OstinatoTTS {
 
                 await new Promise(r => setTimeout(r, 1000));
                 
-                // Restart worker
                 this.initializationPromise = (async () => {
                     try {
                         await this.startWorker();
@@ -148,7 +147,6 @@ class OstinatoTTS {
                         }
                     }
                 } catch (e) {
-                    // if restart failed
                      for (const [requestId, req] of requestsToRetry) {
                          req.reject(new Error('Worker crashed and failed to restart'));
                      }
@@ -360,7 +358,7 @@ class OstinatoTTS {
                         const nameRow = db.prepare('SELECT name FROM names WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
                         if (nameRow) nameToUse = nameRow.name;
                         this.cache.set(nameKey, nameToUse);
-                        setTimeout(() => this.cache.delete(nameKey), 600000); // 10 min cache
+                        setTimeout(() => this.cache.delete(nameKey), 600000);
                     } catch (dbErr) {
                         console.error('[OstinatoTTS] DB Name fetch error:', dbErr);
                     }
@@ -536,19 +534,11 @@ class OstinatoTTS {
     }
 
     startHeartbeat() {
-        // "stayin' alive, stayin' alive."
         setInterval(async () => {
             if (!this.initialized || !this.worker) return;
-            
-            // silently generate "alive" to keep memory pages hot.
-            // we don't await this because we ideally don't care about the result,
-            // but we need to ensure the worker actually processes it.
             try {
-                // we use a junk user id (0) and null voice id to just hit the default path.
-                // console.log('[OstinatoTTS] Pulse check...'); 
                 await this.generateAudio("alive", "0", null, null, null);
             } catch (e) {
-                // silent failure is fine here.
             }
         }, 3 * 60 * 1000);
     }

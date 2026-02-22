@@ -8,7 +8,7 @@
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
-> **current version**: v1.2.6 (official release)
+> **current version**: v1.2.7 (official release)
 
 [add the bot to your server](https://discord.com/oauth2/authorize?client_id=1459993892484288512)
 _note: this is hosted on my personal machine. expect outages for maintenance, bug fixes, or if my power goes out. you have been warned._

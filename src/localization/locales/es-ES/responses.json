@@ -48,7 +48,7 @@
       "privacyFooter": "-# no guardamos mensajes, audios, ni datos. tus secretos están a salvo.",
       "tosHeader": "## términos de servicio",
       "tosBody": "es lo que hay. obedece los tos de discord. o no. no somos tu madre.",
-      "versionFooter": "-# versión: 1.2.6 | motor: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# ¿errores? probablemente. ¿características? definitivamente."
+      "versionFooter": "-# versión: 1.2.7 | motor: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# ¿errores? probablemente. ¿características? definitivamente."
     },
     "lang": {
       "invalid": "código de idioma inválido.",
