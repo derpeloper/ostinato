@@ -10,6 +10,8 @@ a discord bot that gives a voice to the voiceless. because listening is better t
 
 > **current version**: v1.2.7 (official release)
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
 [add the bot to your server](https://discord.com/oauth2/authorize?client_id=1459993892484288512)
 _note: this is hosted on my personal machine. expect outages for maintenance, bug fixes, or if my power goes out. you have been warned._
 
@@ -72,3 +74,4 @@ may contain traces of nuts and bolts. the hosted version will not have 24/7 upti
 ## credits
 
 - **Supertonic 2** by **Supertone** — the high-quality tts engine doing the heavy lifting.
+
