@@ -3,6 +3,25 @@
  * @description worker thread for handling heavy text-to-speech inference operations without blocking the main event loop.
  * "i'm working hard, or hardly working? just kidding, i'm definitely working hard."
  */
+
+/*
+ * ostinato - bringing every message to life.
+ * Copyright (C) 2026  derpeloper
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 const { parentPort, workerData } = require('worker_threads');
 const path = require('path');
 const fs = require('fs');
