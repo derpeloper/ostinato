@@ -8,7 +8,7 @@
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
-> **current version**: v1.2.7 (official release)
+> **current version**: v1.2.8 (official release)
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
@@ -39,16 +39,36 @@ the engine is a bit hungry. on my machine, it sits between **~300mb and ~600mb o
 
 ### setup
 
-1. clone the repo: `git clone https://github.com/derpeloper/ostinato`. if you don't know how to do that, google is your best friend.
-2. run `cd ostinato` then run `npm install`. this might take a while, go grab a coffee.
-3. edit your config files:
+1. clone the repo and install dependencies. if you don't know how to clone a repo, google is your best friend. this might take a while, go grab a coffee.
+
+   ```bash
+   git clone https://github.com/derpeloper/ostinato
+   cd ostinato
+   npm install
+   ```
+
+2. edit your config files:
    - in `src/env.json`, replace `token` with your actual discord bot token.
    - in `src/config.js`, replace `clientId` with your bot's client id.
-   - **optional**: in `src/config.js`, you can also set `guildId` to your server's id if you only want the bot in one server (and want the commands to show up instantly). otherwise, leave it as `null`.
-   - make sure you give the bot the right permissions: priority speaker, connect, read message history, and speak. otherwise, it'll just be a silent observer.
-4. run this command to download the engine (and maybe go get that donut now): `git clone https://github.com/supertone-inc/supertonic.git && cd supertonic && git clone https://huggingface.co/Supertone/supertonic-2 assets && cd nodejs && npm install`.
-5. run `cd ../../` to get back to the main folder.
-6. finally, run `node src/index.js` to bring it to life.
+   - **optional**: set `guildId` in `src/config.js` to your server's id if you only want the bot in one server (and want the commands to show up instantly). otherwise, leave it as `null`.
+
+3. give the bot the right permissions: **priority speaker**, **connect**, **read message history**, and **speak**. otherwise, it'll just be a silent observer.
+
+4. download the engine (and maybe go get that donut now):
+
+   ```bash
+   git clone https://github.com/supertone-inc/supertonic.git
+   cd supertonic
+   git clone https://huggingface.co/Supertone/supertonic-2 assets
+   cd nodejs
+   npm install
+   ```
+
+5. go back to the root folder and bring it to life:
+   ```bash
+   cd ../../
+   node src/index.js
+   ```
 
 ## configuration (self-host only)
 
@@ -74,4 +94,3 @@ may contain traces of nuts and bolts. the hosted version will not have 24/7 upti
 ## credits
 
 - **Supertonic 2** by **Supertone** — the high-quality tts engine doing the heavy lifting.
-
