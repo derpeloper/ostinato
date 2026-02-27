@@ -6,6 +6,7 @@
 const { SlashCommandBuilder, MessageFlags } = require('discord.js')
 const db = require('../../data/db');
 const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
+const ostinato = require('../../services/OstinatoTTS');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,7 +22,7 @@ module.exports = {
             .setAutocomplete(true)
             .setRequired(true)
         ),
-    async autocomplete(interaction, client) {
+    async autocomplete(interaction) {
         const focusedValue = interaction.options.getFocused();
         const voices = [
             { name: 'Sarah (F1)', value: 'F1' },
@@ -42,7 +43,7 @@ module.exports = {
             filtered.map(choice => ({ name: choice.name, value: choice.value })),
         );
     },
-    async execute(interaction, client) {
+    async execute(interaction) {
         const voiceId = interaction.options.getString('voice');
         const userId = interaction.user.id;
         const guildId = interaction.guild.id;
@@ -53,13 +54,9 @@ module.exports = {
                 return db.prepare('INSERT INTO voices (user, guild, voice) VALUES (?, ?, ?)').run(userId, guildId, voiceId);
             });
 
-            const info = updateVoice();
-
-            if (info.changes > 0) {
-                await interaction.reply({ content: localize(interaction.locale, 'responses.public.voice.success', { voiceId }), flags: MessageFlags.Ephemeral });
-            } else {
-                 await interaction.reply({ content: localize(interaction.locale, 'responses.public.voice.duplicate', { voiceId }), flags: MessageFlags.Ephemeral });
-            }
+            updateVoice();
+            ostinato.invalidateCache(userId, guildId, 'voice');
+            await interaction.reply({ content: localize(interaction.locale, 'responses.public.voice.success', { voiceId }), flags: MessageFlags.Ephemeral });
             
         } catch (error) {
             console.error(error);

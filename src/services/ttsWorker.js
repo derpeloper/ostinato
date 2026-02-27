@@ -22,9 +22,8 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-const { parentPort, workerData } = require('worker_threads');
+const { parentPort } = require('worker_threads');
 const path = require('path');
-const fs = require('fs');
 const config = require('../config');
 
 let ttsEngine = null;
@@ -226,8 +225,6 @@ function logWorkerMemory() {
     const used = process.memoryUsage();
     console.log(`[TTSWorker] Memory: RSS ${(used.rss / 1024 / 1024).toFixed(2)}MB | Heap ${(used.heapUsed / 1024 / 1024).toFixed(2)}MB`);
 }
-
-// setInterval(logWorkerMemory, 5 * 60 * 1000);
 
 process.on('unhandledRejection', (reason, promise) => {
     console.error('[TTSWorker] Unhandled Rejection at:', promise, 'reason:', reason);

@@ -48,12 +48,11 @@
       "privacyFooter": "-# no guardamos mensajes, audios, ni datos. tus secretos están a salvo.",
       "tosHeader": "## términos de servicio",
       "tosBody": "es lo que hay. obedece los tos de discord. o no. no somos tu madre.",
-      "versionFooter": "-# versión: 1.2.7 | motor: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# ¿errores? probablemente. ¿características? definitivamente."
+      "versionFooter": "-# versión: 1.2.8 | motor: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# ¿errores? probablemente. ¿características? definitivamente."
     },
     "lang": {
       "invalid": "código de idioma inválido.",
       "success": "idioma establecido en **{langCode}**.",
-      "duplicate": "ya usas **{langCode}**.",
       "error": "error al guardar."
     },
     "leave": {
@@ -64,7 +63,6 @@
     },
     "name": {
       "success": "nombre establecido como **{name}**.",
-      "duplicate": "ya tienes el nombre **{name}**.",
       "error": "error al guardar el nombre."
     },
     "settings": {
@@ -78,7 +76,6 @@
     },
     "speed": {
       "success": "velocidad ahora en **{speedValue}x**.",
-      "duplicate": "ya usas la velocidad **{speedValue}x**.",
       "error": "error guardando la velocidad."
     },
     "tts": {
@@ -90,7 +87,6 @@
     },
     "voice": {
       "success": "voz **{voiceId}** guardada.",
-      "duplicate": "ya usas la voz **{voiceId}**.",
       "error": "voz no guardada."
     }
   }

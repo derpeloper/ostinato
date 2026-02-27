@@ -31,7 +31,6 @@ const abbreviations = {
 
 const urlRegex = /(https?:\/\/[^\s]+)/g;
 const emojiRegex = /<a?:([a-zA-Z0-9_]+):(\d+)>/g;
-const channelUserRoleRegex = /<(@|@&|#)(!|&)?(\d+)>/g;
 
 function cleanText(text, message = null) {
     if (!text && (!message || !message.stickers || message.stickers.size === 0)) return "";
@@ -40,11 +39,13 @@ function cleanText(text, message = null) {
 
     const hasUrl = urlRegex.test(cleaned);
     urlRegex.lastIndex = 0;
-    cleaned = cleaned.replace(urlRegex, 'link');
 
     if (hasUrl) {
-        if (cleaned.replace(/[^a-zA-Z]/g, '').length < 15) {
-             cleaned = "sent a link";
+        const textWithoutUrls = cleaned.replace(urlRegex, '').trim();
+        if (textWithoutUrls.length === 0) {
+            cleaned = "sent a link";
+        } else {
+            cleaned = cleaned.replace(urlRegex, 'link');
         }
     }
 
@@ -55,7 +56,6 @@ function cleanText(text, message = null) {
     const words = cleaned.split(/\s+/);
     const expanded = words.map(word => {
         const lower = word.toLowerCase().replace(/[.,!?]$/, "");
-        const punctuation = word.slice(lower.length);
         if (abbreviations[lower]) {
             return abbreviations[lower] + (word.match(/[.,!?]+$/) ? word.match(/[.,!?]+$/)[0] : "");
         }

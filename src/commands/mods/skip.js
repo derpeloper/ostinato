@@ -14,7 +14,7 @@ module.exports = {
         .setNameLocalizations(getCommandLocalizations('mods', 'skip').nameLocalizations)
         .setDescriptionLocalizations(getCommandLocalizations('mods', 'skip').descriptionLocalizations)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
-    async execute(interaction, client) {
+    async execute(interaction) {
         const guildId = interaction.guild.id;
         
         try {

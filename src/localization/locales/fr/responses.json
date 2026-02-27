@@ -48,12 +48,11 @@
       "privacyFooter": "-# aucun message enregistré ni données vendues. vos secrets sont en sécurité.",
       "tosHeader": "## cgu",
       "tosBody": "fourni tel quel. suivez les cgu de discord.",
-      "versionFooter": "-# version: 1.2.7 | moteur: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# des bugs? probablement. des fonctionnalités? très certainement."
+      "versionFooter": "-# version: 1.2.8 | moteur: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# des bugs? probablement. des fonctionnalités? très certainement."
     },
     "lang": {
       "invalid": "code invalide.",
       "success": "langue définie sur **{langCode}**.",
-      "duplicate": "vous utilisez déjà **{langCode}**.",
       "error": "échec sauvegarde."
     },
     "leave": {
@@ -64,7 +63,6 @@
     },
     "name": {
       "success": "nom défini sur **{name}**.",
-      "duplicate": "vous utilisez déjà **{name}**.",
       "error": "erreur sauvegarde."
     },
     "settings": {
@@ -78,7 +76,6 @@
     },
     "speed": {
       "success": "vitesse sur **{speedValue}x**.",
-      "duplicate": "vitesse déjà à **{speedValue}x**.",
       "error": "erreur sauvegarde."
     },
     "tts": {
@@ -90,7 +87,6 @@
     },
     "voice": {
       "success": "voix **{voiceId}** sauvegardée.",
-      "duplicate": "voix déjà sur **{voiceId}**.",
       "error": "erreur sauvegarde."
     }
   }

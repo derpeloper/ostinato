@@ -6,6 +6,7 @@
 const { SlashCommandBuilder, MessageFlags } = require('discord.js')
 const db = require('../../data/db');
 const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
+const ostinato = require('../../services/OstinatoTTS');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,7 +22,7 @@ module.exports = {
             .setMaxLength(60)
             .setRequired(true)
         ),
-    async execute(interaction, client) {
+    async execute(interaction) {
         const name = interaction.options.getString('name');
         const userId = interaction.user.id;
         const guildId = interaction.guild.id;
@@ -32,13 +33,9 @@ module.exports = {
                 return db.prepare('INSERT INTO names (user, guild, name) VALUES (?, ?, ?)').run(userId, guildId, name);
             });
 
-            const info = updateName();
-
-            if (info.changes > 0) {
-                await interaction.reply({ content: localize(interaction.locale, 'responses.public.name.success', { name }), flags: MessageFlags.Ephemeral });
-            } else {
-                 await interaction.reply({ content: localize(interaction.locale, 'responses.public.name.duplicate', { name }), flags: MessageFlags.Ephemeral });
-            }
+            updateName();
+            ostinato.invalidateCache(userId, guildId, 'name');
+            await interaction.reply({ content: localize(interaction.locale, 'responses.public.name.success', { name }), flags: MessageFlags.Ephemeral });
 
         } catch (error) {
             console.error(error);

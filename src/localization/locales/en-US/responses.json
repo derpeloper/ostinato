@@ -48,12 +48,11 @@
       "privacyFooter": "-# we do not log your messages, generate audio files, or sell your data. your secrets are safe, mostly because they are probably boring.",
       "tosHeader": "## terms of service",
       "tosBody": "provided \"as-is\". adhere to discord tos. or don't. we aren't your parents.",
-      "versionFooter": "-# version: 1.2.7 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
+      "versionFooter": "-# version: 1.2.8 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
     },
     "lang": {
       "invalid": "that language code is invalid.",
       "success": "language preferences set to **{langCode}**.",
-      "duplicate": "you already have **{langCode}** set as your preferred language.",
       "error": "failed to save language setting. (db error)"
     },
     "leave": {
@@ -64,7 +63,6 @@
     },
     "name": {
       "success": "your name has been set to **{name}**.",
-      "duplicate": "you already have the name **{name}** set.",
       "error": "there was an error saving your name."
     },
     "settings": {
@@ -78,7 +76,6 @@
     },
     "speed": {
       "success": "speed set to **{speedValue}x**.",
-      "duplicate": "you are already at **{speedValue}x** speed.",
       "error": "failed to save speed setting. (db error)"
     },
     "tts": {
@@ -90,7 +87,6 @@
     },
     "voice": {
       "success": "selected voice **{voiceId}** has been saved.",
-      "duplicate": "you already have the voice **{voiceId}** set.",
       "error": "selected voice **{voiceId}** was not saved. (error while saving to db)."
     }
   }

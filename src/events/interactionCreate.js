@@ -3,7 +3,7 @@
  * @description event handler for interaction creation (slash commands).
  * "you rang?"
  */
-const { Interaction, MessageFlags } = require("discord.js");
+const { MessageFlags } = require("discord.js");
 
 module.exports = {
     name: 'interactionCreate',

@@ -23,9 +23,9 @@
  */
 
 const path = require('path');
-const fs = require('fs');
-const { createAudioResource, StreamType, joinVoiceChannel, getVoiceConnection, AudioPlayerStatus, createAudioPlayer, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
+const { createAudioResource, joinVoiceChannel, getVoiceConnection, AudioPlayerStatus, createAudioPlayer, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
 const { Readable } = require('stream');
+const { PermissionFlagsBits } = require('discord.js');
 const config = require('../config');
 const db = require('../data/db');
 const { cleanText } = require('../utils/cleanText');
@@ -82,6 +82,16 @@ class OstinatoTTS {
     getDefaultVoice(userId) {
         const idx = Number(BigInt(userId) % 10n);
         return this.DEFAULT_VOICES[idx];
+    }
+
+    invalidateCache(userId, guildId, type) {
+        if (type === 'restricted') {
+            const key = `restricted:${guildId}`;
+            this.cache.delete(key);
+        } else {
+            const key = `${type}:${userId}:${guildId}`;
+            this.cache.delete(key);
+        }
     }
 
     async initialize() {
@@ -237,7 +247,6 @@ class OstinatoTTS {
     async processMessage(message) {
         if (!this.initialized) await this.initialize();
 
-        const originalContent = message.content;
         const cleanContent = cleanText(message.content, message);
         
         if (!cleanContent) return;
@@ -331,12 +340,6 @@ class OstinatoTTS {
                     selfDeaf: true,
                     selfMute: false
                 });
-
-                const originalSetSpeaking = connection.setSpeaking;
-                connection.setSpeaking = (speaking) => {
-                    if (speaking) return originalSetSpeaking.call(connection, 4); 
-                    return originalSetSpeaking.call(connection, speaking);
-                };
 
                 try {
                     await entersState(connection, VoiceConnectionStatus.Ready, 5_000);
@@ -453,6 +456,15 @@ class OstinatoTTS {
                      console.warn('[OstinatoTTS] config.ttsVolume is missing. falling back to backend default: 5.89');
                      volume = 5.89;
                 }
+
+                if (message.member && message.member.permissions.has(PermissionFlagsBits.PrioritySpeaker)) {
+                    let priorityVolume = config.priorityTtsVolume;
+                    if (priorityVolume === undefined || priorityVolume === null) {
+                         console.warn('[OstinatoTTS] config.priorityTtsVolume is missing. falling back to backend default: 6.1');
+                         priorityVolume = 6.1;
+                    }
+                    volume = priorityVolume;
+                }
                 resource.volume.setVolume(volume);
                 return resource; 
             } catch (e) {
@@ -533,6 +545,9 @@ class OstinatoTTS {
 
         if (nonBotMembers.size === 0) {
             console.log(`[OstinatoTTS] All humans left. Disconnecting.`);
+            if (this.playbackQueues.has(guildId)) {
+                this.playbackQueues.get(guildId).player.stop();
+            }
             connection.destroy();
             this.playbackQueues.delete(guildId); 
         }

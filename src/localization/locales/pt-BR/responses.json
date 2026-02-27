@@ -48,12 +48,11 @@
       "privacyFooter": "-# não registramos suas mensagens, não geramos áudios, nem vendemos seus dados. seus segredos estão seguros, até porque devem ser chatos.",
       "tosHeader": "## termos de serviço",
       "tosBody": "fornecido \"como está\". siga os termos do discord. ou não. não somos seus pais.",
-      "versionFooter": "-# versão: 1.2.7 | motor: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? provavelmente. recursos? com certeza."
+      "versionFooter": "-# versão: 1.2.8 | motor: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? provavelmente. recursos? com certeza."
     },
     "lang": {
       "invalid": "código de idioma inválido.",
       "success": "idioma definido para **{langCode}**.",
-      "duplicate": "você já tem **{langCode}** como idioma.",
       "error": "falha ao salvar o idioma. (erro no db)"
     },
     "leave": {
@@ -64,7 +63,6 @@
     },
     "name": {
       "success": "seu nome agora é **{name}**.",
-      "duplicate": "você já tem o nome **{name}**.",
       "error": "erro ao salvar seu nome."
     },
     "settings": {
@@ -78,7 +76,6 @@
     },
     "speed": {
       "success": "velocidade definida para **{speedValue}x**.",
-      "duplicate": "você já está com **{speedValue}x**.",
       "error": "falha ao salvar. (erro no db)"
     },
     "tts": {
@@ -90,7 +87,6 @@
     },
     "voice": {
       "success": "voz **{voiceId}** salva.",
-      "duplicate": "você já tem a voz **{voiceId}**.",
       "error": "voz não salva. (erro no db)."
     }
   }

@@ -14,7 +14,7 @@ module.exports = {
         .setDescription('disconnects the bot from the voice channel')
         .setNameLocalizations(getCommandLocalizations('public', 'leave').nameLocalizations)
         .setDescriptionLocalizations(getCommandLocalizations('public', 'leave').descriptionLocalizations),
-    async execute(interaction, client) {
+    async execute(interaction) {
         const guildId = interaction.guild.id;
         const connection = getVoiceConnection(guildId);
 

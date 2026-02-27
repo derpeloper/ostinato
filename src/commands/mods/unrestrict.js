@@ -6,6 +6,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require('discord.js');
 const db = require('../../data/db');
 const { localize, getCommandLocalizations } = require('../../localization/localize');
+const ostinato = require('../../services/OstinatoTTS');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,12 +15,13 @@ module.exports = {
         .setNameLocalizations(getCommandLocalizations('mods', 'unrestrict').nameLocalizations)
         .setDescriptionLocalizations(getCommandLocalizations('mods', 'unrestrict').descriptionLocalizations)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
-    async execute(interaction, client) {
+    async execute(interaction) {
         const guildId = interaction.guild.id;
 
         try {
             const stmt = db.prepare('INSERT OR REPLACE INTO restrictions (guild, restricted) VALUES (?, 0)');
             stmt.run(guildId);
+            ostinato.invalidateCache(null, guildId, 'restricted');
             await interaction.reply({ content: localize(interaction.locale, 'responses.mods.unrestrict.success'), flags: MessageFlags.Ephemeral });
         } catch (error) {
             console.error(error);

@@ -48,12 +48,11 @@
       "privacyFooter": "-# 귀하의 메시지를 기록하거나, 오디오 파일을 생성하거나, 데이터를 판매하지 않습니다. 귀하의 비밀은 안전합니다. 왜냐하면 아마 지루할 것이기 때문입니다.",
       "tosHeader": "## 서비스 약관",
       "tosBody": "\"있는 그대로\" 제공됩니다. discord 서비스 약관을 준수하세요. 아니면 말고요. 우리는 당신의 부모가 아닙니다.",
-      "versionFooter": "-# 버전: 1.2.7 | 엔진: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# 버그? 아마도요. 기능? 확실합니다."
+      "versionFooter": "-# 버전: 1.2.8 | 엔진: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# 버그? 아마도요. 기능? 확실합니다."
     },
     "lang": {
       "invalid": "잘못된 언어 코드입니다.",
       "success": "언어 설정이 **{langCode}**(으)로 설정되었습니다.",
-      "duplicate": "이미 **{langCode}**(을)를 기본 언어로 설정했습니다.",
       "error": "언어 설정을 저장하지 못했습니다. (DB 오류)"
     },
     "leave": {
@@ -64,7 +63,6 @@
     },
     "name": {
       "success": "이름이 **{name}**(으)로 설정되었습니다.",
-      "duplicate": "이미 **{name}**(이)라는 이름이 설정되어 있습니다.",
       "error": "이름을 저장하는 중 오류가 발생했습니다."
     },
     "settings": {
@@ -78,7 +76,6 @@
     },
     "speed": {
       "success": "속도가 **{speedValue}x**(으)로 설정되었습니다.",
-      "duplicate": "이미 **{speedValue}x** 속도입니다.",
       "error": "속도 설정을 저장하지 못했습니다. (DB 오류)"
     },
     "tts": {
@@ -90,7 +87,6 @@
     },
     "voice": {
       "success": "선택한 음성 **{voiceId}**이(가) 저장되었습니다.",
-      "duplicate": "이미 **{voiceId}** 음성이 설정되어 있습니다.",
       "error": "선택한 음성 **{voiceId}**이(가) 저장되지 않았습니다. (DB 저장 중 오류)."
     }
   }

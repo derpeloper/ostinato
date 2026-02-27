@@ -22,28 +22,28 @@ db.exec(`
         user TEXT NOT NULL,
         guild TEXT NOT NULL,
         name TEXT NOT NULL,
-        PRIMARY KEY (user, guild, name)
+        PRIMARY KEY (user, guild)
     );
 
     CREATE TABLE IF NOT EXISTS voices (
         user TEXT NOT NULL,
         guild TEXT NOT NULL,
         voice TEXT NOT NULL,
-        PRIMARY KEY (user, guild, voice)
+        PRIMARY KEY (user, guild)
     );
 
     CREATE TABLE IF NOT EXISTS speeds (
         user TEXT NOT NULL,
         guild TEXT NOT NULL,
         speed REAL NOT NULL,
-        PRIMARY KEY (user, guild, speed)
+        PRIMARY KEY (user, guild)
     );
 
     CREATE TABLE IF NOT EXISTS langs (
         user TEXT NOT NULL,
         guild TEXT NOT NULL,
         lang TEXT NOT NULL,
-        PRIMARY KEY (user, guild, lang)
+        PRIMARY KEY (user, guild)
     );
 
     CREATE TABLE IF NOT EXISTS restrictions (

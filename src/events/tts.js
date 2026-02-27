@@ -7,7 +7,7 @@ const ostinato = require('../services/OstinatoTTS');
 
 module.exports = {
     name: 'messageCreate',
-    async execute(message, client) {
+    async execute(message) {
         if (message.author.bot) return;
 
         const member = message.member;
@@ -19,8 +19,6 @@ module.exports = {
              return;
         }
 
-        const isMuted = member.voice.mute || member.voice.selfMute;
-        
         try {
             console.log(`[TTS Event] Processing message from ${message.author.username}: ${message.content}`);
             await ostinato.processMessage(message);
