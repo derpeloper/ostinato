@@ -91,7 +91,10 @@ function logMemoryUsage(context = 'Process') {
     console.log(`[${context}] Memory: RSS ${(used.rss / 1024 / 1024).toFixed(2)}MB | Heap ${(used.heapUsed / 1024 / 1024).toFixed(2)}MB / ${(used.heapTotal / 1024 / 1024).toFixed(2)}MB | External ${(used.external / 1024 / 1024).toFixed(2)}MB`);
 }
 
-setInterval(() => logMemoryUsage('Main'), 5 * 60 * 1000);
+setInterval(() => {
+    logMemoryUsage('Main');
+    if (ostinato.initialized) ostinato.logAggregatedMemory();
+}, 5 * 60 * 1000);
 logMemoryUsage('MainInit');
 
 process.on('SIGINT', () => {

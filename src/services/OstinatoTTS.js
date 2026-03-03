@@ -57,14 +57,12 @@ class Semaphore {
 
 class OstinatoTTS {
     constructor() {
-        this.worker = null;
+        this.workers = [];
+        this.nextWorkerIndex = 0;
         this.initialized = false;
-        let concurrency = config.maxConcurrency;
-        if (concurrency === undefined || concurrency === null) {
-             console.warn('[OstinatoTTS] config.maxConcurrency is missing. falling back to backend default: 6');
-             concurrency = 6;
-        }
-        this.processingSemaphore = new Semaphore(concurrency);
+        
+        this.guildSemaphores = new Map();
+        
         this.playbackQueues = new Map();
         
         this.pendingRequests = new Map();
@@ -98,10 +96,10 @@ class OstinatoTTS {
         if (this.initialized) return;
         if (this.initializationPromise) return this.initializationPromise;
 
-        console.log('[OstinatoTTS] Initializing Worker...');
+        console.log('[OstinatoTTS] Initializing Worker Pool...');
         this.initializationPromise = (async () => {
             try {
-                await this.startWorker();
+                await this.startWorkerPool();
                 this.startHeartbeat();
             } catch (error) {
                 this.initializationPromise = null;
@@ -111,58 +109,98 @@ class OstinatoTTS {
         return this.initializationPromise;
     }
 
-    async startWorker() {
-        try {
-            const { Worker } = require('worker_threads');
-            this.worker = new Worker(path.join(__dirname, 'ttsWorker.js'));
+    _checkAllWorkersReady() {
+        this.initialized = this.workers.length > 0 && this.workers.every(w => w.ready);
+    }
 
-            this.worker.on('message', (msg) => {
+    async startWorkerPool() {
+        let count = config.workerCount;
+        if (count === undefined || count === null || isNaN(count)) {
+            console.warn('[OstinatoTTS] config.workerCount is missing. falling back to 1');
+            count = 1;
+        }
+
+        const { Worker } = require('worker_threads');
+        
+        for (let i = 0; i < count; i++) {
+            this.workers.push({ worker: null, ready: false });
+            this._spawnWorker(i, Worker);
+        }
+
+        let attempts = 0;
+        while (!this.initialized && attempts < 120) {
+            await new Promise(r => setTimeout(r, 500));
+            attempts++;
+        }
+        
+        if (!this.initialized) throw new Error("Worker pool initialization timed out");
+    }
+
+    _spawnWorker(index, Worker) {
+        try {
+            const worker = new Worker(path.join(__dirname, 'ttsWorker.js'));
+            this.workers[index].worker = worker;
+            this.workers[index].ready = false;
+
+            worker.on('message', (msg) => {
                 try {
                     if (msg.type === 'init_success') {
                         this.sampleRate = msg.sampleRate;
-                        this.initialized = true;
-                        console.log('[OstinatoTTS] Worker Initialized.');
+                        this.workers[index].ready = true;
+                        this._checkAllWorkersReady();
+                        console.log(`[OstinatoTTS] Worker ${index} Initialized.`);
                     } else if (msg.type === 'error') {
-                        console.error('[OstinatoTTS] Worker Error:', msg.error);
+                        console.error(`[OstinatoTTS] Worker ${index} Error:`, msg.error);
                     } else if (msg.type === 'response') {
                         this.handleWorkerResponse(msg);
+                    } else if (msg.type === 'memory_report') {
+                        if (this.workers[index]._memoryResolve) {
+                            this.workers[index]._memoryResolve(msg.memoryUsage);
+                            this.workers[index]._memoryResolve = null;
+                        }
                     }
                 } catch (err) {
-                    console.error('[OstinatoTTS] Error in worker message handler:', err);
+                    console.error(`[OstinatoTTS] Error in worker ${index} message handler:`, err);
                 }
             });
 
-            this.worker.on('error', (err) => {
-                console.error('[OstinatoTTS] Worker Thread Error:', err);
+            worker.on('error', (err) => {
+                console.error(`[OstinatoTTS] Worker ${index} Thread Error:`, err);
             });
 
-            this.worker.on('exit', async (code) => {
+            worker.on('exit', async (code) => {
                 if (code !== 0) {
-                     console.error(new Error(`[OstinatoTTS] Worker stopped with exit code ${code}`));
+                     console.error(new Error(`[OstinatoTTS] Worker ${index} stopped with exit code ${code}`));
                 }
                 
-                console.log('[OstinatoTTS] Worker died. Restarting in 1 second...');
-                this.initialized = false;
-                this.worker = null;
-                this.initializationPromise = null;
+                console.log(`[OstinatoTTS] Worker ${index} died. Restarting in 1 second...`);
+                this.workers[index].ready = false;
+                this.workers[index].worker = null;
+                this._checkAllWorkersReady();
                 
-                const requestsToRetry = Array.from(this.pendingRequests.entries());
-                this.pendingRequests.clear();
+                const requestsToRetry = Array.from(this.pendingRequests.entries())
+                    .filter(([_, req]) => req.workerIndex === index);
+                
+                for (const [requestId] of requestsToRetry) {
+                    this.pendingRequests.delete(requestId);
+                }
 
                 await new Promise(r => setTimeout(r, 1000));
                 
-                this.initializationPromise = (async () => {
-                    try {
-                        await this.startWorker();
-                    } catch (err) {
-                        this.initializationPromise = null;
-                        console.error('[OstinatoTTS] Failed to restart worker:', err);
-                    }
-                })();
-                
                 try {
-                    await this.initializationPromise;
-                    console.log(`[OstinatoTTS] Re-queueing ${requestsToRetry.length} failed requests...`);
+                    this._spawnWorker(index, Worker);
+                    
+                    let attempts = 0;
+                    while (!this.workers[index].ready && attempts < 120) {
+                        await new Promise(r => setTimeout(r, 500));
+                        attempts++;
+                    }
+                    
+                    if (!this.workers[index].ready) {
+                        throw new Error(`Worker ${index} failed to become ready`);
+                    }
+                    
+                    console.log(`[OstinatoTTS] Re-queueing ${requestsToRetry.length} failed requests for worker ${index}...`);
                     for (const [requestId, req] of requestsToRetry) {
                         if (req.args) {
                             try {
@@ -175,26 +213,17 @@ class OstinatoTTS {
                             req.reject(new Error('Worker crashed and request could not be retried'));
                         }
                     }
-                } catch (e) {
-                     for (const [requestId, req] of requestsToRetry) {
-                         req.reject(new Error('Worker crashed and failed to restart'));
-                     }
+                } catch (err) {
+                    console.error(`[OstinatoTTS] Failed to restart worker ${index}:`, err);
+                    for (const [requestId, req] of requestsToRetry) {
+                        req.reject(new Error('Worker crashed and failed to restart'));
+                    }
                 }
             });
 
-            this.worker.postMessage({ type: 'initialize' });
-
-            let attempts = 0;
-            while (!this.initialized && attempts < 120) {
-                await new Promise(r => setTimeout(r, 500));
-                attempts++;
-            }
-            
-            if (!this.initialized) throw new Error("Worker initialization timed out");
-
+            worker.postMessage({ type: 'initialize' });
         } catch (error) {
-            console.error('[OstinatoTTS] Failed to initialize:', error);
-            this.initialized = false; 
+            console.error(`[OstinatoTTS] Failed to spawn worker ${index}:`, error);
         }
     }
 
@@ -226,21 +255,44 @@ class OstinatoTTS {
 
         return new Promise((resolve, reject) => {
             const requestId = this.requestIdCounter++;
+            
+            let workerIndex = this.nextWorkerIndex % this.workers.length;
+            this.nextWorkerIndex++;
+            
+            let workerData = this.workers[workerIndex];
+            
+            // Output protection: if selected worker is currently indisposed (e.g. restarting), try another
+            if (!workerData || !workerData.worker || !workerData.ready) {
+                for (let i = 0; i < this.workers.length; i++) {
+                    const fallbackIndex = (workerIndex + i) % this.workers.length;
+                    if (this.workers[fallbackIndex] && this.workers[fallbackIndex].worker && this.workers[fallbackIndex].ready) {
+                        workerIndex = fallbackIndex;
+                        workerData = this.workers[workerIndex];
+                        break;
+                    }
+                }
+            }
+            
             this.pendingRequests.set(requestId, { 
                 resolve, 
                 reject,
-                args: [text, userId, voiceId, speed, lang]
+                args: [text, userId, voiceId, speed, lang],
+                workerIndex
             });
             
-            this.worker.postMessage({
-                type: 'generate',
-                requestId,
-                text,
-                userId,
-                voiceId,
-                speed: finalSpeed,
-                lang: lang
-            });
+            if (workerData && workerData.worker && workerData.ready) {
+                workerData.worker.postMessage({
+                    type: 'generate',
+                    requestId,
+                    text,
+                    userId,
+                    voiceId,
+                    speed: finalSpeed,
+                    lang: lang
+                });
+            } else {
+                reject(new Error(`Worker ${workerIndex} is not ready, and no available workers were found.`));
+            }
         });
     }
 
@@ -368,7 +420,16 @@ class OstinatoTTS {
         }
         
         const taskPromise = (async () => {
-            await this.processingSemaphore.acquire();
+            let concurrency = config.maxConcurrency;
+            if (concurrency === undefined || concurrency === null) {
+                console.warn('[OstinatoTTS] config.maxConcurrency is missing. falling back to backend default: 6');
+                concurrency = 6;
+            }
+            if (!this.guildSemaphores.has(guildId)) {
+                this.guildSemaphores.set(guildId, new Semaphore(concurrency));
+            }
+            const guildSemaphoreInstance = this.guildSemaphores.get(guildId);
+            await guildSemaphoreInstance.acquire();
             try {
                 let nameToUse = message.author.username;
                 
@@ -480,7 +541,7 @@ class OstinatoTTS {
                 
                 return null;
             } finally {
-                this.processingSemaphore.release();
+                if (guildSemaphoreInstance) guildSemaphoreInstance.release();
             }
         })();
 
@@ -550,6 +611,7 @@ class OstinatoTTS {
             }
             connection.destroy();
             this.playbackQueues.delete(guildId); 
+            this.guildSemaphores.delete(guildId);
         }
     }
 
@@ -564,12 +626,13 @@ class OstinatoTTS {
                 } catch (e) { }
             }
             this.playbackQueues.delete(guildId);
+            this.guildSemaphores.delete(guildId);
         }
     }
 
     startHeartbeat() {
         setInterval(async () => {
-            if (!this.initialized || !this.worker) return;
+            if (!this.initialized || this.workers.length === 0) return;
             try {
                 await this.generateAudio("alive", "0", null, null, null);
             } catch (e) {
@@ -599,6 +662,66 @@ class OstinatoTTS {
 
         queueData.player.stop();
         return 'SKIPPED';
+    }
+
+    async collectWorkerMemory() {
+        const promises = this.workers.map((workerData, index) => {
+            return new Promise((resolve) => {
+                if (!workerData.worker || !workerData.ready) {
+                    resolve(null);
+                    return;
+                }
+
+                const timeout = setTimeout(() => {
+                    workerData._memoryResolve = null;
+                    resolve(null);
+                }, 3000);
+
+                workerData._memoryResolve = (mem) => {
+                    clearTimeout(timeout);
+                    resolve(mem);
+                };
+
+                workerData.worker.postMessage({ type: 'memory_report' });
+            });
+        });
+
+        return Promise.all(promises);
+    }
+
+    async logAggregatedMemory() {
+        if (!this.initialized || this.workers.length === 0) return;
+
+        const memoryReports = await this.collectWorkerMemory();
+        
+        let totalRss = 0;
+        let totalHeapUsed = 0;
+        let activeWorkers = 0;
+
+        for (const mem of memoryReports) {
+            if (mem) {
+                totalRss += mem.rss;
+                totalHeapUsed += mem.heapUsed;
+                activeWorkers++;
+            }
+        }
+
+        if (activeWorkers === 0) return;
+
+        let memLimit = config.workerMemoryLimit;
+        if (memLimit === undefined || memLimit === null) {
+            memLimit = 1610612736;
+        }
+
+        const rssMB = (totalRss / 1024 / 1024).toFixed(2);
+        const heapMB = (totalHeapUsed / 1024 / 1024).toFixed(2);
+        const limitMB = (memLimit * this.workers.length / 1024 / 1024).toFixed(2);
+
+        if (this.workers.length === 1) {
+            console.log(`[Worker] Memory: RSS ${rssMB}MB | Heap ${heapMB}MB / ${(memLimit / 1024 / 1024).toFixed(2)}MB`);
+        } else {
+            console.log(`[Workers] Memory (${this.workers.length} workers): Total RSS ${rssMB}MB | Total Heap ${heapMB}MB / ${limitMB}MB`);
+        }
     }
 }
 

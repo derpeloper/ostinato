@@ -218,6 +218,8 @@ parentPort.on('message', async (msg) => {
         } catch (error) {
             parentPort.postMessage({ type: 'response', requestId, success: false, error: error.message });
         }
+    } else if (msg.type === 'memory_report') {
+        parentPort.postMessage({ type: 'memory_report', memoryUsage: process.memoryUsage() });
     }
 });
 
