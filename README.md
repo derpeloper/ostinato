@@ -8,7 +8,7 @@
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
-> **current version**: v1.2.8 (official release)
+> **current version**: v1.6.7 (official release)
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
@@ -21,7 +21,8 @@ _note: this is hosted on my personal machine. expect outages for maintenance, bu
 - **localization**: fully translated across 5 languages (english, spanish, french, portuguese, korean).
 - **voice customization**: change the voice model, speed, and language to fit your vibe.
 - **persistent settings**: remembers your preferences per server, because nobody likes repeating themselves.
-- **crash resilience**: it tries heavily not to crash. emphasize on "tries". auto-restarts the worker if it trips over its own shoelaces.
+- **worker pool & concurrency**: scales with your needs! supports spawning multiple workers for parallel processing, and queues are properly isolated per-server.
+- **crash resilience**: it tries heavily not to crash. emphasize on "tries". auto-restarts individual workers if they trip over their own shoelaces.
 - **memory management**: watches memory usage like a hawk. a hawk that occasionally panics and restarts things to stay fresh.
 
 ## commands
@@ -78,8 +79,9 @@ check `src/config.js` to change the internal engine settings.
 - `ttsVolume`: volume of the speech. can you hear me now?
 - `ttsQuality`: 1 to 50. quality vs speed trade-off.
 - `defaultLang`: fallback language if detection fails.
-- `maxConcurrency`: how many messages are processed at once to prevent a backed-up queue.
-- `workerMemoryLimit`: memory cap for the worker before it restarts. keeps the ram gremlins at bay.
+- `maxConcurrency`: per-guild queue. how many messages can process at once per server to prevent one active server from lagging others.
+- `workerMemoryLimit`: memory cap for a worker before it restarts. keeps the ram gremlins at bay.
+- `workerCount`: how many parallel workers to spin up. use with caution—each worker takes ~300mb-400mb ram!
 
 ## issues & contributions
 
