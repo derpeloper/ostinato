@@ -13,50 +13,67 @@ a discord bot that gives a voice to the voiceless. because listening is better t
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 [add the bot to your server](https://discord.com/oauth2/authorize?client_id=1459993892484288512)
-_note: this is hosted on my personal machine. expect outages for maintenance, bug fixes, or if my power goes out. you have been warned._
+
+_note: expect outages for maintenance, bug fixes, or unexpected hiccups. you have been warned._
 
 ## features
 
 - **supertonic tts**: powered by the supertonic engine to provide high-quality, human-sounding voices. it's like magic, but with actual code.
 - **localization**: fully translated across 5 languages (english, spanish, french, portuguese, korean).
 - **voice customization**: change the voice model, speed, and language to fit your vibe.
-- **persistent settings**: remembers your preferences per server, because nobody likes repeating themselves.
+- **persistent settings**: remembers your preferences per server via sqlite, because nobody likes repeating themselves.
 - **worker pool & concurrency**: scales with your needs! supports spawning multiple workers for parallel processing, and queues are properly isolated per-server.
 - **crash resilience**: it tries heavily not to crash. emphasize on "tries". auto-restarts individual workers if they trip over their own shoelaces.
 - **memory management**: watches memory usage like a hawk. a hawk that occasionally panics and restarts things to stay fresh.
 
-## commands
+## 🤓 for the geeks (technicalities)
 
-- run `/help` in a server where the bot is present to see a full list of commands.
-- for a detailed breakdown of commands for both moderators/admins and the general public, refer to the `src/commands` folder in this repository.
+if you're wondering why this isn't just another `google-tts` wrapper, here is the breakdown:
+
+### the audio pipeline
+ostinato doesn't just play a file; it manages a stream. the flow looks like this:
+`user input` $\rightarrow$ `discord.js event` $\rightarrow$ `worker pool` $\rightarrow$ `supertonic engine` $\rightarrow$ `ffmpeg` $\rightarrow$ `discord voice channel`.
+
+to ensure low latency, the bot pipes raw audio data directly through ffmpeg, transcoding it into the Opus format required by discord's voice servers in real-time.
+
+### the worker pool architecture
+the supertonic engine is heavy and can be blocking. to prevent the entire bot from freezing while one person is reading a novel, the bot implements a **worker pool**. 
+- the main process handles the discord api and event routing.
+- tasks are dispatched to a pool of child processes (workers).
+- each worker handles its own instance of the engine, allowing for true parallel processing across different servers.
+- this architecture prevents "head-of-line blocking," meaning a long request in one server won't stall the queue for others.
+
+### memory leak mitigation (the hawk)
+because the engine can be resource-intensive, the bot monitors the RSS (resident set size) of each child process. if a worker exceeds its memory limit or becomes unstable, the manager automatically kills it and spawns a fresh one without dropping the main bot connection.
+
+### persistence layer
+instead of a bloated database, the bot uses **better-sqlite3**. it's fast, file-based, and perfect for storing per-guild configuration (voice, speed, language) without adding unnecessary network latency.
+
+### localization engine
+the bot manages a localization layer that maps inputs across 5 languages. it ensures that the correct voice models and linguistic parameters are passed to the engine based on the server's current settings.
 
 ## self-hosting
 
 if you want 100% uptime and total control, host it yourself. you'll get access to customizable settings like speed (zoom zoom), volume, and performance tweaks.
 
-### heads up on hardware
+### prerequisites
+- **node.js**: v22.12.0 or higher (required by discord.js v14).
+- **git**: for cloning the repos.
+- **ram & cpu**: the engine is hungry. expect **~300mb to ~600mb of ram** per worker. be warned: it can get really heavy on the cpu as that is how the audio is generated, and overall resource usage scales directly with the number of workers set in your config. don't try running this on a toaster.
 
-the engine is a bit hungry. on my machine, it sits between **~300mb and ~600mb of ram**. your mileage may vary depending on your system, but don't try running this on a toaster.
+### setup guide
 
-### setup
-
-1. clone the repo and install dependencies. if you don't know how to clone a repo, google is your best friend. this might take a while, go grab a coffee.
-
+#### phase 1: the bot
+1. clone the repo and install dependencies:
    ```bash
    git clone https://github.com/derpeloper/ostinato
    cd ostinato
    npm install
    ```
 
-2. edit your config files:
-   - in `src/env.json`, replace `token` with your actual discord bot token.
-   - in `src/config.js`, replace `clientId` with your bot's client id.
-   - **optional**: set `guildId` in `src/config.js` to your server's id if you only want the bot in one server (and want the commands to show up instantly). otherwise, leave it as `null`.
-
-3. give the bot the right permissions: **priority speaker**, **connect**, **read message history**, and **speak**. otherwise, it'll just be a silent observer.
-
-4. download the engine (and maybe go get that donut now):
-
+#### phase 2: the engine
+the bot is just the brain; it needs the engine to speak.
+1. download the supertonic engine:
    ```bash
    git clone https://github.com/supertone-inc/supertonic.git
    cd supertonic
@@ -65,21 +82,30 @@ the engine is a bit hungry. on my machine, it sits between **~300mb and ~600mb o
    npm install
    ```
 
-5. go back to the root folder and bring it to life:
+#### phase 3: configuration & launch
+1. go back to the ostinato root folder:
    ```bash
    cd ../../
+   ```
+2. configure your bot:
+   - in `src/env.json`, replace `token` with your actual discord bot token.
+   - in `src/config.js`, replace `clientId` with your bot's client id.
+   - **optional**: set `guildId` in `src/config.js` if you only want the bot in one server.
+3. bring it to life:
+   ```bash
    node src/index.js
    ```
+4. **permissions**: ensure your bot has **priority speaker**, **connect**, **read message history**, and **speak**. otherwise, it'll just be a silent observer.
 
 ## configuration (self-host only)
 
-check `src/config.js` to change the internal engine settings.
+edit `src/config.js` to tweak the engine:
 
 - `ttsSpeed`: base speed of the speech. zoom zoom.
 - `ttsVolume`: volume of the speech. can you hear me now?
-- `ttsQuality`: 1 to 50. quality vs speed trade-off.
+- `ttsQuality`: 1 to 50. the trade-off between audio fidelity and processing speed.
 - `defaultLang`: fallback language if detection fails.
-- `maxConcurrency`: per-guild queue. how many messages can process at once per server to prevent one active server from lagging others.
+- `maxConcurrency`: how many messages can process at once per server. prevents one active server from lagging others.
 - `workerMemoryLimit`: memory cap for a worker before it restarts. keeps the ram gremlins at bay.
 - `workerCount`: how many parallel workers to spin up. use with caution—each worker takes ~300mb-400mb ram!
 
