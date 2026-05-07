@@ -31,11 +31,21 @@ const abbreviations = {
 
 const urlRegex = /(https?:\/\/[^\s]+)/g;
 const emojiRegex = /<a?:([a-zA-Z0-9_]+):(\d+)>/g;
+const mentionRegex = /<@!?(\d+)>/g;
 
 function cleanText(text, message = null) {
-    if (!text && (!message || !message.stickers || message.stickers.size === 0)) return "";
+    if (!text && (!message || !message.stickers || message.stickers.size === 0)) {
+        if (message && message.attachments && message.attachments.size > 0) {
+            return "attached a file";
+        }
+        return "";
+    }
 
     let cleaned = text || "";
+
+    if (!cleaned && message && message.attachments && message.attachments.size > 0) {
+        cleaned = "attached a file";
+    }
 
     const hasUrl = urlRegex.test(cleaned);
     urlRegex.lastIndex = 0;
@@ -51,6 +61,14 @@ function cleanText(text, message = null) {
 
     cleaned = cleaned.replace(emojiRegex, (match, name, id) => {
         return name;
+    });
+
+    cleaned = cleaned.replace(mentionRegex, (match, userId) => {
+        if (message && message.guild) {
+            const member = message.guild.members.cache.get(userId);
+            if (member) return member.displayName;
+        }
+        return "someone";
     });
 
     const words = cleaned.split(/\s+/);

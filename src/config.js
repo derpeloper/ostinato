@@ -27,9 +27,24 @@ module.exports = {
     // -- resource safety ------------------------------------------------------
     // limits to keep the machine from melting under load.
 
-    workerCount:       3,           // workers: number of TTS inference workers. each uses ~300-400mb of ram.
-    maxConcurrency:    20,          // queue: per-guild. how many jobs can run at the same time per server.
-    workerMemoryLimit: 1610612736  // memory: 1.5gb cap to prevent crashing.
+    workerCount:            1,           // workers: number of TTS inference workers. each uses ~300-400mb of ram.
+    maxConcurrency:         100,         // queue: total requests to the engine at any given time.
+    maxPerGuildConcurrency: 20,          // queue: per-guild. how many jobs can run at the same time per server.
+    workerMemoryLimit:      1610612736,  // memory: 1.5gb cap to prevent crashing.
+
+
+    // -- presence & status ----------------------------------------------------
+    // control how the bot presents itself.
+
+    status: 'online',           // presence: 'online', 'idle', 'dnd'
+    activityType: 'Custom',     // activity: 'Playing', 'Watching', 'Listening', 'Custom'
+    statusMessages: [
+        'active in {guilds} servers',
+        'a voice for the voiceless',
+        'v2.1 | /help'
+    ],
+    statusRotationInterval: 3500,  // ms: how often the status rotates.
+    autoIdle: true                  // idle: automatically go idle after 5 minutes of inactivity.
 
 };
 

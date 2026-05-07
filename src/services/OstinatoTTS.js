@@ -63,6 +63,10 @@ class OstinatoTTS {
         
         this.guildSemaphores = new Map();
         
+        let globalMax = config.maxConcurrency;
+        if (globalMax === undefined || globalMax === null || isNaN(globalMax)) globalMax = 100;
+        this.globalSemaphore = new Semaphore(globalMax);
+        
         this.playbackQueues = new Map();
         
         this.pendingRequests = new Map();
@@ -70,11 +74,16 @@ class OstinatoTTS {
         this.sampleRate = 24000;
         this.initializationPromise = null;
         this.cache = new Map();
+        this.lastActivityTimestamp = null;
 
         this.DEFAULT_VOICES = [
             'F1', 'F2', 'F3', 'F4', 'F5',
             'M1', 'M2', 'M3', 'M4', 'M5'
         ];
+    }
+
+    getLastActivityTimestamp() {
+        return this.lastActivityTimestamp;
     }
 
     getDefaultVoice(userId) {
@@ -85,6 +94,9 @@ class OstinatoTTS {
     invalidateCache(userId, guildId, type) {
         if (type === 'restricted') {
             const key = `restricted:${guildId}`;
+            this.cache.delete(key);
+        } else if (type === 'guild_lang') {
+            const key = `guild_lang:${guildId}`;
             this.cache.delete(key);
         } else {
             const key = `${type}:${userId}:${guildId}`;
@@ -299,9 +311,25 @@ class OstinatoTTS {
     async processMessage(message) {
         if (!this.initialized) await this.initialize();
 
+        this.lastActivityTimestamp = Date.now();
+
         const cleanContent = cleanText(message.content, message);
         
         if (!cleanContent) return;
+
+        try {
+            const guildFilters = db.prepare('SELECT pattern FROM message_filters WHERE guild = ?').all(message.guild.id);
+            for (const filter of guildFilters) {
+                try {
+                    const regex = new RegExp(filter.pattern, 'i');
+                    if (regex.test(cleanContent)) return;
+                } catch (e) {
+                    if (cleanContent.toLowerCase().includes(filter.pattern.toLowerCase())) return;
+                }
+            }
+        } catch (err) {
+            console.error('[OstinatoTTS] Error checking message filters:', err);
+        }
         
         const guildId = message.guild.id;
 
@@ -420,15 +448,15 @@ class OstinatoTTS {
         }
         
         const taskPromise = (async () => {
-            let concurrency = config.maxConcurrency;
-            if (concurrency === undefined || concurrency === null) {
-                console.warn('[OstinatoTTS] config.maxConcurrency is missing. falling back to backend default: 6');
-                concurrency = 6;
+            let perGuildConcurrency = config.maxPerGuildConcurrency;
+            if (perGuildConcurrency === undefined || perGuildConcurrency === null) {
+                perGuildConcurrency = 20;
             }
             if (!this.guildSemaphores.has(guildId)) {
-                this.guildSemaphores.set(guildId, new Semaphore(concurrency));
+                this.guildSemaphores.set(guildId, new Semaphore(perGuildConcurrency));
             }
             const guildSemaphoreInstance = this.guildSemaphores.get(guildId);
+            await this.globalSemaphore.acquire();
             await guildSemaphoreInstance.acquire();
             try {
                 let nameToUse = message.author.username;
@@ -445,6 +473,20 @@ class OstinatoTTS {
                     } catch (dbErr) {
                         console.error('[OstinatoTTS] DB Name fetch error:', dbErr);
                     }
+                }
+
+                try {
+                    const nameFilters = db.prepare('SELECT pattern FROM name_filters WHERE guild = ?').all(guildId);
+                    for (const filter of nameFilters) {
+                        try {
+                            const regex = new RegExp(filter.pattern, 'i');
+                            if (regex.test(nameToUse)) { nameToUse = message.author.username; break; }
+                        } catch (e) {
+                            if (nameToUse.toLowerCase().includes(filter.pattern.toLowerCase())) { nameToUse = message.author.username; break; }
+                        }
+                    }
+                } catch (err) {
+                    console.error('[OstinatoTTS] Error checking name filters:', err);
                 }
 
                 let fullContent = cleanContent;
@@ -501,6 +543,22 @@ class OstinatoTTS {
                     }
                 }
 
+                if (!lang) {
+                    const guildLangKey = `guild_lang:${guildId}`;
+                    if (this.cache.has(guildLangKey)) {
+                        lang = this.cache.get(guildLangKey);
+                    } else {
+                        try {
+                            const guildLangRow = db.prepare('SELECT lang FROM guild_langs WHERE guild = ?').get(guildId);
+                            if (guildLangRow) lang = guildLangRow.lang;
+                            this.cache.set(guildLangKey, lang);
+                            setTimeout(() => this.cache.delete(guildLangKey), 600000);
+                        } catch (dbErr) {
+                            console.error('[OstinatoTTS] DB Guild Lang fetch error:', dbErr);
+                        }
+                    }
+                }
+
 
                 const start = Date.now();
                 
@@ -542,6 +600,7 @@ class OstinatoTTS {
                 return null;
             } finally {
                 if (guildSemaphoreInstance) guildSemaphoreInstance.release();
+                this.globalSemaphore.release();
             }
         })();
 

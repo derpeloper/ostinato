@@ -99,8 +99,66 @@ function getOptionLocalizations(group, commandName, optionName) {
     return { nameLocalizations, descriptionLocalizations };
 }
 
+function getSubcommandLocalizations(group, commandName, subcommandName) {
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
+    const nameLocalizations = {};
+    const descriptionLocalizations = {};
+
+    for (const loc of supportedLocales) {
+        const data = getLocaleData(loc);
+        const sub = getNestedValue(data, `commands.${group}.${commandName}.subcommands.${subcommandName}`)
+            || getNestedValue(data, `commands.${group}.${commandName}.options.${subcommandName}`);
+        if (sub && sub.name && sub.description) {
+            nameLocalizations[loc] = sub.name;
+            descriptionLocalizations[loc] = sub.description;
+        }
+    }
+
+    return { nameLocalizations, descriptionLocalizations };
+}
+
+function getSubcommandGroupLocalizations(group, commandName, groupName) {
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
+    const nameLocalizations = {};
+    const descriptionLocalizations = {};
+
+    for (const loc of supportedLocales) {
+        const data = getLocaleData(loc);
+        const grp = getNestedValue(data, `commands.${group}.${commandName}.subcommandGroups.${groupName}`)
+            || getNestedValue(data, `commands.${group}.${commandName}.groups.${groupName}`);
+        if (grp && grp.name && grp.description) {
+            nameLocalizations[loc] = grp.name;
+            descriptionLocalizations[loc] = grp.description;
+        }
+    }
+
+    return { nameLocalizations, descriptionLocalizations };
+}
+
+function getDeepOptionLocalizations(group, ...pathSegments) {
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
+    const nameLocalizations = {};
+    const descriptionLocalizations = {};
+
+    const fullPath = `commands.${group}.${pathSegments.join('.')}`;
+
+    for (const loc of supportedLocales) {
+        const data = getLocaleData(loc);
+        const opt = getNestedValue(data, fullPath);
+        if (opt && opt.name && opt.description) {
+            nameLocalizations[loc] = opt.name;
+            descriptionLocalizations[loc] = opt.description;
+        }
+    }
+
+    return { nameLocalizations, descriptionLocalizations };
+}
+
 module.exports = {
     localize,
     getCommandLocalizations,
-    getOptionLocalizations
+    getOptionLocalizations,
+    getSubcommandLocalizations,
+    getSubcommandGroupLocalizations,
+    getDeepOptionLocalizations
 };

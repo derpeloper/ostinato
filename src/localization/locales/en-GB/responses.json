@@ -1,24 +1,12 @@
 {
   "mods": {
-    "clear": {
-      "success": "queue cleared.",
-      "error": "failed to clear the queue."
-    },
-    "restrict": {
-      "success": "tts restricted to muted users only.",
-      "error": "failed to restrict tts."
-    },
-    "skip": {
-      "success": "skipped.",
-      "tooShort": "message is too short to skip (< 35 chars).",
-      "notPlaying": "nothing is playing right now.",
-      "error": "an error occurred while trying to skip.",
-      "unknown": "failed to skip."
-    },
-    "unrestrict": {
-      "success": "tts restrictions lifted.",
-      "error": "failed to unrestrict tts."
-    }
+    "clear": { "success": "queue cleared.", "error": "failed to clear the queue." },
+    "restrict": { "success": "tts restricted to muted users only.", "error": "failed to restrict tts." },
+    "skip": { "success": "skipped.", "tooShort": "message is too short to skip (< 35 chars).", "notPlaying": "nothing is playing right now.", "error": "an error occurred while trying to skip.", "unknown": "failed to skip." },
+    "unrestrict": { "success": "tts restrictions lifted.", "error": "failed to unrestrict tts." },
+    "guild": { "lang": { "success": "guild default language set to **{langCode}**.", "reset": "guild default language has been reset.", "invalid": "that language code is invalid.", "error": "failed to update guild language setting." } },
+    "message": { "filter": { "added": "filter `{pattern}` has been added.", "exists": "that filter already exists.", "list": "**active message filters:**\n{filters}", "empty": "no message filters are configured for this guild.", "edited": "filter updated from `{old}` to `{new}`.", "notFound": "filter `{pattern}` was not found.", "removed": "filter `{pattern}` has been removed.", "error": "failed to update message filters." } },
+    "channel": { "success": "alternative chat channel set to {channel}.", "removed": "alternative chat channel has been removed.", "noneSet": "no alternative chat channel is configured.", "error": "failed to update channel setting." }
   },
   "public": {
     "help": {
@@ -27,7 +15,7 @@
         "help": "im pretty sure this command is self-explanatory. it provides information about commands that this bot has to offer.",
         "voice": "changes the voice for your account. \n\nif you are curious about how the voices sound like, you may refer to supertonic's [voices](https://supertone-inc.github.io/supertonic-py/voices/) page.\n\n-# voice preferences only affects the guild you use the command in so you can have different preferences per guild.",
         "info": "provides information about the bot, including the notices for the terms of service and privacy policy.",
-        "name": "changes the name for your account. \n\n-# name preferences are per-server instead of being universal. this is to protect your privacy.",
+        "name": "set your display name or manage name filters.\n\n`/name set <name>`: sets the name for your messages.\n`/name filter add|list|edit|remove`: manage name filters (admin).\n\n-# name preferences are per-server instead of being universal. this is to protect your privacy.",
         "speed": "changes the speed of the tts for your account. \n\nvalue must be between **0.5** and **2.0**. \n\n-# speeds are per-server instead of being universal.",
         "lang": "changes the language of the tts for your account. \n\nsupported languages: english, portuguese, korean, french, spanish. \n\n-# language preferences are per-server instead of being universal.",
         "clear": "clears the tts queue for the current server. \n\nrequires **Manage Messages** permission.",
@@ -36,7 +24,11 @@
         "unrestrict": "allows everyone to use tts. \n\nrequires **Manage Channels** permission.",
         "skip": "skips the currently playing tts message. \n\nrequires **Manage Messages** permission.",
         "tts": "manage your tts preferences. \n\n`/tts on`: turn on tts for your messages.\n`/tts off`: turn off tts for your messages.",
-        "settings": "displays your current tts settings (voice, name, speed, lang)."
+        "settings": "displays your current tts settings (voice, name, speed, lang).",
+        "reset": "resets your tts settings to default.\n\n`/reset`: wipes all your data from the database.\n`/reset <option>`: resets a specific setting for this server.\n\n-# this does not affect your opt-in/opt-out status.",
+        "guild": "manage guild-specific settings.\n\n`/guild lang set <language>`: set the default language.\n`/guild lang reset`: reset the guild's default language.\n\n-# requires **Manage Server** permission.",
+        "message": "manage message content filters.\n\n`/message filter add <string>`: add a new filter.\n`/message filter list`: list all active filters.\n`/message filter edit <old> <new>`: edit a filter.\n`/message filter remove <string>`: remove a filter.\n\n-# requires **Manage Messages** permission.",
+        "channel": "manage the guild's alternative chat channel.\n\n`/channel set <channel>`: set a text channel as the alternative tts chat.\n`/channel remove`: remove the current alternative channel.\n\n-# requires **Manage Channels** permission."
       }
     },
     "info": {
@@ -48,46 +40,16 @@
       "privacyFooter": "-# we do not log your messages, generate audio files, or sell your data. your secrets are safe, mostly because they are probably boring.",
       "tosHeader": "## terms of service",
       "tosBody": "provided \"as-is\". adhere to discord tos. or don't. we aren't your parents.",
-      "versionFooter": "-# version: 1.6.7 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
+      "resetWarning": "-# want to start fresh? use `/reset` to completely wipe your data from our database. this removes all your saved settings (voice, name, speed, language) across every server. your opt-in/opt-out status is preserved.",
+      "versionFooter": "-# version: 2.1 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
     },
-    "lang": {
-      "invalid": "that language code is invalid.",
-      "success": "language preferences set to **{langCode}**.",
-      "error": "failed to save language setting. (db error)"
-    },
-    "leave": {
-      "notInVoice": "i am not in a voice channel. are you hearing voices?",
-      "differentVoice": "you must be in the same voice channel as me to disconnect me. nice try.",
-      "success": "goodbye.",
-      "error": "i struggled to leave. this is awkward."
-    },
-    "name": {
-      "success": "your name has been set to **{name}**.",
-      "error": "there was an error saving your name."
-    },
-    "settings": {
-      "title": "# settings",
-      "voice": "**voice**: {value}",
-      "name": "**name**: {value}",
-      "speed": "**speed**: {value}",
-      "lang": "**lang**: {value}",
-      "defaultFormat": "`Not set` (Default: `{defaultValue}`)",
-      "setFormat": "`{value}` (Default: `{defaultValue}`)"
-    },
-    "speed": {
-      "success": "speed set to **{speedValue}x**.",
-      "error": "failed to save speed setting. (db error)"
-    },
-    "tts": {
-      "alreadyOff": "tts is already **off** for you.",
-      "turnedOff": "tts is now **off** for you.",
-      "alreadyOn": "tts is already **on** for you.",
-      "turnedOn": "tts is now **on** for you.",
-      "error": "failed to update settings."
-    },
-    "voice": {
-      "success": "selected voice **{voiceId}** has been saved.",
-      "error": "selected voice **{voiceId}** was not saved. (error while saving to db)."
-    }
+    "lang": { "invalid": "that language code is invalid.", "success": "language preferences set to **{langCode}**.", "error": "failed to save language setting. (db error)" },
+    "leave": { "notInVoice": "i am not in a voice channel. are you hearing voices?", "differentVoice": "you must be in the same voice channel as me to disconnect me. nice try.", "success": "goodbye.", "error": "i struggled to leave. this is awkward." },
+    "name": { "success": "your name has been set to **{name}**.", "error": "there was an error saving your name.", "filter": { "added": "name filter `{pattern}` has been added.", "exists": "that name filter already exists.", "list": "**active name filters:**\n{filters}", "empty": "no name filters are configured for this guild.", "edited": "name filter updated from `{old}` to `{new}`.", "notFound": "name filter `{pattern}` was not found.", "removed": "name filter `{pattern}` has been removed.", "error": "failed to update name filters." } },
+    "settings": { "title": "# settings", "voice": "**voice**: {value}", "name": "**name**: {value}", "speed": "**speed**: {value}", "lang": "**lang**: {value}", "defaultFormat": "`Not set` (Default: `{defaultValue}`)", "setFormat": "`{value}` (Default: `{defaultValue}`)" },
+    "speed": { "success": "speed set to **{speedValue}x**.", "error": "failed to save speed setting. (db error)" },
+    "tts": { "alreadyOff": "tts is already **off** for you.", "turnedOff": "tts is now **off** for you.", "alreadyOn": "tts is already **on** for you.", "turnedOn": "tts is now **on** for you.", "error": "failed to update settings." },
+    "voice": { "success": "selected voice **{voiceId}** has been saved.", "error": "selected voice **{voiceId}** was not saved. (error while saving to db)." },
+    "reset": { "full": "all your data has been wiped from the database. you're starting fresh.", "single": "your **{option}** setting has been reset for this server.", "noData": "you don't have any data to reset.", "error": "failed to reset your settings." }
   }
 }

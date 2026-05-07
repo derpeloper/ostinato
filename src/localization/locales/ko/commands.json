@@ -1,98 +1,36 @@
 {
   "mods": {
-    "clear": {
-      "name": "정리",
-      "description": "이 서버의 tts 대기열을 정리합니다"
+    "clear": { "name": "정리", "description": "이 서버의 tts 대기열을 정리합니다" },
+    "restrict": { "name": "제한", "description": "음소거되지 않은 사용자의 tts를 비활성화합니다" },
+    "skip": { "name": "건너뛰기", "description": "현재 재생 중인 메시지를 건너뜁니다" },
+    "unrestrict": { "name": "제한해제", "description": "음소거되지 않은 사용자의 tts를 활성화합니다" },
+    "guild": {
+      "name": "서버", "description": "서버별 설정을 관리합니다",
+      "groups": { "lang": { "name": "언어", "description": "서버 기본 언어를 관리합니다", "subcommands": { "set": { "name": "설정", "description": "서버의 기본 언어를 설정합니다", "options": { "language": { "name": "언어", "description": "설정할 언어" } } }, "reset": { "name": "초기화", "description": "서버의 기본 언어를 초기화합니다" } } } }
     },
-    "restrict": {
-      "name": "제한",
-      "description": "음소거되지 않은 사용자의 tts를 비활성화합니다"
+    "message": {
+      "name": "메시지", "description": "메시지 콘텐츠 필터를 관리합니다",
+      "groups": { "filter": { "name": "필터", "description": "콘텐츠 필터를 관리합니다", "subcommands": { "add": { "name": "추가", "description": "새 필터를 추가합니다", "options": { "string": { "name": "문자열", "description": "추가할 필터 텍스트 또는 정규식" } } }, "list": { "name": "목록", "description": "모든 활성 필터를 나열합니다" }, "edit": { "name": "수정", "description": "기존 필터를 수정합니다", "options": { "old": { "name": "이전", "description": "수정할 기존 필터" }, "new": { "name": "새로운", "description": "새 대체 필터" } } }, "remove": { "name": "삭제", "description": "필터를 삭제합니다", "options": { "string": { "name": "문자열", "description": "삭제할 필터 텍스트 또는 정규식" } } } } } }
     },
-    "skip": {
-      "name": "건너뛰기",
-      "description": "현재 재생 중인 메시지를 건너뜁니다"
-    },
-    "unrestrict": {
-      "name": "제한해제",
-      "description": "음소거되지 않은 사용자의 tts를 활성화합니다"
+    "channel": {
+      "name": "채널", "description": "서버의 대체 채팅 채널을 관리합니다",
+      "subcommands": { "set": { "name": "설정", "description": "대체 채팅으로 채널을 설정합니다", "options": { "channel": { "name": "채널", "description": "설정할 채널" } } }, "remove": { "name": "삭제", "description": "현재 대체 채팅 채널을 삭제합니다" } }
     }
   },
   "public": {
-    "help": {
-      "name": "도움말",
-      "description": "명령어에 대한 정보를 제공합니다",
-      "options": {
-        "command": {
-          "name": "명령어",
-          "description": "정보를 얻을 명령어"
-        }
-      }
-    },
-    "info": {
-      "name": "정보",
-      "description": "봇에 대한 정보를 제공합니다"
-    },
-    "lang": {
-      "name": "언어",
-      "description": "계정의 tts 언어를 변경합니다",
-      "options": {
-        "language": {
-          "name": "언어",
-          "description": "사용할 언어"
-        }
-      }
-    },
-    "leave": {
-      "name": "퇴장",
-      "description": "봇을 음성 채널에서 연결 해제합니다"
-    },
+    "help": { "name": "도움말", "description": "명령어에 대한 정보를 제공합니다", "options": { "command": { "name": "명령어", "description": "정보를 얻을 명령어" } } },
+    "info": { "name": "정보", "description": "봇에 대한 정보를 제공합니다" },
+    "lang": { "name": "언어", "description": "계정의 tts 언어를 변경합니다", "options": { "language": { "name": "언어", "description": "사용할 언어" } } },
+    "leave": { "name": "퇴장", "description": "봇을 음성 채널에서 연결 해제합니다" },
     "name": {
-      "name": "이름",
-      "description": "메시지에 표시될 이름을 변경합니다",
-      "options": {
-        "name": {
-          "name": "이름",
-          "description": "사용할 이름"
-        }
-      }
+      "name": "이름", "description": "표시 이름을 설정하거나 이름 필터를 관리합니다",
+      "subcommands": { "set": { "name": "설정", "description": "표시 이름을 설정합니다", "options": { "string": { "name": "문자열", "description": "설정할 이름" } } } },
+      "groups": { "filter": { "name": "필터", "description": "이름 필터를 관리합니다", "subcommands": { "add": { "name": "추가", "description": "새 필터를 추가합니다", "options": { "string": { "name": "문자열", "description": "추가할 필터 텍스트 또는 정규식" } } }, "list": { "name": "목록", "description": "모든 활성 필터를 나열합니다" }, "edit": { "name": "수정", "description": "기존 필터를 수정합니다", "options": { "old": { "name": "이전", "description": "수정할 기존 필터" }, "new": { "name": "새로운", "description": "새 대체 필터" } } }, "remove": { "name": "삭제", "description": "필터를 삭제합니다", "options": { "string": { "name": "문자열", "description": "삭제할 필터 텍스트 또는 정규식" } } } } } }
     },
-    "settings": {
-      "name": "설정",
-      "description": "현재 tts 설정을 확인합니다"
-    },
-    "speed": {
-      "name": "속도",
-      "description": "계정의 tts 속도를 변경합니다",
-      "options": {
-        "value": {
-          "name": "값",
-          "description": "속도 배율 (0.5에서 2.0)"
-        }
-      }
-    },
-    "tts": {
-      "name": "tts",
-      "description": "tts 환경설정을 관리합니다",
-      "options": {
-        "on": {
-          "name": "켜기",
-          "description": "메시지에 tts를 켭니다"
-        },
-        "off": {
-          "name": "끄기",
-          "description": "메시지에 tts를 끕니다"
-        }
-      }
-    },
-    "voice": {
-      "name": "음성",
-      "description": "계정의 음성을 변경합니다",
-      "options": {
-        "voice": {
-          "name": "음성",
-          "description": "사용할 음성"
-        }
-      }
-    }
+    "reset": { "name": "리셋", "description": "tts 설정을 기본값으로 재설정합니다", "options": { "option": { "name": "옵션", "description": "재설정할 특정 설정" } } },
+    "settings": { "name": "설정", "description": "현재 tts 설정을 확인합니다" },
+    "speed": { "name": "속도", "description": "계정의 tts 속도를 변경합니다", "options": { "value": { "name": "값", "description": "속도 배율 (0.5에서 2.0)" } } },
+    "tts": { "name": "tts", "description": "tts 환경설정을 관리합니다", "options": { "on": { "name": "켜기", "description": "메시지에 tts를 켭니다" }, "off": { "name": "끄기", "description": "메시지에 tts를 끕니다" } } },
+    "voice": { "name": "음성", "description": "계정의 음성을 변경합니다", "options": { "voice": { "name": "음성", "description": "사용할 음성" } } }
   }
 }

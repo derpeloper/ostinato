@@ -15,6 +15,102 @@
     "unrestrict": {
       "name": "desrestringir",
       "description": "activa el tts para los usuarios que no están silenciados"
+    },
+    "guild": {
+      "name": "servidor",
+      "description": "gestionar ajustes específicos del servidor",
+      "groups": {
+        "lang": {
+          "name": "idioma",
+          "description": "gestionar el idioma predeterminado del servidor",
+          "subcommands": {
+            "set": {
+              "name": "establecer",
+              "description": "establece el idioma predeterminado del servidor",
+              "options": {
+                "language": {
+                  "name": "idioma",
+                  "description": "el idioma a establecer"
+                }
+              }
+            },
+            "reset": {
+              "name": "restablecer",
+              "description": "restablece el idioma predeterminado del servidor"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "mensaje",
+      "description": "gestionar filtros de contenido de mensajes",
+      "groups": {
+        "filter": {
+          "name": "filtro",
+          "description": "gestionar filtros de contenido",
+          "subcommands": {
+            "add": {
+              "name": "agregar",
+              "description": "agregar un nuevo filtro",
+              "options": {
+                "string": {
+                  "name": "texto",
+                  "description": "el texto o regex del filtro a agregar"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "listar todos los filtros activos"
+            },
+            "edit": {
+              "name": "editar",
+              "description": "editar un filtro existente",
+              "options": {
+                "old": {
+                  "name": "anterior",
+                  "description": "el filtro existente a editar"
+                },
+                "new": {
+                  "name": "nuevo",
+                  "description": "el nuevo filtro de reemplazo"
+                }
+              }
+            },
+            "remove": {
+              "name": "eliminar",
+              "description": "eliminar un filtro",
+              "options": {
+                "string": {
+                  "name": "texto",
+                  "description": "el texto o regex del filtro a eliminar"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "canal",
+      "description": "gestionar el canal de chat alternativo del servidor",
+      "subcommands": {
+        "set": {
+          "name": "establecer",
+          "description": "establecer un canal como chat alternativo",
+          "options": {
+            "channel": {
+              "name": "canal",
+              "description": "el canal a establecer"
+            }
+          }
+        },
+        "remove": {
+          "name": "eliminar",
+          "description": "eliminar el canal de chat alternativo actual"
+        }
+      }
     }
   },
   "public": {
@@ -48,11 +144,73 @@
     },
     "name": {
       "name": "nombre",
-      "description": "cambia el nombre de tus mensajes",
+      "description": "establece tu nombre o gestiona filtros de nombres",
+      "subcommands": {
+        "set": {
+          "name": "establecer",
+          "description": "establece tu nombre para mostrar",
+          "options": {
+            "string": {
+              "name": "texto",
+              "description": "el nombre a establecer"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filtro",
+          "description": "gestionar filtros de nombres",
+          "subcommands": {
+            "add": {
+              "name": "agregar",
+              "description": "agregar un nuevo filtro",
+              "options": {
+                "string": {
+                  "name": "texto",
+                  "description": "el texto o regex del filtro a agregar"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "listar todos los filtros activos"
+            },
+            "edit": {
+              "name": "editar",
+              "description": "editar un filtro existente",
+              "options": {
+                "old": {
+                  "name": "anterior",
+                  "description": "el filtro existente a editar"
+                },
+                "new": {
+                  "name": "nuevo",
+                  "description": "el nuevo filtro de reemplazo"
+                }
+              }
+            },
+            "remove": {
+              "name": "eliminar",
+              "description": "eliminar un filtro",
+              "options": {
+                "string": {
+                  "name": "texto",
+                  "description": "el texto o regex del filtro a eliminar"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "restablecer",
+      "description": "restablece tus ajustes de tts a los valores predeterminados",
       "options": {
-        "name": {
-          "name": "nombre",
-          "description": "el nombre a usar"
+        "option": {
+          "name": "opcion",
+          "description": "el ajuste específico a restablecer"
         }
       }
     },

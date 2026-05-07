@@ -61,6 +61,13 @@ module.exports = {
                 .setDivider(false)
             )
             .addTextDisplayComponents(textDisplay => textDisplay
+                .setContent(localize(interaction.locale, 'responses.public.info.resetWarning'))
+            )
+            .addSeparatorComponents(separator => separator
+                .setSpacing(SeparatorSpacingSize.Small)
+                .setDivider(false)
+            )
+            .addTextDisplayComponents(textDisplay => textDisplay
                 .setContent(localize(interaction.locale, 'responses.public.info.versionFooter'))
             );
 

@@ -15,6 +15,102 @@
     "unrestrict": {
       "name": "unrestrict",
       "description": "enable tts for users who aren't muted"
+    },
+    "guild": {
+      "name": "guild",
+      "description": "manage guild-specific settings",
+      "groups": {
+        "lang": {
+          "name": "lang",
+          "description": "manage default guild language",
+          "subcommands": {
+            "set": {
+              "name": "set",
+              "description": "set the default language for the guild",
+              "options": {
+                "language": {
+                  "name": "language",
+                  "description": "the language to set"
+                }
+              }
+            },
+            "reset": {
+              "name": "reset",
+              "description": "reset the default language for the guild"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "message",
+      "description": "manage message content filters",
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "manage content filters",
+          "subcommands": {
+            "add": {
+              "name": "add",
+              "description": "add a new filter",
+              "options": {
+                "string": {
+                  "name": "string",
+                  "description": "the filter text or regex to add"
+                }
+              }
+            },
+            "list": {
+              "name": "list",
+              "description": "list all active filters"
+            },
+            "edit": {
+              "name": "edit",
+              "description": "edit an existing filter",
+              "options": {
+                "old": {
+                  "name": "old",
+                  "description": "the existing filter to edit"
+                },
+                "new": {
+                  "name": "new",
+                  "description": "the new replacement filter"
+                }
+              }
+            },
+            "remove": {
+              "name": "remove",
+              "description": "remove a filter",
+              "options": {
+                "string": {
+                  "name": "string",
+                  "description": "the filter text or regex to remove"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "channel",
+      "description": "manage the guild's alternative chat channel",
+      "subcommands": {
+        "set": {
+          "name": "set",
+          "description": "set a channel as the alternative chat",
+          "options": {
+            "channel": {
+              "name": "channel",
+              "description": "the channel to set"
+            }
+          }
+        },
+        "remove": {
+          "name": "remove",
+          "description": "remove the current alternative chat channel"
+        }
+      }
     }
   },
   "public": {
@@ -48,11 +144,73 @@
     },
     "name": {
       "name": "name",
-      "description": "changes the name for your messages",
+      "description": "set your display name or manage name filters",
+      "subcommands": {
+        "set": {
+          "name": "set",
+          "description": "set your display name",
+          "options": {
+            "string": {
+              "name": "string",
+              "description": "the name to set"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "manage name filters",
+          "subcommands": {
+            "add": {
+              "name": "add",
+              "description": "add a new filter",
+              "options": {
+                "string": {
+                  "name": "string",
+                  "description": "the filter text or regex to add"
+                }
+              }
+            },
+            "list": {
+              "name": "list",
+              "description": "list all active filters"
+            },
+            "edit": {
+              "name": "edit",
+              "description": "edit an existing filter",
+              "options": {
+                "old": {
+                  "name": "old",
+                  "description": "the existing filter to edit"
+                },
+                "new": {
+                  "name": "new",
+                  "description": "the new replacement filter"
+                }
+              }
+            },
+            "remove": {
+              "name": "remove",
+              "description": "remove a filter",
+              "options": {
+                "string": {
+                  "name": "string",
+                  "description": "the filter text or regex to remove"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "reset",
+      "description": "resets your tts settings to default",
       "options": {
-        "name": {
-          "name": "name",
-          "description": "the name to use"
+        "option": {
+          "name": "option",
+          "description": "the specific setting to reset"
         }
       }
     },

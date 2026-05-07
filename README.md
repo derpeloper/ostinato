@@ -8,7 +8,7 @@
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
-> **current version**: v1.6.7 (official release)
+> **current version**: v2.1.0 (official release)
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 

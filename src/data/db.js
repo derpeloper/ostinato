@@ -56,6 +56,30 @@ db.exec(`
         user TEXT NOT NULL,
         PRIMARY KEY (user)
     );
+
+    CREATE TABLE IF NOT EXISTS guild_langs (
+        guild TEXT NOT NULL,
+        lang TEXT NOT NULL,
+        PRIMARY KEY (guild)
+    );
+
+    CREATE TABLE IF NOT EXISTS message_filters (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        guild TEXT NOT NULL,
+        pattern TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS name_filters (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        guild TEXT NOT NULL,
+        pattern TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS alt_channels (
+        guild TEXT NOT NULL,
+        channel TEXT NOT NULL,
+        PRIMARY KEY (guild)
+    );
 `);
 
 console.log('[Database] Initialized better-sqlite3 database at ' + path.join(dataDir, 'database.db'));
