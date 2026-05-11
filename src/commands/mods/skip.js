@@ -3,7 +3,7 @@
  * @description skips the current playing tts message.
  * "next, please."
  */
-const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags, ContainerBuilder } = require('discord.js');
 const ostinato = require('../../services/OstinatoTTS');
 const { localize, getCommandLocalizations } = require('../../localization/localize');
 
@@ -21,18 +21,18 @@ module.exports = {
             const result = ostinato.skip(guildId);
             
             if (result === 'SKIPPED') {
-                await interaction.reply({ content: localize(interaction.locale, 'responses.mods.skip.success'), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.mods.skip.success')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             } else if (result === 'TOO_SHORT') {
-                await interaction.reply({ content: localize(interaction.locale, 'responses.mods.skip.tooShort'), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.mods.skip.tooShort')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             } else if (result === 'NOT_PLAYING') {
-                await interaction.reply({ content: localize(interaction.locale, 'responses.mods.skip.notPlaying'), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.mods.skip.notPlaying')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             } else {
-                 await interaction.reply({ content: localize(interaction.locale, 'responses.mods.skip.unknown'), flags: MessageFlags.Ephemeral });
+                 await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.mods.skip.unknown')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             }
 
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: localize(interaction.locale, 'responses.mods.skip.error'), flags: MessageFlags.Ephemeral });
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.mods.skip.error')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
         }
     }
 }

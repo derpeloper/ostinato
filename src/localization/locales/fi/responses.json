@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "jono tyhjennetty.",
+      "error": "jonon tyhjentäminen epäonnistui."
+    },
+    "restrict": {
+      "success": "tts rajoitettu vain mykistetyille käyttäjille.",
+      "error": "tts:n rajoittaminen epäonnistui."
+    },
+    "skip": {
+      "success": "ohitettu.",
+      "tooShort": "viesti on liian lyhyt ohitettavaksi (< 35 merkkiä).",
+      "notPlaying": "mitään ei toisteta tällä hetkellä.",
+      "error": "virhe ohitattaessa.",
+      "unknown": "ohittaminen epäonnistui."
+    },
+    "unrestrict": {
+      "success": "tts-rajoitukset poistettu.",
+      "error": "tts-rajoitusten poistaminen epäonnistui."
+    },
+    "guild": {
+      "lang": {
+        "success": "palvelimen oletuskieleksi asetettu **{langCode}**.",
+        "reset": "palvelimen oletuskieli on nollattu.",
+        "invalid": "kielikoodi on virheellinen.",
+        "error": "palvelimen kieliasetuksen päivittäminen epäonnistui."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "suodatin `{pattern}` on lisätty.",
+        "exists": "suodatin on jo olemassa.",
+        "list": "**aktiiviset viestisuodattimet:**\n{filters}",
+        "empty": "tälle palvelimelle ei ole määritetty viestisuodattimia.",
+        "edited": "suodatin päivitetty: `{old}` -> `{new}`.",
+        "notFound": "suodatinta `{pattern}` ei löytynyt.",
+        "removed": "suodatin `{pattern}` on poistettu.",
+        "error": "viestisuodattimien päivittäminen epäonnistui."
+      }
+    },
+    "channel": {
+      "success": "vaihtoehtoiseksi chat-kanavaksi asetettu {channel}.",
+      "removed": "vaihtoehtoinen chat-kanava on poistettu.",
+      "noneSet": "vaihtoehtoista chat-kanavaa ei ole määritetty.",
+      "error": "kanava-asetuksen päivittäminen epäonnistui."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "komennon tietoja ei löytynyt.",
+      "commands": {
+        "help": "olen melko varma, että tämä komento on itsestäänselvyys. se tarjoaa tietoa tämän botin komennoista.",
+        "voice": "vaihtaa tilisi äänen. \n\njos olet utelias miltä äänet kuulostavat, voit katsoa supertonicin [voices](https://supertone-inc.github.io/supertonic-py/voices/) -sivua.\n\n-# äänitaihtoehdot vaikuttavat vain palvelimeen, jolla käytät komentoa, joten sinulla voi olla eri asetukset eri palvelimilla.",
+        "info": "tarjoaa tietoa botista, mukaan lukien käyttöehdot ja tietosuojakäytännön.",
+        "name": "aseta näyttönimesi tai hallitse nimisuodattimia.\n\n`/name set <nimi>`: asettaa nimen viesteillesi.\n`/name filter add|list|edit|remove`: hallitse nimisuodattimia (admin).\n\n-# nimiasetukset ovat palvelinkohtaisia yksityisyytesi suojaamiseksi.",
+        "speed": "vaihtaa tilisi tts-nopeutta. \n\narvon on oltava välillä **0.5** ja **2.0**. \n\n-# nopeusasetukset ovat palvelinkohtaisia.",
+        "lang": "vaihtaa tilisi tts-kielen. \n\ntuetut kielet: englanti, arabia, bulgaria, tšekki, tanska, saksa, kreikka, espanja, viro, suomi, ranska, hindi, kroatia, unkari, indonesia, italia, japani, korea, liettua, latvia, hollanti, puola, portugali, romania, venäjä, slovakki, sloveeni, ruotsi, turkki, ukraina, vietnam. \n\n-# kieliasetukset ovat palvelinkohtaisia.",
+        "clear": "tyhjentää tts-jonon nykyiseltä palvelimelta. \n\nvaatii **Hallitse viestejä** -oikeuden.",
+        "leave": "pakottaa botin poistumaan puhekanavalta.",
+        "restrict": "rajoittaa tts-käytön vain mykistetyille käyttäjille. \n\nvaatii **Hallitse kanavia** -oikeuden.",
+        "unrestrict": "sallii kaikkien käyttää tts:ää. \n\nvaatii **Hallitse kanavia** -oikeuden.",
+        "skip": "ohittaa nykyisen tts-viestin. \n\nvaatii **Hallitse viestejä** -oikeuden.",
+        "tts": "hallitse tts-asetuksiasi. \n\n`/tts on`: ota tts käyttöön viesteillesi.\n`/tts off`: poista tts käytöstä viesteiltäsi.",
+        "settings": "näyttää nykyiset tts-asetuksesi (ääni, nimi, nopeus, kieli).",
+        "reset": "nollaa tts-asetuksesi oletusarvoihin.\n\n`/reset`: pyyhkii kaikki tietosi tietokannasta.\n`/reset <valinta>`: nollaa tietyn asetuksen (ääni, nimi, nopeus, kieli) tällä palvelimella.\n\n-# tämä ei vaikuta opt-in/opt-out -statukseesi.",
+        "guild": "hallitse palvelinkohtaisia asetuksia.\n\n`/guild lang set <kieli>`: aseta oletuskieli.\n`/guild lang reset`: nollaa palvelimen oletuskieli.\n\n-# vaatii **Hallitse palvelinta** -oikeuden.",
+        "message": "hallitse viestien sisältösuodattimia.\n\n`/message filter add <merkkijono>`: lisää uusi suodatin.\n`/message filter list`: listaa kaikki aktiiviset suodattimet.\n`/message filter edit <vanha> <uusi>`: muokkaa suodatinta.\n`/message filter remove <merkkijono>`: poista suodatin.\n\n-# vaatii **Hallitse viestejä** -oikeuden.",
+        "channel": "hallitse palvelimen vaihtoehtoista chat-kanavaa.\n\n`/channel set <kanava>`: aseta tekstikanava vaihtoehtoiseksi tts-chatiksi.\n`/channel remove`: poista nykyinen vaihtoehtoinen kanava.\n\n-# vaatii **Hallitse kanavia** -oikeuden."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*ääni äänettömille. ja sosiaalisesti kömpelöille.*",
+      "privacyHeader": "## tietosuojakäytäntö",
+      "privacySettings": "**sinun juttusi** (tallennettu paikallisesti palvelinkohtaisesti)\n- **ääni**: jotta et kuulostaisi perusrobotilta.\n- **nopeus**: vauhtia tai hidastusta.\n- **nimi**: alter egosi.\n- **kieli**: kun haluat kuulostaa hienostuneelta.",
+      "privacySystem": "**tylsä järjestelmädata**\n- **opt-out**: muistamme, jos käskit meitä olemaan hiljaa (`/tts off`).\n- **palvelinasetukset**: jotta tiedämme, pitääkö meidän ohittaa mykistämättömät ihmiset.",
+      "privacyFooter": "-# emme lokita viestejäsi, luo äänitiedostoja tai myy tietojasi. salaisuutesi ovat turvassa, lähinnä siksi, että ne ovat todennäköisesti tylsiä.",
+      "tosHeader": "## käyttöehdot",
+      "tosBody": "tarjotaan \"sellaisenaan\". noudata discordin käyttöehtoja. tai ole noudattamatta. emme ole vanhempasi.",
+      "resetWarning": "-# haluatko aloittaa alusta? käytä `/reset` pyyhkiäksesi tietosi kokonaan tietokannastamme. tämä poistaa kaikki tallennetut asetuksesi (ääni, nimi, nopeus, kieli) kaikilta palvelimilta. opt-in/opt-out -statuksesi säilyy.",
+      "versionFooter": "-# versio: 2.4.1 | moottori: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugeja? luultavasti. ominaisuuksia? ehdottomasti."
+    },
+    "lang": {
+      "invalid": "kielikoodi on virheellinen.",
+      "success": "kieliasetukseksi asetettu **{langCode}**.",
+      "error": "kieliasetuksen tallentaminen epäonnistui. (db-virhe)"
+    },
+    "leave": {
+      "notInVoice": "en ole puhekanavalla. kuuletko ääniä?",
+      "differentVoice": "sinun on oltava samalla puhekanavalla kanssani katkaistaksesi yhteyteni. hyvä yritys.",
+      "success": "näkemiin.",
+      "error": "minulla oli vaikeuksia poistua. tämä on noloa."
+    },
+    "name": {
+      "success": "nimeksesi on asetettu **{name}**.",
+      "error": "nimesi tallentamisessa tapahtui virhe.",
+      "filter": {
+        "added": "nimisuodatin `{pattern}` on lisätty.",
+        "exists": "nimisuodatin on jo olemassa.",
+        "list": "**aktiiviset nimisuodattimet:**\n{filters}",
+        "empty": "tälle palvelimelle ei ole määritetty nimisuodattimia.",
+        "edited": "nimisuodatin päivitetty: `{old}` -> `{new}`.",
+        "notFound": "nimisuodatinta `{pattern}` ei löytynyt.",
+        "removed": "nimisuodatin `{pattern}` on poistettu.",
+        "error": "nimisuodattimien päivittäminen epäonnistui."
+      }
+    },
+    "settings": {
+      "title": "# asetukset",
+      "voice": "**ääni**: {value}",
+      "name": "**nimi**: {value}",
+      "speed": "**nopeus**: {value}",
+      "lang": "**kieli**: {value}",
+      "defaultFormat": "`Ei asetettu` (Oletus: `{defaultValue}`)",
+      "setFormat": "`{value}` (Oletus: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "nopeudeksi asetettu **{speedValue}x**.",
+      "error": "nopeusasetuksen tallentaminen epäonnistui. (db-virhe)"
+    },
+    "tts": {
+      "alreadyOff": "tts on jo **pois päältä** kohdallasi.",
+      "turnedOff": "tts on nyt **pois päältä** kohdallasi.",
+      "alreadyOn": "tts on jo **päällä** kohdallasi.",
+      "turnedOn": "tts on nyt **päällä** kohdallasi.",
+      "error": "asetusten päivittäminen epäonnistui."
+    },
+    "voice": {
+      "success": "valittu ääni **{voiceId}** on tallennettu.",
+      "error": "valittua ääntä **{voiceId}** ei tallennettu. (virhe tallennettaessa tietokantaan).",
+      "selectPrompt": "valitse haluamasi ääni alla olevasta valikosta.",
+      "confirmButton": "Vahvista",
+      "noPreview": "esikatselua ei ole saatavilla."
+    },
+    "reset": {
+      "full": "kaikki tietosi on pyyhitty tietokannasta. aloitat puhtaalta pöydältä.",
+      "single": "asetuksesi **{option}** on nollattu tällä palvelimella.",
+      "noData": "sinulla ei ole nollattavia tietoja.",
+      "error": "asetusten nollaaminen epäonnistui."
+    }
+  }
+}

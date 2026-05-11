@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "eilė išvalyta.",
+      "error": "nepavyko išvalyti eilės."
+    },
+    "restrict": {
+      "success": "tts apribotas tik nutildytiems naudotojams.",
+      "error": "nepavyko apriboti tts."
+    },
+    "skip": {
+      "success": "praleista.",
+      "tooShort": "žinutė per trumpa, kad ją būtų galima praleisti (< 35 simboliai).",
+      "notPlaying": "šiuo metu niekas negrojama.",
+      "error": "bandant praleisti įvyko klaida.",
+      "unknown": "nepavyko praleisti."
+    },
+    "unrestrict": {
+      "success": "tts apribojimai panaikinti.",
+      "error": "nepavyko panaikinti tts apribojimų."
+    },
+    "guild": {
+      "lang": {
+        "success": "numatytoji serverio kalba nustatyta į **{langCode}**.",
+        "reset": "numatytoji serverio kalba buvo atstatyta.",
+        "invalid": "tas kalbos kodas yra neteisingas.",
+        "error": "nepavyko atnaujinti serverio kalbos nustatymo."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "filtras `{pattern}` pridėtas.",
+        "exists": "tas filtras jau egzistuoja.",
+        "list": "**aktyvūs žinučių filtrai:**\n{filters}",
+        "empty": "šiam serveriui nėra sukonfigūruotų žinučių filtrų.",
+        "edited": "filtras atnaujintas iš `{old}` į `{new}`.",
+        "notFound": "filtras `{pattern}` nerastas.",
+        "removed": "filtras `{pattern}` pašalintas.",
+        "error": "nepavyko atnaujinti žinučių filtrų."
+      }
+    },
+    "channel": {
+      "success": "alternatyvus susirašinėjimo kanalas nustatytas į {channel}.",
+      "removed": "alternatyvus susirašinėjimo kanalas pašalintas.",
+      "noneSet": "nėra sukonfigūruoto alternatyvaus susirašinėjimo kanalo.",
+      "error": "nepavyko atnaujinti kanalo nustatymo."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "komandos informacija nerasta.",
+      "commands": {
+        "help": "esu tikras, kad ši komanda paaiškina pati save. ji suteikia informaciją apie komandas, kurias siūlo šis botas.",
+        "voice": "pakeičia balsą jūsų paskyrai. \n\njei jums smalsu, kaip skamba balsai, galite apsilankyti supertonic [voices](https://supertone-inc.github.io/supertonic-py/voices/) puslapyje.\n\n-# balso nustatymai veikia tik tame serveryje, kuriame naudojate komandą, todėl kiekviename serveryje galite turėti skirtingus nustatymus.",
+        "info": "suteikia informaciją apie botą, įskaitant pranešimus apie paslaugų teikimo sąlygas ir privatumo politiką.",
+        "name": "nustatykite savo rodomą vardą arba valdykite vardų filtrus.\n\n`/name set <vardas>`: nustato vardą jūsų žinutėms.\n`/name filter add|list|edit|remove`: valdyti vardų filtrus (admin).\n\n-# vardo nustatymai yra kiekvienam serveriui atskirai, o ne universalūs. tai skirta apsaugoti jūsų privatumą.",
+        "speed": "pakeičia tts greitį jūsų paskyrai. \n\nreikšmė turi būti tarp **0.5** ir **2.0**. \n\n-# greičio nustatymai yra kiekvienam serveriui atskirai.",
+        "lang": "pakeičia tts kalbą jūsų paskyrai. \n\npalaikomos kalbos: anglų, arabų, bulgarų, čekų, danų, vokiečių, graikų, ispanų, estų, suomių, prancūzų, hindi, kroatų, vengrų, indoneziečių, italų, japonų, korėjiečių, lietuvių, latvių, olandų, lenkų, portugalų, rumunų, rusų, slovakų, slovėnų, švedų, turkų, ukrainiečių, vietnamiečių. \n\n-# kalbos nustatymai yra kiekvienam serveriui atskirai.",
+        "clear": "išvalo tts eilę dabartiniame serveryje. \n\nreikalingas **Valdyti žinutes** leidimas.",
+        "leave": "priverčia botą atsijungti nuo balso kanalo.",
+        "restrict": "apriboja tts naudojimą tik nutildytiems naudotojams. \n\nreikalingas **Valdyti kanalus** leidimas.",
+        "unrestrict": "leidžia visiems naudoti tts. \n\nreikalingas **Valdyti kanalus** leidimas.",
+        "skip": "praleidžia šiuo metu grojamą tts žinutę. \n\nreikalingas **Valdyti žinutes** leidimas.",
+        "tts": "valdykite savo tts nustatymus. \n\n`/tts on`: įjungti tts jūsų žinutėms.\n`/tts off`: išjungti tts jūsų žinutėms.",
+        "settings": "rodo jūsų dabartinius tts nustatymus (balsas, vardas, greitis, kalba).",
+        "reset": "atstato jūsų tts nustatymus į numatytuosius.\n\n`/reset`: ištrina visus jūsų duomenis iš duomenų bazės.\n`/reset <parinktis>`: atstato konkretų nustatymą (balsas, vardas, greitis, kalba) šiam serveriui.\n\n-# tai neturi įtakos jūsų pasirinkimui dalyvauti ar ne.",
+        "guild": "valdyti serverio nustatymus.\n\n`/guild lang set <kalba>`: nustatyti numatytąją kalbą.\n`/guild lang reset`: atstatyti numatytąją serverio kalbą.\n\n-# reikalingas **Valdyti serverį** leidimas.",
+        "message": "valdyti žinučių turinio filtrus.\n\n`/message filter add <tekstas>`: pridėti naują filtrą.\n`/message filter list`: išvardyti visus aktyvius filtrus.\n`/message filter edit <senas> <naujas>`: redaguoti filtrą.\n`/message filter remove <tekstas>`: pašalinti filtrą.\n\n-# reikalingas **Valdyti žinutes** leidimas.",
+        "channel": "valdyti serverio alternatyvų susirašinėjimo kanalą.\n\n`/channel set <kanalas>`: nustatyti tekstinį kanalą kaip alternatyvų tts susirašinėjimą.\n`/channel remove`: pašalinti dabartinį alternatyvų kanalų.\n\n-# reikalingas **Valdyti kanalus** leidimas."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*suteikiame balsą nebyliems. ir socialiai nepatogiems.*",
+      "privacyHeader": "## privatumo politika",
+      "privacySettings": "**jūsų dalykai** (saugomi lokaliai kiekviename serveryje)\n- **balsas**: kad neskambėtumėte kaip eilinis robotas.\n- **greitis**: greitai greitai arba sulėtintai.\n- **vardas**: jūsų alter ego.\n- **kalba**: kai norite skambėti prabangiai.",
+      "privacySystem": "**nuobodūs sistemos duomenys**\n- **atsisakymas**: mes prisimename, jei liepėte mums užsičiaupti (`/tts off`).\n- **serverio nustatymai**: tiesiog tam, kad žinotume, ar turėtume ignoruoti nenutildytus žmones.",
+      "privacyFooter": "-# mes neregistruojame jūsų žinučių, negeneruojame garso failų ir neparduodame jūsų duomenų. jūsų paslaptys saugios, dažniausiai todėl, kad jos tikriausiai nuobodžios.",
+      "tosHeader": "## paslaugų teikimo sąlygos",
+      "tosBody": "pateikiama „tokia, kokia yra“. laikykitės discord sąlygų. arba ne. mes ne jūsų tėvai.",
+      "resetWarning": "-# norite pradėti iš naujo? naudokite `/reset`, kad visiškai ištrintumėte savo duomenis iš mūsų duomenų bazės. tai pašalina visus jūsų išsaugotus nustatymus (balsas, vardas, greitis, kalba) visuose serveriuose. jūsų tts būsena (įjungta/išjungta) išlieka.",
+      "versionFooter": "-# versija: 2.4.1 | variklis: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# klaidos? tikriausiai. funkcijos? tikrai."
+    },
+    "lang": {
+      "invalid": "tas kalbos kodas yra neteisingas.",
+      "success": "kalbos nustatymai nustatyti į **{langCode}**.",
+      "error": "nepavyko išsaugoti kalbos nustatymo. (duomenų bazės klaida)"
+    },
+    "leave": {
+      "notInVoice": "nesu balso kanale. ar girdite balsus?",
+      "differentVoice": "turite būti tame pačiame balso kanale kaip ir aš, kad mane atjungtumėte. geras bandymas.",
+      "success": "viso gero.",
+      "error": "man buvo sunku išeiti. tai nepatogu."
+    },
+    "name": {
+      "success": "jūsų vardas nustatytas į **{name}**.",
+      "error": "išsaugant jūsų vardą įvyko klaida.",
+      "filter": {
+        "added": "vardo filtras `{pattern}` pridėtas.",
+        "exists": "tas vardo filtras jau egzistuoja.",
+        "list": "**aktyvūs vardų filtrai:**\n{filters}",
+        "empty": "šiam serveriui nėra sukonfigūruotų vardų filtrų.",
+        "edited": "vardo filtras atnaujintas iš `{old}` į `{new}`.",
+        "notFound": "vardo filtras `{pattern}` nerastas.",
+        "removed": "vardo filtras `{pattern}` pašalintas.",
+        "error": "nepavyko atnaujinti vardų filtrų."
+      }
+    },
+    "settings": {
+      "title": "# nustatymai",
+      "voice": "**balsas**: {value}",
+      "name": "**vardas**: {value}",
+      "speed": "**greitis**: {value}",
+      "lang": "**kalba**: {value}",
+      "defaultFormat": "`Nenustatyta` (Numatytoji: `{defaultValue}`)",
+      "setFormat": "`{value}` (Numatytoji: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "greitis nustatytas į **{speedValue}x**.",
+      "error": "nepavyko išsaugoti greičio nustatymo. (duomenų bazės klaida)"
+    },
+    "tts": {
+      "alreadyOff": "tts jums jau yra **išjungtas**.",
+      "turnedOff": "tts jums dabar yra **išjungtas**.",
+      "alreadyOn": "tts jums jau yra **įjungtas**.",
+      "turnedOn": "tts jums dabar yra **įjungtas**.",
+      "error": "nepavyko atnaujinti nustatymų."
+    },
+    "voice": {
+      "success": "pasirinktas balsas **{voiceId}** išsaugotas.",
+      "error": "pasirinktas balsas **{voiceId}** nebuvo išsaugotas. (klaida saugant į db).",
+      "selectPrompt": "pasirinkite jums patinkantį balsą iš žemiau esančio meniu.",
+      "confirmButton": "Patvirtinti",
+      "noPreview": "peržiūra negalima."
+    },
+    "reset": {
+      "full": "visi jūsų duomenys buvo ištrinti iš duomenų bazės. pradedate iš naujo.",
+      "single": "jūsų **{option}** nustatymas šiam serveriui buvo atstatytas.",
+      "noData": "neturite jokių duomenų, kuriuos būtų galima atstatyti.",
+      "error": "nepavyko atstatyti nustatymų."
+    }
+  }
+}

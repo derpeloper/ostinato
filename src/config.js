@@ -10,8 +10,8 @@ module.exports = {
     // -- core identity --------------------------------------------------------
     // who am i? and where do i belong?
 
-    clientId: 'your client id', // id: the bot's unique identifier.
-    guildId:  null, // scope: specific guild id for local commands (null for global).
+    clientId: '1459993892484288512', // id: the bot's unique identifier.
+    guildId:  null,                  // scope: specific guild id for local commands (null for global).
 
 
     // -- engine settings ------------------------------------------------------
@@ -21,7 +21,22 @@ module.exports = {
     ttsVolume:   5.89,  // gain: loud enough to be heard, quiet enough to be sane.
     priorityTtsVolume: 6.1, // gain: slightly louder for users with priority speaker permission
     ttsQuality:  6,     // depth: 1 to 50. 6 is the "magic" spot for efficiency.
-    defaultLang: 'en',  // fallback: [en, es, pt, ko, fr] supported only.
+    /*
+     * fallback language for tts when detection fails.
+     * supported languages:
+     *   en  - English       ko  - Korean        ja  - Japanese
+     *   ar  - Arabic        bg  - Bulgarian     cs  - Czech
+     *   da  - Danish        de  - German        el  - Greek
+     *   es  - Spanish       et  - Estonian       fi  - Finnish
+     *   fr  - French        hi  - Hindi          hr  - Croatian
+     *   hu  - Hungarian     id  - Indonesian     it  - Italian
+     *   lt  - Lithuanian    lv  - Latvian        nl  - Dutch
+     *   pl  - Polish        pt  - Portuguese     ro  - Romanian
+     *   ru  - Russian       sk  - Slovak         sl  - Slovenian
+     *   sv  - Swedish       tr  - Turkish        uk  - Ukrainian
+     *   vi  - Vietnamese
+     */
+    defaultLang: 'en',
 
 
     // -- resource safety ------------------------------------------------------
@@ -36,15 +51,16 @@ module.exports = {
     // -- presence & status ----------------------------------------------------
     // control how the bot presents itself.
 
-    status: 'online',           // presence: 'online', 'idle', 'dnd'
+    status: 'dnd',           // presence: 'online', 'idle', 'dnd'
     activityType: 'Custom',     // activity: 'Playing', 'Watching', 'Listening', 'Custom'
     statusMessages: [
-        'active in {guilds} servers',
         'a voice for the voiceless',
-        'v2.1 | /help'
+        'reduced performance',
+        'v2.4.1-beta'
     ],
     statusRotationInterval: 3500,  // ms: how often the status rotates.
-    autoIdle: true                  // idle: automatically go idle after 5 minutes of inactivity.
+    autoIdle: true,                 // idle: automatically go idle after inactivity.
+    autoIdleDuration: 300           // seconds: how long before the bot goes idle (default: 5 minutes).
 
 };
 

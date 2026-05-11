@@ -8,9 +8,11 @@ const path = require('path');
 
 const cache = new Map();
 
+const localeToDir = { 'es-419': 'es-ES' };
+
 function getLocaleData(locale) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
-    const targetLocale = supportedLocales.includes(locale) ? locale : 'en-US';
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
+    const targetLocale = supportedLocales.includes(locale) ? (localeToDir[locale] || locale) : 'en-US';
 
     if (cache.has(targetLocale)) {
         return cache.get(targetLocale);
@@ -66,7 +68,7 @@ function localize(locale, key, variables = {}) {
 }
 
 function getCommandLocalizations(group, commandName) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
@@ -83,7 +85,7 @@ function getCommandLocalizations(group, commandName) {
 }
 
 function getOptionLocalizations(group, commandName, optionName) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
@@ -100,7 +102,7 @@ function getOptionLocalizations(group, commandName, optionName) {
 }
 
 function getSubcommandLocalizations(group, commandName, subcommandName) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
@@ -118,7 +120,7 @@ function getSubcommandLocalizations(group, commandName, subcommandName) {
 }
 
 function getSubcommandGroupLocalizations(group, commandName, groupName) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
@@ -136,7 +138,7 @@ function getSubcommandGroupLocalizations(group, commandName, groupName) {
 }
 
 function getDeepOptionLocalizations(group, ...pathSegments) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'fr', 'pt-BR', 'ko'];
+    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 

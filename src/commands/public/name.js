@@ -3,7 +3,7 @@
  * @description set your display name or manage name filters.
  * "what's in a name? that which we call a rose by any other name would smell as sweet. but you still need a name."
  */
-const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags, ContainerBuilder } = require('discord.js');
 const db = require('../../data/db');
 const { localize, getCommandLocalizations, getSubcommandLocalizations, getSubcommandGroupLocalizations, getDeepOptionLocalizations } = require('../../localization/localize');
 const ostinato = require('../../services/OstinatoTTS');
@@ -103,17 +103,17 @@ module.exports = {
                 });
                 updateName();
                 ostinato.invalidateCache(userId, guildId, 'name');
-                await interaction.reply({ content: localize(locale, 'responses.public.name.success', { name }), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.success', { name })))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             } catch (error) {
                 console.error(error);
-                await interaction.reply({ content: localize(locale, 'responses.public.name.error'), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.error')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             }
             return;
         }
 
         if (group === 'filter') {
             if (!interaction.memberPermissions.has(PermissionFlagsBits.ManageMessages)) {
-                return await interaction.reply({ content: localize(locale, 'responses.public.name.filter.error'), flags: MessageFlags.Ephemeral });
+                return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.error')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             }
 
             try {
@@ -121,39 +121,39 @@ module.exports = {
                     const pattern = interaction.options.getString('string');
                     const existing = db.prepare('SELECT id FROM name_filters WHERE guild = ? AND pattern = ?').get(guildId, pattern);
                     if (existing) {
-                        return await interaction.reply({ content: localize(locale, 'responses.public.name.filter.exists'), flags: MessageFlags.Ephemeral });
+                        return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.exists')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                     }
                     db.prepare('INSERT INTO name_filters (guild, pattern) VALUES (?, ?)').run(guildId, pattern);
-                    await interaction.reply({ content: localize(locale, 'responses.public.name.filter.added', { pattern }), flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.added', { pattern })))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
 
                 } else if (subcommand === 'list') {
                     const rows = db.prepare('SELECT pattern FROM name_filters WHERE guild = ?').all(guildId);
                     if (rows.length === 0) {
-                        return await interaction.reply({ content: localize(locale, 'responses.public.name.filter.empty'), flags: MessageFlags.Ephemeral });
+                        return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.empty')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                     }
                     const filters = rows.map((r, i) => `${i + 1}. \`${r.pattern}\``).join('\n');
-                    await interaction.reply({ content: localize(locale, 'responses.public.name.filter.list', { filters }), flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.list', { filters })))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
 
                 } else if (subcommand === 'edit') {
                     const oldPattern = interaction.options.getString('old');
                     const newPattern = interaction.options.getString('new');
                     const result = db.prepare('UPDATE name_filters SET pattern = ? WHERE guild = ? AND pattern = ?').run(newPattern, guildId, oldPattern);
                     if (result.changes === 0) {
-                        return await interaction.reply({ content: localize(locale, 'responses.public.name.filter.notFound', { pattern: oldPattern }), flags: MessageFlags.Ephemeral });
+                        return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.notFound', { pattern: oldPattern })))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                     }
-                    await interaction.reply({ content: localize(locale, 'responses.public.name.filter.edited', { old: oldPattern, new: newPattern }), flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.edited', { old: oldPattern, new: newPattern })))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
 
                 } else if (subcommand === 'remove') {
                     const pattern = interaction.options.getString('string');
                     const result = db.prepare('DELETE FROM name_filters WHERE guild = ? AND pattern = ?').run(guildId, pattern);
                     if (result.changes === 0) {
-                        return await interaction.reply({ content: localize(locale, 'responses.public.name.filter.notFound', { pattern }), flags: MessageFlags.Ephemeral });
+                        return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.notFound', { pattern })))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                     }
-                    await interaction.reply({ content: localize(locale, 'responses.public.name.filter.removed', { pattern }), flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.removed', { pattern })))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                 }
             } catch (error) {
                 console.error(error);
-                await interaction.reply({ content: localize(locale, 'responses.public.name.filter.error'), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filter.error')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             }
         }
     }

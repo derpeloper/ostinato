@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "išvalyti",
+      "description": "išvalo šio serverio tts eilę"
+    },
+    "restrict": {
+      "name": "apriboti",
+      "description": "išjungia tts naudotojams, kurie nėra nutildyti"
+    },
+    "skip": {
+      "name": "praleisti",
+      "description": "praleidžia šiuo metu skaitomą žinutę"
+    },
+    "unrestrict": {
+      "name": "atšaukti-apribojimą",
+      "description": "įjungia tts naudotojams, kurie nėra nutildyti"
+    },
+    "guild": {
+      "name": "serveris",
+      "description": "valdyti serverio nustatymus",
+      "groups": {
+        "lang": {
+          "name": "kalba",
+          "description": "valdyti numatytąją serverio kalbą",
+          "subcommands": {
+            "set": {
+              "name": "nustatyti",
+              "description": "nustatyti numatytąją serverio kalbą",
+              "options": {
+                "language": {
+                  "name": "kalba",
+                  "description": "kalba, kurią norite nustatyti"
+                }
+              }
+            },
+            "reset": {
+              "name": "atstatyti",
+              "description": "atstatyti numatytąją serverio kalbą"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "žinutė",
+      "description": "valdyti žinučių turinio filtrus",
+      "groups": {
+        "filter": {
+          "name": "filtras",
+          "description": "valdyti turinio filtrus",
+          "subcommands": {
+            "add": {
+              "name": "pridėti",
+              "description": "pridėti naują filtrą",
+              "options": {
+                "string": {
+                  "name": "tekstas",
+                  "description": "filtro tekstas arba regex"
+                }
+              }
+            },
+            "list": {
+              "name": "sąrašas",
+              "description": "išvardyti visus aktyvius filtrus"
+            },
+            "edit": {
+              "name": "redaguoti",
+              "description": "redaguoti esamą filtrą",
+              "options": {
+                "old": {
+                  "name": "senas",
+                  "description": "esamas filtras, kurį norite redaguoti"
+                },
+                "new": {
+                  "name": "naujas",
+                  "description": "naujas pakaitinis filtras"
+                }
+              }
+            },
+            "remove": {
+              "name": "pašalinti",
+              "description": "pašalinti filtrą",
+              "options": {
+                "string": {
+                  "name": "tekstas",
+                  "description": "filtro tekstas arba regex, kurį norite pašalinti"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanalas",
+      "description": "valdyti serverio alternatyvų susirašinėjimo kanalą",
+      "subcommands": {
+        "set": {
+          "name": "nustatyti",
+          "description": "nustatyti kanalą kaip alternatyvų susirašinėjimą",
+          "options": {
+            "channel": {
+              "name": "kanalas",
+              "description": "kanalas, kurį norite nustatyti"
+            }
+          }
+        },
+        "remove": {
+          "name": "pašalinti",
+          "description": "pašalinti dabartinį alternatyvų susirašinėjimo kanalą"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "pagalba",
+      "description": "suteikia informaciją apie komandas",
+      "options": {
+        "command": {
+          "name": "komanda",
+          "description": "komanda, apie kurią norite gauti informaciją"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "suteikia informaciją apie botą"
+    },
+    "lang": {
+      "name": "kalba",
+      "description": "pakeisti tts kalbą jūsų paskyrai",
+      "options": {
+        "language": {
+          "name": "kalba",
+          "description": "kalba, kurią naudoti"
+        }
+      }
+    },
+    "leave": {
+      "name": "išeiti",
+      "description": "atjungia botą nuo balso kanalo"
+    },
+    "name": {
+      "name": "vardas",
+      "description": "nustatyti rodomą vardą arba valdyti vardų filtrus",
+      "subcommands": {
+        "set": {
+          "name": "nustatyti",
+          "description": "nustatyti rodomą vardą",
+          "options": {
+            "string": {
+              "name": "tekstas",
+              "description": "vardas, kurį norite nustatyti"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filtras",
+          "description": "valdyti vardų filtrus",
+          "subcommands": {
+            "add": {
+              "name": "pridėti",
+              "description": "pridėti naują filtrą",
+              "options": {
+                "string": {
+                  "name": "tekstas",
+                  "description": "filtro tekstas arba regex"
+                }
+              }
+            },
+            "list": {
+              "name": "sąrašas",
+              "description": "išvardyti visus aktyvius filtrus"
+            },
+            "edit": {
+              "name": "redaguoti",
+              "description": "redaguoti esamą filtrą",
+              "options": {
+                "old": {
+                  "name": "senas",
+                  "description": "esamas filtras, kurį norite redaguoti"
+                },
+                "new": {
+                  "name": "naujas",
+                  "description": "naujas pakaitinis filtras"
+                }
+              }
+            },
+            "remove": {
+              "name": "pašalinti",
+              "description": "pašalinti filtrą",
+              "options": {
+                "string": {
+                  "name": "tekstas",
+                  "description": "filtro tekstas arba regex, kurį norite pašalinti"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "atstatyti",
+      "description": "atstato tts nustatymus į numatytuosius",
+      "options": {
+        "option": {
+          "name": "parinktis",
+          "description": "konkretus nustatymas, kurį norite atstatyti"
+        }
+      }
+    },
+    "settings": {
+      "name": "nustatymai",
+      "description": "patikrinti esamus tts nustatymus"
+    },
+    "speed": {
+      "name": "greitis",
+      "description": "pakeisti tts greitį jūsų paskyrai",
+      "options": {
+        "value": {
+          "name": "reikšmė",
+          "description": "greičio daugiklis (nuo 0.5 iki 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "valdyti tts nustatymus",
+      "options": {
+        "on": {
+          "name": "įjungti",
+          "description": "įjungti tts jūsų žinutėms"
+        },
+        "off": {
+          "name": "išjungti",
+          "description": "išjungti tts jūsų žinutėms"
+        }
+      }
+    },
+    "voice": {
+      "name": "balsas",
+      "description": "pakeisti balsą jūsų paskyrai"
+    }
+  }
+}

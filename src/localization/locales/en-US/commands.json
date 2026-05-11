@@ -244,13 +244,7 @@
     },
     "voice": {
       "name": "voice",
-      "description": "change the voice for your account",
-      "options": {
-        "voice": {
-          "name": "voice",
-          "description": "the voice to use"
-        }
-      }
+      "description": "change the voice for your account"
     }
   }
 }

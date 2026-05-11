@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "wachtrij gewist.",
+      "error": "fout bij het wissen van de wachtrij."
+    },
+    "restrict": {
+      "success": "tts beperkt tot alleen gedempte gebruikers.",
+      "error": "fout bij het beperken van tts."
+    },
+    "skip": {
+      "success": "overgeslagen.",
+      "tooShort": "bericht is te kort om over te slaan (< 35 tekens).",
+      "notPlaying": "er wordt momenteel niets afgespeeld.",
+      "error": "er is een fout opgetreden bij het overslaan.",
+      "unknown": "overslaan mislukt."
+    },
+    "unrestrict": {
+      "success": "tts-beperkingen opgeheven.",
+      "error": "fout bij het opheffen van tts-beperkingen."
+    },
+    "guild": {
+      "lang": {
+        "success": "standaardtaal van de server ingesteld op **{langCode}**.",
+        "reset": "standaardtaal van de server is gereset.",
+        "invalid": "die taalcode is ongeldig.",
+        "error": "fout bij het bijwerken van de taalinstelling van de server."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "filter `{pattern}` is toegevoegd.",
+        "exists": "dat filter bestaat al.",
+        "list": "**actieve berichtfilters:**\n{filters}",
+        "empty": "geen berichtfilters geconfigureerd voor deze server.",
+        "edited": "filter bijgewerkt van `{old}` naar `{new}`.",
+        "notFound": "filter `{pattern}` niet gevonden.",
+        "removed": "filter `{pattern}` is verwijderd.",
+        "error": "fout bij het bijwerken van berichtfilters."
+      }
+    },
+    "channel": {
+      "success": "alternatief chatkanaal ingesteld op {channel}.",
+      "removed": "alternatief chatkanaal verwijderd.",
+      "noneSet": "geen alternatief chatkanaal geconfigureerd.",
+      "error": "fout bij het bijwerken van de kanaalinstelling."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "commando-informatie niet gevonden.",
+      "commands": {
+        "help": "ik weet vrij zeker dat dit commando voor zich spreekt. het geeft informatie over de commando's die deze bot te bieden heeft.",
+        "voice": "verandert de stem voor je account. \n\nals je benieuwd bent hoe de stemmen klinken, kun je kijken op supertonic's [voices](https://supertone-inc.github.io/supertonic-py/voices/) pagina.\n\n-# stemvoorkeuren gelden alleen voor de server waarin je het commando gebruikt, zodat je per server verschillende voorkeuren kunt hebben.",
+        "info": "geeft informatie over de bot, inclusief de voorwaarden en het privacybeleid.",
+        "name": "stel je weergavenaam in of beheer naamfilters.\n\n`/name set <naam>`: stelt de naam in voor je berichten.\n`/name filter add|list|edit|remove`: beheer naamfilters (admin).\n\n-# naamvoorkeuren zijn per server in plaats van universeel. dit is om je privacy te beschermen.",
+        "speed": "verandert de snelheid van de tts voor je account. \n\nwaarde moet tussen **0.5** en **2.0** liggen. \n\n-# snelheden zijn per server.",
+        "lang": "verandert de taal van de tts voor je account. \n\nondersteunde talen: engels, arabisch, bulgaars, tsjechisch, deens, duits, grieks, spaans, ests, fins, frans, hindi, kroatisch, hongaars, indonesisch, italiaans, japans, koreaans, litouws, lets, nederlands, pools, portugees, roemeens, russisch, slowaaks, sloveens, zweeds, turks, oekraïens, vietnamees. \n\n-# taalvoorkeuren zijn per server.",
+        "clear": "wist de tts-wachtrij voor de huidige server. \n\nvereist **Berichten beheren** permissie.",
+        "leave": "dwingt de bot om de verbinding met het spraakkanaal te verbreken.",
+        "restrict": "beperkt tts-gebruik tot alleen gedempte gebruikers. \n\nvereist **Kanalen beheren** permissie.",
+        "unrestrict": "staat iedereen toe tts te gebruiken. \n\nvereist **Kanalen beheren** permissie.",
+        "skip": "slaat het momenteel afspelende tts-bericht over. \n\nvereist **Berichten beheren** permissie.",
+        "tts": "beheer je tts-voorkeuren. \n\n`/tts on`: zet tts aan voor je berichten.\n`/tts off`: zet tts uit voor je berichten.",
+        "settings": "toont je huidige tts-instellingen (stem, naam, snelheid, taal).",
+        "reset": "reset je tts-instellingen naar standaard.\n\n`/reset`: wist al je gegevens uit de database.\n`/reset <optie>`: reset een specifieke instelling (stem, naam, snelheid, taal) voor deze server.\n\n-# dit heeft geen invloed op je opt-in/opt-out status.",
+        "guild": "beheer serverspecifieke instellingen.\n\n`/guild lang set <taal>`: stel de standaardtaal in.\n`/guild lang reset`: reset de standaardtaal van de server.\n\n-# vereist **Server beheren** permissie.",
+        "message": "beheer berichtinhoudfilters.\n\n`/message filter add <tekst>`: voeg een nieuw filter toe.\n`/message filter list`: toon alle actieve filters.\n`/message filter edit <oud> <nieuw>`: bewerk een filter.\n`/message filter remove <tekst>`: verwijder een filter.\n\n-# vereist **Berichten beheren** permissie.",
+        "channel": "beheer het alternatieve chatkanaal van de server.\n\n`/channel set <kanaal>`: stel een tekstkanaal in als de alternatieve tts-chat.\n`/channel remove`: verwijder het huidige alternatieve kanaal.\n\n-# vereist **Kanalen beheren** permissie."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*een stem geven aan de stemlozen. en de sociaal onhandigen.*",
+      "privacyHeader": "## privacybeleid",
+      "privacySettings": "**jouw spullen** (lokaal per server opgeslagen)\n- **stem**: zodat je niet klinkt als een generieke robot.\n- **snelheid**: zoom zoom of slow motion.\n- **naam**: je alter ego.\n- **taal**: voor als je chic wilt klinken.",
+      "privacySystem": "**saaie systeemgegevens**\n- **opt-out**: we onthouden of je ons hebt verteld dat we onze mond moeten houden (`/tts off`).\n- **serverinstellingen**: gewoon om te weten of we niet-gedempte mensen moeten negeren.",
+      "privacyFooter": "-# we loggen je berichten niet, genereren geen audiobestanden en verkopen je gegevens niet. je geheimen zijn veilig, vooral omdat ze waarschijnlijk saai zijn.",
+      "tosHeader": "## servicevoorwaarden",
+      "tosBody": "geleverd \"as-is\". houd je aan de discord voorwaarden. of niet. we zijn je ouders niet.",
+      "resetWarning": "-# wil je opnieuw beginnen? gebruik `/reset` om je gegevens volledig uit onze database te wissen. dit verwijdert al je opgeslagen instellingen (stem, naam, snelheid, taal) op elke server. je opt-in/opt-out status blijft behouden.",
+      "versionFooter": "-# versie: 2.4.1 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? waarschijnlijk. features? zeker."
+    },
+    "lang": {
+      "invalid": "die taalcode is ongeldig.",
+      "success": "taalvoorkeuren ingesteld op **{langCode}**.",
+      "error": "fout bij het opslaan van de taalinstelling. (db-fout)"
+    },
+    "leave": {
+      "notInVoice": "ik zit niet in een spraakkanaal. hoor je stemmen?",
+      "differentVoice": "je moet in hetzelfde spraakkanaal zitten als ik om de verbinding te verbreken. leuke poging.",
+      "success": "tot ziens.",
+      "error": "ik had moeite om te vertrekken. dit is pijnlijk."
+    },
+    "name": {
+      "success": "je naam is ingesteld op **{name}**.",
+      "error": "er is een fout opgetreden bij het opslaan van je naam.",
+      "filter": {
+        "added": "naamfilter `{pattern}` is toegevoegd.",
+        "exists": "dat naamfilter bestaat al.",
+        "list": "**actieve naamfilters:**\n{filters}",
+        "empty": "geen naamfilters geconfigureerd voor deze server.",
+        "edited": "naamfilter bijgewerkt van `{old}` naar `{new}`.",
+        "notFound": "naamfilter `{pattern}` niet gevonden.",
+        "removed": "naamfilter `{pattern}` is verwijderd.",
+        "error": "fout bij het bijwerken van naamfilters."
+      }
+    },
+    "settings": {
+      "title": "# instellingen",
+      "voice": "**stem**: {value}",
+      "name": "**naam**: {value}",
+      "speed": "**snelheid**: {value}",
+      "lang": "**taal**: {value}",
+      "defaultFormat": "`Niet ingesteld` (Standaard: `{defaultValue}`)",
+      "setFormat": "`{value}` (Standaard: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "snelheid ingesteld op **{speedValue}x**.",
+      "error": "fout bij het opslaan van de snelheidsinstelling. (db-fout)"
+    },
+    "tts": {
+      "alreadyOff": "tts staat al **uit** voor jou.",
+      "turnedOff": "tts staat nu **uit** voor jou.",
+      "alreadyOn": "tts staat al **aan** voor jou.",
+      "turnedOn": "tts staat nu **aan** voor jou.",
+      "error": "fout bij het bijwerken van instellingen."
+    },
+    "voice": {
+      "success": "geselecteerde stem **{voiceId}** is opgeslagen.",
+      "error": "geselecteerde stem **{voiceId}** is niet opgeslagen. (fout bij opslaan in db).",
+      "selectPrompt": "selecteer een stem die je leuk vindt uit het menu hieronder.",
+      "confirmButton": "Bevestigen",
+      "noPreview": "geen voorbeeld beschikbaar."
+    },
+    "reset": {
+      "full": "al je gegevens zijn uit de database gewist. je begint met een schone lei.",
+      "single": "je **{option}** instelling is gereset voor deze server.",
+      "noData": "je hebt geen gegevens om te resetten.",
+      "error": "fout bij het resetten van je instellingen."
+    }
+  }
+}

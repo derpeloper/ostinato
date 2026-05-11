@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "șterge",
+      "description": "șterge coada tts pentru acest server"
+    },
+    "restrict": {
+      "name": "restricționează",
+      "description": "dezactivează tts pentru utilizatorii care nu sunt amuțiți"
+    },
+    "skip": {
+      "name": "sari",
+      "description": "sare peste mesajul care se redă în prezent"
+    },
+    "unrestrict": {
+      "name": "anulează-restricția",
+      "description": "activează tts pentru utilizatorii care nu sunt amuțiți"
+    },
+    "guild": {
+      "name": "server",
+      "description": "gestionează setările specifice serverului",
+      "groups": {
+        "lang": {
+          "name": "limbă",
+          "description": "gestionează limba implicită a serverului",
+          "subcommands": {
+            "set": {
+              "name": "setează",
+              "description": "setează limba implicită pentru server",
+              "options": {
+                "language": {
+                  "name": "limbă",
+                  "description": "limba de setat"
+                }
+              }
+            },
+            "reset": {
+              "name": "resetează",
+              "description": "resetează limba implicită pentru server"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "mesaj",
+      "description": "gestionează filtrele de conținut ale mesajelor",
+      "groups": {
+        "filter": {
+          "name": "filtru",
+          "description": "gestionează filtrele de conținut",
+          "subcommands": {
+            "add": {
+              "name": "adaugă",
+              "description": "adaugă un filtru nou",
+              "options": {
+                "string": {
+                  "name": "text",
+                  "description": "textul filtrului sau regex-ul de adăugat"
+                }
+              }
+            },
+            "list": {
+              "name": "listă",
+              "description": "listează toate filtrele active"
+            },
+            "edit": {
+              "name": "editează",
+              "description": "editează un filtru existent",
+              "options": {
+                "old": {
+                  "name": "vechi",
+                  "description": "filtrul existent de editat"
+                },
+                "new": {
+                  "name": "nou",
+                  "description": "noul filtru de înlocuire"
+                }
+              }
+            },
+            "remove": {
+              "name": "elimină",
+              "description": "elimină un filtru",
+              "options": {
+                "string": {
+                  "name": "text",
+                  "description": "textul filtrului sau regex-ul de eliminat"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "canal",
+      "description": "gestionează canalul de chat alternativ al serverului",
+      "subcommands": {
+        "set": {
+          "name": "setează",
+          "description": "setează un canal ca chat alternativ",
+          "options": {
+            "channel": {
+              "name": "canal",
+              "description": "canalul de setat"
+            }
+          }
+        },
+        "remove": {
+          "name": "elimină",
+          "description": "elimină canalul de chat alternativ actual"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "ajutor",
+      "description": "oferă informații despre comenzi",
+      "options": {
+        "command": {
+          "name": "comandă",
+          "description": "comanda despre care doriți informații"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "oferă informații despre bot"
+    },
+    "lang": {
+      "name": "limbă",
+      "description": "schimbă limba tts pentru contul tău",
+      "options": {
+        "language": {
+          "name": "limbă",
+          "description": "limba de utilizat"
+        }
+      }
+    },
+    "leave": {
+      "name": "părăsește",
+      "description": "deconectează botul de la canalul vocal"
+    },
+    "name": {
+      "name": "nume",
+      "description": "setează numele tău de afișare sau gestionează filtrele de nume",
+      "subcommands": {
+        "set": {
+          "name": "setează",
+          "description": "setează numele tău de afișare",
+          "options": {
+            "string": {
+              "name": "text",
+              "description": "numele de setat"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filtru",
+          "description": "gestionează filtrele de nume",
+          "subcommands": {
+            "add": {
+              "name": "adaugă",
+              "description": "adaugă un filtru nou",
+              "options": {
+                "string": {
+                  "name": "text",
+                  "description": "textul filtrului sau regex-ul de adăugat"
+                }
+              }
+            },
+            "list": {
+              "name": "listă",
+              "description": "listează toate filtrele active"
+            },
+            "edit": {
+              "name": "editează",
+              "description": "editează un filtru existent",
+              "options": {
+                "old": {
+                  "name": "vechi",
+                  "description": "filtrul existent de editat"
+                },
+                "new": {
+                  "name": "nou",
+                  "description": "noul filtru de înlocuire"
+                }
+              }
+            },
+            "remove": {
+              "name": "elimină",
+              "description": "elimină un filtru",
+              "options": {
+                "string": {
+                  "name": "text",
+                  "description": "textul filtrului sau regex-ul de eliminat"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "resetează",
+      "description": "resetează setările tts la valorile implicite",
+      "options": {
+        "option": {
+          "name": "opțiune",
+          "description": "setarea specifică de resetat"
+        }
+      }
+    },
+    "settings": {
+      "name": "setări",
+      "description": "verifică setările tts actuale"
+    },
+    "speed": {
+      "name": "viteză",
+      "description": "schimbă viteza tts pentru contul tău",
+      "options": {
+        "value": {
+          "name": "valoare",
+          "description": "multiplicatorul de viteză (0.5 până la 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "gestionează preferințele tts",
+      "options": {
+        "on": {
+          "name": "pornit",
+          "description": "activează tts pentru mesajele tale"
+        },
+        "off": {
+          "name": "oprit",
+          "description": "dezactivează tts pentru mesajele tale"
+        }
+      }
+    },
+    "voice": {
+      "name": "voce",
+      "description": "schimbă vocea pentru contul tău"
+    }
+  }
+}

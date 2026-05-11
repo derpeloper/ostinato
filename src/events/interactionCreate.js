@@ -3,11 +3,39 @@
  * @description event handler for interaction creation (slash commands).
  * "you rang?"
  */
-const { MessageFlags } = require("discord.js");
+const { MessageFlags, ContainerBuilder } = require("discord.js");
 
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction, client) {
+        if (interaction.isStringSelectMenu()) {
+            if (interaction.customId === 'voice_select') {
+                const voiceCommand = client.commands.get('voice');
+                if (voiceCommand && voiceCommand.handleSelectMenu) {
+                    try {
+                        await voiceCommand.handleSelectMenu(interaction);
+                    } catch (error) {
+                        console.error('[interactionCreate] voice select menu error:', error);
+                    }
+                }
+            }
+            return;
+        }
+
+        if (interaction.isButton()) {
+            if (interaction.customId === 'voice_confirm') {
+                const voiceCommand = client.commands.get('voice');
+                if (voiceCommand && voiceCommand.handleButton) {
+                    try {
+                        await voiceCommand.handleButton(interaction);
+                    } catch (error) {
+                        console.error('[interactionCreate] voice confirm button error:', error);
+                    }
+                }
+            }
+            return;
+        }
+
         if (interaction.isAutocomplete()) {
             const command = client.commands.get(interaction.commandName);
 
@@ -35,8 +63,8 @@ module.exports = {
         } catch (error) {
             console.log(error);
             await interaction.reply({
-                content: 'There was an error while executing this command!', 
-                flags: MessageFlags.Ephemeral
+                components: new ContainerBuilder().addTextDisplayComponents(t => t.setContent('there was an error while executing this command.')), 
+                flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2]
             });
         } 
     },

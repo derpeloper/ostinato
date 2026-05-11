@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "leeren",
+      "description": "leert die tts-warteschlange für diesen server"
+    },
+    "restrict": {
+      "name": "einschränken",
+      "description": "deaktiviert tts für benutzer, die nicht stummgeschaltet sind"
+    },
+    "skip": {
+      "name": "überspringen",
+      "description": "überspringt die aktuell gespielte nachricht"
+    },
+    "unrestrict": {
+      "name": "freigeben",
+      "description": "aktiviert tts für benutzer, die nicht stummgeschaltet sind"
+    },
+    "guild": {
+      "name": "server",
+      "description": "serverbezogene einstellungen verwalten",
+      "groups": {
+        "lang": {
+          "name": "sprache",
+          "description": "standardsprache des servers verwalten",
+          "subcommands": {
+            "set": {
+              "name": "setzen",
+              "description": "standardsprache für den server festlegen",
+              "options": {
+                "language": {
+                  "name": "sprache",
+                  "description": "die festzulegende sprache"
+                }
+              }
+            },
+            "reset": {
+              "name": "zurücksetzen",
+              "description": "standardsprache des servers zurücksetzen"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "nachricht",
+      "description": "nachrichtenfilter verwalten",
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "inhaltsfilter verwalten",
+          "subcommands": {
+            "add": {
+              "name": "hinzufügen",
+              "description": "einen neuen filter hinzufügen",
+              "options": {
+                "string": {
+                  "name": "text",
+                  "description": "der filtertext oder regex, der hinzugefügt werden soll"
+                }
+              }
+            },
+            "list": {
+              "name": "liste",
+              "description": "alle aktiven filter anzeigen"
+            },
+            "edit": {
+              "name": "bearbeiten",
+              "description": "einen bestehenden filter bearbeiten",
+              "options": {
+                "old": {
+                  "name": "alt",
+                  "description": "der bestehende filter, der bearbeitet werden soll"
+                },
+                "new": {
+                  "name": "neu",
+                  "description": "der neue ersatzfilter"
+                }
+              }
+            },
+            "remove": {
+              "name": "entfernen",
+              "description": "einen filter entfernen",
+              "options": {
+                "string": {
+                  "name": "text",
+                  "description": "der filtertext oder regex, der entfernt werden soll"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanal",
+      "description": "alternativen chatkanal des servers verwalten",
+      "subcommands": {
+        "set": {
+          "name": "setzen",
+          "description": "einen kanal als alternativen chat festlegen",
+          "options": {
+            "channel": {
+              "name": "kanal",
+              "description": "der festzulegende kanal"
+            }
+          }
+        },
+        "remove": {
+          "name": "entfernen",
+          "description": "den aktuellen alternativen chatkanal entfernen"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "hilfe",
+      "description": "gibt informationen zu befehlen",
+      "options": {
+        "command": {
+          "name": "befehl",
+          "description": "der befehl, über den informationen abgerufen werden sollen"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "gibt informationen über den bot"
+    },
+    "lang": {
+      "name": "sprache",
+      "description": "ändert die sprache des tts für dein konto",
+      "options": {
+        "language": {
+          "name": "sprache",
+          "description": "die zu verwendende sprache"
+        }
+      }
+    },
+    "leave": {
+      "name": "verlassen",
+      "description": "trennt den bot vom sprachkanal"
+    },
+    "name": {
+      "name": "name",
+      "description": "lege deinen anzeigenamen fest oder verwalte namensfilter",
+      "subcommands": {
+        "set": {
+          "name": "setzen",
+          "description": "lege deinen anzeigenamen fest",
+          "options": {
+            "string": {
+              "name": "text",
+              "description": "der festzulegende name"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "namensfilter verwalten",
+          "subcommands": {
+            "add": {
+              "name": "hinzufügen",
+              "description": "einen neuen filter hinzufügen",
+              "options": {
+                "string": {
+                  "name": "text",
+                  "description": "der filtertext oder regex, der hinzugefügt werden soll"
+                }
+              }
+            },
+            "list": {
+              "name": "liste",
+              "description": "alle aktiven filter anzeigen"
+            },
+            "edit": {
+              "name": "bearbeiten",
+              "description": "einen bestehenden filter bearbeiten",
+              "options": {
+                "old": {
+                  "name": "alt",
+                  "description": "der bestehende filter, der bearbeitet werden soll"
+                },
+                "new": {
+                  "name": "neu",
+                  "description": "der neue ersatzfilter"
+                }
+              }
+            },
+            "remove": {
+              "name": "entfernen",
+              "description": "einen filter entfernen",
+              "options": {
+                "string": {
+                  "name": "text",
+                  "description": "der filtertext oder regex, der entfernt werden soll"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "zurücksetzen",
+      "description": "setzt deine tts-einstellungen auf die standardwerte zurück",
+      "options": {
+        "option": {
+          "name": "option",
+          "description": "die spezifische einstellung, die zurückgesetzt werden soll"
+        }
+      }
+    },
+    "settings": {
+      "name": "einstellungen",
+      "description": "überprüfe deine aktuellen tts-einstellungen"
+    },
+    "speed": {
+      "name": "geschwindigkeit",
+      "description": "ändert die geschwindigkeit des tts für dein konto",
+      "options": {
+        "value": {
+          "name": "wert",
+          "description": "der geschwindigkeitsmultiplikator (0,5 bis 2,0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "verwalte deine tts-einstellungen",
+      "options": {
+        "on": {
+          "name": "an",
+          "description": "schalte tts für deine nachrichten ein"
+        },
+        "off": {
+          "name": "aus",
+          "description": "schalte tts für deine nachrichten aus"
+        }
+      }
+    },
+    "voice": {
+      "name": "stimme",
+      "description": "ändert die stimme für dein konto"
+    }
+  }
+}

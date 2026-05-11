@@ -1,9 +1,24 @@
 {
   "mods": {
-    "clear": { "success": "queue cleared.", "error": "failed to clear the queue." },
-    "restrict": { "success": "tts restricted to muted users only.", "error": "failed to restrict tts." },
-    "skip": { "success": "skipped.", "tooShort": "message is too short to skip (< 35 chars).", "notPlaying": "nothing is playing right now.", "error": "an error occurred while trying to skip.", "unknown": "failed to skip." },
-    "unrestrict": { "success": "tts restrictions lifted.", "error": "failed to unrestrict tts." },
+    "clear": {
+      "success": "queue cleared.",
+      "error": "failed to clear the queue."
+    },
+    "restrict": {
+      "success": "tts restricted to muted users only.",
+      "error": "failed to restrict tts."
+    },
+    "skip": {
+      "success": "skipped.",
+      "tooShort": "message is too short to skip (< 35 chars).",
+      "notPlaying": "nothing is playing right now.",
+      "error": "an error occurred while trying to skip.",
+      "unknown": "failed to skip."
+    },
+    "unrestrict": {
+      "success": "tts restrictions lifted.",
+      "error": "failed to unrestrict tts."
+    },
     "guild": {
       "lang": {
         "success": "guild default language set to **{langCode}**.",
@@ -40,7 +55,7 @@
         "info": "provides information about the bot, including the notices for the terms of service and privacy policy.",
         "name": "set your display name or manage name filters.\n\n`/name set <name>`: sets the name for your messages.\n`/name filter add|list|edit|remove`: manage name filters (admin).\n\n-# name preferences are per-server instead of being universal. this is to protect your privacy.",
         "speed": "changes the speed of the tts for your account. \n\nvalue must be between **0.5** and **2.0**. \n\n-# speeds are per-server instead of being universal.",
-        "lang": "changes the language of the tts for your account. \n\nsupported languages: english, portuguese, korean, french, spanish. \n\n-# language preferences are per-server instead of being universal.",
+        "lang": "changes the language of the tts for your account. \n\nsupported languages: english, arabic, bulgarian, czech, danish, german, greek, spanish, estonian, finnish, french, hindi, croatian, hungarian, indonesian, italian, japanese, korean, lithuanian, latvian, dutch, polish, portuguese, romanian, russian, slovak, slovenian, swedish, turkish, ukrainian, vietnamese. \n\n-# language preferences are per-server instead of being universal.",
         "clear": "clears the tts queue for the current server. \n\nrequires **Manage Messages** permission.",
         "leave": "forces the bot to disconnect from the voice channel.",
         "restrict": "restricts tts usage to only muted users. \n\nrequires **Manage Channels** permission.",
@@ -64,10 +79,19 @@
       "tosHeader": "## terms of service",
       "tosBody": "provided \"as-is\". adhere to discord tos. or don't. we aren't your parents.",
       "resetWarning": "-# want to start fresh? use `/reset` to completely wipe your data from our database. this removes all your saved settings (voice, name, speed, language) across every server. your opt-in/opt-out status is preserved.",
-      "versionFooter": "-# version: 2.1 | engine: supertonic v2 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
+      "versionFooter": "-# version: 2.4.1 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
     },
-    "lang": { "invalid": "that language code is invalid.", "success": "language preferences set to **{langCode}**.", "error": "failed to save language setting. (db error)" },
-    "leave": { "notInVoice": "i am not in a voice channel. are you hearing voices?", "differentVoice": "you must be in the same voice channel as me to disconnect me. nice try.", "success": "goodbye.", "error": "i struggled to leave. this is awkward." },
+    "lang": {
+      "invalid": "that language code is invalid.",
+      "success": "language preferences set to **{langCode}**.",
+      "error": "failed to save language setting. (db error)"
+    },
+    "leave": {
+      "notInVoice": "i am not in a voice channel. are you hearing voices?",
+      "differentVoice": "you must be in the same voice channel as me to disconnect me. nice try.",
+      "success": "goodbye.",
+      "error": "i struggled to leave. this is awkward."
+    },
     "name": {
       "success": "your name has been set to **{name}**.",
       "error": "there was an error saving your name.",
@@ -84,12 +108,31 @@
     },
     "settings": {
       "title": "# settings",
-      "voice": "**voice**: {value}", "name": "**name**: {value}", "speed": "**speed**: {value}", "lang": "**lang**: {value}",
-      "defaultFormat": "`Not set` (Default: `{defaultValue}`)", "setFormat": "`{value}` (Default: `{defaultValue}`)"
+      "voice": "**voice**: {value}",
+      "name": "**name**: {value}",
+      "speed": "**speed**: {value}",
+      "lang": "**lang**: {value}",
+      "defaultFormat": "`Not set` (Default: `{defaultValue}`)",
+      "setFormat": "`{value}` (Default: `{defaultValue}`)"
     },
-    "speed": { "success": "speed set to **{speedValue}x**.", "error": "failed to save speed setting. (db error)" },
-    "tts": { "alreadyOff": "tts is already **off** for you.", "turnedOff": "tts is now **off** for you.", "alreadyOn": "tts is already **on** for you.", "turnedOn": "tts is now **on** for you.", "error": "failed to update settings." },
-    "voice": { "success": "selected voice **{voiceId}** has been saved.", "error": "selected voice **{voiceId}** was not saved. (error while saving to db)." },
+    "speed": {
+      "success": "speed set to **{speedValue}x**.",
+      "error": "failed to save speed setting. (db error)"
+    },
+    "tts": {
+      "alreadyOff": "tts is already **off** for you.",
+      "turnedOff": "tts is now **off** for you.",
+      "alreadyOn": "tts is already **on** for you.",
+      "turnedOn": "tts is now **on** for you.",
+      "error": "failed to update settings."
+    },
+    "voice": {
+      "success": "selected voice **{voiceId}** has been saved.",
+      "error": "selected voice **{voiceId}** was not saved. (error while saving to db).",
+      "selectPrompt": "select a voice you like from the menu below.",
+      "confirmButton": "Confirm",
+      "noPreview": "no preview available."
+    },
     "reset": {
       "full": "all your data has been wiped from the database. you're starting fresh.",
       "single": "your **{option}** setting has been reset for this server.",

@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "køen er ryddet.",
+      "error": "kunne ikke rydde køen."
+    },
+    "restrict": {
+      "success": "tts er nu begrænset til kun mutes brugere.",
+      "error": "kunne ikke begrænse tts."
+    },
+    "skip": {
+      "success": "sprunget over.",
+      "tooShort": "beskeden er for kort til at springe over (< 35 tegn).",
+      "notPlaying": "der afspilles ikke noget lige nu.",
+      "error": "der opstod en fejl under forsøget på at springe over.",
+      "unknown": "kunne ikke springe over."
+    },
+    "unrestrict": {
+      "success": "tts-begrænsninger er ophævet.",
+      "error": "kunne ikke ophæve tts-begrænsninger."
+    },
+    "guild": {
+      "lang": {
+        "success": "serverens standardsprog er indstillet til **{langCode}**.",
+        "reset": "serverens standardsprog er blevet nulstillet.",
+        "invalid": "den sprogkode er ugyldig.",
+        "error": "kunne ikke opdatere serverens sprogindstilling."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "filteret `{pattern}` er blevet tilføjet.",
+        "exists": "det filter findes allerede.",
+        "list": "**aktive beskedfiltre:**\n{filters}",
+        "empty": "der er ikke konfigureret nogen beskedfiltre for denne server.",
+        "edited": "filter opdateret fra `{old}` til `{new}`.",
+        "notFound": "filteret `{pattern}` blev ikke fundet.",
+        "removed": "filteret `{pattern}` er blevet fjernet.",
+        "error": "kunne ikke opdatere beskedfiltre."
+      }
+    },
+    "channel": {
+      "success": "alternativ chatkanal er indstillet til {channel}.",
+      "removed": "alternativ chatkanal er blevet fjernet.",
+      "noneSet": "der er ikke konfigureret nogen alternativ chatkanal.",
+      "error": "kunne ikke opdatere kanalindstilling."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "kommandoinformation ikke fundet.",
+      "commands": {
+        "help": "jeg er ret sikker på, at denne kommando er selvforklarende. den giver information om kommandoer, som denne bot tilbyder.",
+        "voice": "skifter stemmen for din konto. \n\nhvis du er nysgerrig efter, hvordan stemmerne lyder, kan du se supertonics [voices](https://supertone-inc.github.io/supertonic-py/voices/) side.\n\n-# stemmepræferencer påvirker kun den server, du bruger kommandoen på, så du kan have forskellige præferencer per server.",
+        "info": "giver information om botten, inklusive meddelelser om servicevilkår og privatlivspolitik.",
+        "name": "indstil dit visningsnavn eller administrer navnefiltre.\n\n`/name set <name>`: indstiller navnet for dine beskeder.\n`/name filter add|list|edit|remove`: administrer navnefiltre (admin).\n\n-# navnepræferencer er per server i stedet for at være universelle. dette er for at beskytte dit privatliv.",
+        "speed": "skifter hastigheden for tts på din konto. \n\nværdien skal være mellem **0.5** og **2.0**. \n\n-# hastigheder er per server i stedet for at være universelle.",
+        "lang": "skifter sproget for tts på din konto. \n\nunderstøttede sprog: engelsk, arabisk, bulgarsk, tjekkisk, dansk, tysk, græsk, spansk, estisk, finsk, fransk, hindi, kroatisk, ungarsk, indonesisk, italiensk, japansk, koreansk, litauisk, lettisk, hollandsk, polsk, portugisisk, rumænsk, russisk, slovakisk, slovensk, svensk, tyrkisk, ukrainsk, vietnamesisk. \n\n-# sprogpræferencer er per server i stedet for at være universelle.",
+        "clear": "rydder tts-køen for den aktuelle server. \n\nkræver **Administrer beskeder** tilladelse.",
+        "leave": "tvinger botten til at afbryde forbindelsen fra stemmekanalen.",
+        "restrict": "begrænser tts-brug til kun mutede brugere. \n\nkræver **Administrer kanaler** tilladelse.",
+        "unrestrict": "tillader alle at bruge tts. \n\nkræver **Administrer kanaler** tilladelse.",
+        "skip": "springer den aktuelle tts-besked over. \n\nkræver **Administrer beskeder** tilladelse.",
+        "tts": "administrer dine tts-præferencer. \n\n`/tts on`: tænd tts for dine beskeder.\n`/tts off`: sluk tts for dine beskeder.",
+        "settings": "viser dine aktuelle tts-indstillinger (stemme, navn, hastighed, sprog).",
+        "reset": "nulstiller dine tts-indstillinger til standard.\n\n`/reset`: sletter alle dine data fra databasen.\n`/reset <option>`: nulstiller en specifik indstilling (stemme, navn, hastighed, sprog) for denne server.\n\n-# dette påvirker ikke din tilmeldings-/afmeldingsstatus.",
+        "guild": "administrer serverspecifikke indstillinger.\n\n`/guild lang set <language>`: indstil standardsproget for serveren.\n`/guild lang reset`: nulstil serverens standardsprog.\n\n-# kræver **Administrer server** tilladelse.",
+        "message": "administrer beskedindholdsfiltre.\n\n`/message filter add <string>`: tilføj et nyt filter.\n`/message filter list`: vis alle aktive filtre.\n`/message filter edit <old> <new>`: rediger et eksisterende filter.\n`/message filter remove <string>`: fjern et filter.\n\n-# kræver **Administrer beskeder** tilladelse.",
+        "channel": "administrer serverens alternative chatkanal.\n\n`/channel set <channel>`: indstil en tekstkanal som den alternative tts-chat.\n`/channel remove`: fjern den aktuelle alternative kanal.\n\n-# kræver **Administrer kanaler** tilladelse."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*giver en stemme til de stemmeløse. og de socialt akavede.*",
+      "privacyHeader": "## privatlivspolitik",
+      "privacySettings": "**dine ting** (gemt lokalt per server)\n- **stemme**: så du ikke lyder som en generisk robot.\n- **hastighed**: zoom zoom eller slowmotion.\n- **navn**: dit alter ego.\n- **sprog**: til når du vil lyde fancy.",
+      "privacySystem": "**kedelige systemdata**\n- **afmeldt**: vi husker, hvis du bad os om at holde kæft (`/tts off`).\n- **serverindstillinger**: bare for at vide, om vi skal ignorere folk, der ikke er mutede.",
+      "privacyFooter": "-# vi logger ikke dine beskeder, genererer ikke lydfiler eller sælger dine data. dine hemmeligheder er sikre, mest fordi de sikkert er kedelige.",
+      "tosHeader": "## servicevilkår",
+      "tosBody": "leveres \"som beset\". overhold discords servicevilkår. eller lad være. vi er ikke dine forældre.",
+      "resetWarning": "-# vil du starte forfra? brug `/reset` til helt at slette dine data fra vores database. dette fjerner alle dine gemte indstillinger (stemme, navn, hastighed, sprog) på tværs af alle servere. din tilmeldings-/afmeldingsstatus bevares.",
+      "versionFooter": "-# version: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# fejl? sikkert. funktioner? helt sikkert."
+    },
+    "lang": {
+      "invalid": "den sprogkode er ugyldig.",
+      "success": "sprogpræferencer er indstillet til **{langCode}**.",
+      "error": "kunne ikke gemme sprogindstilling. (db-fejl)"
+    },
+    "leave": {
+      "notInVoice": "jeg er ikke i en stemmekanal. hører du stemmer?",
+      "differentVoice": "du skal være i den samme stemmekanal som mig for at afbryde min forbindelse. godt forsøg.",
+      "success": "farvel.",
+      "error": "jeg havde svært ved at forlade kanalen. det er akavet."
+    },
+    "name": {
+      "success": "dit navn er blevet indstillet til **{name}**.",
+      "error": "der opstod en fejl under gemning af dit navn.",
+      "filter": {
+        "added": "navnefilter `{pattern}` er blevet tilføjet.",
+        "exists": "det navnefilter findes allerede.",
+        "list": "**aktive navnefiltre:**\n{filters}",
+        "empty": "der er ikke konfigureret nogen navnefiltre for denne server.",
+        "edited": "navnefilter opdateret fra `{old}` til `{new}`.",
+        "notFound": "navnefilter `{pattern}` blev ikke fundet.",
+        "removed": "navnefilter `{pattern}` er blevet fjernet.",
+        "error": "kunne ikke opdatere navnefiltre."
+      }
+    },
+    "settings": {
+      "title": "# indstillinger",
+      "voice": "**stemme**: {value}",
+      "name": "**navn**: {value}",
+      "speed": "**hastighed**: {value}",
+      "lang": "**sprog**: {value}",
+      "defaultFormat": "`Ikke indstillet` (Standard: `{defaultValue}`)",
+      "setFormat": "`{value}` (Standard: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "hastighed indstillet til **{speedValue}x**.",
+      "error": "kunne ikke gemme hastighedsindstilling. (db-fejl)"
+    },
+    "tts": {
+      "alreadyOff": "tts er allerede **fra** for dig.",
+      "turnedOff": "tts er nu **fra** for dig.",
+      "alreadyOn": "tts er allerede **til** for dig.",
+      "turnedOn": "tts è nu **til** for dig.",
+      "error": "kunne ikke opdatere indstillinger."
+    },
+    "voice": {
+      "success": "valgt stemme **{voiceId}** er blevet gemt.",
+      "error": "valgt stemme **{voiceId}** blev ikke gemt. (fejl under gemning i db).",
+      "selectPrompt": "vælg en stemme du kan lide fra menuen nedenfor.",
+      "confirmButton": "Bekræft",
+      "noPreview": "ingen forhåndsvisning tilgængelig."
+    },
+    "reset": {
+      "full": "alle dine data er blevet slettet fra databasen. du starter forfra.",
+      "single": "din **{option}** indstilling er blevet nulstillet for denne server.",
+      "noData": "du har ingen data at nulstille.",
+      "error": "kunne ikke nulstille dine indstillinger."
+    }
+  }
+}

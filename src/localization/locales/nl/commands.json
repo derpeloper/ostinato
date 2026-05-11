@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "wissen",
+      "description": "wist de tts-wachtrij voor deze server"
+    },
+    "restrict": {
+      "name": "beperken",
+      "description": "schakel tts uit voor gebruikers die niet gedempt zijn"
+    },
+    "skip": {
+      "name": "overslaan",
+      "description": "slaat het momenteel afspelende bericht over"
+    },
+    "unrestrict": {
+      "name": "beperking-opheffen",
+      "description": "schakel tts in voor gebruikers die niet gedempt zijn"
+    },
+    "guild": {
+      "name": "server",
+      "description": "beheer serverspecifieke instellingen",
+      "groups": {
+        "lang": {
+          "name": "taal",
+          "description": "beheer de standaardtaal van de server",
+          "subcommands": {
+            "set": {
+              "name": "instellen",
+              "description": "stel de standaardtaal in voor de server",
+              "options": {
+                "language": {
+                  "name": "taal",
+                  "description": "de in te stellen taal"
+                }
+              }
+            },
+            "reset": {
+              "name": "resetten",
+              "description": "reset de standaardtaal voor de server"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "bericht",
+      "description": "beheer berichtinhoudfilters",
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "beheer inhoudfilters",
+          "subcommands": {
+            "add": {
+              "name": "toevoegen",
+              "description": "voeg een nieuw filter toe",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "de filtertekst of regex om toe te voegen"
+                }
+              }
+            },
+            "list": {
+              "name": "lijst",
+              "description": "toon alle actieve filters"
+            },
+            "edit": {
+              "name": "bewerken",
+              "description": "bewerk een bestaand filter",
+              "options": {
+                "old": {
+                  "name": "oud",
+                  "description": "het te bewerken bestaande filter"
+                },
+                "new": {
+                  "name": "nieuw",
+                  "description": "het nieuwe vervangende filter"
+                }
+              }
+            },
+            "remove": {
+              "name": "verwijderen",
+              "description": "verwijder een filter",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "de filtertekst of regex om te verwijderen"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanaal",
+      "description": "beheer het alternatieve chatkanaal van de server",
+      "subcommands": {
+        "set": {
+          "name": "instellen",
+          "description": "stel een kanaal in als alternatieve chat",
+          "options": {
+            "channel": {
+              "name": "kanaal",
+              "description": "het in te stellen kanaal"
+            }
+          }
+        },
+        "remove": {
+          "name": "verwijderen",
+          "description": "verwijder het huidige alternatieve chatkanaal"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "hulp",
+      "description": "geeft informatie over commando's",
+      "options": {
+        "command": {
+          "name": "commando",
+          "description": "het commando waarover je informatie wilt"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "geeft informatie over de bot"
+    },
+    "lang": {
+      "name": "taal",
+      "description": "verander de taal van de tts voor je account",
+      "options": {
+        "language": {
+          "name": "taal",
+          "description": "de te gebruiken taal"
+        }
+      }
+    },
+    "leave": {
+      "name": "vertrekken",
+      "description": "verbreekt de verbinding van de bot met het spraakkanaal"
+    },
+    "name": {
+      "name": "naam",
+      "description": "stel je weergavenaam in of beheer naamfilters",
+      "subcommands": {
+        "set": {
+          "name": "instellen",
+          "description": "stel je weergavenaam in",
+          "options": {
+            "string": {
+              "name": "tekst",
+              "description": "de in te stellen naam"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "beheer naamfilters",
+          "subcommands": {
+            "add": {
+              "name": "toevoegen",
+              "description": "voeg een nieuw filter toe",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "de filtertekst of regex om toe te voegen"
+                }
+              }
+            },
+            "list": {
+              "name": "lijst",
+              "description": "toon alle actieve filters"
+            },
+            "edit": {
+              "name": "bewerken",
+              "description": "bewerk een bestaand filter",
+              "options": {
+                "old": {
+                  "name": "oud",
+                  "description": "het te bewerken bestaande filter"
+                },
+                "new": {
+                  "name": "nieuw",
+                  "description": "het nieuwe vervangende filter"
+                }
+              }
+            },
+            "remove": {
+              "name": "verwijderen",
+              "description": "verwijder een filter",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "de filtertekst of regex om te verwijderen"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "resetten",
+      "description": "reset je tts-instellingen naar standaard",
+      "options": {
+        "option": {
+          "name": "optie",
+          "description": "de specifieke instelling om te resetten"
+        }
+      }
+    },
+    "settings": {
+      "name": "instellingen",
+      "description": "bekijk je huidige tts-instellingen"
+    },
+    "speed": {
+      "name": "snelheid",
+      "description": "verander de snelheid van de tts voor je account",
+      "options": {
+        "value": {
+          "name": "waarde",
+          "description": "de snelheidsfactor (0.5 tot 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "beheer je tts-voorkeuren",
+      "options": {
+        "on": {
+          "name": "aan",
+          "description": "zet tts aan voor je berichten"
+        },
+        "off": {
+          "name": "uit",
+          "description": "zet tts uit voor je berichten"
+        }
+      }
+    },
+    "voice": {
+      "name": "stem",
+      "description": "verander de stem voor je account"
+    }
+  }
+}

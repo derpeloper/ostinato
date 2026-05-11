@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "ryd",
+      "description": "rydder tts-køen for denne server"
+    },
+    "restrict": {
+      "name": "begræns",
+      "description": "deaktiver tts for brugere der ikke er muted"
+    },
+    "skip": {
+      "name": "spring-over",
+      "description": "springer den aktuelle besked over"
+    },
+    "unrestrict": {
+      "name": "fjern-begrænsning",
+      "description": "aktiver tts for brugere der ikke er muted"
+    },
+    "guild": {
+      "name": "server",
+      "description": "administrer serverspecifikke indstillinger",
+      "groups": {
+        "lang": {
+          "name": "sprog",
+          "description": "administrer standardsprog for serveren",
+          "subcommands": {
+            "set": {
+              "name": "indstil",
+              "description": "indstil standardsproget for serveren",
+              "options": {
+                "language": {
+                  "name": "sprog",
+                  "description": "sproget der skal indstilles"
+                }
+              }
+            },
+            "reset": {
+              "name": "nulstil",
+              "description": "nulstil standardsproget for serveren"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "besked",
+      "description": "administrer beskedindholdsfiltre",
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "administrer indholdsfiltre",
+          "subcommands": {
+            "add": {
+              "name": "tilføj",
+              "description": "tilføj et nyt filter",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "filterteksten eller regex der skal tilføjes"
+                }
+              }
+            },
+            "list": {
+              "name": "liste",
+              "description": "vis alle aktive filtre"
+            },
+            "edit": {
+              "name": "rediger",
+              "description": "rediger et eksisterende filter",
+              "options": {
+                "old": {
+                  "name": "gammel",
+                  "description": "det eksisterende filter der skal redigeres"
+                },
+                "new": {
+                  "name": "ny",
+                  "description": "det nye erstatningsfilter"
+                }
+              }
+            },
+            "remove": {
+              "name": "fjern",
+              "description": "fjern et filter",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "filterteksten eller regex der skal fjernes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanal",
+      "description": "administrer serverens alternative chatkanal",
+      "subcommands": {
+        "set": {
+          "name": "indstil",
+          "description": "indstil en kanal som alternativ chat",
+          "options": {
+            "channel": {
+              "name": "kanal",
+              "description": "kanalen der skal indstilles"
+            }
+          }
+        },
+        "remove": {
+          "name": "fjern",
+          "description": "fjern den aktuelle alternative chatkanal"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "hjælp",
+      "description": "giver information om kommandoer",
+      "options": {
+        "command": {
+          "name": "kommando",
+          "description": "kommandoen at få information om"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "giver information om botten"
+    },
+    "lang": {
+      "name": "sprog",
+      "description": "skift sproget for tts på din konto",
+      "options": {
+        "language": {
+          "name": "sprog",
+          "description": "sproget der skal bruges"
+        }
+      }
+    },
+    "leave": {
+      "name": "forlad",
+      "description": "afbryder botten fra stemmekanalen"
+    },
+    "name": {
+      "name": "navn",
+      "description": "indstil dit visningsnavn eller administrer navnefiltre",
+      "subcommands": {
+        "set": {
+          "name": "indstil",
+          "description": "indstil dit visningsnavn",
+          "options": {
+            "string": {
+              "name": "tekst",
+              "description": "navnet der skal indstilles"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "administrer navnefiltre",
+          "subcommands": {
+            "add": {
+              "name": "tilføj",
+              "description": "tilføj et nyt filter",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "filterteksten eller regex der skal tilføjes"
+                }
+              }
+            },
+            "list": {
+              "name": "liste",
+              "description": "vis alle aktive filtre"
+            },
+            "edit": {
+              "name": "rediger",
+              "description": "rediger et eksisterende filter",
+              "options": {
+                "old": {
+                  "name": "gammel",
+                  "description": "det eksisterende filter der skal redigeres"
+                },
+                "new": {
+                  "name": "ny",
+                  "description": "det nye erstatningsfilter"
+                }
+              }
+            },
+            "remove": {
+              "name": "fjern",
+              "description": "fjern et filter",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "filterteksten eller regex der skal fjernes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "nulstil",
+      "description": "nulstiller dine tts-indstillinger til standard",
+      "options": {
+        "option": {
+          "name": "indstilling",
+          "description": "den specifikke indstilling der skal nulstilles"
+        }
+      }
+    },
+    "settings": {
+      "name": "indstillinger",
+      "description": "tjek dine aktuelle tts-indstillinger"
+    },
+    "speed": {
+      "name": "hastighed",
+      "description": "skift hastigheden for tts på din konto",
+      "options": {
+        "value": {
+          "name": "værdi",
+          "description": "hastighedsmultiplikatoren (0.5 til 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "administrer dine tts-præferencer",
+      "options": {
+        "on": {
+          "name": "til",
+          "description": "tænd tts for dine beskeder"
+        },
+        "off": {
+          "name": "fra",
+          "description": "sluk tts for dine beskeder"
+        }
+      }
+    },
+    "voice": {
+      "name": "stemme",
+      "description": "skift stemmen for din konto"
+    }
+  }
+}

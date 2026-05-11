@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "rensa",
+      "description": "rensar tts-kön för denna server"
+    },
+    "restrict": {
+      "name": "begränsa",
+      "description": "inaktivera tts för användare som inte är mutade"
+    },
+    "skip": {
+      "name": "hoppa-över",
+      "description": "hoppar över det meddelande som spelas för tillfället"
+    },
+    "unrestrict": {
+      "name": "häv-begränsning",
+      "description": "aktivera tts för användare som inte är mutade"
+    },
+    "guild": {
+      "name": "server",
+      "description": "hantera serverspecifika inställningar",
+      "groups": {
+        "lang": {
+          "name": "språk",
+          "description": "hantera serverns standardspråk",
+          "subcommands": {
+            "set": {
+              "name": "ställ-in",
+              "description": "ställ in standardspråket för servern",
+              "options": {
+                "language": {
+                  "name": "språk",
+                  "description": "språket som ska ställas in"
+                }
+              }
+            },
+            "reset": {
+              "name": "återställ",
+              "description": "återställ standardspråket för servern"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "meddelande",
+      "description": "hantera filter för meddelandeinnehåll",
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "hantera innehållsfilter",
+          "subcommands": {
+            "add": {
+              "name": "lägg-till",
+              "description": "lägg till ett nytt filter",
+              "options": {
+                "string": {
+                  "name": "sträng",
+                  "description": "filtertexten eller regexet som ska läggas till"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "lista alla aktiva filter"
+            },
+            "edit": {
+              "name": "redigera",
+              "description": "redigera ett befintligt filter",
+              "options": {
+                "old": {
+                  "name": "gammal",
+                  "description": "det befintliga filtret som ska redigeras"
+                },
+                "new": {
+                  "name": "ny",
+                  "description": "det nya ersättningsfiltret"
+                }
+              }
+            },
+            "remove": {
+              "name": "ta-bort",
+              "description": "ta bort ett filter",
+              "options": {
+                "string": {
+                  "name": "sträng",
+                  "description": "filtertexten eller regexet som ska tas bort"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanal",
+      "description": "hantera serverns alternativa chattkanal",
+      "subcommands": {
+        "set": {
+          "name": "ställ-in",
+          "description": "ställ in en kanal som alternativ chatt",
+          "options": {
+            "channel": {
+              "name": "kanal",
+              "description": "kanalen som ska ställas in"
+            }
+          }
+        },
+        "remove": {
+          "name": "ta-bort",
+          "description": "ta bort den nuvarande alternativa chattkanalen"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "hjälp",
+      "description": "ger information om kommandon",
+      "options": {
+        "command": {
+          "name": "kommando",
+          "description": "kommandot du vill ha information om"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "ger information om botten"
+    },
+    "lang": {
+      "name": "språk",
+      "description": "ändra tts-språket för ditt konto",
+      "options": {
+        "language": {
+          "name": "språk",
+          "description": "språket som ska användas"
+        }
+      }
+    },
+    "leave": {
+      "name": "lämna",
+      "description": "kopplar bort botten från röstkanalen"
+    },
+    "name": {
+      "name": "namn",
+      "description": "ställ in ditt visningsnamn eller hantera namnfilter",
+      "subcommands": {
+        "set": {
+          "name": "ställ-in",
+          "description": "ställ in ditt visningsnamn",
+          "options": {
+            "string": {
+              "name": "sträng",
+              "description": "namnet som ska ställas in"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filter",
+          "description": "hantera namnfilter",
+          "subcommands": {
+            "add": {
+              "name": "lägg-till",
+              "description": "lägg till ett nytt filter",
+              "options": {
+                "string": {
+                  "name": "sträng",
+                  "description": "filtertexten eller regexet som ska läggas till"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "lista alla aktiva filter"
+            },
+            "edit": {
+              "name": "redigera",
+              "description": "redigera ett befintligt filter",
+              "options": {
+                "old": {
+                  "name": "gammal",
+                  "description": "det befintliga filtret som ska redigeras"
+                },
+                "new": {
+                  "name": "ny",
+                  "description": "det nya ersättningsfiltret"
+                }
+              }
+            },
+            "remove": {
+              "name": "ta-bort",
+              "description": "ta bort ett filter",
+              "options": {
+                "string": {
+                  "name": "sträng",
+                  "description": "filtertexten eller regexet som ska tas bort"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "återställ",
+      "description": "återställer dina tts-inställningar till standard",
+      "options": {
+        "option": {
+          "name": "alternativ",
+          "description": "den specifika inställningen som ska återställas"
+        }
+      }
+    },
+    "settings": {
+      "name": "inställningar",
+      "description": "kontrollera dina nuvarande tts-inställningar"
+    },
+    "speed": {
+      "name": "hastighet",
+      "description": "ändra hastigheten på tts för ditt konto",
+      "options": {
+        "value": {
+          "name": "värde",
+          "description": "hastighetsmultiplikatorn (0.5 till 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "hantera dina tts-inställningar",
+      "options": {
+        "on": {
+          "name": "på",
+          "description": "slå på tts för dina meddelanden"
+        },
+        "off": {
+          "name": "av",
+          "description": "slå av tts för dina meddelanden"
+        }
+      }
+    },
+    "voice": {
+      "name": "röst",
+      "description": "ändra rösten för ditt konto"
+    }
+  }
+}

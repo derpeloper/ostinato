@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.4.1] - 2026-05-11
+
+### Added
+
+- **Supertonic 3 Language Expansion**: TTS now natively supports **31 languages** — Arabic, Bulgarian, Czech, Danish, German, Greek, English, Spanish, Estonian, Finnish, French, Hindi, Croatian, Hungarian, Indonesian, Italian, Japanese, Korean, Lithuanian, Latvian, Dutch, Polish, Portuguese, Romanian, Russian, Slovak, Slovenian, Swedish, Turkish, Ukrainian, and Vietnamese.
+- **19 new Discord localizations**: Danish, German, Croatian, Italian, Lithuanian, Hungarian, Dutch, Polish, Romanian, Finnish, Swedish, Vietnamese, Czech, Greek, Bulgarian, Russian, Ukrainian, Japanese, and Hindi. Bot now supports **24 Discord locales**.
+- **`autoIdleDuration` config setting**: Self-hosters can now customize how long the bot waits before going idle (default: 300 seconds).
+- **Unicode emoji text descriptions**: Common emojis in messages (e.g., 😊) are now read as their names ("smiling face") instead of being silently dropped.
+- **Channel mention resolution**: `<#channel_id>` mentions are now read as the channel name instead of raw IDs.
+- **`/voice` command overhaul**: New interactive UI with a select menu, audio previews, and a confirm button — replacing the old autocomplete-based selection.
+
+### Changed
+
+- **Language detection migrated from `eld` to `franc`**: Improved multilingual detection with ISO 639-3 → 639-1 mapping layer for Supertonic compatibility.
+- **`/lang` and `/guild lang set` autocomplete** now lists all 31 supported languages (previously 5).
+- **Sticker and custom emoji names** now strip underscores (e.g., `cool_emoji` → `cool emoji`).
+- **Bot replies migrated to Container components** for a cleaner, more modern look across all commands.
+- **README** updated to reflect Supertonic 3 and 31-language support.
+
+### Fixed
+
+- Unicode emojis no longer cause silent gaps or engine instability during TTS playback.
+- Channel mentions no longer appear as raw Discord formatting in speech output.
+
 ## [2.1.0] - 2026-05-07
 
 ### Added

@@ -3,7 +3,7 @@
  * @description allows users to opt-in or opt-out of tts processing.
  * "to speak or not to speak, that is the question."
  */
-const { SlashCommandBuilder, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, MessageFlags, ContainerBuilder } = require('discord.js');
 const db = require('../../data/db');
 const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 
@@ -36,22 +36,22 @@ module.exports = {
 
             if (subcommand === 'off') {
                 if (row) {
-                    await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.alreadyOff'), flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.public.tts.alreadyOff')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                 } else {
                     db.prepare('INSERT OR IGNORE INTO disabled (user) VALUES (?)').run(userId);
-                    await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.turnedOff'), flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.public.tts.turnedOff')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                 }
             } else if (subcommand === 'on') {
                 if (!row) {
-                    await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.alreadyOn'), flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.public.tts.alreadyOn')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                 } else {
                     db.prepare('DELETE FROM disabled WHERE user = ?').run(userId);
-                    await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.turnedOn'), flags: MessageFlags.Ephemeral });
+                    await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.public.tts.turnedOn')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                 }
             }
         } catch (error) {
             console.error('[TTS Command] Error:', error);
-            await interaction.reply({ content: localize(interaction.locale, 'responses.public.tts.error'), flags: MessageFlags.Ephemeral });
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.public.tts.error')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
         }
     }
 }

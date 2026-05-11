@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "svuota",
+      "description": "svuota la coda tts per questo server"
+    },
+    "restrict": {
+      "name": "limita",
+      "description": "disabilita il tts per gli utenti che non sono silenziati"
+    },
+    "skip": {
+      "name": "salta",
+      "description": "salta il messaggio attualmente in riproduzione"
+    },
+    "unrestrict": {
+      "name": "sblocca",
+      "description": "abilita il tts per gli utenti che non sono silenziati"
+    },
+    "guild": {
+      "name": "server",
+      "description": "gestisci le impostazioni specifiche del server",
+      "groups": {
+        "lang": {
+          "name": "lingua",
+          "description": "gestisci la lingua predefinita del server",
+          "subcommands": {
+            "set": {
+              "name": "imposta",
+              "description": "imposta la lingua predefinita per il server",
+              "options": {
+                "language": {
+                  "name": "lingua",
+                  "description": "la lingua da impostare"
+                }
+              }
+            },
+            "reset": {
+              "name": "reimposta",
+              "description": "reimposta la lingua predefinita per il server"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "messaggio",
+      "description": "gestisci i filtri dei contenuti dei messaggi",
+      "groups": {
+        "filter": {
+          "name": "filtro",
+          "description": "gestisci i filtri dei contenuti",
+          "subcommands": {
+            "add": {
+              "name": "aggiungi",
+              "description": "aggiungi un nuovo filtro",
+              "options": {
+                "string": {
+                  "name": "testo",
+                  "description": "il testo del filtro o regex da aggiungere"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "elenca tutti i filtri attivi"
+            },
+            "edit": {
+              "name": "modifica",
+              "description": "modifica un filtro esistente",
+              "options": {
+                "old": {
+                  "name": "vecchio",
+                  "description": "il filtro esistente da modificare"
+                },
+                "new": {
+                  "name": "nuovo",
+                  "description": "il nuovo filtro sostitutivo"
+                }
+              }
+            },
+            "remove": {
+              "name": "rimuovi",
+              "description": "rimuovi un filtro",
+              "options": {
+                "string": {
+                  "name": "testo",
+                  "description": "il testo del filtro o regex da rimuovere"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "canale",
+      "description": "gestisci il canale chat alternativo del server",
+      "subcommands": {
+        "set": {
+          "name": "imposta",
+          "description": "imposta un canale come chat alternativa",
+          "options": {
+            "channel": {
+              "name": "canale",
+              "description": "il canale da impostare"
+            }
+          }
+        },
+        "remove": {
+          "name": "rimuovi",
+          "description": "rimuovi l'attuale canale chat alternativo"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "aiuto",
+      "description": "fornisce informazioni sui comandi",
+      "options": {
+        "command": {
+          "name": "comando",
+          "description": "il comando di cui ottenere informazioni"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "fornisce informazioni sul bot"
+    },
+    "lang": {
+      "name": "lingua",
+      "description": "cambia la lingua del tts per il tuo account",
+      "options": {
+        "language": {
+          "name": "lingua",
+          "description": "la lingua da usare"
+        }
+      }
+    },
+    "leave": {
+      "name": "esci",
+      "description": "disconnette il bot dal canale vocale"
+    },
+    "name": {
+      "name": "nome",
+      "description": "imposta il tuo nome visualizzato o gestisci i filtri dei nomi",
+      "subcommands": {
+        "set": {
+          "name": "imposta",
+          "description": "imposta il tuo nome visualizzato",
+          "options": {
+            "string": {
+              "name": "testo",
+              "description": "il nome da impostare"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filtro",
+          "description": "gestisci i filtri dei nomi",
+          "subcommands": {
+            "add": {
+              "name": "aggiungi",
+              "description": "aggiungi un nuovo filtro",
+              "options": {
+                "string": {
+                  "name": "testo",
+                  "description": "il testo del filtro o regex da aggiungere"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "elenca tutti i filtri attivi"
+            },
+            "edit": {
+              "name": "modifica",
+              "description": "modifica un filtro esistente",
+              "options": {
+                "old": {
+                  "name": "vecchio",
+                  "description": "il filtro esistente da modificare"
+                },
+                "new": {
+                  "name": "nuovo",
+                  "description": "il nuovo filtro sostitutivo"
+                }
+              }
+            },
+            "remove": {
+              "name": "rimuovi",
+              "description": "rimuovi un filtro",
+              "options": {
+                "string": {
+                  "name": "testo",
+                  "description": "il testo del filtro o regex da rimuovere"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "reimposta",
+      "description": "reimposta le tue impostazioni tts ai valori predefiniti",
+      "options": {
+        "option": {
+          "name": "opzione",
+          "description": "l'impostazione specifica da reimpostare"
+        }
+      }
+    },
+    "settings": {
+      "name": "impostazioni",
+      "description": "controlla le tue attuali impostazioni tts"
+    },
+    "speed": {
+      "name": "velocità",
+      "description": "cambia la velocità del tts per il tuo account",
+      "options": {
+        "value": {
+          "name": "valore",
+          "description": "il moltiplicatore di velocità (da 0.5 a 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "gestisci le tue preferenze tts",
+      "options": {
+        "on": {
+          "name": "attiva",
+          "description": "attiva il tts per i tuoi messaggi"
+        },
+        "off": {
+          "name": "disattiva",
+          "description": "disattiva il tts per i tuoi messaggi"
+        }
+      }
+    },
+    "voice": {
+      "name": "voce",
+      "description": "cambia la voce per il tuo account"
+    }
+  }
+}

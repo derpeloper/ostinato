@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "xóa",
+      "description": "xóa hàng chờ tts cho máy chủ này"
+    },
+    "restrict": {
+      "name": "giới-hạn",
+      "description": "tắt tts đối với người dùng không bị tắt tiếng"
+    },
+    "skip": {
+      "name": "bỏ-qua",
+      "description": "bỏ qua tin nhắn đang phát"
+    },
+    "unrestrict": {
+      "name": "bỏ-giới-hạn",
+      "description": "bật tts cho người dùng không bị tắt tiếng"
+    },
+    "guild": {
+      "name": "máy-chủ",
+      "description": "quản lý cài đặt máy chủ",
+      "groups": {
+        "lang": {
+          "name": "ngôn-ngữ",
+          "description": "quản lý ngôn ngữ mặc định của máy chủ",
+          "subcommands": {
+            "set": {
+              "name": "đặt",
+              "description": "đặt ngôn ngữ mặc định cho máy chủ",
+              "options": {
+                "language": {
+                  "name": "ngôn-ngữ",
+                  "description": "ngôn ngữ cần đặt"
+                }
+              }
+            },
+            "reset": {
+              "name": "đặt-lại",
+              "description": "đặt lại ngôn ngữ mặc định cho máy chủ"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "tin-nhắn",
+      "description": "quản lý bộ lọc nội dung tin nhắn",
+      "groups": {
+        "filter": {
+          "name": "bộ-lọc",
+          "description": "quản lý bộ lọc nội dung",
+          "subcommands": {
+            "add": {
+              "name": "thêm",
+              "description": "thêm bộ lọc mới",
+              "options": {
+                "string": {
+                  "name": "chuỗi",
+                  "description": "văn bản bộ lọc hoặc regex cần thêm"
+                }
+              }
+            },
+            "list": {
+              "name": "danh-sách",
+              "description": "liệt kê tất cả các bộ lọc đang hoạt động"
+            },
+            "edit": {
+              "name": "sửa",
+              "description": "sửa bộ lọc hiện có",
+              "options": {
+                "old": {
+                  "name": "cũ",
+                  "description": "bộ lọc hiện có cần sửa"
+                },
+                "new": {
+                  "name": "mới",
+                  "description": "bộ lọc thay thế mới"
+                }
+              }
+            },
+            "remove": {
+              "name": "xóa",
+              "description": "xóa một bộ lọc",
+              "options": {
+                "string": {
+                  "name": "chuỗi",
+                  "description": "văn bản bộ lọc hoặc regex cần xóa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kênh",
+      "description": "quản lý kênh chat thay thế của máy chủ",
+      "subcommands": {
+        "set": {
+          "name": "đặt",
+          "description": "đặt một kênh làm kênh chat thay thế",
+          "options": {
+            "channel": {
+              "name": "kênh",
+              "description": "kênh cần đặt"
+            }
+          }
+        },
+        "remove": {
+          "name": "xóa",
+          "description": "xóa kênh chat thay thế hiện tại"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "trợ-giúp",
+      "description": "cung cấp thông tin về các lệnh",
+      "options": {
+        "command": {
+          "name": "lệnh",
+          "description": "lệnh cần lấy thông tin"
+        }
+      }
+    },
+    "info": {
+      "name": "thông-tin",
+      "description": "cung cấp thông tin về bot"
+    },
+    "lang": {
+      "name": "ngôn-ngữ",
+      "description": "thay đổi ngôn ngữ tts cho tài khoản của bạn",
+      "options": {
+        "language": {
+          "name": "ngôn-ngữ",
+          "description": "ngôn ngữ cần sử dụng"
+        }
+      }
+    },
+    "leave": {
+      "name": "rời",
+      "description": "ngắt kết nối bot khỏi kênh thoại"
+    },
+    "name": {
+      "name": "tên",
+      "description": "đặt tên hiển thị hoặc quản lý bộ lọc tên",
+      "subcommands": {
+        "set": {
+          "name": "đặt",
+          "description": "đặt tên hiển thị của bạn",
+          "options": {
+            "string": {
+              "name": "chuỗi",
+              "description": "tên cần đặt"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "bộ-lọc",
+          "description": "quản lý bộ lọc tên",
+          "subcommands": {
+            "add": {
+              "name": "thêm",
+              "description": "thêm bộ lọc mới",
+              "options": {
+                "string": {
+                  "name": "chuỗi",
+                  "description": "văn bản bộ lọc hoặc regex cần thêm"
+                }
+              }
+            },
+            "list": {
+              "name": "danh-sách",
+              "description": "liệt kê tất cả các bộ lọc đang hoạt động"
+            },
+            "edit": {
+              "name": "sửa",
+              "description": "sửa bộ lọc hiện có",
+              "options": {
+                "old": {
+                  "name": "cũ",
+                  "description": "bộ lọc hiện có cần sửa"
+                },
+                "new": {
+                  "name": "mới",
+                  "description": "bộ lọc thay thế mới"
+                }
+              }
+            },
+            "remove": {
+              "name": "xóa",
+              "description": "xóa một bộ lọc",
+              "options": {
+                "string": {
+                  "name": "chuỗi",
+                  "description": "văn bản bộ lọc hoặc regex cần xóa"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "đặt-lại",
+      "description": "đặt lại cài đặt tts của bạn về mặc định",
+      "options": {
+        "option": {
+          "name": "tùy-chọn",
+          "description": "cài đặt cụ thể cần đặt lại"
+        }
+      }
+    },
+    "settings": {
+      "name": "cài-đặt",
+      "description": "kiểm tra cài đặt tts hiện tại của bạn"
+    },
+    "speed": {
+      "name": "tốc-độ",
+      "description": "thay đổi tốc độ tts cho tài khoản của bạn",
+      "options": {
+        "value": {
+          "name": "giá-trị",
+          "description": "hệ số tốc độ (0.5 đến 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "quản lý tùy chọn tts của bạn",
+      "options": {
+        "on": {
+          "name": "bật",
+          "description": "bật tts cho tin nhắn của bạn"
+        },
+        "off": {
+          "name": "tắt",
+          "description": "tắt tts cho tin nhắn của bạn"
+        }
+      }
+    },
+    "voice": {
+      "name": "giọng-nói",
+      "description": "thay đổi giọng nói cho tài khoản của bạn"
+    }
+  }
+}

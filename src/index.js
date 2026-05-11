@@ -66,7 +66,6 @@ require('./data/db');
     
     client.handleEvents(eventFiles, "./src/events");
     client.handleCommands(commandFolders, "./src/commands");
-    
     client.login(token);
 
     process.on('unhandledRejection', error => {

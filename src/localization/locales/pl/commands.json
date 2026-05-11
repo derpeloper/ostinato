@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "wyczyść",
+      "description": "czyści kolejkę tts dla tego serwera"
+    },
+    "restrict": {
+      "name": "ogranicz",
+      "description": "wyłącza tts dla użytkowników, którzy nie są wyciszeni"
+    },
+    "skip": {
+      "name": "pomiń",
+      "description": "pomija aktualnie odtwarzaną wiadomość"
+    },
+    "unrestrict": {
+      "name": "zdejmij-ograniczenie",
+      "description": "włącza tts dla użytkowników, którzy nie są wyciszeni"
+    },
+    "guild": {
+      "name": "serwer",
+      "description": "zarządzaj ustawieniami serwera",
+      "groups": {
+        "lang": {
+          "name": "język",
+          "description": "zarządzaj domyślnym językiem serwera",
+          "subcommands": {
+            "set": {
+              "name": "ustaw",
+              "description": "ustawia domyślny język dla serwera",
+              "options": {
+                "language": {
+                  "name": "język",
+                  "description": "język do ustawienia"
+                }
+              }
+            },
+            "reset": {
+              "name": "resetuj",
+              "description": "resetuje domyślny język dla serwera"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "wiadomość",
+      "description": "zarządzaj filtrami treści wiadomości",
+      "groups": {
+        "filter": {
+          "name": "filtr",
+          "description": "zarządzaj filtrami treści",
+          "subcommands": {
+            "add": {
+              "name": "dodaj",
+              "description": "dodaje nowy filtr",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "tekst filtra lub wyrażenie regularne do dodania"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "lista wszystkich aktywnych filtrów"
+            },
+            "edit": {
+              "name": "edytuj",
+              "description": "edytuje istniejący filtr",
+              "options": {
+                "old": {
+                  "name": "stary",
+                  "description": "istniejący filtr do edycji"
+                },
+                "new": {
+                  "name": "nowy",
+                  "description": "nowy filtr zastępczy"
+                }
+              }
+            },
+            "remove": {
+              "name": "usuń",
+              "description": "usuwa filtr",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "tekst filtra lub wyrażenie regularne do usunięcia"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanał",
+      "description": "zarządzaj alternatywnym kanałem czatu serwera",
+      "subcommands": {
+        "set": {
+          "name": "ustaw",
+          "description": "ustawia kanał jako alternatywny czat",
+          "options": {
+            "channel": {
+              "name": "kanał",
+              "description": "kanał do ustawienia"
+            }
+          }
+        },
+        "remove": {
+          "name": "usuń",
+          "description": "usuwa obecny alternatywny kanał czatu"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "pomoc",
+      "description": "dostarcza informacji o komendach",
+      "options": {
+        "command": {
+          "name": "komenda",
+          "description": "komenda, o której chcesz uzyskać informacje"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "dostarcza informacji o bocie"
+    },
+    "lang": {
+      "name": "język",
+      "description": "zmienia język tts dla twojego konta",
+      "options": {
+        "language": {
+          "name": "język",
+          "description": "język do użycia"
+        }
+      }
+    },
+    "leave": {
+      "name": "opuść",
+      "description": "rozłącza bota z kanału głosowego"
+    },
+    "name": {
+      "name": "nazwa",
+      "description": "ustaw swoją nazwę wyświetlaną lub zarządzaj filtrami nazw",
+      "subcommands": {
+        "set": {
+          "name": "ustaw",
+          "description": "ustawia twoją nazwę wyświetlaną",
+          "options": {
+            "string": {
+              "name": "tekst",
+              "description": "nazwa do ustawienia"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filtr",
+          "description": "zarządzaj filtrami nazw",
+          "subcommands": {
+            "add": {
+              "name": "dodaj",
+              "description": "dodaje nowy filtr",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "tekst filtra lub wyrażenie regularne do dodania"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "lista wszystkich aktywnych filtrów"
+            },
+            "edit": {
+              "name": "edytuj",
+              "description": "edytuje istniejący filtr",
+              "options": {
+                "old": {
+                  "name": "stary",
+                  "description": "istniejący filtr do edycji"
+                },
+                "new": {
+                  "name": "nowy",
+                  "description": "nowy filtr zastępczy"
+                }
+              }
+            },
+            "remove": {
+              "name": "usuń",
+              "description": "usuwa filtr",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "tekst filtra lub wyrażenie regularne do usunięcia"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "resetuj",
+      "description": "resetuje twoje ustawienia tts do domyślnych",
+      "options": {
+        "option": {
+          "name": "opcja",
+          "description": "konkretne ustawienie do zresetowania"
+        }
+      }
+    },
+    "settings": {
+      "name": "ustawienia",
+      "description": "sprawdź swoje obecne ustawienia tts"
+    },
+    "speed": {
+      "name": "prędkość",
+      "description": "zmienia prędkość tts dla twojego konta",
+      "options": {
+        "value": {
+          "name": "wartość",
+          "description": "mnożnik prędkości (0.5 do 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "zarządzaj swoimi preferencjami tts",
+      "options": {
+        "on": {
+          "name": "włącz",
+          "description": "włącza tts dla twoich wiadomości"
+        },
+        "off": {
+          "name": "wyłącz",
+          "description": "wyłącza tts dla twoich wiadomości"
+        }
+      }
+    },
+    "voice": {
+      "name": "głos",
+      "description": "zmienia głos dla twojego konta"
+    }
+  }
+}

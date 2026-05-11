@@ -26,7 +26,8 @@ module.exports = {
         const baseStatus = config.status || 'online';
         const actType = activityTypeMap[config.activityType] ?? ActivityType.Custom;
         const autoIdle = config.autoIdle !== undefined ? config.autoIdle : true;
-        const idleThreshold = 5 * 60 * 1000;
+        const idleDuration = config.autoIdleDuration !== undefined ? config.autoIdleDuration : 300;
+        const idleThreshold = idleDuration * 1000;
 
         const statusMap = {
             'online': PresenceUpdateStatus.Online,

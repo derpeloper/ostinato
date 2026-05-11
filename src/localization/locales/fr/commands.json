@@ -13,19 +13,19 @@
       "description": "passe le message actuellement en cours de lecture"
     },
     "unrestrict": {
-      "name": "retablir",
+      "name": "lever-restriction",
       "description": "active le tts pour les utilisateurs qui ne sont pas en sourdine"
     },
     "guild": {
       "name": "serveur",
-      "description": "gérer les paramètres du serveur",
+      "description": "gérer les paramètres spécifiques au serveur",
       "groups": {
         "lang": {
           "name": "langue",
           "description": "gérer la langue par défaut du serveur",
           "subcommands": {
             "set": {
-              "name": "definir",
+              "name": "définir",
               "description": "définir la langue par défaut du serveur",
               "options": {
                 "language": {
@@ -35,7 +35,7 @@
               }
             },
             "reset": {
-              "name": "reinitialiser",
+              "name": "réinitialiser",
               "description": "réinitialiser la langue par défaut du serveur"
             }
           }
@@ -97,7 +97,7 @@
       "description": "gérer le salon de chat alternatif du serveur",
       "subcommands": {
         "set": {
-          "name": "definir",
+          "name": "définir",
           "description": "définir un salon comme chat alternatif",
           "options": {
             "channel": {
@@ -144,10 +144,10 @@
     },
     "name": {
       "name": "nom",
-      "description": "définir votre nom ou gérer les filtres de noms",
+      "description": "définir votre nom d'affichage ou gérer les filtres de noms",
       "subcommands": {
         "set": {
-          "name": "definir",
+          "name": "définir",
           "description": "définir votre nom d'affichage",
           "options": {
             "string": {
@@ -205,7 +205,7 @@
       }
     },
     "reset": {
-      "name": "reinitialiser",
+      "name": "réinitialiser",
       "description": "réinitialise vos paramètres tts par défaut",
       "options": {
         "option": {
@@ -215,7 +215,7 @@
       }
     },
     "settings": {
-      "name": "parametres",
+      "name": "paramètres",
       "description": "vérifie vos paramètres tts actuels"
     },
     "speed": {
@@ -237,20 +237,14 @@
           "description": "active le tts pour vos messages"
         },
         "off": {
-          "name": "desactiver",
+          "name": "désactiver",
           "description": "désactive le tts pour vos messages"
         }
       }
     },
     "voice": {
       "name": "voix",
-      "description": "modifie la voix pour votre compte",
-      "options": {
-        "voice": {
-          "name": "voix",
-          "description": "la voix à utiliser"
-        }
-      }
+      "description": "modifie la voix pour votre compte"
     }
   }
 }

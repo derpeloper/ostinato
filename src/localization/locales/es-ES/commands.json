@@ -209,7 +209,7 @@
       "description": "restablece tus ajustes de tts a los valores predeterminados",
       "options": {
         "option": {
-          "name": "opcion",
+          "name": "opción",
           "description": "el ajuste específico a restablecer"
         }
       }
@@ -244,13 +244,7 @@
     },
     "voice": {
       "name": "voz",
-      "description": "cambia la voz para tu cuenta",
-      "options": {
-        "voice": {
-          "name": "voz",
-          "description": "la voz a usar"
-        }
-      }
+      "description": "cambia la voz para tu cuenta"
     }
   }
 }

@@ -3,7 +3,7 @@
  * @description enables tts for users who arent muted.
  * "freedom! horrible, noisy freedom."
  */
-const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags, ContainerBuilder } = require('discord.js');
 const db = require('../../data/db');
 const { localize, getCommandLocalizations } = require('../../localization/localize');
 const ostinato = require('../../services/OstinatoTTS');
@@ -22,10 +22,10 @@ module.exports = {
             const stmt = db.prepare('INSERT OR REPLACE INTO restrictions (guild, restricted) VALUES (?, 0)');
             stmt.run(guildId);
             ostinato.invalidateCache(null, guildId, 'restricted');
-            await interaction.reply({ content: localize(interaction.locale, 'responses.mods.unrestrict.success'), flags: MessageFlags.Ephemeral });
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(interaction.locale, 'responses.mods.unrestrict.success')}`))], flags: [ MessageFlags.Ephemeral, MessageFlags.IsComponentsV2 ] });
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: localize(interaction.locale, 'responses.mods.unrestrict.error'), flags: MessageFlags.Ephemeral });
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(interaction.locale, 'responses.mods.unrestrict.error')}`))], flags: [ MessageFlags.Ephemeral, MessageFlags.IsComponentsV2 ] });
         }
     }
 }

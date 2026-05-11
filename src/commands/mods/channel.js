@@ -3,7 +3,7 @@
  * @description manage the guild's alternative chat channel for tts.
  * "talk here, heard there."
  */
-const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags, ChannelType } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags, ContainerBuilder, ChannelType } = require('discord.js');
 const db = require('../../data/db');
 const { localize, getCommandLocalizations, getSubcommandLocalizations, getDeepOptionLocalizations } = require('../../localization/localize');
 
@@ -38,23 +38,22 @@ module.exports = {
         const subcommand = interaction.options.getSubcommand();
         const guildId = interaction.guild.id;
         const locale = interaction.locale;
-
         try {
             if (subcommand === 'set') {
                 const channel = interaction.options.getChannel('channel');
                 db.prepare('INSERT OR REPLACE INTO alt_channels (guild, channel) VALUES (?, ?)').run(guildId, channel.id);
-                await interaction.reply({ content: localize(locale, 'responses.mods.channel.success', { channel: `<#${channel.id}>` }), flags: MessageFlags.Ephemeral });
-
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(locale, 'responses.mods.channel.success', {channel: `<#${channel.id}>`})}`))], flags: [ MessageFlags.Ephemeral, MessageFlags.IsComponentsV2 ] });
+// responses.mods.channel.noneSet
             } else if (subcommand === 'remove') {
                 const result = db.prepare('DELETE FROM alt_channels WHERE guild = ?').run(guildId);
                 if (result.changes === 0) {
-                    return await interaction.reply({ content: localize(locale, 'responses.mods.channel.noneSet'), flags: MessageFlags.Ephemeral });
+                    return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(locale, 'responses.mods.channel.noneSet')}`))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                 }
-                await interaction.reply({ content: localize(locale, 'responses.mods.channel.removed'), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(locale, 'responses.mods.channel.removed')}`))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             }
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: localize(locale, 'responses.mods.channel.error'), flags: MessageFlags.Ephemeral });
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(locale, 'responses.mods.channel.error')}`))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
         }
     }
 }

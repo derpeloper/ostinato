@@ -30,11 +30,27 @@ let ttsEngine = null;
 let voiceStyles = [];
 let voiceStyleMap = {};
 let helper = null;
-let eldModule = null;
-let detector = null;
+let francDetect = null;
 let initialized = false;
 
-const supportedLangs = ['en', 'pt', 'ko', 'fr', 'es'];
+const supportedLangs = [
+    'en', 'ko', 'ja', 'ar', 'bg', 'cs', 'da', 'de', 'el', 'es',
+    'et', 'fi', 'fr', 'hi', 'hr', 'hu', 'id', 'it', 'lt', 'lv',
+    'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'tr', 'uk', 'vi'
+];
+
+const iso3to1 = {
+    'eng': 'en', 'kor': 'ko', 'jpn': 'ja', 'ara': 'ar', 'bul': 'bg',
+    'ces': 'cs', 'dan': 'da', 'deu': 'de', 'ell': 'el', 'spa': 'es',
+    'est': 'et', 'fin': 'fi', 'fra': 'fr', 'hin': 'hi', 'hrv': 'hr',
+    'hun': 'hu', 'ind': 'id', 'ita': 'it', 'lit': 'lt', 'lav': 'lv',
+    'nld': 'nl', 'pol': 'pl', 'por': 'pt', 'ron': 'ro', 'rus': 'ru',
+    'slk': 'sk', 'slv': 'sl', 'swe': 'sv', 'tur': 'tr', 'ukr': 'uk',
+    'vie': 'vi'
+};
+
+const supportedLangs3 = Object.keys(iso3to1);
+
 let sampleRate = 24000;
 
 const supertonicPath = path.join(process.cwd(), 'supertonic');
@@ -82,15 +98,8 @@ async function initialize() {
         const helperPath = path.join(supertonicPath, 'nodejs', 'helper.js');
         helper = await import('file://' + helperPath.replace(/\\/g, '/'));
         
-        eldModule = await import('eld');
-        detector = eldModule.default || eldModule.eld || eldModule;
-        
-        if (detector && typeof detector.load === 'function') {
-            await detector.load('medium');
-            if (typeof detector.setLanguageSubset === 'function') {
-                detector.setLanguageSubset(supportedLangs);
-            }
-        }
+        const francModule = await import('franc');
+        francDetect = francModule.franc || francModule.default;
 
         ttsEngine = await helper.loadTextToSpeech(onnxPath, false);
         sampleRate = ttsEngine.sampleRate;
@@ -117,9 +126,10 @@ async function initialize() {
 }
 
 function detectLanguage(text) {
-    if (!detector) return null;
-    const result = detector.detect(text);
-    return result;
+    if (!francDetect) return null;
+    const result = francDetect(text, { only: supportedLangs3 });
+    if (result === 'und') return null;
+    return iso3to1[result] || null;
 }
 
 function getVoiceStyle(userId, voiceId) {
@@ -170,8 +180,7 @@ parentPort.on('message', async (msg) => {
             if (forcedLang && supportedLangs.includes(forcedLang)) {
                 lang = forcedLang;
             } else {
-                const detection = detectLanguage(text);
-                detectedLang = detection ? detection.language : null;
+                detectedLang = detectLanguage(text);
                 
                 let defaultLang = config.defaultLang;
                 if (defaultLang === undefined || defaultLang === null) {

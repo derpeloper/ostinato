@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "消去",
+      "description": "このサーバーのttsキューを消去します"
+    },
+    "restrict": {
+      "name": "制限",
+      "description": "ミュートされていないユーザーのttsを無効にします"
+    },
+    "skip": {
+      "name": "スキップ",
+      "description": "現在再生中のメッセージをスキップします"
+    },
+    "unrestrict": {
+      "name": "制限解除",
+      "description": "ミュートされていないユーザーのttsを有効にします"
+    },
+    "guild": {
+      "name": "サーバー",
+      "description": "サーバー固有の設定を管理します",
+      "groups": {
+        "lang": {
+          "name": "言語",
+          "description": "サーバーのデフォルト言語を管理します",
+          "subcommands": {
+            "set": {
+              "name": "設定",
+              "description": "サーバーのデフォルト言語を設定します",
+              "options": {
+                "language": {
+                  "name": "言語",
+                  "description": "設定する言語"
+                }
+              }
+            },
+            "reset": {
+              "name": "リセット",
+              "description": "サーバーのデフォルト言語をリセットします"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "メッセージ",
+      "description": "メッセージ内容のフィルターを管理します",
+      "groups": {
+        "filter": {
+          "name": "フィルター",
+          "description": "内容フィルターを管理します",
+          "subcommands": {
+            "add": {
+              "name": "追加",
+              "description": "新しいフィルターを追加します",
+              "options": {
+                "string": {
+                  "name": "文字列",
+                  "description": "追加するフィルターテキストまたは正規表現"
+                }
+              }
+            },
+            "list": {
+              "name": "一覧",
+              "description": "すべてのアクティブなフィルターを表示します"
+            },
+            "edit": {
+              "name": "編集",
+              "description": "既存のフィルターを編集します",
+              "options": {
+                "old": {
+                  "name": "旧",
+                  "description": "編集する既存のフィルター"
+                },
+                "new": {
+                  "name": "新",
+                  "description": "新しい置換フィルター"
+                }
+              }
+            },
+            "remove": {
+              "name": "削除",
+              "description": "フィルターを削除します",
+              "options": {
+                "string": {
+                  "name": "文字列",
+                  "description": "削除するフィルターテキストまたは正規表現"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "チャンネル",
+      "description": "サーバーの代替チャットチャンネルを管理します",
+      "subcommands": {
+        "set": {
+          "name": "設定",
+          "description": "チャンネルを代替チャットとして設定します",
+          "options": {
+            "channel": {
+              "name": "チャンネル",
+              "description": "設定するチャンネル"
+            }
+          }
+        },
+        "remove": {
+          "name": "削除",
+          "description": "現在の代替チャットチャンネルを削除します"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "ヘルプ",
+      "description": "コマンドに関する情報を提供します",
+      "options": {
+        "command": {
+          "name": "コマンド",
+          "description": "情報を取得したいコマンド"
+        }
+      }
+    },
+    "info": {
+      "name": "情報",
+      "description": "ボットに関する情報を提供します"
+    },
+    "lang": {
+      "name": "言語",
+      "description": "あなたのアカウントのtts言語を変更します",
+      "options": {
+        "language": {
+          "name": "言語",
+          "description": "使用する言語"
+        }
+      }
+    },
+    "leave": {
+      "name": "退出",
+      "description": "ボットをボイスチャンネルから切断します"
+    },
+    "name": {
+      "name": "名前",
+      "description": "表示名を設定または名前フィルターを管理します",
+      "subcommands": {
+        "set": {
+          "name": "設定",
+          "description": "表示名を設定します",
+          "options": {
+            "string": {
+              "name": "文字列",
+              "description": "設定する名前"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "フィルター",
+          "description": "名前フィルターを管理します",
+          "subcommands": {
+            "add": {
+              "name": "追加",
+              "description": "新しいフィルターを追加します",
+              "options": {
+                "string": {
+                  "name": "文字列",
+                  "description": "追加するフィルターテキストまたは正規表現"
+                }
+              }
+            },
+            "list": {
+              "name": "一覧",
+              "description": "すべてのアクティブなフィルターを表示します"
+            },
+            "edit": {
+              "name": "編集",
+              "description": "既存のフィルターを編集します",
+              "options": {
+                "old": {
+                  "name": "旧",
+                  "description": "編集する既存のフィルター"
+                },
+                "new": {
+                  "name": "新",
+                  "description": "新しい置換フィルター"
+                }
+              }
+            },
+            "remove": {
+              "name": "削除",
+              "description": "フィルターを削除します",
+              "options": {
+                "string": {
+                  "name": "文字列",
+                  "description": "削除するフィルターテキストまたは正規表現"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "リセット",
+      "description": "tts設定をデフォルトにリセットします",
+      "options": {
+        "option": {
+          "name": "オプション",
+          "description": "リセットする特定の設定"
+        }
+      }
+    },
+    "settings": {
+      "name": "設定",
+      "description": "現在のtts設定を確認します"
+    },
+    "speed": {
+      "name": "速度",
+      "description": "あなたのアカウントのtts速度を変更します",
+      "options": {
+        "value": {
+          "name": "値",
+          "description": "速度倍率 (0.5 から 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "ttsの基本設定を管理します",
+      "options": {
+        "on": {
+          "name": "オン",
+          "description": "メッセージのttsをオンにします"
+        },
+        "off": {
+          "name": "オフ",
+          "description": "メッセージのttsをオフにします"
+        }
+      }
+    },
+    "voice": {
+      "name": "音声",
+      "description": "あなたのアカウントの音声を変更します"
+    }
+  }
+}

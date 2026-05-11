@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "tyhjennä",
+      "description": "tyhjentää tämän palvelimen tts-jonon"
+    },
+    "restrict": {
+      "name": "rajoita",
+      "description": "poistaa tts:n käytöstä käyttäjiltä, joita ei ole mykistetty"
+    },
+    "skip": {
+      "name": "ohita",
+      "description": "ohittaa parhaillaan toistettavan viestin"
+    },
+    "unrestrict": {
+      "name": "poista-rajoitus",
+      "description": "ottaa tts:n käyttöön käyttäjille, joita ei ole mykistetty"
+    },
+    "guild": {
+      "name": "palvelin",
+      "description": "hallitse palvelinkohtaisia asetuksia",
+      "groups": {
+        "lang": {
+          "name": "kieli",
+          "description": "hallitse palvelimen oletuskieltä",
+          "subcommands": {
+            "set": {
+              "name": "aseta",
+              "description": "aseta palvelimen oletuskieli",
+              "options": {
+                "language": {
+                  "name": "kieli",
+                  "description": "asetettava kieli"
+                }
+              }
+            },
+            "reset": {
+              "name": "nollaa",
+              "description": "nollaa palvelimen oletuskieli"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "viesti",
+      "description": "hallitse viestien sisältösuodattimia",
+      "groups": {
+        "filter": {
+          "name": "suodatin",
+          "description": "hallitse sisältösuodattimia",
+          "subcommands": {
+            "add": {
+              "name": "lisää",
+              "description": "lisää uusi suodatin",
+              "options": {
+                "string": {
+                  "name": "merkkijono",
+                  "description": "lisättävä suodatinteksti tai säännöllinen lauseke"
+                }
+              }
+            },
+            "list": {
+              "name": "listaa",
+              "description": "listaa kaikki aktiiviset suodattimet"
+            },
+            "edit": {
+              "name": "muokkaa",
+              "description": "muokkaa olemassa olevaa suodatinta",
+              "options": {
+                "old": {
+                  "name": "vanha",
+                  "description": "muokattava suodatin"
+                },
+                "new": {
+                  "name": "uusi",
+                  "description": "uusi korvaava suodatin"
+                }
+              }
+            },
+            "remove": {
+              "name": "poista",
+              "description": "poista suodatin",
+              "options": {
+                "string": {
+                  "name": "merkkijono",
+                  "description": "poistettava suodatinteksti tai säännöllinen lauseke"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanava",
+      "description": "hallitse palvelimen vaihtoehtoista chat-kanavaa",
+      "subcommands": {
+        "set": {
+          "name": "aseta",
+          "description": "aseta kanava vaihtoehtoiseksi chatiksi",
+          "options": {
+            "channel": {
+              "name": "kanava",
+              "description": "asetettava kanava"
+            }
+          }
+        },
+        "remove": {
+          "name": "poista",
+          "description": "poista nykyinen vaihtoehtoinen chat-kanava"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "apua",
+      "description": "tarjoaa tietoa komennoista",
+      "options": {
+        "command": {
+          "name": "komento",
+          "description": "komento, josta haluat tietoja"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "tarjoaa tietoa botista"
+    },
+    "lang": {
+      "name": "kieli",
+      "description": "vaihda tilisi tts-kieltä",
+      "options": {
+        "language": {
+          "name": "kieli",
+          "description": "käytettävä kieli"
+        }
+      }
+    },
+    "leave": {
+      "name": "poistu",
+      "description": "katkaisee botin yhteyden puhekanavasta"
+    },
+    "name": {
+      "name": "nimi",
+      "description": "aseta näyttönimesi tai hallitse nimisuodattimia",
+      "subcommands": {
+        "set": {
+          "name": "aseta",
+          "description": "aseta näyttönimesi",
+          "options": {
+            "string": {
+              "name": "merkkijono",
+              "description": "asetettava nimi"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "suodatin",
+          "description": "hallitse nimisuodattimia",
+          "subcommands": {
+            "add": {
+              "name": "lisää",
+              "description": "lisää uusi suodatin",
+              "options": {
+                "string": {
+                  "name": "merkkijono",
+                  "description": "lisättävä suodatinteksti tai säännöllinen lauseke"
+                }
+              }
+            },
+            "list": {
+              "name": "listaa",
+              "description": "listaa kaikki aktiiviset suodattimet"
+            },
+            "edit": {
+              "name": "muokkaa",
+              "description": "muokkaa olemassa olevaa suodatinta",
+              "options": {
+                "old": {
+                  "name": "vanha",
+                  "description": "muokattava suodatin"
+                },
+                "new": {
+                  "name": "uusi",
+                  "description": "uusi korvaava suodatin"
+                }
+              }
+            },
+            "remove": {
+              "name": "poista",
+              "description": "poista suodatin",
+              "options": {
+                "string": {
+                  "name": "merkkijono",
+                  "description": "poistettava suodatinteksti tai säännöllinen lauseke"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "nollaa",
+      "description": "nollaa tts-asetuksesi oletusarvoihin",
+      "options": {
+        "option": {
+          "name": "valinta",
+          "description": "nollattava asetus"
+        }
+      }
+    },
+    "settings": {
+      "name": "asetukset",
+      "description": "tarkista nykyiset tts-asetuksesi"
+    },
+    "speed": {
+      "name": "nopeus",
+      "description": "vaihda tilisi tts-nopeutta",
+      "options": {
+        "value": {
+          "name": "arvo",
+          "description": "nopeuskerroin (0.5 - 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "hallitse tts-asetuksiasi",
+      "options": {
+        "on": {
+          "name": "päälle",
+          "description": "ota tts käyttöön viesteillesi"
+        },
+        "off": {
+          "name": "pois",
+          "description": "poista tts käytöstä viesteiltäsi"
+        }
+      }
+    },
+    "voice": {
+      "name": "ääni",
+      "description": "vaihda tilisi ääntä"
+    }
+  }
+}

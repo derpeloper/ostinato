@@ -3,7 +3,7 @@
  * @description increases or decreases the speed of the tts for your account.
  * "gotta go fast. or slow. i don't judge."
  */
-const { SlashCommandBuilder, MessageFlags } = require('discord.js')
+const { SlashCommandBuilder, MessageFlags, ContainerBuilder } = require('discord.js')
 const db = require('../../data/db');
 const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 const ostinato = require('../../services/OstinatoTTS');
@@ -36,11 +36,10 @@ module.exports = {
 
             updateSpeed();
             ostinato.invalidateCache(userId, guildId, 'speed');
-            await interaction.reply({ content: localize(interaction.locale, 'responses.public.speed.success', { speedValue }), flags: MessageFlags.Ephemeral });
-            
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.public.speed.success', { speedValue })))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
         } catch (error) {
             console.error(error);
-             await interaction.reply({ content: localize(interaction.locale, 'responses.public.speed.error'), flags: MessageFlags.Ephemeral });
+             await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.public.speed.error')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
         }
     }
 }

@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "očisti",
+      "description": "čisti tts red za ovaj poslužitelj"
+    },
+    "restrict": {
+      "name": "ograniči",
+      "description": "onemogući tts za korisnike koji nisu utišani"
+    },
+    "skip": {
+      "name": "preskoči",
+      "description": "preskače trenutnu poruku"
+    },
+    "unrestrict": {
+      "name": "ukloni-ograničenje",
+      "description": "omogući tts za korisnike koji nisu utišani"
+    },
+    "guild": {
+      "name": "poslužitelj",
+      "description": "upravljanje postavkama poslužitelja",
+      "groups": {
+        "lang": {
+          "name": "jezik",
+          "description": "upravljanje zadanim jezikom poslužitelja",
+          "subcommands": {
+            "set": {
+              "name": "postavi",
+              "description": "postavi zadani jezik poslužitelja",
+              "options": {
+                "language": {
+                  "name": "jezik",
+                  "description": "jezik koji želite postaviti"
+                }
+              }
+            },
+            "reset": {
+              "name": "resetiraj",
+              "description": "resetiraj zadani jezik poslužitelja"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "poruka",
+      "description": "upravljanje filtrima sadržaja poruka",
+      "groups": {
+        "filter": {
+          "name": "filtar",
+          "description": "upravljanje filtrima sadržaja",
+          "subcommands": {
+            "add": {
+              "name": "dodaj",
+              "description": "dodaj novi filtar",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "tekst filtra ili regex koji želite dodati"
+                }
+              }
+            },
+            "list": {
+              "name": "popis",
+              "description": "prikaži sve aktivne filtre"
+            },
+            "edit": {
+              "name": "uredi",
+              "description": "uredi postojeći filtar",
+              "options": {
+                "old": {
+                  "name": "stari",
+                  "description": "postojeći filtar koji želite urediti"
+                },
+                "new": {
+                  "name": "novi",
+                  "description": "novi zamjenski filtar"
+                }
+              }
+            },
+            "remove": {
+              "name": "ukloni",
+              "description": "ukloni filtar",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "tekst filtra ili regex koji želite ukloniti"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanal",
+      "description": "upravljanje alternativnim chat kanalom poslužitelja",
+      "subcommands": {
+        "set": {
+          "name": "postavi",
+          "description": "postavi kanal kao alternativni chat",
+          "options": {
+            "channel": {
+              "name": "kanal",
+              "description": "kanal koji želite postaviti"
+            }
+          }
+        },
+        "remove": {
+          "name": "ukloni",
+          "description": "ukloni trenutni alternativni chat kanal"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "pomoć",
+      "description": "pruža informacije o naredbama",
+      "options": {
+        "command": {
+          "name": "naredba",
+          "description": "naredba o kojoj želite informacije"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "pruža informacije o botu"
+    },
+    "lang": {
+      "name": "jezik",
+      "description": "promijeni jezik tts-a za svoj račun",
+      "options": {
+        "language": {
+          "name": "jezik",
+          "description": "jezik koji želite koristiti"
+        }
+      }
+    },
+    "leave": {
+      "name": "napusti",
+      "description": "isključi bota iz glasovnog kanala"
+    },
+    "name": {
+      "name": "ime",
+      "description": "postavi svoje ime ili upravljaj filtrima imena",
+      "subcommands": {
+        "set": {
+          "name": "postavi",
+          "description": "postavi svoje ime za prikaz",
+          "options": {
+            "string": {
+              "name": "tekst",
+              "description": "ime koje želite postaviti"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filtar",
+          "description": "upravljanje filtrima imena",
+          "subcommands": {
+            "add": {
+              "name": "dodaj",
+              "description": "dodaj novi filtar",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "tekst filtra ಅಥವಾ regex koji želite dodati"
+                }
+              }
+            },
+            "list": {
+              "name": "popis",
+              "description": "prikaži sve aktivne filtre"
+            },
+            "edit": {
+              "name": "uredi",
+              "description": "uredi postojeći filtar",
+              "options": {
+                "old": {
+                  "name": "stari",
+                  "description": "postojeći filtar koji želite urediti"
+                },
+                "new": {
+                  "name": "novi",
+                  "description": "novi zamjenski filtar"
+                }
+              }
+            },
+            "remove": {
+              "name": "ukloni",
+              "description": "ukloni filtar",
+              "options": {
+                "string": {
+                  "name": "tekst",
+                  "description": "tekst filtra ili regex koji želite ukloniti"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "resetiraj",
+      "description": "resetira tvoje tts postavke na prvobitne postavke",
+      "options": {
+        "option": {
+          "name": "opcija",
+          "description": "određena postavka koju želite resetirati"
+        }
+      }
+    },
+    "settings": {
+      "name": "postavke",
+      "description": "provjeri svoje trenutne tts postavke"
+    },
+    "speed": {
+      "name": "brzina",
+      "description": "promijeni brzinu tts-a za svoj račun",
+      "options": {
+        "value": {
+          "name": "vrijednost",
+          "description": "množitelj brzine (0.5 do 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "upravljaj svojim tts postavkama",
+      "options": {
+        "on": {
+          "name": "uključi",
+          "description": "uključi tts za svoje poruke"
+        },
+        "off": {
+          "name": "isključi",
+          "description": "isključi tts za svoje poruke"
+        }
+      }
+    },
+    "voice": {
+      "name": "glas",
+      "description": "promijeni glas za svoj račun"
+    }
+  }
+}

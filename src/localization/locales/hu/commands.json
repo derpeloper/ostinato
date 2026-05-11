@@ -1,0 +1,250 @@
+{
+  "mods": {
+    "clear": {
+      "name": "törlés",
+      "description": "törli a tts várólistát ezen a szerveren"
+    },
+    "restrict": {
+      "name": "korlátozás",
+      "description": "letiltja a tts-t azon felhasználók számára, akik nincsenek elnémítva"
+    },
+    "skip": {
+      "name": "átugrás",
+      "description": "átugorja a jelenleg játszott üzenetet"
+    },
+    "unrestrict": {
+      "name": "feloldás",
+      "description": "engedélyezi a tts-t azon felhasználók számára, akik nincsenek elnémítva"
+    },
+    "guild": {
+      "name": "szerver",
+      "description": "szerverspecifikus beállítások kezelése",
+      "groups": {
+        "lang": {
+          "name": "nyelv",
+          "description": "szerver alapértelmezett nyelvének kezelése",
+          "subcommands": {
+            "set": {
+              "name": "beállítás",
+              "description": "beállítja az alapértelmezett nyelvet a szerveren",
+              "options": {
+                "language": {
+                  "name": "nyelv",
+                  "description": "a beállítandó nyelv"
+                }
+              }
+            },
+            "reset": {
+              "name": "visszaállítás",
+              "description": "visszaállítja az alapértelmezett nyelvet a szerveren"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "üzenet",
+      "description": "üzenettartalom-szűrők kezelése",
+      "groups": {
+        "filter": {
+          "name": "szűrő",
+          "description": "tartalomszűrők kezelése",
+          "subcommands": {
+            "add": {
+              "name": "hozzáadás",
+              "description": "új szűrő hozzáadása",
+              "options": {
+                "string": {
+                  "name": "szöveg",
+                  "description": "a hozzáadandó szűrőszöveg vagy regex"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "az összes aktív szűrő felsorolása"
+            },
+            "edit": {
+              "name": "szerkesztés",
+              "description": "meglévő szűrő szerkesztése",
+              "options": {
+                "old": {
+                  "name": "régi",
+                  "description": "a szerkesztendő meglévő szűrő"
+                },
+                "new": {
+                  "name": "új",
+                  "description": "az új helyettesítő szűrő"
+                }
+              }
+            },
+            "remove": {
+              "name": "eltávolítás",
+              "description": "szűrő eltávolítása",
+              "options": {
+                "string": {
+                  "name": "szöveg",
+                  "description": "az eltávolítandó szűrőszöveg vagy regex"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "csatorna",
+      "description": "a szerver alternatív csevegőcsatornájának kezelése",
+      "subcommands": {
+        "set": {
+          "name": "beállítás",
+          "description": "beállít egy csatornát alternatív csevegőként",
+          "options": {
+            "channel": {
+              "name": "csatorna",
+              "description": "a beállítandó csatorna"
+            }
+          }
+        },
+        "remove": {
+          "name": "eltávolítás",
+          "description": "eltávolítja a jelenlegi alternatív csevegőcsatornát"
+        }
+      }
+    }
+  },
+  "public": {
+    "help": {
+      "name": "segítség",
+      "description": "információt nyújt a parancsokról",
+      "options": {
+        "command": {
+          "name": "parancs",
+          "description": "a parancs, amiről információt szeretnél kapni"
+        }
+      }
+    },
+    "info": {
+      "name": "info",
+      "description": "információt nyújt a botról"
+    },
+    "lang": {
+      "name": "nyelv",
+      "description": "megváltoztatja a tts nyelvét a fiókodhoz",
+      "options": {
+        "language": {
+          "name": "nyelv",
+          "description": "a használandó nyelv"
+        }
+      }
+    },
+    "leave": {
+      "name": "kilépés",
+      "description": "lecsatlakoztatja a botot a hangcsatornáról"
+    },
+    "name": {
+      "name": "név",
+      "description": "beállítja a megjelenített nevedet vagy kezeli a névszűrőket",
+      "subcommands": {
+        "set": {
+          "name": "beállítás",
+          "description": "beállítja a megjelenített nevedet",
+          "options": {
+            "string": {
+              "name": "szöveg",
+              "description": "a beállítandó név"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "szűrő",
+          "description": "névszűrők kezelése",
+          "subcommands": {
+            "add": {
+              "name": "hozzáadás",
+              "description": "új szűrő hozzáadása",
+              "options": {
+                "string": {
+                  "name": "szöveg",
+                  "description": "a hozzáadandó szűrőszöveg vagy regex"
+                }
+              }
+            },
+            "list": {
+              "name": "lista",
+              "description": "az összes aktív szűrő felsorolása"
+            },
+            "edit": {
+              "name": "szerkesztés",
+              "description": "meglévő szűrő szerkesztése",
+              "options": {
+                "old": {
+                  "name": "régi",
+                  "description": "a szerkesztendő meglévő szűrő"
+                },
+                "new": {
+                  "name": "új",
+                  "description": "az új helyettesítő szűrő"
+                }
+              }
+            },
+            "remove": {
+              "name": "eltávolítás",
+              "description": "szűrő eltávolítása",
+              "options": {
+                "string": {
+                  "name": "szöveg",
+                  "description": "az eltávolítandó szűrőszöveg vagy regex"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "visszaállítás",
+      "description": "visszaállítja a tts-beállításaidat az alapértelmezettre",
+      "options": {
+        "option": {
+          "name": "beállítás",
+          "description": "a visszaállítandó konkrét beállítás"
+        }
+      }
+    },
+    "settings": {
+      "name": "beállítások",
+      "description": "ellenőrizd a jelenlegi tts-beállításaidat"
+    },
+    "speed": {
+      "name": "sebesség",
+      "description": "megváltoztatja a tts sebességét a fiókodhoz",
+      "options": {
+        "value": {
+          "name": "érték",
+          "description": "a sebességszorzó (0,5 és 2,0 között)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "tts-beállítások kezelése",
+      "options": {
+        "on": {
+          "name": "be",
+          "description": "tts bekapcsolása az üzeneteidhez"
+        },
+        "off": {
+          "name": "ki",
+          "description": "tts kikapcsolása az üzeneteidhez"
+        }
+      }
+    },
+    "voice": {
+      "name": "hang",
+      "description": "megváltoztatja a hangot a fiókodhoz"
+    }
+  }
+}

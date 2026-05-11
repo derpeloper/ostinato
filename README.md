@@ -8,7 +8,7 @@
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
-> **current version**: v2.1.0 (official release)
+> **current version**: v2.4.1 (official release)
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
@@ -19,7 +19,9 @@ _note: expect outages for maintenance, bug fixes, or unexpected hiccups. you hav
 ## features
 
 - **supertonic tts**: powered by the supertonic engine to provide high-quality, human-sounding voices. it's like magic, but with actual code.
-- **localization**: fully translated across 5 languages (english, spanish, french, portuguese, korean).
+- **localization**: fully translated across **24 languages** (excluding English GB and US).
+  _note: all localizations are translated via ai and may not be 100% accurate._
+- **multilingual tts**: natively supports **31 languages** via the supertonic 3 engine.
 - **voice customization**: change the voice model, speed, and language to fit your vibe.
 - **persistent settings**: remembers your preferences per server via sqlite, because nobody likes repeating themselves.
 - **worker pool & concurrency**: scales with your needs! supports spawning multiple workers for parallel processing, and queues are properly isolated per-server.
@@ -50,7 +52,7 @@ because the engine can be resource-intensive, the bot monitors the RSS (resident
 instead of a bloated database, the bot uses **better-sqlite3**. it's fast, file-based, and perfect for storing per-guild configuration (voice, speed, language) without adding unnecessary network latency.
 
 ### localization engine
-the bot manages a localization layer that maps inputs across 5 languages. it ensures that the correct voice models and linguistic parameters are passed to the engine based on the server's current settings.
+the bot manages a localization layer that maps inputs across 24 discord locales. it ensures that the correct voice models and linguistic parameters are passed to the engine based on the server's current settings.
 
 ## self-hosting
 
@@ -59,7 +61,7 @@ if you want 100% uptime and total control, host it yourself. you'll get access t
 ### prerequisites
 - **node.js**: v22.12.0 or higher (required by discord.js v14).
 - **git**: for cloning the repos.
-- **ram & cpu**: the engine is hungry. expect **~300mb to ~600mb of ram** per worker. be warned: it can get really heavy on the cpu as that is how the audio is generated, and overall resource usage scales directly with the number of workers set in your config. don't try running this on a toaster.
+- **ram & cpu**: the engine is hungry. expect **~300mb to ~500mb of ram** per worker. be warned: it can get really heavy on the cpu as that is how the audio is generated, and overall resource usage scales directly with the number of workers set in your config. don't try running this on a toaster.
 
 ### setup guide
 
@@ -77,7 +79,7 @@ the bot is just the brain; it needs the engine to speak.
    ```bash
    git clone https://github.com/supertone-inc/supertonic.git
    cd supertonic
-   git clone https://huggingface.co/Supertone/supertonic-2 assets
+   git clone https://huggingface.co/Supertone/supertonic-3 assets
    cd nodejs
    npm install
    ```
@@ -104,10 +106,12 @@ edit `src/config.js` to tweak the engine:
 - `ttsSpeed`: base speed of the speech. zoom zoom.
 - `ttsVolume`: volume of the speech. can you hear me now?
 - `ttsQuality`: 1 to 50. the trade-off between audio fidelity and processing speed.
-- `defaultLang`: fallback language if detection fails.
+- `defaultLang`: fallback language if detection fails (supports all 31 languages — see `config.js` for full list).
 - `maxConcurrency`: how many messages can process at once per server. prevents one active server from lagging others.
 - `workerMemoryLimit`: memory cap for a worker before it restarts. keeps the ram gremlins at bay.
 - `workerCount`: how many parallel workers to spin up. use with caution—each worker takes ~300mb-400mb ram!
+
+more settings are available in `src/config.js`. check it out if you want to see the rest.
 
 ## issues & contributions
 
@@ -121,4 +125,14 @@ may contain traces of nuts and bolts. the hosted version will not have 24/7 upti
 
 ## credits
 
-- **Supertonic 2** by **Supertone** — the high-quality tts engine doing the heavy lifting.
+- **Supertonic 3** by **Supertone** — the high-quality tts engine doing the heavy lifting.
+
+### localization
+_note: contributors that helped verify locales may have their alias instead of their usernames._
+
+- **exskrime** — verified russian locale
+- **9am1n_** — verified hindi locale
+- **sentry** — verified polish locale
+- **Daniel** — verified korean locale
+- **p** - verified vietnamese locale
+- **salty** - verified croatian locale

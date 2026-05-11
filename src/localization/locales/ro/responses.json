@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "coada a fost ștearsă.",
+      "error": "eșec la ștergerea cozii."
+    },
+    "restrict": {
+      "success": "tts restricționat doar utilizatorilor amuțiți.",
+      "error": "eșec la restricționarea tts."
+    },
+    "skip": {
+      "success": "sărit peste.",
+      "tooShort": "mesajul este prea scurt pentru a fi sărit (< 35 caractere).",
+      "notPlaying": "nimic nu se redă în acest moment.",
+      "error": "a apărut o eroare în timpul încercării de a sări peste.",
+      "unknown": "eșec la sărit."
+    },
+    "unrestrict": {
+      "success": "restricțiile tts au fost ridicate.",
+      "error": "eșec la ridicarea restricțiilor tts."
+    },
+    "guild": {
+      "lang": {
+        "success": "limba implicită a serverului a fost setată la **{langCode}**.",
+        "reset": "limba implicită a serverului a fost resetată.",
+        "invalid": "acel cod de limbă este nevalid.",
+        "error": "eșec la actualizarea setării de limbă a serverului."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "filtrul `{pattern}` a fost adăugat.",
+        "exists": "acel filtru există deja.",
+        "list": "**filtre de mesaje active:**\n{filters}",
+        "empty": "nu există filtre de mesaje configurate pentru acest server.",
+        "edited": "filtru actualizat de la `{old}` la `{new}`.",
+        "notFound": "filtrul `{pattern}` nu a fost găsit.",
+        "removed": "filtrul `{pattern}` a fost eliminat.",
+        "error": "eșec la actualizarea filtrelor de mesaje."
+      }
+    },
+    "channel": {
+      "success": "canalul de chat alternativ a fost setat la {channel}.",
+      "removed": "canalul de chat alternativ a fost eliminat.",
+      "noneSet": "nu este configurat niciun canal de chat alternativ.",
+      "error": "eșec la actualizarea setării canalului."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "informațiile despre comandă nu au fost găsite.",
+      "commands": {
+        "help": "sunt destul de sigur că această comandă se explică de la sine. oferă informații despre comenzile pe care acest bot le are de oferit.",
+        "voice": "schimbă vocea pentru contul tău. \n\ndacă ești curios cum sună vocile, te poți referi la pagina de [voci](https://supertone-inc.github.io/supertonic-py/voices/) a supertonic.\n\n-# preferințele de voce afectează doar serverul în care folosești comanda, deci poți avea preferințe diferite per server.",
+        "info": "oferă informații despre bot, inclusiv notificările pentru termenii de utilizare și politica de confidențialitate.",
+        "name": "setează numele tău de afișare sau gestionează filtrele de nume.\n\n`/name set <nume>`: setează numele pentru mesajele tale.\n`/name filter add|list|edit|remove`: gestionează filtrele de nume (admin).\n\n-# preferințele de nume sunt per server în loc să fie universale. acest lucru este pentru a-ți proteja confidențialitatea.",
+        "speed": "schimbă viteza tts pentru contul tău. \n\nvaloarea trebuie să fie între **0.5** și **2.0**. \n\n-# vitezele sunt per server.",
+        "lang": "schimbă limba tts pentru contul tău. \n\nlimbi suportate: engleză, arabă, bulgară, cehă, daneză, germană, greacă, spaniolă, estonă, finlandeză, franceză, hindi, croată, maghiară, indoneziană, italiană, japoneză, coreeană, lituaniană, letonă, olandeză, poloneză, portugheză, română, rusă, slovacă, slovenă, suedeză, turcă, ucraineană, vietnameză. \n\n-# preferințele de limbă sunt per server.",
+        "clear": "șterge coada tts pentru serverul curent. \n\nnecesită permisiunea **Gestionare Mesaje**.",
+        "leave": "forțează botul să se deconecteze de la canalul vocal.",
+        "restrict": "restricționează utilizarea tts doar la utilizatorii amuțiți. \n\nnecesită permisiunea **Gestionare Canale**.",
+        "unrestrict": "permite tuturor să folosească tts. \n\nnecesită permisiunea **Gestionare Canale**.",
+        "skip": "sare peste mesajul tts care se redă în prezent. \n\nnecesită permisiunea **Gestionare Mesaje**.",
+        "tts": "gestionează preferințele tts. \n\n`/tts on`: activează tts pentru mesajele tale.\n`/tts off`: dezactivează tts pentru mesajele tale.",
+        "settings": "afișează setările tts actuale (voce, nume, viteză, limbă).",
+        "reset": "resetează setările tts la valorile implicite.\n\n`/reset`: șterge toate datele tale din baza de date.\n`/reset <opțiune>`: resetează o setare specifică (voce, nume, viteză, limbă) pentru acest server.\n\n-# acest lucru nu afectează starea de opt-in/opt-out.",
+        "guild": "gestionează setările specifice serverului.\n\n`/guild lang set <limbă>`: setează limba implicită.\n`/guild lang reset`: resetează limba implicită a serverului.\n\n-# necesită permisiunea **Gestionare Server**.",
+        "message": "gestionează filtrele de conținut ale mesajelor.\n\n`/message filter add <text>`: adaugă un filtru nou.\n`/message filter list`: listează toate filtrele active.\n`/message filter edit <vechi> <nou>`: editează un filtru.\n`/message filter remove <text>`: elimină un filtru.\n\n-# necesită permisiunea **Gestionare Mesaje**.",
+        "channel": "gestionează canalul de chat alternativ al serverului.\n\n`/channel set <canal>`: setează un canal text ca chat tts alternativ.\n`/channel remove`: elimină canalul alternativ curent.\n\n-# necesită permisiunea **Gestionare Canale**."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*oferind o voce celor fără voce. și celor stânjeniți social.*",
+      "privacyHeader": "## politica de confidențialitate",
+      "privacySettings": "**lucrurile tale** (stocate local per server)\n- **voce**: pentru a nu suna ca un robot generic.\n- **viteză**: zoom zoom sau încetinitorul.\n- **nume**: alter ego-ul tău.\n- **limbă**: pentru când vrei să pari sofisticat.",
+      "privacySystem": "**date plictisitoare de sistem**\n- **opt-out**: ținem minte dacă ne-ai spus să tăcem (`/tts off`).\n- **setări server**: doar pentru a ști dacă ar trebui să ignorăm persoanele care nu sunt amuțite.",
+      "privacyFooter": "-# nu înregistrăm mesajele tale, nu generăm fișiere audio și nu vindem datele tale. secretele tale sunt în siguranță, în principal pentru că sunt probabil plictisitoare.",
+      "tosHeader": "## termeni de utilizare",
+      "tosBody": "furnizat „ca atare”. respectă tosul discord. sau nu. nu suntem părinții tăi.",
+      "resetWarning": "-# vrei să începi de la zero? folosește `/reset` pentru a-ți șterge complet datele din baza noastră de date. acest lucru elimină toate setările salvate (voce, nume, viteză, limbă) pe fiecare server. starea de opt-in/opt-out este păstrată.",
+      "versionFooter": "-# versiune: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bug-uri? probabil. funcții? cu siguranță."
+    },
+    "lang": {
+      "invalid": "acel cod de limbă este nevalid.",
+      "success": "preferințele de limbă au fost setate la **{langCode}**.",
+      "error": "eșec la salvarea setării de limbă. (eroare db)"
+    },
+    "leave": {
+      "notInVoice": "nu sunt într-un canal vocal. auzi voci?",
+      "differentVoice": "trebuie să fii în același canal vocal cu mine pentru a mă deconecta. bună încercare.",
+      "success": "la revedere.",
+      "error": "m-am chinuit să plec. este stânjenitor."
+    },
+    "name": {
+      "success": "numele tău a fost setat la **{name}**.",
+      "error": "a apărut o eroare la salvarea numelui tău.",
+      "filter": {
+        "added": "filtrul de nume `{pattern}` a fost adăugat.",
+        "exists": "acel filtru de nume există deja.",
+        "list": "**filtre de nume active:**\n{filters}",
+        "empty": "nu există filtre de nume configurate pentru acest server.",
+        "edited": "filtrul de nume a fost actualizat de la `{old}` la `{new}`.",
+        "notFound": "filtrul de nume `{pattern}` nu a fost găsit.",
+        "removed": "filtrul de nume `{pattern}` a fost eliminat.",
+        "error": "eșec la actualizarea filtrelor de nume."
+      }
+    },
+    "settings": {
+      "title": "# setări",
+      "voice": "**voce**: {value}",
+      "name": "**nume**: {value}",
+      "speed": "**viteză**: {value}",
+      "lang": "**limbă**: {value}",
+      "defaultFormat": "`Nesetat` (Implicit: `{defaultValue}`)",
+      "setFormat": "`{value}` (Implicit: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "viteză setată la **{speedValue}x**.",
+      "error": "eșec la salvarea setării de viteză. (eroare db)"
+    },
+    "tts": {
+      "alreadyOff": "tts este deja **oprit** pentru tine.",
+      "turnedOff": "tts este acum **oprit** pentru tine.",
+      "alreadyOn": "tts este deja **pornit** pentru tine.",
+      "turnedOn": "tts este acum **pornit** pentru tine.",
+      "error": "eșec la actualizarea setărilor."
+    },
+    "voice": {
+      "success": "vocea selectată **{voiceId}** a fost salvată.",
+      "error": "vocea selectată **{voiceId}** nu a fost salvată. (eroare la salvarea în db).",
+      "selectPrompt": "selectează o voce care îți place din meniul de mai jos.",
+      "confirmButton": "Confirmă",
+      "noPreview": "nicio previzualizare disponibilă."
+    },
+    "reset": {
+      "full": "toate datele tale au fost șterse din baza de date. începi de la zero.",
+      "single": "setarea ta pentru **{option}** a fost resetată pentru acest server.",
+      "noData": "nu ai nicio dată de resetat.",
+      "error": "eșec la resetarea setărilor."
+    }
+  }
+}

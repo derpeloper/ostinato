@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "várólista kiürítve.",
+      "error": "nem sikerült kiüríteni a várólistát."
+    },
+    "restrict": {
+      "success": "tts korlátozva csak az elnémított felhasználókra.",
+      "error": "nem sikerült korlátozni a tts-t."
+    },
+    "skip": {
+      "success": "átugorva.",
+      "tooShort": "az üzenet túl rövid az átugráshoz (< 35 karakter).",
+      "notPlaying": "jelenleg semmi sem szól.",
+      "error": "hiba történt az átugrás közben.",
+      "unknown": "nem sikerült átugorni."
+    },
+    "unrestrict": {
+      "success": "tts korlátozások feloldva.",
+      "error": "nem sikerült feloldani a tts korlátozásokat."
+    },
+    "guild": {
+      "lang": {
+        "success": "szerver alapértelmezett nyelve beállítva: **{langCode}**.",
+        "reset": "szerver alapértelmezett nyelve visszaállítva.",
+        "invalid": "ez a nyelvkód érvénytelen.",
+        "error": "nem sikerült frissíteni a szerver nyelvbeállítását."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "a(z) `{pattern}` szűrő hozzáadva.",
+        "exists": "ez a szűrő már létezik.",
+        "list": "**aktív üzenetszűrők:**\n{filters}",
+        "empty": "nincsenek üzenetszűrők beállítva ezen a szerveren.",
+        "edited": "szűrő frissítve: `{old}` -> `{new}`.",
+        "notFound": "a(z) `{pattern}` szűrő nem található.",
+        "removed": "a(z) `{pattern}` szűrő eltávolítva.",
+        "error": "nem sikerült frissíteni az üzenetszűrőket."
+      }
+    },
+    "channel": {
+      "success": "alternatív csevegőcsatorna beállítva: {channel}.",
+      "removed": "alternatív csevegőcsatorna eltávolítva.",
+      "noneSet": "nincs alternatív csevegőcsatorna beállítva.",
+      "error": "nem sikerült frissíteni a csatornabeállítást."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "parancsinformáció nem található.",
+      "commands": {
+        "help": "elég biztos vagyok benne, hogy ez a parancs magától értetődő. információt nyújt a bot által kínált parancsokról.",
+        "voice": "megváltoztatja a hangot a fiókodhoz. \n\nha kíváncsi vagy, hogyan szólnak a hangok, megnézheted a supertonic [voices](https://supertone-inc.github.io/supertonic-py/voices/) oldalát.\n\n-# a hangbeállítások csak arra a szerverre vonatkoznak, ahol a parancsot használod, így szerverenként eltérő beállításaid lehetnek.",
+        "info": "információt nyújt a botról, beleértve a szolgáltatási feltételeket és az adatvédelmi szabályzatot.",
+        "name": "beállítja a megjelenített nevedet vagy kezeli a névszűrőket.\n\n`/name set <név>`: beállítja a nevet az üzeneteidhez.\n`/name filter add|list|edit|remove`: névszűrők kezelése (admin).\n\n-# a névbeállítások szerverenkénti, nem pedig univerzálisak. ez a magánéleted védelmét szolgálja.",
+        "speed": "megváltoztatja a tts sebességét a fiókodhoz. \n\naz értéknek **0,5** és **2,0** között kell lennie. \n\n-# a sebességek szerverenkéntiek.",
+        "lang": "megváltoztatja a tts nyelvét a fiókodhoz. \n\ntámogatott nyelvek: angol, arab, bolgár, cseh, dán, német, görög, spanyol, észt, finn, francia, hindi, horvát, magyar, indonéz, olasz, japán, koreai, litván, lett, holland, lengyel, portugál, román, orosz, szlovák, szlovén, svéd, török, ukrán, vietnámi. \n\n-# a nyelvbeállítások szerverenkéntiek.",
+        "clear": "kiüríti a tts várólistát az aktuális szerveren. \n\n**Üzenetek kezelése** jogosultság szükséges hozzá.",
+        "leave": "kényszeríti a botot, hogy lecsatlakozzon a hangcsatornáról.",
+        "restrict": "korlátozza a tts használatát csak az elnémított felhasználókra. \n\n**Csatornák kezelése** jogosultság szükséges hozzá.",
+        "unrestrict": "lehetővé teszi mindenki számára a tts használatát. \n\n**Csatornák kezelése** jogosultság szükséges hozzá.",
+        "skip": "átugorja a jelenleg játszott tts üzenetet. \n\n**Üzenetek kezelése** jogosultság szükséges hozzá.",
+        "tts": "tts-beállítások kezelése. \n\n`/tts on`: tts bekapcsolása az üzeneteidhez.\n`/tts off`: tts kikapcsolása az üzeneteidhez.",
+        "settings": "megjeleníti a jelenlegi tts-beállításaidat (hang, név, sebesség, nyelv).",
+        "reset": "visszaállítja a tts-beállításaidat az alapértelmezettre.\n\n`/reset`: törli az összes adatodat az adatbázisból.\n`/reset <opció>`: visszaállít egy konkrét beállítást (hang, név, sebesség, nyelv) ezen a szerveren.\n\n-# ez nem befolyásolja az opt-in/opt-out állapotodat.",
+        "guild": "szerverspecifikus beállítások kezelése.\n\n`/guild lang set <nyelv>`: alapértelmezett nyelv beállítása.\n`/guild lang reset`: szerver alapértelmezett nyelvének visszaállítása.\n\n-# **Szerver kezelése** jogosultság szükséges hozzá.",
+        "message": "üzenettartalom-szűrők kezelése.\n\n`/message filter add <szöveg>`: új szűrő hozzáadása.\n`/message filter list`: összes aktív szűrő listázása.\n`/message filter edit <régi> <új>`: szűrő szerkesztése.\n`/message filter remove <szöveg>`: szűrő eltávolítása.\n\n-# **Üzenetek kezelése** jogosultság szükséges hozzá.",
+        "channel": "a szerver alternatív csevegőcsatornájának kezelése.\n\n`/channel set <csatorna>`: szöveges csatorna beállítása alternatív tts-csevegőként.\n`/channel remove`: jelenlegi alternatív csatorna eltávolítása.\n\n-# **Csatornák kezelése** jogosultság szükséges hozzá."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*hangot adni a hangtalanoknak. és a szociálisan kínosaknak.*",
+      "privacyHeader": "## adatvédelmi szabályzat",
+      "privacySettings": "**a dolgaid** (szerverenként helyben tárolva)\n- **hang**: hogy ne úgy hangozz, mint egy tucat-robot.\n- **sebesség**: száguldás vagy lassított felvétel.\n- **név**: az alteregód.\n- **nyelv**: amikor előkelően akarsz hangzani.",
+      "privacySystem": "**unalmas rendszeradatok**\n- **opt-out**: emlékszünk, ha azt mondtad, hogy fogjuk be (`/tts off`).\n- **szerverbeállítások**: csak hogy tudjuk, figyelmen kívül hagyjuk-e a nem némított embereket.",
+      "privacyFooter": "-# nem naplózzuk az üzeneteidet, nem generálunk audiofájlokat, és nem adjuk el az adataidat. a titkaid biztonságban vannak, főleg azért, mert valószínűleg unalmasak.",
+      "tosHeader": "## szolgáltatási feltételek",
+      "tosBody": "\"úgy, ahogy van\". tartsd be a discord aszf-et. vagy ne. nem mi vagyunk a szüleid.",
+      "resetWarning": "-# tiszta lappal akarsz indulni? használd a `/reset` parancsot az adataid teljes törléséhez az adatbázisunkból. ez eltávolítja az összes mentett beállításodat (hang, név, sebesség, nyelv) minden szerverről. az opt-in/opt-out állapotod megmarad.",
+      "versionFooter": "-# verzió: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugok? valószínűleg. funkciók? biztosan."
+    },
+    "lang": {
+      "invalid": "ez a nyelvkód érvénytelen.",
+      "success": "nyelvbeállítások beállítva: **{langCode}**.",
+      "error": "nem sikerült menteni a nyelvbeállítást. (adatbázishiba)"
+    },
+    "leave": {
+      "notInVoice": "nem vagyok hangcsatornában. hangokat hallasz?",
+      "differentVoice": "ugyanabban a hangcsatornában kell lenned, mint én, hogy lecsatlakoztass. szép próbálkozás.",
+      "success": "viszlát.",
+      "error": "nehezen ment a távozás. ez kellemetlen."
+    },
+    "name": {
+      "success": "a neved beállítva: **{name}**.",
+      "error": "hiba történt a neved mentése közben.",
+      "filter": {
+        "added": "a(z) `{pattern}` névszűrő hozzáadva.",
+        "exists": "ez a névszűrő már létezik.",
+        "list": "**aktív névszűrők:**\n{filters}",
+        "empty": "nincsenek névszűrők beállítva ezen a szerveren.",
+        "edited": "névszűrő frissítve: `{old}` -> `{new}`.",
+        "notFound": "a(z) `{pattern}` névszűrő nem található.",
+        "removed": "a(z) `{pattern}` névszűrő eltávolítva.",
+        "error": "nem sikerült frissíteni a névszűrőket."
+      }
+    },
+    "settings": {
+      "title": "# beállítások",
+      "voice": "**hang**: {value}",
+      "name": "**név**: {value}",
+      "speed": "**sebesség**: {value}",
+      "lang": "**nyelv**: {value}",
+      "defaultFormat": "`Nincs beállítva` (Alapértelmezett: `{defaultValue}`)",
+      "setFormat": "`{value}` (Alapértelmezett: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "sebesség beállítva: **{speedValue}x**.",
+      "error": "nem sikerült menteni a sebességbeállítást. (adatbázishiba)"
+    },
+    "tts": {
+      "alreadyOff": "a tts már **ki** van kapcsolva számodra.",
+      "turnedOff": "a tts mostantól **ki** van kapcsolva számodra.",
+      "alreadyOn": "a tts már **be** van kapcsolva számodra.",
+      "turnedOn": "a tts mostantól **be** van kapcsolva számodra.",
+      "error": "nem sikerült frissíteni a beállításokat."
+    },
+    "voice": {
+      "success": "a kiválasztott hang (**{voiceId}**) mentve.",
+      "error": "a kiválasztott hang (**{voiceId}**) nem lett elmentve. (hiba az adatbázisba mentés során).",
+      "selectPrompt": "válassz egy neked tetsző hangot az alábbi menüből.",
+      "confirmButton": "Megerősítés",
+      "noPreview": "nincs elérhető előnézet."
+    },
+    "reset": {
+      "full": "minden adatod törölve lett az adatbázisból. tiszta lappal indulsz.",
+      "single": "a(z) **{option}** beállításod vissza lett állítva ezen a szerveren.",
+      "noData": "nincs visszaállítandó adatod.",
+      "error": "nem sikerült visszaállítani a beállításaidat."
+    }
+  }
+}

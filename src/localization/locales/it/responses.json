@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "coda svuotata.",
+      "error": "impossibile svuotare la coda."
+    },
+    "restrict": {
+      "success": "tts limitato ai soli utenti silenziati.",
+      "error": "impossibile limitare il tts."
+    },
+    "skip": {
+      "success": "saltato.",
+      "tooShort": "il messaggio è troppo corto per essere saltato (< 35 caratteri).",
+      "notPlaying": "non c'è nulla in riproduzione al momento.",
+      "error": "si è verificato un errore durante il tentativo di saltare.",
+      "unknown": "impossibile saltare."
+    },
+    "unrestrict": {
+      "success": "restrizioni tts rimosse.",
+      "error": "impossibile rimuovere le restrizioni tts."
+    },
+    "guild": {
+      "lang": {
+        "success": "lingua predefinita del server impostata su **{langCode}**.",
+        "reset": "la lingua predefinita del server è stata reimpostata.",
+        "invalid": "quel codice lingua non è valido.",
+        "error": "impossibile aggiornare l'impostazione della lingua del server."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "il filtro `{pattern}` è stato aggiunto.",
+        "exists": "quel filtro esiste già.",
+        "list": "**filtri messaggi attivi:**\n{filters}",
+        "empty": "nessun filtro messaggi configurato per questo server.",
+        "edited": "filtro aggiornato da `{old}` a `{new}`.",
+        "notFound": "il filtro `{pattern}` non è stato trovato.",
+        "removed": "il filtro `{pattern}` è stato rimosso.",
+        "error": "impossibile aggiornare i filtri messaggi."
+      }
+    },
+    "channel": {
+      "success": "canale chat alternativo impostato su {channel}.",
+      "removed": "il canale chat alternativo è stato rimosso.",
+      "noneSet": "nessun canale chat alternativo configurato.",
+      "error": "impossibile aggiornare l'impostazione del canale."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "informazioni comando non trovate.",
+      "commands": {
+        "help": "sono abbastanza sicuro che questo comando sia autoesplicativo. fornisce informazioni sui comandi che questo bot ha da offrire.",
+        "voice": "cambia la voce per il tuo account. \n\nse sei curioso di sapere come suonano le voci, puoi consultare la pagina delle [voices](https://supertone-inc.github.io/supertonic-py/voices/) di supertonic.\n\n-# le preferenze della voce influenzano solo il server in cui usi il comando, quindi puoi avere preferenze diverse per ogni server.",
+        "info": "fornisce informazioni sul bot, inclusi gli avvisi per i termini di servizio e l'informativa sulla privacy.",
+        "name": "imposta il tuo nome visualizzato o gestisci i filtri dei nomi.\n\n`/name set <nome>`: imposta il nome per i tuoi messaggi.\n`/name filter add|list|edit|remove`: gestisci i filtri dei nomi (admin).\n\n-# le preferenze del nome sono per server invece di essere universali. questo per proteggere la tua privacy.",
+        "speed": "cambia la velocità del tts per il tuo account. \n\nil valore deve essere compreso tra **0.5** e **2.0**. \n\n-# le velocità sono per server invece di essere universali.",
+        "lang": "cambia la lingua del tts per il tuo account. \n\nlingue supportate: inglese, arabo, bulgaro, ceco, danese, tedesco, greco, spagnolo, estone, finlandese, francese, hindi, croato, ungherese, indonesiano, italiano, giapponese, coreano, lituano, lettone, olandese, polacco, portoghese, rumeno, russo, slovacco, sloveno, svedese, turco, ucraino, vietnamita. \n\n-# le preferenze della lingua sono per server invece di essere universali.",
+        "clear": "svuota la coda tts per il server corrente. \n\nrichiede il permesso **Gestire i messaggi**.",
+        "leave": "forza il bot a disconnettersi dal canale vocale.",
+        "restrict": "limita l'uso del tts ai soli utenti silenziati. \n\nrichiede il permesso **Gestire i canali**.",
+        "unrestrict": "consente a tutti di usare il tts. \n\nrichiede il permesso **Gestire i canali**.",
+        "skip": "salta il messaggio tts attualmente in riproduzione. \n\nrichiede il permesso **Gestire i messaggi**.",
+        "tts": "gestisci le tue preferenze tts. \n\n`/tts on`: attiva il tts per i tuoi messaggi.\n`/tts off`: disattiva il tts per i tuoi messaggi.",
+        "settings": "mostra le tue attuali impostazioni tts (voce, nome, velocità, lingua).",
+        "reset": "reimposta le tue impostazioni tts ai valori predefiniti.\n\n`/reset`: cancella tutti i tuoi dati dal database.\n`/reset <opzione>`: reimposta un'impostazione specifica (voce, nome, velocità, lingua) per questo server.\n\n-# questo non influisce sul tuo stato di opt-in/opt-out.",
+        "guild": "gestisci le impostazioni specifiche del server.\n\n`/guild lang set <lingua>`: imposta la lingua predefinita.\n`/guild lang reset`: reimposta la lingua predefinita del server.\n\n-# richiede il permesso **Gestire il server**.",
+        "message": "gestisci i filtri dei contenuti dei messaggi.\n\n`/message filter add <stringa>`: aggiungi un nuovo filtro.\n`/message filter list`: elenca tutti i filtri attivi.\n`/message filter edit <vecchio> <nuovo>`: modifica un filtro esistente.\n`/message filter remove <stringa>`: rimuovi un filtro.\n\n-# richiede il permesso **Gestire i messaggi**.",
+        "channel": "gestisci il canale chat alternativo del server.\n\n`/channel set <canale>`: imposta un canale testuale come chat tts alternativa.\n`/channel remove`: rimuovi l'attuale canale alternativo.\n\n-# richiede il permesso **Gestire i canali**."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*dare voce a chi non ce l'ha. e ai socialmente imbranati.*",
+      "privacyHeader": "## informativa sulla privacy",
+      "privacySettings": "**le tue cose** (memorizzate localmente per server)\n- **voce**: così non sembri un robot generico.\n- **velocità**: zoom zoom o rallentatore.\n- **nome**: il tuo alter ego.\n- **lingua**: per quando vuoi sembrare sofisticato.",
+      "privacySystem": "**noiosi dati di sistema**\n- **opt-out**: ci ricordiamo se ci hai detto di stare zitti (`/tts off`).\n- **impostazioni del server**: solo per sapere se dobbiamo ignorare le persone non silenziate.",
+      "privacyFooter": "-# non registriamo i tuoi messaggi, non generiamo file audio né vendiamo i tuoi dati. i tuoi segreti sono al sicuro, soprattutto perché probabilmente sono noiosi.",
+      "tosHeader": "## termini di servizio",
+      "tosBody": "fornito \"così com'è\". rispetta i termini di servizio di discord. o non farlo. non siamo i tuoi genitori.",
+      "resetWarning": "-# vuoi ricominciare da capo? usa `/reset` per cancellare completamente i tuoi dati dal nostro database. questo rimuove tutte le tue impostazioni salvate (voce, nome, velocità, lingua) in ogni server. il tuo stato di opt-in/opt-out viene conservato.",
+      "versionFooter": "-# versione: 2.4.1 | motore: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bug? probabilmente. funzionalità? decisamente."
+    },
+    "lang": {
+      "invalid": "quel codice lingua non è valido.",
+      "success": "preferenze lingua impostate su **{langCode}**.",
+      "error": "impossibile salvare l'impostazione della lingua. (errore db)"
+    },
+    "leave": {
+      "notInVoice": "non sono in un canale vocale. senti le voci?",
+      "differentVoice": "devi essere nel mio stesso canale vocale per disconnettermi. bel tentativo.",
+      "success": "addio.",
+      "error": "ho avuto difficoltà ad andarmene. è imbarazzante."
+    },
+    "name": {
+      "success": "il tuo nome è stato impostato su **{name}**.",
+      "error": "si è verificato un errore durante il salvataggio del tuo nome.",
+      "filter": {
+        "added": "il filtro nome `{pattern}` è stato aggiunto.",
+        "exists": "quel filtro nome esiste già.",
+        "list": "**filtri nomi attivi:**\n{filters}",
+        "empty": "nessun filtro nome configurato per questo server.",
+        "edited": "filtro nome aggiornato da `{old}` a `{new}`.",
+        "notFound": "il filtro nome `{pattern}` non è stato trovato.",
+        "removed": "il filtro nome `{pattern}` è stato rimosso.",
+        "error": "impossibile aggiornare i filtri nomi."
+      }
+    },
+    "settings": {
+      "title": "# impostazioni",
+      "voice": "**voce**: {value}",
+      "name": "**nome**: {value}",
+      "speed": "**velocità**: {value}",
+      "lang": "**lingua**: {value}",
+      "defaultFormat": "`Non impostato` (Predefinito: `{defaultValue}`)",
+      "setFormat": "`{value}` (Predefinito: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "velocità impostata su **{speedValue}x**.",
+      "error": "impossibile salvare l'impostazione della velocità. (errore db)"
+    },
+    "tts": {
+      "alreadyOff": "il tts è già **disattivato** per te.",
+      "turnedOff": "il tts è ora **disattivato** per te.",
+      "alreadyOn": "il tts è già **attivo** per te.",
+      "turnedOn": "il tts è ora **attivo** per te.",
+      "error": "impossibile aggiornare le impostazioni."
+    },
+    "voice": {
+      "success": "la voce selezionata **{voiceId}** è stata salvata.",
+      "error": "la voce selezionata **{voiceId}** non è stata salvata. (errore durante il salvataggio nel db).",
+      "selectPrompt": "seleziona una voce che ti piace dal menu sottostante.",
+      "confirmButton": "Conferma",
+      "noPreview": "nessuna anteprima disponibile."
+    },
+    "reset": {
+      "full": "tutti i tuoi dati sono stati cancellati dal database. stai ricominciando da capo.",
+      "single": "la tua impostazione **{option}** è stata reimpostata per questo server.",
+      "noData": "non hai dati da reimpostare.",
+      "error": "impossibile reimpostare le tue impostazioni."
+    }
+  }
+}

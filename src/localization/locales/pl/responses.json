@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "kolejka wyczyszczona.",
+      "error": "nie udało się wyczyścić kolejki."
+    },
+    "restrict": {
+      "success": "tts ograniczone tylko do wyciszonych użytkowników.",
+      "error": "nie udało się ograniczyć tts."
+    },
+    "skip": {
+      "success": "pominięto.",
+      "tooShort": "wiadomość jest zbyt krótka, aby ją pominąć (< 35 znaków).",
+      "notPlaying": "nic nie jest teraz odtwarzane.",
+      "error": "wystąpił błąd podczas próby pominięcia.",
+      "unknown": "nie udało się pominąć."
+    },
+    "unrestrict": {
+      "success": "ograniczenia tts zostały zniesione.",
+      "error": "nie udało się znieść ograniczeń tts."
+    },
+    "guild": {
+      "lang": {
+        "success": "domyślny język serwera ustawiony na **{langCode}**.",
+        "reset": "domyślny język serwera został zresetowany.",
+        "invalid": "ten kod języka jest nieprawidłowy.",
+        "error": "nie udało się zaktualizować ustawienia języka serwera."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "filtr `{pattern}` został dodany.",
+        "exists": "ten filtr już istnieje.",
+        "list": "**aktywne filtry wiadomości:**\n{filters}",
+        "empty": "brak skonfigurowanych filtrów wiadomości dla tego serwera.",
+        "edited": "filtr zaktualizowany z `{old}` na `{new}`.",
+        "notFound": "filtr `{pattern}` nie został znaleziony.",
+        "removed": "filtr `{pattern}` został usunięty.",
+        "error": "nie udało się zaktualizować filtrów wiadomości."
+      }
+    },
+    "channel": {
+      "success": "alternatywny kanał czatu ustawiony na {channel}.",
+      "removed": "alternatywny kanał czatu został usunięty.",
+      "noneSet": "brak skonfigurowanego alternatywnego kanału czatu.",
+      "error": "nie udało się zaktualizować ustawienia kanału."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "nie znaleziono informacji o komendzie.",
+      "commands": {
+        "help": "jestem całkiem pewien, że ta komenda wyjaśnia się sama. dostarcza informacji o komendach, które ten bot ma do zaoferowania.",
+        "voice": "zmienia głos dla twojego konta. \n\njeśli ciekawi cię, jak brzmią głosy, możesz zajrzeć na stronę [voices](https://supertone-inc.github.io/supertonic-py/voices/) firmy supertonic.\n\n-# preferencje głosu dotyczą tylko serwera, na którym używasz komendy, więc możesz mieć różne preferencje na każdym serwerze.",
+        "info": "dostarcza informacji o bocie, w tym powiadomienia o warunkach korzystania z usługi i polityce prywatności.",
+        "name": "ustaw swoją nazwę wyświetlaną lub zarządzaj filtrami nazw.\n\n`/name set <nazwa>`: ustawia nazwę dla twoich wiadomości.\n`/name filter add|list|edit|remove`: zarządzaj filtrami nazw (admin).\n\n-# preferencje nazw dotyczą poszczególnych serwerów zamiast być uniwersalne. ma to na celu ochronę twojej prywatności.",
+        "speed": "zmienia prędkość tts dla twojego konta. \n\nwartość musi mieścić się w przedziale od **0.5** do **2.0**. \n\n-# prędkości dotyczą poszczególnych serwerów.",
+        "lang": "zmienia język tts dla twojego konta. \n\nobslugiwane języki: angielski, arabski, bułgarski, czeski, duński, niemiecki, grecki, hiszpański, estoński, fiński, francuski, hindi, chorwacki, węgierski, indonezyjski, włoski, japoński, koreański, litewski, łotewski, holenderski, polski, portugalski, rumuński, rosyjski, słowacki, słoweński, szwedzki, turecki, ukraiński, wietnamski. \n\n-# preferencje językowe dotyczą poszczególnych serwerów.",
+        "clear": "czyści kolejkę tts dla obecnego serwera. \n\nwymaga uprawnienia **Zarządzanie wiadomościami**.",
+        "leave": "wymusza rozłączenie bota z kanału głosowego.",
+        "restrict": "ogranicza korzystanie z tts tylko do wyciszonych użytkowników. \n\nwymaga uprawnienia **Zarządzanie kanałami**.",
+        "unrestrict": "pozwala wszystkim korzystać z tts. \n\nwymaga uprawnienia **Zarządzanie kanałami**.",
+        "skip": "pomija aktualnie odtwarzaną wiadomość tts. \n\nwymaga uprawnienia **Zarządzanie wiadomościami**.",
+        "tts": "zarządzaj swoimi preferencjami tts. \n\n`/tts on`: włącz tts dla swoich wiadomości.\n`/tts off`: wyłącz tts dla swoich wiadomości.",
+        "settings": "wyświetla twoje obecne ustawienia tts (głos, nazwa, prędkość, język).",
+        "reset": "resetuje twoje ustawienia tts do domyślnych.\n\n`/reset`: usuwa wszystkie twoje dane z bazy danych.\n`/reset <opcja>`: resetuje konkretne ustawienie (głos, nazwa, prędkość, język) dla tego serwera.\n\n-# nie wpływa to na twój status opt-in/opt-out.",
+        "guild": "zarządzaj ustawieniami specyficznymi dla serwera.\n\n`/guild lang set <język>`: ustaw domyślny język.\n`/guild lang reset`: zresetuj domyślny język serwera.\n\n-# wymaga uprawnienia **Zarządzanie serwerem**.",
+        "message": "zarządzaj filtrami treści wiadomości.\n\n`/message filter add <tekst>`: dodaj nowy filtr.\n`/message filter list`: lista wszystkich aktywnych filtrów.\n`/message filter edit <stary> <nowy>`: edytuj filtr.\n`/message filter remove <tekst>`: usuń filtr.\n\n-# wymaga uprawnienia **Zarządzanie wiadomościami**.",
+        "channel": "zarządzaj alternatywnym kanałem czatu serwera.\n\n`/channel set <kanał>`: ustaw kanał tekstowy jako alternatywny czat tts.\n`/channel remove`: usuń obecny alternatywny kanał.\n\n-# wymaga uprawnienia **Zarządzanie kanałami**."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*dajemy głos tym, którzy go nie mają. i tym społecznie nieśmiałym.*",
+      "privacyHeader": "## polityka prywatności",
+      "privacySettings": "**twoje rzeczy** (przechowywane lokalnie na serwerze)\n- **głos**: żebyś nie brzmiał jak zwykły robot.\n- **prędkość**: pędziwiatr lub zwolnione tempo.\n- **nazwa**: twoje alter ego.\n- **język**: kiedy chcesz brzmieć światowo.",
+      "privacySystem": "**nudne dane systemowe**\n- **opt-out**: pamiętamy, jeśli kazałeś nam się zamknąć (`/tts off`).\n- **ustawienia serwera**: po to, by wiedzieć, czy powinniśmy ignorować niewyciszonych ludzi.",
+      "privacyFooter": "-# nie logujemy twoich wiadomości, nie generujemy plików audio ani nie sprzedajemy twoich danych. twoje sekrety są bezpieczne, głównie dlatego, że prawdopodobnie są nudne.",
+      "tosHeader": "## warunki korzystania z usługi",
+      "tosBody": "dostarczane \"tak jak jest\". przestrzegaj tos discorda. albo nie. nie jesteśmy twoimi rodzicami.",
+      "resetWarning": "-# chcesz zacząć od nowa? użyj `/reset`, aby całkowicie usunąć swoje dane z naszej bazy danych. spowoduje to usunięcie wszystkich zapisanych ustawień (głos, nazwa, prędkość, język) na każdym serwerze. twój status opt-in/opt-out zostaje zachowany.",
+      "versionFooter": "-# wersja: 2.4.1 | silnik: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# błędy? prawdopodobnie. funkcje? zdecydowanie."
+    },
+    "lang": {
+      "invalid": "ten kod języka jest nieprawidłowy.",
+      "success": "preferencje językowe ustawione na **{langCode}**.",
+      "error": "nie udało się zapisać ustawienia języka. (błąd bazy danych)"
+    },
+    "leave": {
+      "notInVoice": "nie ma mnie na kanale głosowym. słyszysz głosy?",
+      "differentVoice": "musisz być na tym samym kanale głosowym co ja, aby mnie rozłączyć. niezła próba.",
+      "success": "do widzenia.",
+      "error": "miałem trudności z wyjściem. to krępujące."
+    },
+    "name": {
+      "success": "twoja nazwa została ustawiona na **{name}**.",
+      "error": "wystąpił błąd podczas zapisywania twojej nazwy.",
+      "filter": {
+        "added": "filtr nazw `{pattern}` został dodany.",
+        "exists": "ten filtr nazw już istnieje.",
+        "list": "**aktywne filtry nazw:**\n{filters}",
+        "empty": "brak skonfigurowanych filtrów nazw dla tego serwera.",
+        "edited": "filtr nazw zaktualizowany z `{old}` na `{new}`.",
+        "notFound": "filtr nazw `{pattern}` nie został znaleziony.",
+        "removed": "filtr nazw `{pattern}` został usunięty.",
+        "error": "nie udało się zaktualizować filtrów nazw."
+      }
+    },
+    "settings": {
+      "title": "# ustawienia",
+      "voice": "**głos**: {value}",
+      "name": "**nazwa**: {value}",
+      "speed": "**prędkość**: {value}",
+      "lang": "**język**: {value}",
+      "defaultFormat": "`Nieustawione` (Domyślnie: `{defaultValue}`)",
+      "setFormat": "`{value}` (Domyślnie: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "prędkość ustawiona na **{speedValue}x**.",
+      "error": "nie udało się zapisać ustawienia prędkości. (błąd bazy danych)"
+    },
+    "tts": {
+      "alreadyOff": "tts jest już dla ciebie **wyłączony**.",
+      "turnedOff": "tts jest teraz dla ciebie **wyłączony**.",
+      "alreadyOn": "tts jest już dla ciebie **włączony**.",
+      "turnedOn": "tts jest teraz dla ciebie **włączony**.",
+      "error": "nie udało się zaktualizować ustawień."
+    },
+    "voice": {
+      "success": "wybrany głos **{voiceId}** został zapisany.",
+      "error": "wybrany głos **{voiceId}** nie został zapisany. (błąd podczas zapisywania w bazie danych).",
+      "selectPrompt": "wybierz głos, który ci się podoba, z menu poniżej.",
+      "confirmButton": "Potwierdź",
+      "noPreview": "podgląd niedostępny."
+    },
+    "reset": {
+      "full": "wszystkie twoje dane zostały usunięte z bazy danych. zaczynasz od nowa.",
+      "single": "twoje ustawienie **{option}** zostało zresetowane dla tego serwera.",
+      "noData": "nie masz żadnych danych do zresetowania.",
+      "error": "nie udało się zresetować twoich ustawień."
+    }
+  }
+}

@@ -3,7 +3,7 @@
  * @description resets user tts settings. full wipe or granular.
  * "tabula rasa."
  */
-const { SlashCommandBuilder, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, MessageFlags, ContainerBuilder } = require('discord.js');
 const db = require('../../data/db');
 const { localize, getCommandLocalizations, getOptionLocalizations } = require('../../localization/localize');
 const ostinato = require('../../services/OstinatoTTS');
@@ -56,23 +56,23 @@ module.exports = {
                 ostinato.invalidateCache(userId, guildId, 'speed');
                 ostinato.invalidateCache(userId, guildId, 'lang');
 
-                await interaction.reply({ content: localize(locale, 'responses.public.reset.full'), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(interaction.locale, 'responses.public.reset.full')}`))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             } else {
                 const tableMap = { voice: 'voices', name: 'names', speed: 'speeds', lang: 'langs' };
                 const table = tableMap[option];
 
                 if (!table) {
-                    return await interaction.reply({ content: localize(locale, 'responses.public.reset.error'), flags: MessageFlags.Ephemeral });
+                    return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(interaction.locale, 'responses.public.reset.error')}`))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
                 }
 
                 db.prepare(`DELETE FROM ${table} WHERE user = ? AND guild = ?`).run(userId, guildId);
                 ostinato.invalidateCache(userId, guildId, option);
 
-                await interaction.reply({ content: localize(locale, 'responses.public.reset.single', { option }), flags: MessageFlags.Ephemeral });
+                await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(interaction.locale, 'responses.public.reset.single', { option })}`))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
             }
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: localize(locale, 'responses.public.reset.error'), flags: MessageFlags.Ephemeral });
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(interaction.locale, 'responses.public.reset.error')}`))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
         }
     }
 }

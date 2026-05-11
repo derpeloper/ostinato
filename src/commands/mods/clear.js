@@ -3,7 +3,7 @@
  * @description clears the tts queue for the current server.
  * "silence, brand."
  */
-const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags, ContainerBuilder } = require('discord.js');
 const ostinato = require('../../services/OstinatoTTS');
 const { localize, getCommandLocalizations } = require('../../localization/localize');
 
@@ -19,10 +19,10 @@ module.exports = {
         
         try {
             ostinato.clearQueue(guildId);
-            await interaction.reply({ content: localize(interaction.locale, 'responses.mods.clear.success'), flags: MessageFlags.Ephemeral });
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.mods.clear.success')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: localize(interaction.locale, 'responses.mods.clear.error'), flags: MessageFlags.Ephemeral });
+            await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(interaction.locale, 'responses.mods.clear.error')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
         }
     }
 }

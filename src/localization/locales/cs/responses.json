@@ -1,0 +1,143 @@
+{
+  "mods": {
+    "clear": {
+      "success": "fronta vymazána.",
+      "error": "nepodařilo se vymazat frontu."
+    },
+    "restrict": {
+      "success": "tts omezeno pouze na ztlumené uživatele.",
+      "error": "nepodařilo se omezit tts."
+    },
+    "skip": {
+      "success": "přeskočeno.",
+      "tooShort": "zpráva je příliš krátká na přeskočení (< 35 znaků).",
+      "notPlaying": "momentálně se nic nepřehrává.",
+      "error": "při pokusu o přeskočení došlo k chybě.",
+      "unknown": "nepodařilo se přeskočit."
+    },
+    "unrestrict": {
+      "success": "omezení tts byla zrušena.",
+      "error": "nepodařilo se zrušit omezení tts."
+    },
+    "guild": {
+      "lang": {
+        "success": "výchozí jazyk serveru nastaven na **{langCode}**.",
+        "reset": "výchozí jazyk serveru byl resetován.",
+        "invalid": "tento kód jazyka je neplatný.",
+        "error": "nepodařilo se aktualizovat nastavení jazyka serveru."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "filtr `{pattern}` byl přidán.",
+        "exists": "tento filtr již existuje.",
+        "list": "**aktivní filtry zpráv:**\n{filters}",
+        "empty": "pro tento server nejsou nakonfigurovány žádné filtry zpráv.",
+        "edited": "filtr aktualizován z `{old}` na `{new}`.",
+        "notFound": "filtr `{pattern}` nebyl nalezen.",
+        "removed": "filtr `{pattern}` byl odebrán.",
+        "error": "nepodařilo se aktualizovat filtry zpráv."
+      }
+    },
+    "channel": {
+      "success": "alternativní chatovací kanál nastaven na {channel}.",
+      "removed": "alternativní chatovací kanál byl odebrán.",
+      "noneSet": "není nakonfigurován žádný alternativní chatovací kanál.",
+      "error": "nepodařilo se aktualizovat nastavení kanálu."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "informace o příkazu nebyly nalezeny.",
+      "commands": {
+        "help": "jsem si docela jistý, že tento příkaz je samovysvětlující. poskytuje informace o příkazech, které tento bot nabízí.",
+        "voice": "změní hlas pro váš účet. \n\npokud vás zajímá, jak hlasy znějí, můžete se podívat na stránku [hlasy](https://supertone-inc.github.io/supertonic-py/voices/) od supertonic.\n\n-# předvolby hlasu ovlivňují pouze server, na kterém příkaz použijete, takže můžete mít na každém serveru jiné předvolby.",
+        "info": "poskytuje informace o botovi, včetně upozornění na podmínky služby a zásady ochrany osobních údajů.",
+        "name": "nastavte své zobrazované jméno nebo spravujte filtry jmen.\n\n`/name set <name>`: nastaví jméno pro vaše zprávy.\n`/name filter add|list|edit|remove`: správa filtrů jmen (admin).\n\n-# předvolby jmen jsou pro každý server zvlášť, místo aby byly univerzální. je to kvůli ochraně vašeho soukromí.",
+        "speed": "změní rychlost tts pro váš účet. \n\nhodnota musí být mezi **0,5** a **2,0**. \n\n-# rychlosti jsou pro každý server zvlášť.",
+        "lang": "změní jazyk tts pro váš účet. \n\npodporované jazyky: angličtina, arabština, bulharština, čeština, dánština, němčina, řečtina, španělština, estonština, finština, francouzština, hindština, chorvatština, maďarština, indonéština, italština, japonština, korejština, litevština, lotyština, nizozemština, polština, portugalština, rumunština, ruština, slovenština, slovinština, švédština, turečtina, ukrajinština, vietnamština. \n\n-# předvolby jazyka jsou pro každý server zvlášť.",
+        "clear": "vymaže frontu tts pro aktuální server. \n\nvyžaduje oprávnění **Spravovat zprávy**.",
+        "leave": "vynutí odpojení bota z hlasového kanálu.",
+        "restrict": "omezí používání tts pouze na ztlumené uživatele. \n\nvyžaduje oprávnění **Spravovat kanály**.",
+        "unrestrict": "umožní všem používat tts. \n\nvyžaduje oprávnění **Spravovat kanály**.",
+        "skip": "přeskočí aktuálně přehrávanou zprávu tts. \n\nvyžaduje oprávnění **Spravovat zprávy**.",
+        "tts": "správa vašich předvoleb tts. \n\n`/tts on`: zapne tts pro vaše zprávy.\n`/tts off`: vypne tts pro vaše zprávy.",
+        "settings": "zobrazí vaše aktuální nastavení tts (hlas, jméno, rychlost, jazyk).",
+        "reset": "resetuje vaše nastavení tts na výchozí.\n\n`/reset`: vymaže všechna vaše data z databáze.\n`/reset <option>`: resetuje konkrétní nastavení (hlas, jméno, rychlost, jazyk) pro tento server.\n\n-# toto neovlivní váš status přihlášení/odhlášení.",
+        "guild": "správa nastavení specifických pro server.\n\n`/guild lang set <language>`: nastaví výchozí jazyk serveru.\n`/guild lang reset`: resetuje výchozí jazyk serveru.\n\n-# vyžaduje oprávnění **Spravovat server**.",
+        "message": "správa filtrů obsahu zpráv.\n\n`/message filter add <string>`: přidá nový filtr.\n`/message filter list`: vypíše všechny aktivní filtry.\n`/message filter edit <old> <new>`: upraví existující filtr.\n`/message filter remove <string>`: odebere filtr.\n\n-# vyžaduje oprávnění **Spravovat zprávy**.",
+        "channel": "správa alternativního chatovacího kanálu serveru.\n\n`/channel set <channel>`: nastaví textový kanál jako alternativní tts chat.\n`/channel remove`: odebere aktuální alternativní kanál.\n\n-# vyžaduje oprávnění **Spravovat kanály**."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*dáváme hlas těm, kteří ho nemají. a těm sociálně neohrabaným.*",
+      "privacyHeader": "## zásady ochrany osobních údajů",
+      "privacySettings": "**vaše věci** (uložené lokálně pro každý server)\n- **hlas**: abyste nezněli jako tuctový robot.\n- **rychlost**: fičák nebo zpomalený film.\n- **jméno**: vaše alter ego.\n- **jazyk**: pro chvíle, kdy chcete znít světově.",
+      "privacySystem": "**nudná systémová data**\n- **odhlášení**: pamatujeme si, pokud jste nám řekli, abychom mlčeli (`/tts off`).\n- **nastavení serveru**: jen abychom věděli, jestli máme ignorovat neztlumené lidi.",
+      "privacyFooter": "-# nelogujeme vaše zprávy, negenerujeme zvukové soubory ani neprodáváme vaše data. vaše tajemství jsou v bezpečí, hlavně proto, že jsou pravděpodobně nudná.",
+      "tosHeader": "## podmínky služby",
+      "tosBody": "poskytováno „tak, jak je“. dodržujte podmínky služby discord. nebo ne. nejsme vaši rodiče.",
+      "resetWarning": "-# chcete začít znovu? použijte `/reset` k úplnému vymazání dat z naší databáze. tím se odstraní všechna vaše uložená nastavení (hlas, jméno, rychlost, jazyk) na všech serverech. váš status tts (zapnuto/vypnuto) zůstane zachován.",
+      "versionFooter": "-# verze: 2.4.1 | jádro: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# chyby? pravděpodobně. funkce? určitě."
+    },
+    "lang": {
+      "invalid": "tento kód jazyka je neplatný.",
+      "success": "předvolby jazyka nastaveny na **{langCode}**.",
+      "error": "nepodařilo se uložit nastavení jazyka. (chyba databáze)"
+    },
+    "leave": {
+      "notInVoice": "nejsem v hlasovém kanálu. slyšíte hlasy?",
+      "differentVoice": "musíte být ve stejném hlasovém kanálu jako já, abyste mě mohli odpojit. pěkný pokus.",
+      "success": "na shledanou.",
+      "error": "měl jsem potíže s odchodem. to je trapné."
+    },
+    "name": {
+      "success": "vaše jméno bylo nastaveno na **{name}**.",
+      "error": "při ukládání vašeho jména došlo k chybě.",
+      "filter": {
+        "added": "filtr jmen `{pattern}` byl přidán.",
+        "exists": "tento filtr jmen již existuje.",
+        "list": "**aktivní filtry jmen:**\n{filters}",
+        "empty": "pro tento server nejsou nakonfigurovány žádné filtry jmen.",
+        "edited": "filtr jmen aktualizován z `{old}` na `{new}`.",
+        "notFound": "filtr jmen `{pattern}` nebyl nalezen.",
+        "removed": "filtr jmen `{pattern}` byl odebrán.",
+        "error": "nepodařilo se aktualizovat filtry jmen."
+      }
+    },
+    "settings": {
+      "title": "# nastavení",
+      "voice": "**hlas**: {value}",
+      "name": "**jméno**: {value}",
+      "speed": "**rychlost**: {value}",
+      "lang": "**jazyk**: {value}",
+      "defaultFormat": "`Nenastaveno` (Výchozí: `{defaultValue}`)",
+      "setFormat": "`{value}` (Výchozí: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "rychlost nastavena na **{speedValue}x**.",
+      "error": "nepodařilo se uložit nastavení rychlosti. (chyba databáze)"
+    },
+    "tts": {
+      "alreadyOff": "tts už pro vás máte **vypnuté**.",
+      "turnedOff": "tts je nyní pro vás **vypnuté**.",
+      "alreadyOn": "tts už pro vás máte **zapnuté**.",
+      "turnedOn": "tts je nyní pro vás **zapnuté**.",
+      "error": "nepodařilo se aktualizovat nastavení."
+    },
+    "voice": {
+      "success": "vybraný hlas **{voiceId}** byl uložen.",
+      "error": "vybraný hlas **{voiceId}** nebyl uložen. (chyba při ukládání do databáze).",
+      "selectPrompt": "vyberte si hlas, který se vám líbí, z níže uvedeného menu.",
+      "confirmButton": "Potvrdit",
+      "noPreview": "není k dispozici žádná ukázka."
+    },
+    "reset": {
+      "full": "všechna vaše data byla vymazána z databáze. začínáte s čistým štítem.",
+      "single": "vaše nastavení **{option}** bylo pro tento server resetováno.",
+      "noData": "nemáte žádná data k resetování.",
+      "error": "nepodařilo se resetovat vaše nastavení."
+    }
+  }
+}
