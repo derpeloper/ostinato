@@ -51,12 +51,12 @@ module.exports = {
     // -- presence & status ----------------------------------------------------
     // control how the bot presents itself.
 
-    status: 'dnd',           // presence: 'online', 'idle', 'dnd'
+    status: 'online',           // presence: 'online', 'idle', 'dnd'
     activityType: 'Custom',     // activity: 'Playing', 'Watching', 'Listening', 'Custom'
     statusMessages: [
+        'active in {guilds} servers',
         'a voice for the voiceless',
-        'reduced performance',
-        'v2.4.1-beta'
+        'v2.4.1 - /help'
     ],
     statusRotationInterval: 3500,  // ms: how often the status rotates.
     autoIdle: true,                 // idle: automatically go idle after inactivity.
