@@ -57,7 +57,7 @@ const supertonicPath = path.join(process.cwd(), 'supertonic');
 const onnxPath = path.join(supertonicPath, 'assets', 'onnx');
 const voiceStylesPath = path.join(supertonicPath, 'assets', 'voice_styles');
 
-function createWavBuffer(audioData, sampleRate) {
+function createWavBuffer(audioData, sampleRate, volume = 1.0) {
     const numChannels = 1;
     const bitsPerSample = 16;
     const byteRate = sampleRate * numChannels * bitsPerSample / 8;
@@ -83,7 +83,7 @@ function createWavBuffer(audioData, sampleRate) {
     buffer.writeUInt32LE(dataSize, 40);
     
     for (let i = 0; i < audioData.length; i++) {
-        const sample = Math.max(-1, Math.min(1, audioData[i]));
+        const sample = Math.max(-1, Math.min(1, audioData[i] * volume));
         const intSample = Math.floor(sample * 32767);
         buffer.writeInt16LE(intSample, 44 + i * 2);
     }
@@ -144,7 +144,7 @@ parentPort.on('message', async (msg) => {
     if (msg.type === 'initialize') {
         await initialize();
     } else if (msg.type === 'generate') {
-        const { requestId, text, userId, voiceId, speed, lang: forcedLang } = msg;
+        const { requestId, text, userId, voiceId, speed, volume, lang: forcedLang } = msg;
 
         let targetSpeed = speed;
         if (targetSpeed === undefined || targetSpeed === null) {
@@ -203,7 +203,7 @@ parentPort.on('message', async (msg) => {
             }
 
             const { wav } = await ttsEngine.call(text, lang, voiceStyle, quality, targetSpeed);
-            const buffer = createWavBuffer(wav, sampleRate);
+            const buffer = createWavBuffer(wav, sampleRate, volume);
             
             parentPort.postMessage({ 
                 type: 'response', 

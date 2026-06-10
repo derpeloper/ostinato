@@ -60,15 +60,15 @@ class OstinatoTTS {
         this.workers = [];
         this.nextWorkerIndex = 0;
         this.initialized = false;
-        
+
         this.guildSemaphores = new Map();
-        
+
         let globalMax = config.maxConcurrency;
         if (globalMax === undefined || globalMax === null || isNaN(globalMax)) globalMax = 100;
         this.globalSemaphore = new Semaphore(globalMax);
-        
+
         this.playbackQueues = new Map();
-        
+
         this.pendingRequests = new Map();
         this.requestIdCounter = 0;
         this.sampleRate = 24000;
@@ -133,7 +133,7 @@ class OstinatoTTS {
         }
 
         const { Worker } = require('worker_threads');
-        
+
         for (let i = 0; i < count; i++) {
             this.workers.push({ worker: null, ready: false });
             this._spawnWorker(i, Worker);
@@ -144,7 +144,7 @@ class OstinatoTTS {
             await new Promise(r => setTimeout(r, 500));
             attempts++;
         }
-        
+
         if (!this.initialized) throw new Error("Worker pool initialization timed out");
     }
 
@@ -184,34 +184,34 @@ class OstinatoTTS {
                 if (code !== 0) {
                      console.error(new Error(`[OstinatoTTS] Worker ${index} stopped with exit code ${code}`));
                 }
-                
+
                 console.log(`[OstinatoTTS] Worker ${index} died. Restarting in 1 second...`);
                 this.workers[index].ready = false;
                 this.workers[index].worker = null;
                 this._checkAllWorkersReady();
-                
+
                 const requestsToRetry = Array.from(this.pendingRequests.entries())
                     .filter(([_, req]) => req.workerIndex === index);
-                
+
                 for (const [requestId] of requestsToRetry) {
                     this.pendingRequests.delete(requestId);
                 }
 
                 await new Promise(r => setTimeout(r, 1000));
-                
+
                 try {
                     this._spawnWorker(index, Worker);
-                    
+
                     let attempts = 0;
                     while (!this.workers[index].ready && attempts < 120) {
                         await new Promise(r => setTimeout(r, 500));
                         attempts++;
                     }
-                    
+
                     if (!this.workers[index].ready) {
                         throw new Error(`Worker ${index} failed to become ready`);
                     }
-                    
+
                     console.log(`[OstinatoTTS] Re-queueing ${requestsToRetry.length} failed requests for worker ${index}...`);
                     for (const [requestId, req] of requestsToRetry) {
                         if (req.args) {
@@ -242,7 +242,7 @@ class OstinatoTTS {
     handleWorkerResponse(msg) {
         const { requestId, success, buffer, error, lang, detected } = msg;
         const request = this.pendingRequests.get(requestId);
-        
+
         if (request) {
             if (success) {
                 request.resolve({ buffer, lang, detected });
@@ -253,7 +253,7 @@ class OstinatoTTS {
         }
     }
 
-    async generateAudio(text, userId, voiceId, speed, lang) {
+    async generateAudio(text, userId, voiceId, speed, lang, volume) {
         if (!this.initialized) await this.initialize();
 
         let finalSpeed = speed;
@@ -267,12 +267,12 @@ class OstinatoTTS {
 
         return new Promise((resolve, reject) => {
             const requestId = this.requestIdCounter++;
-            
+
             let workerIndex = this.nextWorkerIndex % this.workers.length;
             this.nextWorkerIndex++;
-            
+
             let workerData = this.workers[workerIndex];
-            
+
             // Output protection: if selected worker is currently indisposed (e.g. restarting), try another
             if (!workerData || !workerData.worker || !workerData.ready) {
                 for (let i = 0; i < this.workers.length; i++) {
@@ -284,14 +284,14 @@ class OstinatoTTS {
                     }
                 }
             }
-            
-            this.pendingRequests.set(requestId, { 
-                resolve, 
+
+            this.pendingRequests.set(requestId, {
+                resolve,
                 reject,
-                args: [text, userId, voiceId, speed, lang],
+                args: [text, userId, voiceId, speed, lang, volume],
                 workerIndex
             });
-            
+
             if (workerData && workerData.worker && workerData.ready) {
                 workerData.worker.postMessage({
                     type: 'generate',
@@ -300,7 +300,8 @@ class OstinatoTTS {
                     userId,
                     voiceId,
                     speed: finalSpeed,
-                    lang: lang
+                    lang: lang,
+                    volume: volume
                 });
             } else {
                 reject(new Error(`Worker ${workerIndex} is not ready, and no available workers were found.`));
@@ -314,7 +315,7 @@ class OstinatoTTS {
         this.lastActivityTimestamp = Date.now();
 
         const cleanContent = cleanText(message.content, message);
-        
+
         if (!cleanContent) return;
 
         try {
@@ -330,7 +331,7 @@ class OstinatoTTS {
         } catch (err) {
             console.error('[OstinatoTTS] Error checking message filters:', err);
         }
-        
+
         const guildId = message.guild.id;
 
         try {
@@ -353,7 +354,7 @@ class OstinatoTTS {
 
             const disabledKey = `disabled:${message.author.id}`;
             let isDisabled = false;
-            
+
             if (this.cache.has(disabledKey)) {
                  isDisabled = this.cache.get(disabledKey);
             } else {
@@ -369,14 +370,14 @@ class OstinatoTTS {
         } catch (err) {
             console.error('[OstinatoTTS] Error checking restrictions/disabled:', err);
         }
-        
+
         const existingQueue = this.playbackQueues.get(guildId);
         const lastSpeaker = existingQueue ? existingQueue.lastSpeakerId : null;
         const shouldAnnounceName = lastSpeaker !== message.author.id;
-        
+
         if (!this.playbackQueues.has(guildId)) {
             const player = createAudioPlayer();
-            
+
             player.on('stateChange', (oldState, newState) => {
                 if (newState.status === AudioPlayerStatus.Idle) {
                     this.playNext(guildId);
@@ -385,7 +386,7 @@ class OstinatoTTS {
 
             player.on('error', error => {
                 console.error(`[OstinatoTTS] Audio player error: ${error.message}`);
-                this.playNext(guildId); 
+                this.playNext(guildId);
             });
 
             this.playbackQueues.set(guildId, {
@@ -395,21 +396,21 @@ class OstinatoTTS {
                 connection: null,
                 currentIsLong: false,
                 currentTextLength: 0,
-                lastSpeakerId: null 
+                lastSpeakerId: null
             });
         }
 
         const queueData = this.playbackQueues.get(guildId);
-        
+
         let connection = getVoiceConnection(guildId);
-        
+
         if (connection) {
              const botChannelId = message.guild.members.me?.voice?.channelId || connection.joinConfig.channelId;
              if (message.member?.voice?.channelId !== botChannelId) {
                   return;
              }
         }
-        
+
         if (!connection) {
             if (message.member?.voice?.channel) {
                 console.log(`[OstinatoTTS] Joining VC: ${message.member.voice.channel.name}`);
@@ -433,20 +434,20 @@ class OstinatoTTS {
                 queueData.connection = connection;
             } else {
                 console.log('[OstinatoTTS] User not in VC, ignoring.');
-                return; 
+                return;
             }
         }
 
         const sub = connection.subscribe(queueData.player);
         if (!sub) console.warn('[OstinatoTTS] Failed to subscribe player to connection.');
-        
+
         const isLong = cleanContent.length > 200;
 
         if (queueData.isPlaying && queueData.currentIsLong) {
             console.log(`[OstinatoTTS] Interrupting long message.`);
-            queueData.player.stop(); 
+            queueData.player.stop();
         }
-        
+
         const taskPromise = (async () => {
             let perGuildConcurrency = config.maxPerGuildConcurrency;
             if (perGuildConcurrency === undefined || perGuildConcurrency === null) {
@@ -460,7 +461,7 @@ class OstinatoTTS {
             await guildSemaphoreInstance.acquire();
             try {
                 let nameToUse = message.author.username;
-                
+
                 const nameKey = `name:${message.author.id}:${guildId}`;
                 if (this.cache.has(nameKey)) {
                     nameToUse = this.cache.get(nameKey);
@@ -561,15 +562,7 @@ class OstinatoTTS {
 
 
                 const start = Date.now();
-                
-                const { buffer, lang: usedLang, detected } = await this.generateAudio(fullContent, message.author.id, voiceId, speed, lang);
-                
-                if (!buffer) {
-                     return null;
-                }
-                
-                const resource = createAudioResource(Readable.from([buffer]), { inlineVolume: true });
-                
+
                 let volume = config.ttsVolume;
                 if (volume === undefined || volume === null) {
                      console.warn('[OstinatoTTS] config.ttsVolume is missing. falling back to backend default: 5.89');
@@ -584,11 +577,19 @@ class OstinatoTTS {
                     }
                     volume = priorityVolume;
                 }
-                resource.volume.setVolume(volume);
-                return resource; 
+
+                const { buffer, lang: usedLang, detected } = await this.generateAudio(fullContent, message.author.id, voiceId, speed, lang, volume);
+
+                if (!buffer) {
+                     return null;
+                }
+
+                const resource = createAudioResource(Readable.from([buffer]), { inlineVolume: false });
+
+                return resource;
             } catch (e) {
                 console.error('[OstinatoTTS] Generation error:', e);
-                
+
                 if (e.message && (e.message.includes('Non-zero status code') || e.message.includes('BroadcastIterator'))) {
                     try {
                         await message.reply("the engine failed to process this. it hit a tensor dimensionality mismatch (the engine got a bit confused by how this message was structured).");
@@ -596,7 +597,7 @@ class OstinatoTTS {
                         console.error('[OstinatoTTS] Failed to reply to user:', replyError);
                     }
                 }
-                
+
                 return null;
             } finally {
                 if (guildSemaphoreInstance) guildSemaphoreInstance.release();
@@ -623,19 +624,19 @@ class OstinatoTTS {
         }
 
         queueData.isPlaying = true;
-        const item = queueData.queue[0]; 
+        const item = queueData.queue[0];
         queueData.currentIsLong = item.isLong;
         queueData.currentTextLength = item.textLength;
-        
+
         try {
             const resource = await item.task;
-            queueData.queue.shift(); 
+            queueData.queue.shift();
 
             if (resource) {
-                
+
                 resource.playStream.on('error', (error) => {
                     console.error('[OstinatoTTS] Audio Resource Stream Error:', error);
-                    this.playNext(guildId); 
+                    this.playNext(guildId);
                 });
 
                 queueData.player.play(resource);
@@ -652,7 +653,7 @@ class OstinatoTTS {
     handleVoiceStateUpdate(oldState, newState) {
         const guildId = oldState.guild.id;
         const connection = getVoiceConnection(guildId);
-        
+
         if (!connection) return;
 
         const channelId = connection.joinConfig.channelId;
@@ -669,7 +670,7 @@ class OstinatoTTS {
                 this.playbackQueues.get(guildId).player.stop();
             }
             connection.destroy();
-            this.playbackQueues.delete(guildId); 
+            this.playbackQueues.delete(guildId);
             this.guildSemaphores.delete(guildId);
         }
     }
@@ -693,7 +694,7 @@ class OstinatoTTS {
         setInterval(async () => {
             if (!this.initialized || this.workers.length === 0) return;
             try {
-                await this.generateAudio("alive", "0", null, null, null);
+                await this.generateAudio("alive", "0", null, null, null, 1.0);
             } catch (e) {
             }
         }, 3 * 60 * 1000);
@@ -712,7 +713,7 @@ class OstinatoTTS {
         if (!this.playbackQueues.has(guildId)) return 'NOT_PLAYING';
 
         const queueData = this.playbackQueues.get(guildId);
-        
+
         if (!queueData.isPlaying) return 'NOT_PLAYING';
 
         if (queueData.currentTextLength < 35) {
@@ -752,7 +753,7 @@ class OstinatoTTS {
         if (!this.initialized || this.workers.length === 0) return;
 
         const memoryReports = await this.collectWorkerMemory();
-        
+
         let totalRss = 0;
         let totalHeapUsed = 0;
         let activeWorkers = 0;
