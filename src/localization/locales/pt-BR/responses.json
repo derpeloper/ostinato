@@ -44,6 +44,11 @@
       "removed": "canal de chat alternativo removido.",
       "noneSet": "nenhum canal de chat alternativo configurado.",
       "error": "falha ao atualizar a configuração do canal."
+    },
+    "autojoin": {
+      "enabled": "o autojoin agora está **ativado**. eu seguirei o primeiro usuário que entrar em um canal de voz.",
+      "disabled": "o autojoin agora está **desativado**.",
+      "error": "falha ao alternar o autojoin."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "redefine suas configurações de tts para o padrão.\n\n`/reset`: apaga todos os seus dados do banco de dados.\n`/reset <opção>`: redefine uma configuração específica (voz, nome, velocidade, idioma) para este servidor.\n\n-# isso não afeta seu status de inclusão/exclusão.",
         "guild": "gerenciar configurações específicas do servidor.\n\n`/guild lang set <idioma>`: definir o idioma padrão.\n`/guild lang reset`: redefinir o idioma padrão do servidor.\n\n-# requer permissão de **Gerenciar Servidor**.",
         "message": "gerenciar filtros de conteúdo de mensagens.\n\n`/message filter add <string>`: adicionar um novo filtro.\n`/message filter list`: listar todos os filtros ativos.\n`/message filter edit <antigo> <novo>`: editar um filtro.\n`/message filter remove <string>`: remover um filtro.\n\n-# requer permissão de **Gerenciar Mensagens**.",
-        "channel": "gerenciar o canal de chat alternativo do servidor.\n\n`/channel set <canal>`: definir um canal de texto como o chat tts alternativo.\n`/channel remove`: remover o canal alternativo atual.\n\n-# requer permissão de **Gerenciar Canais**."
+        "channel": "gerenciar o canal de chat alternativo do servidor.\n\n`/channel set <canal>`: definir um canal de texto como o chat tts alternativo.\n`/channel remove`: remover o canal alternativo atual.\n\n-# requer permissão de **Gerenciar Canais**.",
+        "inject": "envie uma mensagem diretamente para o canal de voz sem entrar nele.\n\n/inject <mensagem>: envia sua mensagem para o canal de voz ativo.\n\n-# limitado a 5 usos por hora por servidor. moderadores ignoram este limite.",
+        "autojoin": "alterna se o bot entra automaticamente nos canais de voz quando o primeiro usuário entra.\n\n/autojoin: ativa ou desativa este comportamento.\n\n-# requer permissão de **Administrador**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## termos de serviço",
       "tosBody": "fornecido \"como está\". cumpra os termos do discord. ou não. não somos seus pais.",
       "resetWarning": "-# quer começar do zero? use `/reset` para apagar completamente seus dados do nosso banco de dados. isso remove todas as suas configurações salvas (voz, nome, velocidade, idioma) em todos os servidores. seu status de inclusão/exclusão é preservado.",
-      "versionFooter": "-# versão: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? provavelmente. recursos? com certeza."
+      "versionFooter": "-# versão: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? provavelmente. recursos? com certeza."
     },
     "lang": {
       "invalid": "esse código de idioma é inválido.",
@@ -138,6 +145,12 @@
       "single": "sua configuração de **{option}** foi redefinida para este servidor.",
       "noData": "você não tem dados para redefinir.",
       "error": "falha ao redefinir suas configurações."
+    },
+    "inject": {
+      "success": "sua mensagem foi injetada com sucesso no canal de voz.",
+      "noConnection": "não estou conectado a um canal de voz neste servidor.",
+      "rateLimited": "você atingiu seu limite de {limit} injeções por hora. descanse um pouco.",
+      "error": "falha ao injetar sua mensagem. algo deu errado."
     }
   }
 }

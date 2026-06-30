@@ -44,6 +44,11 @@
       "removed": "alternatywny kanał czatu został usunięty.",
       "noneSet": "brak skonfigurowanego alternatywnego kanału czatu.",
       "error": "nie udało się zaktualizować ustawienia kanału."
+    },
+    "autojoin": {
+      "enabled": "autojoin jest teraz **włączony**. będę podążać za pierwszym użytkownikiem, który dołączy do kanału głosowego.",
+      "disabled": "autojoin jest teraz **wyłączony**.",
+      "error": "nie udało się przełączyć funkcji autojoin."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "resetuje twoje ustawienia tts do domyślnych.\n\n`/reset`: usuwa wszystkie twoje dane z bazy danych.\n`/reset <opcja>`: resetuje konkretne ustawienie (głos, nazwa, prędkość, język) dla tego serwera.\n\n-# nie wpływa to na twój status opt-in/opt-out.",
         "guild": "zarządzaj ustawieniami specyficznymi dla serwera.\n\n`/guild lang set <język>`: ustaw domyślny język.\n`/guild lang reset`: zresetuj domyślny język serwera.\n\n-# wymaga uprawnienia **Zarządzanie serwerem**.",
         "message": "zarządzaj filtrami treści wiadomości.\n\n`/message filter add <tekst>`: dodaj nowy filtr.\n`/message filter list`: lista wszystkich aktywnych filtrów.\n`/message filter edit <stary> <nowy>`: edytuj filtr.\n`/message filter remove <tekst>`: usuń filtr.\n\n-# wymaga uprawnienia **Zarządzanie wiadomościami**.",
-        "channel": "zarządzaj alternatywnym kanałem czatu serwera.\n\n`/channel set <kanał>`: ustaw kanał tekstowy jako alternatywny czat tts.\n`/channel remove`: usuń obecny alternatywny kanał.\n\n-# wymaga uprawnienia **Zarządzanie kanałami**."
+        "channel": "zarządzaj alternatywnym kanałem czatu serwera.\n\n`/channel set <kanał>`: ustaw kanał tekstowy jako alternatywny czat tts.\n`/channel remove`: usuń obecny alternatywny kanał.\n\n-# wymaga uprawnienia **Zarządzanie kanałami**.",
+        "inject": "wyślij wiadomość bezpośrednio na kanał głosowy bez dołączania do niego.\n\n/inject <wiadomość>: wysyła twoją wiadomość na aktywny kanał głosowy.\n\n-# ograniczone do 5 użyć na godzinę na serwer. moderatorzy omijają ten limit.",
+        "autojoin": "przełącza, czy bot automatycznie dołącza do kanałów głosowych, gdy wejdzie pierwszy użytkownik.\n\n/autojoin: włącza lub wyłącza to zachowanie.\n\n-# wymaga uprawnienia **Administrator**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## warunki korzystania z usługi",
       "tosBody": "dostarczane \"tak jak jest\". przestrzegaj tos discorda. albo nie. nie jesteśmy twoimi rodzicami.",
       "resetWarning": "-# chcesz zacząć od nowa? użyj `/reset`, aby całkowicie usunąć swoje dane z naszej bazy danych. spowoduje to usunięcie wszystkich zapisanych ustawień (głos, nazwa, prędkość, język) na każdym serwerze. twój status opt-in/opt-out zostaje zachowany.",
-      "versionFooter": "-# wersja: 2.4.1 | silnik: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# błędy? prawdopodobnie. funkcje? zdecydowanie."
+      "versionFooter": "-# wersja: 2.5.6 | silnik: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# błędy? prawdopodobnie. funkcje? zdecydowanie."
     },
     "lang": {
       "invalid": "ten kod języka jest nieprawidłowy.",
@@ -138,6 +145,12 @@
       "single": "twoje ustawienie **{option}** zostało zresetowane dla tego serwera.",
       "noData": "nie masz żadnych danych do zresetowania.",
       "error": "nie udało się zresetować twoich ustawień."
+    },
+    "inject": {
+      "success": "twoja wiadomość została pomyślnie wysłana na kanał głosowy.",
+      "noConnection": "nie jestem obecnie połączony z żadnym kanałem głosowym na tym serwerze.",
+      "rateLimited": "osiągnąłeś limit {limit} wysłań na godzinę. odpocznij chwilę.",
+      "error": "nie udało się wysłać twojej wiadomości. coś poszło nie tak."
     }
   }
 }

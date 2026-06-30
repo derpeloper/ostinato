@@ -111,6 +111,10 @@
           "description": "eliminar el canal de chat alternativo actual"
         }
       }
+    },
+    "autojoin": {
+      "name": "autounirse",
+      "description": "alternar si el bot se une automáticamente a los canales de voz"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "voz",
       "description": "cambia la voz para tu cuenta"
+    },
+    "inject": {
+      "name": "inyectar",
+      "description": "enviar un mensaje al canal de voz sin unirse",
+      "options": {
+        "message": {
+          "name": "mensaje",
+          "description": "el mensaje a inyectar (máx. 200 caracteres)"
+        }
+      }
     }
   }
 }

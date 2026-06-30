@@ -53,6 +53,50 @@ const commandFolders = fs.readdirSync("./src/commands");
 const ostinato = require('./services/OstinatoTTS');
 require('./data/db'); 
 
+let consecutiveErrors = 0;
+const WATCHDOG_THRESHOLD = 5;
+
+client.on('error', (error) => {
+    handlePotentialConnectionError(error);
+});
+
+function handlePotentialConnectionError(error) {
+    const errMsg = error.message || '';
+    if (
+        errMsg.includes('ECONNRESET') ||
+        errMsg.includes('ENOTFOUND') ||
+        errMsg.includes('ETIMEDOUT') ||
+        errMsg.includes('getaddrinfo') ||
+        errMsg.includes('WebSocket') ||
+        error.code === 'ECONNRESET'
+    ) {
+        consecutiveErrors++;
+        console.error(`[Watchdog] Connection error detected (${consecutiveErrors}/${WATCHDOG_THRESHOLD}): ${errMsg}`);
+
+        if (consecutiveErrors >= WATCHDOG_THRESHOLD) {
+            console.error(`[Watchdog] ${WATCHDOG_THRESHOLD} consecutive connection errors. Restarting Discord client...`);
+            consecutiveErrors = 0;
+            
+            client.destroy();
+            setTimeout(() => {
+                client.login(token).catch(err => {
+                    console.error('[Watchdog] Failed to restart client:', err);
+                });
+            }, 5000);
+        }
+    }
+}
+
+client.on('ready', () => {
+    consecutiveErrors = 0;
+});
+
+client.on('messageCreate', () => {
+    if (consecutiveErrors > 0) {
+        consecutiveErrors = 0;
+    }
+});
+
 (async () => {
     try {
         await ostinato.initialize();
@@ -66,14 +110,17 @@ require('./data/db');
     
     client.handleEvents(eventFiles, "./src/events");
     client.handleCommands(commandFolders, "./src/commands");
+
     client.login(token);
 
     process.on('unhandledRejection', error => {
         console.error('[Main] Unhandled promise rejection:', error);
+        handlePotentialConnectionError(error);
     });
 
     process.on('uncaughtException', error => {
         console.error('[Main] Uncaught Exception:', error);
+        handlePotentialConnectionError(error);
     });
 
     process.on('warning', (warning) => {
@@ -118,4 +165,3 @@ process.on('uncaughtExceptionMonitor', (err, origin) => {
     console.error(`[Main] Uncaught Exception Monitor [${origin}]:`, err);
     logMemoryUsage('Crash');
 });
-

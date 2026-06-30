@@ -44,6 +44,11 @@
       "removed": "alternativní chatovací kanál byl odebrán.",
       "noneSet": "není nakonfigurován žádný alternativní chatovací kanál.",
       "error": "nepodařilo se aktualizovat nastavení kanálu."
+    },
+    "autojoin": {
+      "enabled": "autojoin je nyní **zapnutý**. budu následovat prvního uživatele, který se připojí do hlasového kanálu.",
+      "disabled": "autojoin je nyní **vypnutý**.",
+      "error": "nepodařilo se přepnout autojoin."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "resetuje vaše nastavení tts na výchozí.\n\n`/reset`: vymaže všechna vaše data z databáze.\n`/reset <option>`: resetuje konkrétní nastavení (hlas, jméno, rychlost, jazyk) pro tento server.\n\n-# toto neovlivní váš status přihlášení/odhlášení.",
         "guild": "správa nastavení specifických pro server.\n\n`/guild lang set <language>`: nastaví výchozí jazyk serveru.\n`/guild lang reset`: resetuje výchozí jazyk serveru.\n\n-# vyžaduje oprávnění **Spravovat server**.",
         "message": "správa filtrů obsahu zpráv.\n\n`/message filter add <string>`: přidá nový filtr.\n`/message filter list`: vypíše všechny aktivní filtry.\n`/message filter edit <old> <new>`: upraví existující filtr.\n`/message filter remove <string>`: odebere filtr.\n\n-# vyžaduje oprávnění **Spravovat zprávy**.",
-        "channel": "správa alternativního chatovacího kanálu serveru.\n\n`/channel set <channel>`: nastaví textový kanál jako alternativní tts chat.\n`/channel remove`: odebere aktuální alternativní kanál.\n\n-# vyžaduje oprávnění **Spravovat kanály**."
+        "channel": "správa alternativního chatovacího kanálu serveru.\n\n`/channel set <channel>`: nastaví textový kanál jako alternativní tts chat.\n`/channel remove`: odebere aktuální alternativní kanál.\n\n-# vyžaduje oprávnění **Spravovat kanály**.",
+        "inject": "odešle zprávu přímo do hlasového kanálu bez nutnosti se k němu připojovat.\n\n/inject <zpráva>: odešle vaši zprávu do aktivního hlasového kanálu.\n\n-# omezeno na 5 použití za hodinu na server. moderátoři toto omezení obcházejí.",
+        "autojoin": "přepíná, zda se bot automaticky připojí k hlasovým kanálům, když do nich vstoupí první uživatel.\n\n/autojoin: zapne nebo vypne toto chování.\n\n-# vyžaduje oprávnění **Administrátor**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## podmínky služby",
       "tosBody": "poskytováno „tak, jak je“. dodržujte podmínky služby discord. nebo ne. nejsme vaši rodiče.",
       "resetWarning": "-# chcete začít znovu? použijte `/reset` k úplnému vymazání dat z naší databáze. tím se odstraní všechna vaše uložená nastavení (hlas, jméno, rychlost, jazyk) na všech serverech. váš status tts (zapnuto/vypnuto) zůstane zachován.",
-      "versionFooter": "-# verze: 2.4.1 | jádro: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# chyby? pravděpodobně. funkce? určitě."
+      "versionFooter": "-# verze: 2.5.6 | jádro: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# chyby? pravděpodobně. funkce? určitě."
     },
     "lang": {
       "invalid": "tento kód jazyka je neplatný.",
@@ -138,6 +145,12 @@
       "single": "vaše nastavení **{option}** bylo pro tento server resetováno.",
       "noData": "nemáte žádná data k resetování.",
       "error": "nepodařilo se resetovat vaše nastavení."
+    },
+    "inject": {
+      "success": "vaše zpráva byla úspěšně odeslána do hlasového kanálu.",
+      "noConnection": "momentálně nejsem připojen k žádnému hlasovému kanálu na tomto serveru.",
+      "rateLimited": "dosáhli jste limitu {limit} odeslání za hodinu. dejte si pauzu.",
+      "error": "nepodařilo se odeslat vaši zprávu. něco se pokazilo."
     }
   }
 }

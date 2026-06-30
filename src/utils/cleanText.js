@@ -1,6 +1,6 @@
 /**
  * @file cleanText.js
- * @description utility to clean and format text for better TTS experience.
+ * @description utility to clean and format text for better tts experience.
  * "clean content, clear mind, clear voice."
  */
 
@@ -80,12 +80,17 @@ const emojiMap = {
 };
 
 const urlRegex = /(https?:\/\/[^\s]+)/g;
-const emojiRegex = /<a?:([a-zA-Z0-9_]+):(\d+)>/g;
+const emojiRegex = /<a?:([^:]+):(\d+)>/g;
 const mentionRegex = /<@!?(\d+)>/g;
 const channelMentionRegex = /<#(\d+)>/g;
 const unicodeEmojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{231A}-\u{231B}\u{23E9}-\u{23F3}\u{23F8}-\u{23FA}\u{25AA}-\u{25AB}\u{25B6}\u{25C0}\u{25FB}-\u{25FE}\u{2614}-\u{2615}\u{2648}-\u{2653}\u{267F}\u{2693}\u{26A1}\u{26AA}-\u{26AB}\u{26BD}-\u{26BE}\u{26C4}-\u{26C5}\u{26CE}\u{26D4}\u{26EA}\u{26F2}-\u{26F3}\u{26F5}\u{26FA}\u{26FD}\u{2702}\u{2705}\u{2708}-\u{270D}\u{270F}]\uFE0F?/gu;
+const markdownBoldUnderline = /(\*\*|__)(.*?)\1/g;
+const markdownItalic = /(\*|_)(.*?)\1/g;
+const markdownCode = /(`+)(.*?)\1/g;
+const markdownSpoiler = /\|\|(.*?)\|\|/g;
+const whitespaceCollapse = /\s+/g;
 
-function cleanText(text, message = null) {
+async function cleanText(text, message = null) {
     if (!text && (!message || !message.stickers || message.stickers.size === 0)) {
         if (message && message.attachments && message.attachments.size > 0) {
             return "attached a file";
@@ -115,13 +120,27 @@ function cleanText(text, message = null) {
         return name.replace(/_/g, ' ');
     });
 
-    cleaned = cleaned.replace(mentionRegex, (match, userId) => {
-        if (message && message.guild) {
-            const member = message.guild.members.cache.get(userId);
-            if (member) return member.displayName;
+    if (message && message.guild) {
+        const mentions = [...cleaned.matchAll(mentionRegex)];
+        for (const match of mentions) {
+            const userId = match[1];
+            let displayName = null;
+            const cached = message.guild.members.cache.get(userId);
+            if (cached) {
+                displayName = cached.displayName;
+            } else {
+                try {
+                    const fetched = await message.guild.members.fetch(userId);
+                    if (fetched) displayName = fetched.displayName;
+                } catch (e) {
+                    displayName = null;
+                }
+            }
+            cleaned = cleaned.replace(match[0], displayName || "someone");
         }
-        return "someone";
-    });
+    } else {
+        cleaned = cleaned.replace(mentionRegex, "someone");
+    }
 
     cleaned = cleaned.replace(channelMentionRegex, (match, channelId) => {
         if (message && message.guild) {
@@ -157,11 +176,11 @@ function cleanText(text, message = null) {
         }
     }
 
-    cleaned = cleaned.replace(/(\*\*|__)(.*?)\1/g, '$2');
-    cleaned = cleaned.replace(/(\*|_)(.*?)\1/g, '$2');
-    cleaned = cleaned.replace(/(`+)(.*?)\1/g, '$2');
-    cleaned = cleaned.replace(/\|\|(.*?)\|\|/g, '$1');
-    cleaned = cleaned.replace(/\s+/g, ' ').trim();
+    cleaned = cleaned.replace(markdownBoldUnderline, '$2');
+    cleaned = cleaned.replace(markdownItalic, '$2');
+    cleaned = cleaned.replace(markdownCode, '$2');
+    cleaned = cleaned.replace(markdownSpoiler, '$1');
+    cleaned = cleaned.replace(whitespaceCollapse, ' ').trim();
 
     return cleaned;
 }

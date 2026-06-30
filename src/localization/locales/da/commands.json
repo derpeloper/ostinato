@@ -111,6 +111,10 @@
           "description": "fjern den aktuelle alternative chatkanal"
         }
       }
+    },
+    "autojoin": {
+      "name": "autotilslut",
+      "description": "slå til/fra om botten automatisk skal deltage i stemmekanaler"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "stemme",
       "description": "skift stemmen for din konto"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "send en besked til stemmekanalen uden at deltage",
+      "options": {
+        "message": {
+          "name": "besked",
+          "description": "beskeden der skal sendes (maks 200 tegn)"
+        }
+      }
     }
   }
 }

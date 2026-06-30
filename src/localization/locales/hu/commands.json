@@ -111,6 +111,10 @@
           "description": "eltávolítja a jelenlegi alternatív csevegőcsatornát"
         }
       }
+    },
+    "autojoin": {
+      "name": "automata-csatlakozás",
+      "description": "a bot hangcsatornákhoz való automatikus csatlakozásának be- és kikapcsolása"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "hang",
       "description": "megváltoztatja a hangot a fiókodhoz"
+    },
+    "inject": {
+      "name": "beillesztés",
+      "description": "üzenet küldése a hangcsatornára csatlakozás nélkül",
+      "options": {
+        "message": {
+          "name": "üzenet",
+          "description": "a beillesztendő üzenet (max. 200 karakter)"
+        }
+      }
     }
   }
 }

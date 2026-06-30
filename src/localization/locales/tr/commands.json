@@ -1,0 +1,264 @@
+{
+  "mods": {
+    "clear": {
+      "name": "temizle",
+      "description": "bu sunucu için tts sırasını temizler"
+    },
+    "restrict": {
+      "name": "sınırla",
+      "description": "susturulmamış kullanıcılar için tts'yi devre dışı bırakır"
+    },
+    "skip": {
+      "name": "geç",
+      "description": "şu anda oynatılan mesajı geçer"
+    },
+    "unrestrict": {
+      "name": "sınırı-kaldır",
+      "description": "susturulmamış kullanıcılar için tts'yi etkinleştirir"
+    },
+    "guild": {
+      "name": "sunucu",
+      "description": "sunucuya özel ayarları yönetir",
+      "groups": {
+        "lang": {
+          "name": "dil",
+          "description": "varsayılan sunucu dilini yönetir",
+          "subcommands": {
+            "set": {
+              "name": "ayarla",
+              "description": "sunucu için varsayılan dili ayarlar",
+              "options": {
+                "language": {
+                  "name": "dil",
+                  "description": "ayarlanacak dil"
+                }
+              }
+            },
+            "reset": {
+              "name": "sıfırla",
+              "description": "sunucunun varsayılan dilini sıfırlar"
+            }
+          }
+        }
+      }
+    },
+    "message": {
+      "name": "mesaj",
+      "description": "mesaj içeriği filtrelerini yönetir",
+      "groups": {
+        "filter": {
+          "name": "filtre",
+          "description": "içerik filtrelerini yönetir",
+          "subcommands": {
+            "add": {
+              "name": "ekle",
+              "description": "yeni bir filtre ekler",
+              "options": {
+                "string": {
+                  "name": "metin",
+                  "description": "eklenecek filtre metni veya düzenli ifade (regex)"
+                }
+              }
+            },
+            "list": {
+              "name": "listele",
+              "description": "tüm aktif filtreleri listeler"
+            },
+            "edit": {
+              "name": "düzenle",
+              "description": "mevcut bir filtreyi düzenler",
+              "options": {
+                "old": {
+                  "name": "eski",
+                  "description": "düzenlenecek mevcut filtre"
+                },
+                "new": {
+                  "name": "yeni",
+                  "description": "yeni yedek filtre"
+                }
+              }
+            },
+            "remove": {
+              "name": "kaldır",
+              "description": "bir filtreyi kaldırır",
+              "options": {
+                "string": {
+                  "name": "metin",
+                  "description": "kaldırılacak filtre metni veya düzenli ifade (regex)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "name": "kanal",
+      "description": "sunucunun alternatif sohbet kanalını yönetir",
+      "subcommands": {
+        "set": {
+          "name": "ayarla",
+          "description": "bir kanalı alternatif sohbet kanalı olarak ayarlar",
+          "options": {
+            "channel": {
+              "name": "kanal",
+              "description": "ayarlanacak kanal"
+            }
+          }
+        },
+        "remove": {
+          "name": "kaldır",
+          "description": "mevcut alternatif sohbet kanalını kaldırır"
+        }
+      }
+    },
+    "autojoin": {
+      "name": "otomatik-katıl",
+      "description": "botun ses kanallarına otomatik olarak katılmasını açıp kapatır"
+    }
+  },
+  "public": {
+    "help": {
+      "name": "yardım",
+      "description": "komutlar hakkında bilgi sağlar",
+      "options": {
+        "command": {
+          "name": "komut",
+          "description": "hakkında bilgi alınacak komut"
+        }
+      }
+    },
+    "info": {
+      "name": "bilgi",
+      "description": "bot hakkında bilgi sağlar"
+    },
+    "lang": {
+      "name": "dil",
+      "description": "hesabınız için tts dilini değiştirir",
+      "options": {
+        "language": {
+          "name": "dil",
+          "description": "kullanılacak dil"
+        }
+      }
+    },
+    "leave": {
+      "name": "ayrıl",
+      "description": "botun ses kanalıyla bağlantısını keser"
+    },
+    "name": {
+      "name": "isim",
+      "description": "görünen isminizi ayarlar veya isim filtrelerini yönetir",
+      "subcommands": {
+        "set": {
+          "name": "ayarla",
+          "description": "görünen isminizi ayarlar",
+          "options": {
+            "string": {
+              "name": "metin",
+              "description": "ayarlanacak isim"
+            }
+          }
+        }
+      },
+      "groups": {
+        "filter": {
+          "name": "filtre",
+          "description": "isim filtrelerini yönetir",
+          "subcommands": {
+            "add": {
+              "name": "ekle",
+              "description": "yeni bir filtre ekler",
+              "options": {
+                "string": {
+                  "name": "metin",
+                  "description": "eklenecek filtre metni veya düzenli ifade (regex)"
+                }
+              }
+            },
+            "list": {
+              "name": "listele",
+              "description": "tüm aktif filtreleri listeler"
+            },
+            "edit": {
+              "name": "düzenle",
+              "description": "mevcut bir filtreyi düzenler",
+              "options": {
+                "old": {
+                  "name": "eski",
+                  "description": "düzenlenecek mevcut filtre"
+                },
+                "new": {
+                  "name": "yeni",
+                  "description": "yeni yedek filtre"
+                }
+              }
+            },
+            "remove": {
+              "name": "kaldır",
+              "description": "bir filtreyi kaldırır",
+              "options": {
+                "string": {
+                  "name": "metin",
+                  "description": "kaldırılacak filtre metni veya düzenli ifade (regex)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reset": {
+      "name": "sıfırla",
+      "description": "tts ayarlarınızı varsayılana sıfırlar",
+      "options": {
+        "option": {
+          "name": "seçenek",
+          "description": "sıfırlanacak özel ayar"
+        }
+      }
+    },
+    "settings": {
+      "name": "ayarlar",
+      "description": "mevcut tts ayarlarınızı kontrol eder"
+    },
+    "speed": {
+      "name": "hız",
+      "description": "hesabınız için tts hızını değiştirir",
+      "options": {
+        "value": {
+          "name": "değer",
+          "description": "hız çarpanı (0.5 ila 2.0)"
+        }
+      }
+    },
+    "tts": {
+      "name": "tts",
+      "description": "tts tercihlerinizi yönetir",
+      "options": {
+        "on": {
+          "name": "aç",
+          "description": "mesajlarınız için tts'yi açar"
+        },
+        "off": {
+          "name": "kapat",
+          "description": "mesajlarınız için tts'yi kapatır"
+        }
+      }
+    },
+    "voice": {
+      "name": "ses",
+      "description": "hesabınız için sesi değiştirir"
+    },
+    "inject": {
+      "name": "enjekte-et",
+      "description": "ses kanalına katılmadan bir mesaj gönderir",
+      "options": {
+        "message": {
+          "name": "mesaj",
+          "description": "enjekte edilecek mesaj (en fazla 200 karakter)"
+        }
+      }
+    }
+  }
+}

@@ -44,6 +44,11 @@
       "removed": "canalul de chat alternativ a fost eliminat.",
       "noneSet": "nu este configurat niciun canal de chat alternativ.",
       "error": "eșec la actualizarea setării canalului."
+    },
+    "autojoin": {
+      "enabled": "autojoin este acum **activat**. voi urmări primul utilizator care se alătură unui canal vocal.",
+      "disabled": "autojoin este acum **dezactivat**.",
+      "error": "eșec la comutarea autojoin."
     }
   },
   "public": {
@@ -66,20 +71,22 @@
         "reset": "resetează setările tts la valorile implicite.\n\n`/reset`: șterge toate datele tale din baza de date.\n`/reset <opțiune>`: resetează o setare specifică (voce, nume, viteză, limbă) pentru acest server.\n\n-# acest lucru nu afectează starea de opt-in/opt-out.",
         "guild": "gestionează setările specifice serverului.\n\n`/guild lang set <limbă>`: setează limba implicită.\n`/guild lang reset`: resetează limba implicită a serverului.\n\n-# necesită permisiunea **Gestionare Server**.",
         "message": "gestionează filtrele de conținut ale mesajelor.\n\n`/message filter add <text>`: adaugă un filtru nou.\n`/message filter list`: listează toate filtrele active.\n`/message filter edit <vechi> <nou>`: editează un filtru.\n`/message filter remove <text>`: elimină un filtru.\n\n-# necesită permisiunea **Gestionare Mesaje**.",
-        "channel": "gestionează canalul de chat alternativ al serverului.\n\n`/channel set <canal>`: setează un canal text ca chat tts alternativ.\n`/channel remove`: elimină canalul alternativ curent.\n\n-# necesită permisiunea **Gestionare Canale**."
+        "channel": "gestionează canalul de chat alternativ al serverului.\n\n`/channel set <canal>`: setează un canal text ca chat tts alternativ.\n`/channel remove`: elimină canalul alternativ curent.\n\n-# necesită permisiunea **Gestionare Canale**.",
+        "inject": "trimite un mesaj direct pe canalul vocal fără a te alătura acestuia.\n\n/inject <mesaj>: trimite mesajul tău pe canalul vocal activ.\n\n-# limitat la 5 utilizări pe oră pe server. moderatorii ocolesc această limită.",
+        "autojoin": "comută dacă botul se alătură automat canalelor vocale atunci când intră primul utilizator.\n\n/autojoin: activează sau dezactivează acest comportament.\n\n-# necesită permisiunea **Administrator**."
       }
     },
     "info": {
       "title": "# ostinato",
-      "subtitle": "*oferind o voce celor fără voce. și celor stânjeniți social.*",
+      "subtitle": "*oferind o voce celor fără voce. și celor anxioși social.*",
       "privacyHeader": "## politica de confidențialitate",
-      "privacySettings": "**lucrurile tale** (stocate local per server)\n- **voce**: pentru a nu suna ca un robot generic.\n- **viteză**: zoom zoom sau încetinitorul.\n- **nume**: alter ego-ul tău.\n- **limbă**: pentru când vrei să pari sofisticat.",
+      "privacySettings": "**lucrurile tale** (stocate local per server)\n- **voce**: pentru a nu suna ca un robot generic.\n- **viteză**: zoom zoom sau în slow motion.\n- **nume**: alter ego-ul tău.\n- **limbă**: pentru când vrei să pari sofisticat.",
       "privacySystem": "**date plictisitoare de sistem**\n- **opt-out**: ținem minte dacă ne-ai spus să tăcem (`/tts off`).\n- **setări server**: doar pentru a ști dacă ar trebui să ignorăm persoanele care nu sunt amuțite.",
       "privacyFooter": "-# nu înregistrăm mesajele tale, nu generăm fișiere audio și nu vindem datele tale. secretele tale sunt în siguranță, în principal pentru că sunt probabil plictisitoare.",
       "tosHeader": "## termeni de utilizare",
       "tosBody": "furnizat „ca atare”. respectă tosul discord. sau nu. nu suntem părinții tăi.",
       "resetWarning": "-# vrei să începi de la zero? folosește `/reset` pentru a-ți șterge complet datele din baza noastră de date. acest lucru elimină toate setările salvate (voce, nume, viteză, limbă) pe fiecare server. starea de opt-in/opt-out este păstrată.",
-      "versionFooter": "-# versiune: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bug-uri? probabil. funcții? cu siguranță."
+      "versionFooter": "-# versiune: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bug-uri? probabil. funcții? cu siguranță."
     },
     "lang": {
       "invalid": "acel cod de limbă este nevalid.",
@@ -138,6 +145,12 @@
       "single": "setarea ta pentru **{option}** a fost resetată pentru acest server.",
       "noData": "nu ai nicio dată de resetat.",
       "error": "eșec la resetarea setărilor."
+    },
+    "inject": {
+      "success": "mesajul tău a fost injectat cu succes în canalul vocal.",
+      "noConnection": "nu sunt conectat în prezent la un canal vocal pe acest server.",
+      "rateLimited": "ai atins limita de {limit} injectări pe oră. ia o pauză.",
+      "error": "eșec la injectarea mesajului tău. ceva nu a mers bine."
     }
   }
 }

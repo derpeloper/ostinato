@@ -44,6 +44,11 @@
       "removed": "el canal de chat alternativo ha sido eliminado.",
       "noneSet": "no hay ningún canal de chat alternativo configurado.",
       "error": "error al actualizar el ajuste del canal."
+    },
+    "autojoin": {
+      "enabled": "la unión automática ahora está **activada**. seguiré al primer usuario que se una a un canal de voz.",
+      "disabled": "la unión automática ahora está **desactivada**.",
+      "error": "error al cambiar la unión automática."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "restablece tus ajustes de tts a los predeterminados.\n\n`/reset`: borra todos tus datos de la base de datos.\n`/reset <opción>`: restablece un ajuste específico (voz, nombre, velocidad, idioma) para este servidor.\n\n-# esto no afecta a tu estado de activación/desactivación.",
         "guild": "gestiona ajustes específicos del servidor.\n\n`/guild lang set <idioma>`: establece el idioma predeterminado.\n`/guild lang reset`: restablece el idioma predeterminado del servidor.\n\n-# requiere el permiso de **Gestionar servidor**.",
         "message": "gestiona filtros de contenido de mensajes.\n\n`/message filter add <texto>`: añade un nuevo filtro.\n`/message filter list`: lista todos los filtros activos.\n`/message filter edit <anterior> <nuevo>`: edita un filtro existente.\n`/message filter remove <texto>`: elimina un filtro.\n\n-# requiere el permiso de **Gestionar mensajes**.",
-        "channel": "gestiona el canal de chat alternativo del servidor.\n\n`/channel set <canal>`: establece un canal de texto como el chat de tts alternativo.\n`/channel remove`: elimina el canal alternativo actual.\n\n-# requiere el permiso de **Gestionar canales**."
+        "channel": "gestiona el canal de chat alternativo del servidor.\n\n`/channel set <canal>`: establece un canal de texto como el chat de tts alternativo.\n`/channel remove`: elimina el canal alternativo actual.\n\n-# requiere el permiso de **Gestionar canales**.",
+        "inject": "envía un mensaje directamente al canal de voz sin unirte a él.\n\n/inject <mensaje>: envía tu mensaje al canal de voz activo.\n\n-# limitado a 5 usos por hora por servidor. los moderadores omiten este límite.",
+        "autojoin": "alterna si el bot se une automáticamente a los canales de voz cuando entra el primer usuario.\n\n/autojoin: activa o desactiva este comportamiento.\n\n-# requiere el permiso de **Administrador**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## términos de servicio",
       "tosBody": "proporcionado \"tal cual\". cumple con los tos de discord. o no. no somos tus padres.",
       "resetWarning": "-# ¿quieres empezar de cero? usa `/reset` para borrar completamente tus datos de nuestra base de datos. esto elimina todos tus ajustes guardados (voz, nombre, velocidad, idioma) en todos los servidores. tu estado de activación/desactivación se conserva.",
-      "versionFooter": "-# versión: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# ¿errores? probablemente. ¿funciones? definitivamente."
+      "versionFooter": "-# versión: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# ¿errores? probablemente. ¿funciones? definitivamente."
     },
     "lang": {
       "invalid": "ese código de idioma no es válido.",
@@ -138,6 +145,12 @@
       "single": "tu ajuste de **{option}** ha sido restablecido para este servidor.",
       "noData": "no tienes ningún dato que restablecer.",
       "error": "error al restablecer tus ajustes."
+    },
+    "inject": {
+      "success": "tu mensaje se inyectó correctamente en el canal de voz.",
+      "noConnection": "actualmente no estoy conectado a un canal de voz en este servidor.",
+      "rateLimited": "has alcanzado tu límite de {limit} inyecciones por hora. tómate un respiro.",
+      "error": "error al inyectar tu mensaje. algo salió mal."
     }
   }
 }

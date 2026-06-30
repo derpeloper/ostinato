@@ -98,9 +98,34 @@ class OstinatoTTS {
         } else if (type === 'guild_lang') {
             const key = `guild_lang:${guildId}`;
             this.cache.delete(key);
+        } else if (type === 'autojoin') {
+            const key = `autojoin:${guildId}`;
+            this.cache.delete(key);
+        } else if (type === 'prefs') {
+            this.cache.delete(`name:${userId}:${guildId}`);
+            this.cache.delete(`voice:${userId}:${guildId}`);
+            this.cache.delete(`speed:${userId}:${guildId}`);
+            this.cache.delete(`lang:${userId}:${guildId}`);
         } else {
             const key = `${type}:${userId}:${guildId}`;
             this.cache.delete(key);
+        }
+    }
+
+    isAutojoinEnabled(guildId) {
+        const cacheKey = `autojoin:${guildId}`;
+        if (this.cache.has(cacheKey)) {
+            return this.cache.get(cacheKey);
+        }
+        try {
+            const row = db.prepare('SELECT enabled FROM autojoin WHERE guild = ?').get(guildId);
+            const enabled = row ? row.enabled === 1 : false;
+            this.cache.set(cacheKey, enabled);
+            setTimeout(() => this.cache.delete(cacheKey), 600000);
+            return enabled;
+        } catch (err) {
+            console.error('[OstinatoTTS] Error checking autojoin:', err);
+            return false;
         }
     }
 
@@ -215,12 +240,9 @@ class OstinatoTTS {
                     console.log(`[OstinatoTTS] Re-queueing ${requestsToRetry.length} failed requests for worker ${index}...`);
                     for (const [requestId, req] of requestsToRetry) {
                         if (req.args) {
-                            try {
-                               const { buffer, lang, detected } = await this.generateAudio(...req.args);
-                               req.resolve({ buffer, lang, detected });
-                            } catch (err) {
-                               req.reject(err);
-                            }
+                            this.generateAudio(...req.args)
+                                .then(res => req.resolve(res))
+                                .catch(err => req.reject(err));
                         } else {
                             req.reject(new Error('Worker crashed and request could not be retried'));
                         }
@@ -273,7 +295,6 @@ class OstinatoTTS {
             
             let workerData = this.workers[workerIndex];
             
-            // Output protection: if selected worker is currently indisposed (e.g. restarting), try another
             if (!workerData || !workerData.worker || !workerData.ready) {
                 for (let i = 0; i < this.workers.length; i++) {
                     const fallbackIndex = (workerIndex + i) % this.workers.length;
@@ -304,6 +325,7 @@ class OstinatoTTS {
                 });
             } else {
                 reject(new Error(`Worker ${workerIndex} is not ready, and no available workers were found.`));
+                this.pendingRequests.delete(requestId);
             }
         });
     }
@@ -313,18 +335,21 @@ class OstinatoTTS {
 
         this.lastActivityTimestamp = Date.now();
 
-        const cleanContent = cleanText(message.content, message);
+        const cleanContent = await cleanText(message.content, message);
         
         if (!cleanContent) return;
 
         try {
             const guildFilters = db.prepare('SELECT pattern FROM message_filters WHERE guild = ?').all(message.guild.id);
-            for (const filter of guildFilters) {
-                try {
-                    const regex = new RegExp(filter.pattern, 'i');
-                    if (regex.test(cleanContent)) return;
-                } catch (e) {
-                    if (cleanContent.toLowerCase().includes(filter.pattern.toLowerCase())) return;
+            const compiledFilters = guildFilters.map(f => {
+                try { return new RegExp(f.pattern, 'i'); }
+                catch (e) { return f.pattern; }
+            });
+            for (const filter of compiledFilters) {
+                if (filter instanceof RegExp) {
+                    if (filter.test(cleanContent)) return;
+                } else {
+                    if (cleanContent.toLowerCase().includes(filter.toLowerCase())) return;
                 }
             }
         } catch (err) {
@@ -372,19 +397,37 @@ class OstinatoTTS {
         
         const existingQueue = this.playbackQueues.get(guildId);
         const lastSpeaker = existingQueue ? existingQueue.lastSpeakerId : null;
-        const shouldAnnounceName = lastSpeaker !== message.author.id;
+        const isInjected = message._injected === true;
+        let shouldAnnounceName = lastSpeaker !== message.author.id;
+        if (isInjected) shouldAnnounceName = true;
         
         if (!this.playbackQueues.has(guildId)) {
             const player = createAudioPlayer();
             
             player.on('stateChange', (oldState, newState) => {
                 if (newState.status === AudioPlayerStatus.Idle) {
+                    if (oldState.status !== AudioPlayerStatus.Idle && oldState.resource) {
+                        try {
+                            if (oldState.resource.playStream && typeof oldState.resource.playStream.destroy === 'function') {
+                                oldState.resource.playStream.destroy();
+                            }
+                        } catch (e) {
+                            console.error('[OstinatoTTS] Error destroying audio resource:', e);
+                        }
+                    }
                     this.playNext(guildId);
                 }
             });
 
             player.on('error', error => {
                 console.error(`[OstinatoTTS] Audio player error: ${error.message}`);
+                if (error.resource) {
+                    try {
+                        if (error.resource.playStream && typeof error.resource.playStream.destroy === 'function') {
+                            error.resource.playStream.destroy();
+                        }
+                    } catch (e) {}
+                }
                 this.playNext(guildId); 
             });
 
@@ -403,7 +446,7 @@ class OstinatoTTS {
         
         let connection = getVoiceConnection(guildId);
         
-        if (connection) {
+        if (connection && !isInjected) {
              const botChannelId = message.guild.members.me?.voice?.channelId || connection.joinConfig.channelId;
              if (message.member?.voice?.channelId !== botChannelId) {
                   return;
@@ -411,22 +454,35 @@ class OstinatoTTS {
         }
         
         if (!connection) {
+            if (isInjected) {
+                console.log('[OstinatoTTS] Inject attempted but no active voice connection.');
+                return;
+            }
             if (message.member?.voice?.channel) {
                 console.log(`[OstinatoTTS] Joining VC: ${message.member.voice.channel.name}`);
-                connection = joinVoiceChannel({
-                    channelId: message.member.voice.channel.id,
-                    guildId: guildId.toString(),
-                    adapterCreator: message.guild.voiceAdapterCreator,
-                    selfDeaf: true,
-                    selfMute: false
-                });
-
                 try {
-                    await entersState(connection, VoiceConnectionStatus.Ready, 5_000);
+                    connection = joinVoiceChannel({
+                        channelId: message.member.voice.channel.id,
+                        guildId: guildId.toString(),
+                        adapterCreator: message.guild.voiceAdapterCreator,
+                        selfDeaf: true,
+                        selfMute: false
+                    });
+
+                    await entersState(connection, VoiceConnectionStatus.Ready, 20_000);
                     console.log('[OstinatoTTS] Voice Connection Ready.');
                 } catch (error) {
-                    console.error('[OstinatoTTS] Failed to join voice channel within 5s:', error);
-                    connection.destroy();
+                    const errMsg = error?.message || '';
+                    if (error?.name === 'AbortError' || errMsg.includes('VOICE_CONNECTION_TIMEOUT') || errMsg.includes('timed out')) {
+                        console.error('[OstinatoTTS] Voice connection timed out — the server may be unreachable or laggy.');
+                    } else if (errMsg.includes('VOICE_CONNECTION_DESTROYED') || errMsg.includes('destroyed')) {
+                        console.error('[OstinatoTTS] Voice connection was destroyed — the bot may have been kicked or disconnected.');
+                    } else if (errMsg.includes('Missing Permissions') || errMsg.includes('MISSING_PERMISSIONS')) {
+                        console.error('[OstinatoTTS] Missing permissions to join voice channel. Ensure Connect and Speak permissions are granted.');
+                    } else {
+                        console.error('[OstinatoTTS] Failed to join voice channel:', error);
+                    }
+                    try { connection?.destroy(); } catch (e) { }
                     return;
                 }
 
@@ -456,33 +512,55 @@ class OstinatoTTS {
                 this.guildSemaphores.set(guildId, new Semaphore(perGuildConcurrency));
             }
             const guildSemaphoreInstance = this.guildSemaphores.get(guildId);
-            await this.globalSemaphore.acquire();
             await guildSemaphoreInstance.acquire();
+            await this.globalSemaphore.acquire();
             try {
-                let nameToUse = message.author.username;
-                
-                const nameKey = `name:${message.author.id}:${guildId}`;
-                if (this.cache.has(nameKey)) {
-                    nameToUse = this.cache.get(nameKey);
+                let nameToUse = message.member?.displayName || message.member?.nickname || message.author.username;
+                let voiceId = null;
+                let speed = null;
+                let lang = null;
+
+                const prefsCacheKey = `prefs:${message.author.id}:${guildId}`;
+                if (this.cache.has(`name:${message.author.id}:${guildId}`)) {
+                    nameToUse = this.cache.get(`name:${message.author.id}:${guildId}`);
+                    voiceId = this.cache.get(`voice:${message.author.id}:${guildId}`) || null;
+                    speed = this.cache.get(`speed:${message.author.id}:${guildId}`) || null;
+                    lang = this.cache.get(`lang:${message.author.id}:${guildId}`) || null;
                 } else {
                     try {
-                        const nameRow = db.prepare('SELECT name FROM names WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
-                        if (nameRow) nameToUse = nameRow.name;
-                        this.cache.set(nameKey, nameToUse);
-                        setTimeout(() => this.cache.delete(nameKey), 600000);
+                        const prefs = db.getUserPreferences.get({ user: message.author.id, guild: guildId });
+                        if (prefs) {
+                            if (prefs.name) nameToUse = prefs.name;
+                            if (prefs.voice) voiceId = prefs.voice;
+                            if (prefs.speed) speed = prefs.speed;
+                            if (prefs.lang) lang = prefs.lang;
+                        }
+                        this.cache.set(`name:${message.author.id}:${guildId}`, nameToUse);
+                        this.cache.set(`voice:${message.author.id}:${guildId}`, voiceId);
+                        this.cache.set(`speed:${message.author.id}:${guildId}`, speed);
+                        this.cache.set(`lang:${message.author.id}:${guildId}`, lang);
+                        setTimeout(() => {
+                            this.cache.delete(`name:${message.author.id}:${guildId}`);
+                            this.cache.delete(`voice:${message.author.id}:${guildId}`);
+                            this.cache.delete(`speed:${message.author.id}:${guildId}`);
+                            this.cache.delete(`lang:${message.author.id}:${guildId}`);
+                        }, 600000);
                     } catch (dbErr) {
-                        console.error('[OstinatoTTS] DB Name fetch error:', dbErr);
+                        console.error('[OstinatoTTS] DB preferences fetch error:', dbErr);
                     }
                 }
 
                 try {
                     const nameFilters = db.prepare('SELECT pattern FROM name_filters WHERE guild = ?').all(guildId);
-                    for (const filter of nameFilters) {
-                        try {
-                            const regex = new RegExp(filter.pattern, 'i');
-                            if (regex.test(nameToUse)) { nameToUse = message.author.username; break; }
-                        } catch (e) {
-                            if (nameToUse.toLowerCase().includes(filter.pattern.toLowerCase())) { nameToUse = message.author.username; break; }
+                    const compiledNameFilters = nameFilters.map(f => {
+                        try { return new RegExp(f.pattern, 'i'); }
+                        catch (e) { return f.pattern; }
+                    });
+                    for (const filter of compiledNameFilters) {
+                        if (filter instanceof RegExp) {
+                            if (filter.test(nameToUse)) { nameToUse = message.author.username; break; }
+                        } else {
+                            if (nameToUse.toLowerCase().includes(filter.toLowerCase())) { nameToUse = message.author.username; break; }
                         }
                     }
                 } catch (err) {
@@ -495,51 +573,6 @@ class OstinatoTTS {
                          fullContent = `${nameToUse} sent a link`;
                     } else {
                          fullContent = `${nameToUse} said: ${cleanContent}`;
-                    }
-                }
-
-                let voiceId = null;
-                const voiceKey = `voice:${message.author.id}:${guildId}`;
-                if (this.cache.has(voiceKey)) {
-                    voiceId = this.cache.get(voiceKey);
-                } else {
-                    try {
-                        const voiceRow = db.prepare('SELECT voice FROM voices WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
-                        if (voiceRow) voiceId = voiceRow.voice;
-                        this.cache.set(voiceKey, voiceId);
-                        setTimeout(() => this.cache.delete(voiceKey), 600000);
-                    } catch (dbErr) {
-                         console.error('[OstinatoTTS] DB Voice fetch error:', dbErr);
-                    }
-                }
-
-                let speed = null;
-                const speedKey = `speed:${message.author.id}:${guildId}`;
-                if (this.cache.has(speedKey)) {
-                    speed = this.cache.get(speedKey);
-                } else {
-                    try {
-                        const speedRow = db.prepare('SELECT speed FROM speeds WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
-                        if (speedRow) speed = speedRow.speed;
-                        this.cache.set(speedKey, speed);
-                        setTimeout(() => this.cache.delete(speedKey), 600000);
-                    } catch (dbErr) {
-                         console.error('[OstinatoTTS] DB Speed fetch error:', dbErr);
-                    }
-                }
-
-                let lang = null;
-                const langKey = `lang:${message.author.id}:${guildId}`;
-                if (this.cache.has(langKey)) {
-                    lang = this.cache.get(langKey);
-                } else {
-                    try {
-                        const langRow = db.prepare('SELECT lang FROM langs WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(message.author.id, guildId);
-                        if (langRow) lang = langRow.lang;
-                        this.cache.set(langKey, lang);
-                        setTimeout(() => this.cache.delete(langKey), 600000);
-                    } catch (dbErr) {
-                         console.error('[OstinatoTTS] DB Lang fetch error:', dbErr);
                     }
                 }
 
@@ -568,8 +601,6 @@ class OstinatoTTS {
                      return null;
                 }
                 
-                const resource = createAudioResource(Readable.from([buffer]), { inlineVolume: true });
-                
                 let volume = config.ttsVolume;
                 if (volume === undefined || volume === null) {
                      console.warn('[OstinatoTTS] config.ttsVolume is missing. falling back to backend default: 5.89');
@@ -584,8 +615,7 @@ class OstinatoTTS {
                     }
                     volume = priorityVolume;
                 }
-                resource.volume.setVolume(volume);
-                return resource; 
+                return { buffer, volume }; 
             } catch (e) {
                 console.error('[OstinatoTTS] Generation error:', e);
                 
@@ -628,17 +658,33 @@ class OstinatoTTS {
         queueData.currentTextLength = item.textLength;
         
         try {
-            const resource = await item.task;
+            const result = await item.task;
             queueData.queue.shift(); 
 
-            if (resource) {
+            if (result && result.buffer) {
+                const resource = createAudioResource(Readable.from([result.buffer]), { inlineVolume: true });
+                resource.volume.setVolume(result.volume);
                 
                 resource.playStream.on('error', (error) => {
                     console.error('[OstinatoTTS] Audio Resource Stream Error:', error);
-                    this.playNext(guildId); 
                 });
 
-                queueData.player.play(resource);
+                try {
+                    queueData.player.play(resource);
+                } catch (playError) {
+                    const errMsg = playError?.message || '';
+                    if (errMsg.includes('destroyed') || errMsg.includes('DESTROYED')) {
+                        console.error('[OstinatoTTS] Cannot play — voice connection has been destroyed.');
+                    } else {
+                        console.error('[OstinatoTTS] Error starting playback:', playError);
+                    }
+                    try {
+                        if (resource.playStream && typeof resource.playStream.destroy === 'function') {
+                            resource.playStream.destroy();
+                        }
+                    } catch (e) {}
+                    this.playNext(guildId);
+                }
             } else {
                 this.playNext(guildId);
             }

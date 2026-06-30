@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.5.6] - 2026-06-02
+
+### Added
+- **`/inject` Command**: Send messages directly to a voice channel without being connected (rate-limited to 5 per hour, bypassable by mods).
+- **`/autojoin` Command**: Administrator toggle to make the bot automatically join a voice channel when the first user enters.
+- **Setup Scripts**: Added `setup.sh` and `setup.ps1` for automated dependency installation and bot launch.
+- **Watchdog Mechanism**: The bot will now automatically restart its Discord client connection upon receiving 5 consecutive network errors.
+- **Automatic Schema Migration**: Replaced hardcoded initialization with a dynamic migration engine. The database will now automatically apply updates, creating new tables and appending columns on startup as needed. Fingers crossed it works on the first try and doesn't just `DROP` our data into the void.
+- **Database Corruption Recovery**: The bot now actively detects `SQLITE_CORRUPT` errors on startup. If a corrupted database is found, it automatically backs up the damaged files and attempts to salvage and restore the data row-by-row into a fresh database.
+- **Turkish Localisation**: Added the Turkish (`tr`) locale files. Yes, I totally didn't forget about this locale support in v2.4.1. We blame it on a temporary memory lapse. Details, details.
+
+### Changed
+- **Log Redaction**: "Processing message" logs now redact usernames and message content (showing only the first 4 characters followed by `***`) for enhanced privacy.
+- **Performance - DB Query Consolidation**: Consolidated 4 separate database queries (name, voice, speed, lang) into a single optimized query during message processing.
+- **Performance - Regex Hoisting**: Moved regex filter compilation out of loops, significantly reducing overhead during high-volume message processing.
+- **Member Resolution**: Replaced synchronous cache lookups with async API fetches for member display names, resolving the "someone" issue for uncached users.
+- **Expanded Voice Error Handling**: Added specific, descriptive error logging for voice connection timeouts, permission issues, and sudden disconnections.
+
+### Fixed
+- **FFmpeg Memory Leak**: Fixed an issue where `ffmpeg` zombie processes caused RAM exhaustion on Linux and Windows:
+  - **Deferred Stream Instantiation**: Deferred `AudioResource` (and `ffmpeg`) instantiation until exact playback time, preventing unplayed skipped/cleared messages from hoarding system resources.
+  - **Explicit Stream Destruction**: Explicitly destroyed audio stream pipelines upon player idle or error to ensure complete clean up.
+- **Permission Filtering**: The bot will now correctly ignore messages from users who are server-muted or server-deafened.
+- **Custom Emoji Processing**: Expanded regex matching for custom and animated emojis (`cleanText.js`) to strip out numerical IDs, ensuring TTS only reads the friendly name.
+- **Voice Connection Timeouts**: Increased connection timeout from 5 to 20 seconds and improved error handling to gracefully catch and log Node's `AbortError` timeouts rather than dumping stack traces.
+- **Concurrency Deadlock**: Fixed head-of-line blocking by swapping the global and per-guild semaphore acquisition order, preventing a single active guild from starving others.
+- **Pending Requests Leak**: Fixed memory leak where rejected generation requests weren't removed from the pending map when no workers were available.
+- **Worker Retry Bottleneck**: Made worker crash retries process concurrently instead of sequentially, drastically reducing latency spikes during recovery.
+- **Double Playback Skipping**: Removed redundant `playNext` call on audio stream errors that caused race conditions with the audio player's idle state handler.
+- **Audio Stream Range Error**: Fixed Opus encoding crashes (`RangeError: offset is out of bounds`) by padding generated WAV buffers to exact 20ms boundaries and installing native `@discordjs/opus` for more stable voice transmission.
+
+
 ## [2.4.1] - 2026-05-11
 
 ### Added

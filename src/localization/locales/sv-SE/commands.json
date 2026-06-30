@@ -111,6 +111,10 @@
           "description": "ta bort den nuvarande alternativa chattkanalen"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "växla om boten automatiskt ska ansluta till röstkanaler"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "röst",
       "description": "ändra rösten för ditt konto"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "skicka ett meddelande till röstkanalen utan att ansluta",
+      "options": {
+        "message": {
+          "name": "meddelande",
+          "description": "meddelandet som ska skickas (max 200 tecken)"
+        }
+      }
     }
   }
 }

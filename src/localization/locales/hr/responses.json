@@ -44,6 +44,11 @@
       "removed": "alternativni chat kanal je uklonjen.",
       "noneSet": "nije konfiguriran alternativni chat kanal.",
       "error": "neuspješno ažuriranje postavke kanala."
+    },
+    "autojoin": {
+      "enabled": "automatsko pridruživanje je sada **omogućeno**. pratit ću prvog korisnika koji se pridruži glasovnom kanalu.",
+      "disabled": "automatsko pridruživanje je sada **onemogućeno**.",
+      "error": "neuspješna promjena postavke automatskog pridruživanja."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "resetira tvoje tts postavke na zadane.\n\n`/reset`: briše sve tvoje podatke iz baze podataka.\n`/reset <opcija>`: resetira određenu postavku (glas, ime, brzina, jezik) za ovaj poslužitelj.\n\n-# ovo ne utječe na tvoj status prijave/odjave.",
         "guild": "upravljanje postavkama poslužitelja.\n\n`/guild lang set <jezik>`: postavi zadani jezik.\n`/guild lang reset`: resetiraj zadani jezik poslužitelja.\n\n-# zahtijeva dopuštenje **Upravljanje poslužiteljem**.",
         "message": "upravljanje filtrima sadržaja poruka.\n\n`/message filter add <tekst>`: dodaj novi filtar.\n`/message filter list`: prikaži sve aktivne filtre.\n`/message filter edit <stari> <novi>`: uredi postojeći filtar.\n`/message filter remove <tekst>`: ukloni filtar.\n\n-# zahtijeva dopuštenje **Upravljanje porukama**.",
-        "channel": "upravljanje alternativnim chat kanalom poslužitelja.\n\n`/channel set <kanal>`: postavi tekstualni kanal kao alternativni tts chat.\n`/channel remove`: ukloni trenutni alternativni kanal.\n\n-# zahtijeva dopuštenje **Upravljanje kanalima**."
+        "channel": "upravljanje alternativnim chat kanalom poslužitelja.\n\n`/channel set <kanal>`: postavi tekstualni kanal kao alternativni tts chat.\n`/channel remove`: ukloni trenutni alternativni kanal.\n\n-# zahtijeva dopuštenje **Upravljanje kanalima**.",
+        "inject": "pošaljite poruku izravno u glasovni kanal bez pridruživanja.\n\n/inject <poruka>: šalje vašu poruku u aktivni glasovni kanal.\n\n-# ograničeno na 5 korištenja po satu po poslužitelju. moderatori zaobilaze ovo ograničenje.",
+        "autojoin": "određuje hoće li se bot automatski pridružiti glasovnim kanalima kada uđe prvi korisnik.\n\n/autojoin: omogućuje ili onemogućuje ovo ponašanje.\n\n-# zahtijeva dozvolu **Administrator**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## uvjeti pružanja usluge",
       "tosBody": "pruža se \"kakvo jest\". pridržavaj se uvjeta pružanja usluge discord-a. ili nemoj. nismo ti roditelji.",
       "resetWarning": "-# želiš početi ispočetka? koristi `/reset` kako bi potpuno obrisao svoje podatke iz naše baze podataka. ovo uklanja sve tvoje spremljene postavke (glas, ime, brzina, jezik) na svim poslužiteljima. tvoj status prijave/odjave je sačuvan.",
-      "versionFooter": "-# verzija: 2.4.1 | pogon: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugovi? vjerojatno. značajke? definitivno."
+      "versionFooter": "-# verzija: 2.5.6 | pogon: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugovi? vjerojatno. značajke? definitivno."
     },
     "lang": {
       "invalid": "taj kod jezika je nevaljan.",
@@ -138,6 +145,12 @@
       "single": "tvoja postavka **{option}** je resetirana za ovaj poslužitelj.",
       "noData": "nemaš nikakve podatke za resetiranje.",
       "error": "neuspješno resetiranje tvojih postavki."
+    },
+    "inject": {
+      "success": "vaša poruka je uspješno ubrizgana u glasovni kanal.",
+      "noConnection": "trenutno nisam povezan s glasovnim kanalom na ovom poslužitelju.",
+      "rateLimited": "dosegli ste ograničenje od {limit} ubrizgavanja po satu. odmorite se malo.",
+      "error": "neuspješno ubrizgavanje vaše poruke. nešto je pošlo po zlu."
     }
   }
 }

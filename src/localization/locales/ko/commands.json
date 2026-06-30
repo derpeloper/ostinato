@@ -111,6 +111,10 @@
           "description": "현재 대체 채팅 채널을 삭제합니다"
         }
       }
+    },
+    "autojoin": {
+      "name": "자동참가",
+      "description": "봇의 음성 채널 자동 입장 여부를 전환합니다"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "음성",
       "description": "계정의 음성을 변경합니다"
+    },
+    "inject": {
+      "name": "주입",
+      "description": "채널에 입장하지 않고 음성 채널에 메시지를 보냅니다",
+      "options": {
+        "message": {
+          "name": "메시지",
+          "description": "주입할 메시지 (최대 200자)"
+        }
+      }
     }
   }
 }

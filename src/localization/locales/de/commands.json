@@ -111,6 +111,10 @@
           "description": "den aktuellen alternativen chatkanal entfernen"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "schaltet das automatische beitreten des bots zu sprachkanälen um"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "stimme",
       "description": "ändert die stimme für dein konto"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "sendet eine nachricht an den sprachkanal, ohne beizutreten",
+      "options": {
+        "message": {
+          "name": "nachricht",
+          "description": "die einzuspeisende nachricht (max. 200 zeichen)"
+        }
+      }
     }
   }
 }

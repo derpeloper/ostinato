@@ -13,7 +13,7 @@
       "description": "sare peste mesajul care se redă în prezent"
     },
     "unrestrict": {
-      "name": "anulează-restricția",
+      "name": "elimină-restricția",
       "description": "activează tts pentru utilizatorii care nu sunt amuțiți"
     },
     "guild": {
@@ -111,6 +111,10 @@
           "description": "elimină canalul de chat alternativ actual"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "comută alăturarea automată a botului la canalele vocale"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "voce",
       "description": "schimbă vocea pentru contul tău"
+    },
+    "inject": {
+      "name": "injectare",
+      "description": "trimite un mesaj pe canalul vocal fără a te alătura",
+      "options": {
+        "message": {
+          "name": "mesaj",
+          "description": "mesajul de injectat (max. 200 caractere)"
+        }
+      }
     }
   }
 }

@@ -44,6 +44,11 @@
       "removed": "alternatief chatkanaal verwijderd.",
       "noneSet": "geen alternatief chatkanaal geconfigureerd.",
       "error": "fout bij het bijwerken van de kanaalinstelling."
+    },
+    "autojoin": {
+      "enabled": "autojoin is nu **ingeschakeld**. ik zal de eerste gebruiker volgen die deelnemen aan een spraakkanaal.",
+      "disabled": "autojoin is nu **uitgeschakeld**.",
+      "error": "fout bij het omschakelen van autojoin."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "reset je tts-instellingen naar standaard.\n\n`/reset`: wist al je gegevens uit de database.\n`/reset <optie>`: reset een specifieke instelling (stem, naam, snelheid, taal) voor deze server.\n\n-# dit heeft geen invloed op je opt-in/opt-out status.",
         "guild": "beheer serverspecifieke instellingen.\n\n`/guild lang set <taal>`: stel de standaardtaal in.\n`/guild lang reset`: reset de standaardtaal van de server.\n\n-# vereist **Server beheren** permissie.",
         "message": "beheer berichtinhoudfilters.\n\n`/message filter add <tekst>`: voeg een nieuw filter toe.\n`/message filter list`: toon alle actieve filters.\n`/message filter edit <oud> <nieuw>`: bewerk een filter.\n`/message filter remove <tekst>`: verwijder een filter.\n\n-# vereist **Berichten beheren** permissie.",
-        "channel": "beheer het alternatieve chatkanaal van de server.\n\n`/channel set <kanaal>`: stel een tekstkanaal in als de alternatieve tts-chat.\n`/channel remove`: verwijder het huidige alternatieve kanaal.\n\n-# vereist **Kanalen beheren** permissie."
+        "channel": "beheer het alternatieve chatkanaal van de server.\n\n`/channel set <kanaal>`: stel een tekstkanaal in als de alternatieve tts-chat.\n`/channel remove`: verwijder het huidige alternatieve kanaal.\n\n-# vereist **Kanalen beheren** permissie.",
+        "inject": "stuur een bericht rechtstreeks naar het spraakkanaal zonder er zelf in te gaan.\n\n/inject <bericht>: stuurt je bericht naar het actieve spraakkanaal.\n\n-# beperkt tot 5 toepassingen per uur per server. moderators omzeilen deze limiet.",
+        "autojoin": "schakelt in of de bot automatisch deelneemt aan spraakkanalen wanneer de eerste gebruiker binnenkomt.\n\n/autojoin: schakelt dit gedrag in of uit.\n\n-# vereist de machtiging **Beheerder**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## servicevoorwaarden",
       "tosBody": "geleverd \"as-is\". houd je aan de discord voorwaarden. of niet. we zijn je ouders niet.",
       "resetWarning": "-# wil je opnieuw beginnen? gebruik `/reset` om je gegevens volledig uit onze database te wissen. dit verwijdert al je opgeslagen instellingen (stem, naam, snelheid, taal) op elke server. je opt-in/opt-out status blijft behouden.",
-      "versionFooter": "-# versie: 2.4.1 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? waarschijnlijk. features? zeker."
+      "versionFooter": "-# versie: 2.5.6 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? waarschijnlijk. features? zeker."
     },
     "lang": {
       "invalid": "die taalcode is ongeldig.",
@@ -138,6 +145,12 @@
       "single": "je **{option}** instelling is gereset voor deze server.",
       "noData": "je hebt geen gegevens om te resetten.",
       "error": "fout bij het resetten van je instellingen."
+    },
+    "inject": {
+      "success": "je bericht is succesvol in het spraakkanaal geplaatst.",
+      "noConnection": "ik ben momenteel niet verbonden met een spraakkanaal op deze server.",
+      "rateLimited": "je hebt de limiet van {limit} injecties per uur bereikt. neem even pauze.",
+      "error": "fout bij het plaatsen van je bericht. er is iets misgegaan."
     }
   }
 }

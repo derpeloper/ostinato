@@ -44,6 +44,11 @@
       "removed": "le salon de chat alternatif a été supprimé.",
       "noneSet": "aucun salon de chat alternatif n'est configuré.",
       "error": "échec de la mise à jour du paramètre du salon."
+    },
+    "autojoin": {
+      "enabled": "l'autojoin est maintenant **activé**. je suivrai le premier utilisateur qui rejoint un salon vocal.",
+      "disabled": "l'autojoin est maintenant **désactivé**.",
+      "error": "échec du basculement de l'autojoin."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "réinitialise vos paramètres tts par défaut.\n\n`/reset` : efface toutes vos données de la base de données.\n`/reset <option>` : réinitialise un paramètre spécifique (voix, nom, vitesse, langue) pour ce serveur.\n\n-# cela n'affecte pas votre statut d'activation/désactivation.",
         "guild": "gérer les paramètres spécifiques au serveur.\n\n`/guild lang set <langue>` : définir la langue par défaut.\n`/guild lang reset` : réinitialiser la langue par défaut du serveur.\n\n-# nécessite la permission **Gérer le serveur**.",
         "message": "gérer les filtres de contenu des messages.\n\n`/message filter add <texte>` : ajouter un nouveau filtre.\n`/message filter list` : lister tous les filtres actifs.\n`/message filter edit <ancien> <nouveau>` : modifier un filtre existant.\n`/message filter remove <texte>` : supprimer un filtre.\n\n-# nécessite la permission **Gérer les messages**.",
-        "channel": "gérer le salon de chat alternatif du serveur.\n\n`/channel set <salon>` : définir un salon textuel comme chat tts alternatif.\n`/channel remove` : supprimer le salon alternatif actuel.\n\n-# nécessite la permission **Gérer les salons**."
+        "channel": "gérer le salon de chat alternatif du serveur.\n\n`/channel set <salon>` : définir un salon textuel comme chat tts alternatif.\n`/channel remove` : supprimer le salon alternatif actuel.\n\n-# nécessite la permission **Gérer les salons**.",
+        "inject": "envoyer un message directement dans le salon vocal sans le rejoindre.\n\n/inject <message> : envoie votre message dans le salon vocal actif.\n\n-# limité à 5 utilisations par heure par serveur. les modérateurs contournent cette limite.",
+        "autojoin": "bascule si le bot rejoint automatiquement les salons vocaux lorsqu'un premier utilisateur y entre.\n\n/autojoin : active ou désactive ce comportement.\n\n-# nécessite la permission **Administrateur**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## conditions d'utilisation",
       "tosBody": "fourni \"tel quel\". respectez les cgu de discord. ou pas. nous ne sommes pas vos parents.",
       "resetWarning": "-# envie de repartir à zéro ? utilisez `/reset` pour effacer complètement vos données de notre base de données. cela supprime tous vos paramètres enregistrés (voix, nom, vitesse, langue) sur tous les serveurs. votre statut d'activation/désactivation est préservé.",
-      "versionFooter": "-# version : 2.4.1 | moteur : supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# des bugs ? probablement. des fonctionnalités ? certainement."
+      "versionFooter": "-# version : 2.5.6 | moteur : supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# des bugs ? probablement. des fonctionnalités ? certainement."
     },
     "lang": {
       "invalid": "ce code de langue est invalide.",
@@ -138,6 +145,12 @@
       "single": "votre paramètre **{option}** a été réinitialisé pour ce serveur.",
       "noData": "vous n'avez aucune donnée à réinitialiser.",
       "error": "échec de la réinitialisation de vos paramètres."
+    },
+    "inject": {
+      "success": "votre message a été injecté avec succès dans le salon vocal.",
+      "noConnection": "je ne suis pas connecté à un salon vocal sur ce serveur.",
+      "rateLimited": "vous avez atteint votre limite de {limit} injections par heure. faites une pause.",
+      "error": "échec de l'injection de votre message. quelque chose s'est mal passé."
     }
   }
 }

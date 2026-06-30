@@ -10,9 +10,14 @@ const cache = new Map();
 
 const localeToDir = { 'es-419': 'es-ES' };
 
+const SUPPORTED_LOCALES = [
+    'en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 
+    'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 
+    'el', 'bg', 'ru', 'uk', 'hi', 'tr'
+];
+
 function getLocaleData(locale) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
-    const targetLocale = supportedLocales.includes(locale) ? (localeToDir[locale] || locale) : 'en-US';
+    const targetLocale = SUPPORTED_LOCALES.includes(locale) ? (localeToDir[locale] || locale) : 'en-GB';
 
     if (cache.has(targetLocale)) {
         return cache.get(targetLocale);
@@ -50,8 +55,8 @@ function localize(locale, key, variables = {}) {
     let data = getLocaleData(locale);
     let str = getNestedValue(data, key);
 
-    if (!str && locale !== 'en-US') {
-        const fallbackData = getLocaleData('en-US');
+    if (!str && locale !== 'en-GB') {
+        const fallbackData = getLocaleData('en-GB');
         str = getNestedValue(fallbackData, key);
     }
     if (!str) {
@@ -68,11 +73,10 @@ function localize(locale, key, variables = {}) {
 }
 
 function getCommandLocalizations(group, commandName) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
-    for (const loc of supportedLocales) {
+    for (const loc of SUPPORTED_LOCALES) {
         const data = getLocaleData(loc);
         const cmd = getNestedValue(data, `commands.${group}.${commandName}`);
         if (cmd) {
@@ -85,11 +89,10 @@ function getCommandLocalizations(group, commandName) {
 }
 
 function getOptionLocalizations(group, commandName, optionName) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
-    for (const loc of supportedLocales) {
+    for (const loc of SUPPORTED_LOCALES) {
         const data = getLocaleData(loc);
         const opt = getNestedValue(data, `commands.${group}.${commandName}.options.${optionName}`);
         if (opt && opt.name && opt.description) {
@@ -102,11 +105,10 @@ function getOptionLocalizations(group, commandName, optionName) {
 }
 
 function getSubcommandLocalizations(group, commandName, subcommandName) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
-    for (const loc of supportedLocales) {
+    for (const loc of SUPPORTED_LOCALES) {
         const data = getLocaleData(loc);
         const sub = getNestedValue(data, `commands.${group}.${commandName}.subcommands.${subcommandName}`)
             || getNestedValue(data, `commands.${group}.${commandName}.options.${subcommandName}`);
@@ -120,11 +122,10 @@ function getSubcommandLocalizations(group, commandName, subcommandName) {
 }
 
 function getSubcommandGroupLocalizations(group, commandName, groupName) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
-    for (const loc of supportedLocales) {
+    for (const loc of SUPPORTED_LOCALES) {
         const data = getLocaleData(loc);
         const grp = getNestedValue(data, `commands.${group}.${commandName}.subcommandGroups.${groupName}`)
             || getNestedValue(data, `commands.${group}.${commandName}.groups.${groupName}`);
@@ -138,13 +139,12 @@ function getSubcommandGroupLocalizations(group, commandName, groupName) {
 }
 
 function getDeepOptionLocalizations(group, ...pathSegments) {
-    const supportedLocales = ['en-US', 'en-GB', 'es-ES', 'es-419', 'fr', 'pt-BR', 'ko', 'da', 'de', 'hr', 'it', 'lt', 'hu', 'nl', 'pl', 'ro', 'fi', 'sv-SE', 'vi', 'cs', 'el', 'bg', 'ru', 'uk', 'hi'];
     const nameLocalizations = {};
     const descriptionLocalizations = {};
 
     const fullPath = `commands.${group}.${pathSegments.join('.')}`;
 
-    for (const loc of supportedLocales) {
+    for (const loc of SUPPORTED_LOCALES) {
         const data = getLocaleData(loc);
         const opt = getNestedValue(data, fullPath);
         if (opt && opt.name && opt.description) {

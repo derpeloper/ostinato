@@ -8,7 +8,7 @@
 
 a discord bot that gives a voice to the voiceless. because listening is better than reading, and sounding human is better than sounding like a microwave.
 
-> **current version**: v2.4.1 (official release)
+> **current version**: v2.5.6 (official release)
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
@@ -19,8 +19,7 @@ _note: expect outages for maintenance, bug fixes, or unexpected hiccups. you hav
 ## features
 
 - **supertonic tts**: powered by the supertonic engine to provide high-quality, human-sounding voices. it's like magic, but with actual code.
-- **localization**: fully translated across **24 languages** (excluding English GB and US).
-  _note: all localizations are translated via ai and may not be 100% accurate._
+- **localization**: fully translated across **25 languages** (excluding English GB and US).
 - **multilingual tts**: natively supports **31 languages** via the supertonic 3 engine.
 - **voice customization**: change the voice model, speed, and language to fit your vibe.
 - **persistent settings**: remembers your preferences per server via sqlite, because nobody likes repeating themselves.
@@ -52,7 +51,7 @@ because the engine can be resource-intensive, the bot monitors the RSS (resident
 instead of a bloated database, the bot uses **better-sqlite3**. it's fast, file-based, and perfect for storing per-guild configuration (voice, speed, language) without adding unnecessary network latency.
 
 ### localization engine
-the bot manages a localization layer that maps inputs across 24 discord locales. it ensures that the correct voice models and linguistic parameters are passed to the engine based on the server's current settings.
+the bot manages a localization layer that maps inputs across 25 discord locales. it ensures that the correct voice models and linguistic parameters are passed to the engine based on the server's current settings.
 
 ## self-hosting
 
@@ -65,39 +64,42 @@ if you want 100% uptime and total control, host it yourself. you'll get access t
 
 ### setup guide
 
-#### phase 1: the bot
-1. clone the repo and install dependencies:
+#### phase 1: clone the things
+1. clone ostinato and navigate inside:
    ```bash
    git clone https://github.com/derpeloper/ostinato
    cd ostinato
-   npm install
    ```
-
-#### phase 2: the engine
-the bot is just the brain; it needs the engine to speak.
-1. download the supertonic engine:
+2. clone the supertonic engine and download its voice assets:
    ```bash
    git clone https://github.com/supertone-inc/supertonic.git
    cd supertonic
    git clone https://huggingface.co/Supertone/supertonic-3 assets
-   cd nodejs
-   npm install
+   cd ..
    ```
+   _note: make sure you end up back in the ostinato root directory when you're done._
 
-#### phase 3: configuration & launch
-1. go back to the ostinato root folder:
-   ```bash
-   cd ../../
-   ```
-2. configure your bot:
+#### phase 2: configuration
+1. configure your bot before launching, otherwise it'll just scream into the void (or not launch at all):
    - in `src/env.json`, replace `token` with your actual discord bot token.
    - in `src/config.js`, replace `clientId` with your bot's client id.
    - **optional**: set `guildId` in `src/config.js` if you only want the bot in one server.
-3. bring it to life:
-   ```bash
-   node src/index.js
-   ```
-4. **permissions**: ensure your bot has **priority speaker**, **connect**, **read message history**, and **speak**. otherwise, it'll just be a silent observer.
+
+#### phase 3: run the script
+we have shiny setup scripts now to handle dependency installation and launch in one go. choose your poison:
+
+- **linux/macos**:
+  ```bash
+  chmod +x setup.sh
+  ./setup.sh
+  ```
+- **windows**:
+  ```powershell
+  .\setup.ps1
+  ```
+
+#### phase 4: discord permissions
+ensure your bot has **priority speaker**, **connect**, **read message history**, and **speak** in your discord server. otherwise, it'll just be a silent observer.
 
 ## configuration (self-host only)
 
@@ -128,11 +130,41 @@ may contain traces of nuts and bolts. the hosted version will not have 24/7 upti
 - **Supertonic 3** by **Supertone** — the high-quality tts engine doing the heavy lifting.
 
 ### localization
-_note: contributors that helped verify locales may have their alias instead of their usernames._
 
-- **exskrime** — verified russian locale
-- **9am1n_** — verified hindi locale
-- **sentry** — verified polish locale
-- **Daniel** — verified korean locale
-- **p** - verified vietnamese locale
-- **salty** - verified croatian locale
+all base translations were automatically generated via [**Gemini 3.5 Flash**](https://deepmind.google/models/model-cards/gemini-3-5-flash/) and may not be fully accurate.
+
+_note: contributors who helped verify locales may be listed by their alias rather than their Discord username._
+
+#### current version (v2.5.6)
+
+| contributor | language locale
+| :--- | :--- 
+| **9am1n_** | Hindi
+| **croi** | Lithuanian
+| **Daniel** | Korean
+| **dash** | Ukrainian
+| **dash**<br>**exskrime** | Russian
+| **malios71** | French
+| **marac** | Dutch
+| **michael** | Spanish
+| **orbital** | Turkish
+| **p** | Vietnamese
+| **rascage** | Portuguese
+| **salty** | Croatian
+| **sentry** | Polish
+| **cat lover**<br>**steff** | Romanian
+
+#### awaiting human verification (AI cross-checked)
+
+the following languages have been cross-checked for consistency using independent, isolated Gemini 3.5 Flash sessions (one dedicated session per language). however, they have not yet been reviewed by a human:
+
+Bulgarian, Chinese (China), Chinese (Taiwan), Czech, Danish, Finnish, German, Greek, Hungarian, Italian, Japanese, Norwegian, Swedish, Thai.
+
+> **want to help?** if you speak any of these languages and notice something off, please [open an issue](https://github.com/derpeloper/ostinato/issues) with the label **`locale feedback`** so we can move it up to the verified list.
+
+#### legacy 
+
+> **disclaimer:** these locales were verified for previous versions of the bot. translations for newer features or modified strings may not be fully accurate.
+
+| Contributor | Language Locale | Last Verified |
+| :--- | :--- | :--- |

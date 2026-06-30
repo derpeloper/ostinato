@@ -111,6 +111,10 @@
           "description": "odebere aktuální alternativní chatovací kanál"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "přepne automatické připojování bota do hlasových kanálů"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "hlas",
       "description": "změní hlas pro váš účet"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "odešle zprávu do hlasového kanálu bez připojení",
+      "options": {
+        "message": {
+          "name": "zpráva",
+          "description": "zpráva k odeslání (max. 200 znaků)"
+        }
+      }
     }
   }
 }

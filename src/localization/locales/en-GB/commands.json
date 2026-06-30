@@ -111,6 +111,10 @@
           "description": "remove the current alternative chat channel"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "toggle the bot automatically joining voice channels"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "voice",
       "description": "change the voice for your account"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "send a message to the voice channel without joining",
+      "options": {
+        "message": {
+          "name": "message",
+          "description": "the message to inject (max 200 chars)"
+        }
+      }
     }
   }
 }

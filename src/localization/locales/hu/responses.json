@@ -44,6 +44,11 @@
       "removed": "alternatív csevegőcsatorna eltávolítva.",
       "noneSet": "nincs alternatív csevegőcsatorna beállítva.",
       "error": "nem sikerült frissíteni a csatornabeállítást."
+    },
+    "autojoin": {
+      "enabled": "az automata csatlakozás mostantól **engedélyezve** van. követni fogom az első felhasználót, aki csatlakozik egy hangcsatornához.",
+      "disabled": "az automata csatlakozás mostantól **ki van kapcsolva**.",
+      "error": "nem sikerült átkapcsolni az automata csatlakozást."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "visszaállítja a tts-beállításaidat az alapértelmezettre.\n\n`/reset`: törli az összes adatodat az adatbázisból.\n`/reset <opció>`: visszaállít egy konkrét beállítást (hang, név, sebesség, nyelv) ezen a szerveren.\n\n-# ez nem befolyásolja az opt-in/opt-out állapotodat.",
         "guild": "szerverspecifikus beállítások kezelése.\n\n`/guild lang set <nyelv>`: alapértelmezett nyelv beállítása.\n`/guild lang reset`: szerver alapértelmezett nyelvének visszaállítása.\n\n-# **Szerver kezelése** jogosultság szükséges hozzá.",
         "message": "üzenettartalom-szűrők kezelése.\n\n`/message filter add <szöveg>`: új szűrő hozzáadása.\n`/message filter list`: összes aktív szűrő listázása.\n`/message filter edit <régi> <új>`: szűrő szerkesztése.\n`/message filter remove <szöveg>`: szűrő eltávolítása.\n\n-# **Üzenetek kezelése** jogosultság szükséges hozzá.",
-        "channel": "a szerver alternatív csevegőcsatornájának kezelése.\n\n`/channel set <csatorna>`: szöveges csatorna beállítása alternatív tts-csevegőként.\n`/channel remove`: jelenlegi alternatív csatorna eltávolítása.\n\n-# **Csatornák kezelése** jogosultság szükséges hozzá."
+        "channel": "a szerver alternatív csevegőcsatornájának kezelése.\n\n`/channel set <csatorna>`: szöveges csatorna beállítása alternatív tts-csevegőként.\n`/channel remove`: jelenlegi alternatív csatorna eltávolítása.\n\n-# **Csatornák kezelése** jogosultság szükséges hozzá.",
+        "inject": "üzenet küldése közvetlenül a hangcsatornára anélkül, hogy csatlakoznál hozzá.\n\n/inject <üzenet>: elküldi az üzenetedet az aktív hangcsatornába.\n\n-# szerverenként óránként 5 használatra korlátozva. a moderátorok megkerülik ezt a korlátot.",
+        "autojoin": "beállítja, hogy a bot automatikusan csatlakozzon-e a hangcsatornákhoz, amikor az első felhasználó belép.\n\n/autojoin: engedélyezi vagy letiltja ezt a funkciót.\n\n-# **Adminisztrátor** jogosultság szükséges hozzá."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## szolgáltatási feltételek",
       "tosBody": "\"úgy, ahogy van\". tartsd be a discord aszf-et. vagy ne. nem mi vagyunk a szüleid.",
       "resetWarning": "-# tiszta lappal akarsz indulni? használd a `/reset` parancsot az adataid teljes törléséhez az adatbázisunkból. ez eltávolítja az összes mentett beállításodat (hang, név, sebesség, nyelv) minden szerverről. az opt-in/opt-out állapotod megmarad.",
-      "versionFooter": "-# verzió: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugok? valószínűleg. funkciók? biztosan."
+      "versionFooter": "-# verzió: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugok? valószínűleg. funkciók? biztosan."
     },
     "lang": {
       "invalid": "ez a nyelvkód érvénytelen.",
@@ -138,6 +145,12 @@
       "single": "a(z) **{option}** beállításod vissza lett állítva ezen a szerveren.",
       "noData": "nincs visszaállítandó adatod.",
       "error": "nem sikerült visszaállítani a beállításaidat."
+    },
+    "inject": {
+      "success": "az üzeneted sikeresen beillesztve a hangcsatornába.",
+      "noConnection": "jelenleg nem csatlakozom hangcsatornához ezen a szerveren.",
+      "rateLimited": "elérted a {limit} beillesztés/óra korlátot. tarts egy kis szünetet.",
+      "error": "nem sikerült beilleszteni az üzenetedet. valami hiba történt."
     }
   }
 }

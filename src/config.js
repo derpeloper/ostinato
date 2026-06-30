@@ -42,10 +42,14 @@ module.exports = {
     // -- resource safety ------------------------------------------------------
     // limits to keep the machine from melting under load.
 
-    workerCount:            1,           // workers: number of TTS inference workers. each uses ~300-400mb of ram.
+    workerCount:            7,           // workers: number of TTS inference workers. each uses ~300-400mb of ram.
     maxConcurrency:         100,         // queue: total requests to the engine at any given time.
     maxPerGuildConcurrency: 20,          // queue: per-guild. how many jobs can run at the same time per server.
     workerMemoryLimit:      1610612736,  // memory: 1.5gb cap to prevent crashing.
+
+    // -- rate limiting --------------------------------------------------------
+    injectLimit: 5,                      // max injections per user per guild
+    injectWindow: 3600000,               // timeframe for injections in ms (1 hour)
 
 
     // -- presence & status ----------------------------------------------------
@@ -56,12 +60,10 @@ module.exports = {
     statusMessages: [
         'active in {guilds} servers',
         'a voice for the voiceless',
-        'v2.4.1 - /help'
+        'v2.5.6 - /help'
     ],
     statusRotationInterval: 3500,  // ms: how often the status rotates.
     autoIdle: true,                 // idle: automatically go idle after inactivity.
     autoIdleDuration: 300           // seconds: how long before the bot goes idle (default: 5 minutes).
 
 };
-
-

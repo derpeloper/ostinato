@@ -6,6 +6,11 @@
 const ostinato = require('../services/OstinatoTTS');
 const db = require('../data/db');
 
+function redact(str) {
+    if (!str || str.length <= 4) return str || '***';
+    return str.substring(0, 4) + '***';
+}
+
 module.exports = {
     name: 'messageCreate',
     async execute(message) {
@@ -15,6 +20,8 @@ module.exports = {
         if (!member || !member.voice.channel) {
             return;
         }
+
+        if (member.voice.serverMute || member.voice.serverDeaf) return;
 
         const isVoiceChat = message.channel.id === member.voice.channel.id;
 
@@ -35,7 +42,7 @@ module.exports = {
         }
 
         try {
-            console.log(`[TTS Event] Processing message from ${message.author.username}: ${message.content}`);
+            console.log(`[TTS Event] Processing message from ${redact(message.author.username)}: ${redact(message.content)}`);
             await ostinato.processMessage(message);
         } catch (error) {
             console.error('Error processing TTS:', error);

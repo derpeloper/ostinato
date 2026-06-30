@@ -111,6 +111,10 @@
           "description": "xóa kênh chat thay thế hiện tại"
         }
       }
+    },
+    "autojoin": {
+      "name": "tự-động-tham-gia",
+      "description": "bật/tắt việc bot tự động tham gia các kênh thoại"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "giọng-nói",
       "description": "thay đổi giọng nói cho tài khoản của bạn"
+    },
+    "inject": {
+      "name": "tiêm",
+      "description": "gửi tin nhắn đến kênh thoại mà không cần tham gia",
+      "options": {
+        "message": {
+          "name": "tin-nhắn",
+          "description": "tin nhắn để tiêm (tối đa 200 ký tự)"
+        }
+      }
     }
   }
 }

@@ -111,6 +111,10 @@
           "description": "poista nykyinen vaihtoehtoinen chat-kanava"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "vaihtaa botin automaattisen puhekanaviin liittymisen tilaa"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "ääni",
       "description": "vaihda tilisi ääntä"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "lähetä viesti puhekanavalle liittymättä siihen",
+      "options": {
+        "message": {
+          "name": "viesti",
+          "description": "lähetettävä viesti (enintään 200 merkkiä)"
+        }
+      }
     }
   }
 }

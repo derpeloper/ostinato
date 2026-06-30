@@ -36,7 +36,7 @@ module.exports = {
 
         // -- NAME --
         let nameDisplay = "";
-        const defaultName = interaction.user.username;
+        const defaultName = interaction.member?.displayName || interaction.member?.nickname || interaction.user.username;
         try {
             const row = db.prepare('SELECT name FROM names WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(userId, guildId);
             if (row) {

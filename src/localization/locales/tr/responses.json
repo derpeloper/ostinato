@@ -1,0 +1,156 @@
+{
+  "mods": {
+    "clear": {
+      "success": "sıra temizlendi.",
+      "error": "sıra temizlenemedi."
+    },
+    "restrict": {
+      "success": "tts yalnızca susturulmuş kullanıcılarla sınırlandırıldı.",
+      "error": "tts sınırlandırılamadı."
+    },
+    "skip": {
+      "success": "geçildi.",
+      "tooShort": "mesaj geçmek için çok kısa (< 35 karakter).",
+      "notPlaying": "şu anda hiçbir şey oynatılmıyor.",
+      "error": "geçmeye çalışırken bir hata oluştu.",
+      "unknown": "geçilemedi."
+    },
+    "unrestrict": {
+      "success": "tts sınırlandırmaları kaldırıldı.",
+      "error": "tts sınırlandırmaları kaldırılamadı."
+    },
+    "guild": {
+      "lang": {
+        "success": "sunucu varsayılan dili **{langCode}** olarak ayarlandı.",
+        "reset": "sunucu varsayılan dili sıfırlandı.",
+        "invalid": "bu dil kodu geçersiz.",
+        "error": "sunucu dil ayarı güncellenemedi."
+      }
+    },
+    "message": {
+      "filter": {
+        "added": "`{pattern}` filtresi eklendi.",
+        "exists": "bu filtre zaten mevcut.",
+        "list": "**aktif mesaj filtreleri:**\n{filters}",
+        "empty": "bu sunucu için yapılandırılmış mesaj filtresi yok.",
+        "edited": "filtre `{old}` değerinden `{new}` değerine güncellendi.",
+        "notFound": "`{pattern}` filtresi bulunamadı.",
+        "removed": "`{pattern}` filtresi kaldırıldı.",
+        "error": "mesaj filtreleri güncellenemedi."
+      }
+    },
+    "channel": {
+      "success": "alternatif sohbet kanalı {channel} olarak ayarlandı.",
+      "removed": "alternatif sohbet kanalı kaldırıldı.",
+      "noneSet": "yapılandırılmış alternatif sohbet kanalı yok.",
+      "error": "kanal ayarı güncellenemedi."
+    },
+    "autojoin": {
+      "enabled": "otomatik katılma şimdi **etkin**. bir ses kanalına katılan ilk kullanıcıyı takip edeceğim.",
+      "disabled": "otomatik katılma şimdi **devre dışı**.",
+      "error": "otomatik katılma durumu değiştirilemedi."
+    }
+  },
+  "public": {
+    "help": {
+      "notFound": "komut bilgisi bulunamadı.",
+      "commands": {
+        "help": "bu komutun kendini açıkladığından oldukça eminim. bu botun sunduğu komutlar hakkında bilgi sağlar.",
+        "voice": "hesabınızın sesini değiştirir. \n\nseslerin nasıl çıktığını merak ediyorsanız, supertonic'in [sesler](https://supertone-inc.github.io/supertonic-py/voices/) sayfasına göz atabilirsiniz.\n\n-# ses tercihleri yalnızca komutu kullandığınız sunucuyu etkiler, böylece her sunucu için farklı tercihleriniz olabilir.",
+        "info": "kullanım koşulları ve gizlilik politikası bildirimleri dahil olmak üzere bot hakkında bilgi sağlar.",
+        "name": "görünen isminizi ayarlar veya isim filtrelerini yönetir.\n\n`/name set <isim>`: mesajlarınız için ismi ayarlar.\n`/name filter add|list|edit|remove`: isim filtrelerini yönetir (yönetici).\n\n-# isim tercihleri genel olmak yerine sunucu bazdır. bu gizliliğinizi korumak içindir.",
+        "speed": "hesabınız için tts hızını değiştirir. \n\ndeğer **0.5** ile **2.0** arasında olmalıdır. \n\n-# hız ayarları genel olmak yerine sunucu bazlıdır.",
+        "lang": "hesabınız için tts dilini değiştirir. \n\ndesteklenen diller: ingilizce, arapça, bulgarca, çekçe, danca, almanca, yunanca, ispanyolca, estonca, fince, fransızca, hintçe, hırvatça, macarca, endonezyaca, italyanca, japonca, korece, litvanca, letonca, hollandaca, lehçe, portekizce, romence, rusça, slovakça, slovence, isveççe, türkçe, ukraynaca, vietnamca. \n\n-# dil tercihleri genel olmak yerine sunucu bazlıdır.",
+        "clear": "mevcut sunucu için tts sırasını temizler. \n\n**Mesajları Yönet** yetkisi gerektirir.",
+        "leave": "botu ses kanalından ayrılmaya zorlar.",
+        "restrict": "tts kullanımını yalnızca susturulmuş kullanıcılarla sınırlandırır. \n\n**Kanalları Yönet** yetkisi gerektirir.",
+        "unrestrict": "herkesin tts kullanmasına izin verir. \n\n**Kanalları Yönet** yetkisi gerektirir.",
+        "skip": "şu anda oynatılan tts mesajını geçer. \n\n**Mesajları Yönet** yetkisi gerektirir.",
+        "tts": "tts tercihlerinizi yönetir. \n\n`/tts on`: mesajlarınız için tts'yi açar.\n`/tts off`: mesajlarınız için tts'yi kapatır.",
+        "settings": "mevcut tts ayarlarınızı görüntüler (ses, isim, hız, dil).",
+        "reset": "tts ayarlarınızı varsayılana sıfırlar.\n\n`/reset`: tüm verilerinizi veritabanından siler.\n`/reset <seçenek>`: bu sunucu için belirli bir ayarı sıfırlar.\n\n-# bu, katılım durumunuzu (opt-in/opt-out) etkilemez.",
+        "guild": "sunucuya özel ayarları yönetir.\n\n`/guild lang set <dil>`: varsayılan dili ayarlar.\n`/guild lang reset`: sunucunun varsayılan dilini sıfırlar.\n\n-# **Sunucuyu Yönet** yetkisi gerektirir.",
+        "message": "mesaj içeriği filtrelerini yönetir.\n\n`/message filter add <metin>`: yeni bir filtre ekler.\n`/message filter list`: tüm aktif filtreleri listeler.\n`/message filter edit <eski> <yeni>`: bir filtreyi düzenler.\n`/message filter remove <metin>`: bir filtreyi kaldırır.\n\n-# **Mesajları Yönet** yetkisi gerektirir.",
+        "channel": "sunucunun alternatif sohbet kanalını yönetir.\n\n`/channel set <kanal>`: bir metin kanalını alternatif tts sohbeti olarak ayarlar.\n`/channel remove`: mevcut alternatif kanalı kaldırır.\n\n-# **Kanalları Yönet** yetkisi gerektirir.",
+        "inject": "ses kanalına katılmadan doğrudan kanala mesaj gönderir.\n\n/inject <mesaj>: mesajınızı aktif ses kanalına gönderir.\n\n-# sunucu başına saatte 5 kullanım ile sınırlıdır. moderatörler bu sınırı aşabilir.",
+        "autojoin": "ilk kullanıcı girdiğinde botun ses kanallarına otomatik olarak katılıp katılmayacağını değiştirir.\n\n/autojoin: bu davranışı etkinleştirir veya devre dışı bırakır.\n\n-# **Yönetici** yetkisi gerektirir."
+      }
+    },
+    "info": {
+      "title": "# ostinato",
+      "subtitle": "*sesi olmayanlara ve sosyal olarak tuhaf olanlara ses verir.*",
+      "privacyHeader": "## gizlilik politikası",
+      "privacySettings": "**bilgileriniz** (sunucu başına yerel olarak saklanır)\n- **ses**: genel bir robot gibi tınlamamanız için.\n- **hız**: vın vın veya yavaş çekim.\n- **isim**: diğer benliğiniz.\n- **dil**: havalı görünmek istediğiniz zamanlar için.",
+      "privacySystem": "**sıkıcı sistem verileri**\n- **devre dışı bırakma**: bize susmamızı söyleyip söylemediğinizi hatırsınız (`/tts off`).\n- **sunucu ayarları**: susturulmamış kişileri yoksayıp yok saymayacağımızı bilmek için.",
+      "privacyFooter": "-# mesajlarınızı kaydetmiyoruz, ses dosyaları oluşturmuyoruz veya verilerinizi satmuyoruz. sırlarınız güvende, çünkü muhtemelen zaten sıkıcılar.",
+      "tosHeader": "## kullanım koşulları",
+      "tosBody": "\"olduğu gibi\" sağlanmıştır. discord kullanım koşullarına uyun. ya da uymayın. ebeveyniniz değiliz.",
+      "resetWarning": "-# temiz bir sayfa açmak mı istiyorsunuz? verilerinizi veritabanımızdan tamamen silmek için `/reset` komutunu kullanın. bu, her sunucudaki tüm kayıtlı ayarlarınızı (ses, isim, hız, dil) kaldırır. katılım/ayrılma durumunuz korunur.",
+      "versionFooter": "-# sürüm: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# hatalar? muhtemelen. özellikler? kesinlikle."
+    },
+    "lang": {
+      "invalid": "bu dil kodu geçersiz.",
+      "success": "dil tercihleri **{langCode}** olarak ayarlandı.",
+      "error": "dil ayarı kaydedilemedi. (db hatası)"
+    },
+    "leave": {
+      "notInVoice": "bir ses kanalında değilim. gaipten sesler mi duyuyorsunuz?",
+      "differentVoice": "bağlantımı kesmek için benimle aynı ses kanalında olmalısınız. iyi deneme.",
+      "success": "hoşça kalın.",
+      "error": "ayrılmakta zorlandım. bu biraz tuhaf oldu."
+    },
+    "name": {
+      "success": "isminiz **{name}** olarak ayarlandı.",
+      "error": "isminiz kaydedilirken bir hata oluştu.",
+      "filter": {
+        "added": "isim filtresi `{pattern}` eklendi.",
+        "exists": "bu isim filtresi zaten mevcut.",
+        "list": "**aktif isim filtreleri:**\n{filters}",
+        "empty": "bu sunucu için yapılandırılmış isim filtresi yok.",
+        "edited": "isim filtresi `{old}` değerinden `{new}` değerine güncellendi.",
+        "notFound": "isim filtresi `{pattern}` bulunadı.",
+        "removed": "isim filtresi `{pattern}` kaldırıldı.",
+        "error": "isim filtreleri güncellenemedi."
+      }
+    },
+    "settings": {
+      "title": "# ayarlar",
+      "voice": "**ses**: {value}",
+      "name": "**isim**: {value}",
+      "speed": "**hız**: {value}",
+      "lang": "**dil**: {value}",
+      "defaultFormat": "`Ayarlanmadı` (Varsayılan: `{defaultValue}`)",
+      "setFormat": "`{value}` (Varsayılan: `{defaultValue}`)"
+    },
+    "speed": {
+      "success": "hız **{speedValue}x** olarak ayarlandı.",
+      "error": "hız ayarı kaydedilemedi. (db hatası)"
+    },
+    "tts": {
+      "alreadyOff": "tts sizin için zaten **kapalı**.",
+      "turnedOff": "tts şimdi sizin için **kapalı**.",
+      "alreadyOn": "tts sizin için zaten **açık**.",
+      "turnedOn": "tts şimdi sizin için **açık**.",
+      "error": "ayarlar güncellenemedi."
+    },
+    "voice": {
+      "success": "seçilen ses **{voiceId}** kaydedildi.",
+      "error": "seçilen ses **{voiceId}** kaydedilemedi (veritabanına kaydedilirken hata oluştu).",
+      "selectPrompt": "aşağıdaki menüden beğendiğiniz bir sesi seçin.",
+      "confirmButton": "Onayla",
+      "noPreview": "önizleme mevcut değil."
+    },
+    "reset": {
+      "full": "tüm verileriniz veritabanından silindi. temiz bir başlangıç yapıyorsunuz.",
+      "single": "**{option}** ayarınız bu sunucu için sıfırlandı.",
+      "noData": "sıfırlanacak herhangi bir veriniz bulunmuyor.",
+      "error": "ayarlarınız sıfırlanamadı."
+    },
+    "inject": {
+      "success": "mesajınız ses kanalına başarıyla gönderildi.",
+      "noConnection": "şu anda bu sunucuda bir ses kanalına bağlı değilim.",
+      "rateLimited": "saatlik {limit} mesaj gönderme sınırınıza ulaştınız. biraz soluklanın.",
+      "error": "mesajınız gönderilemedi. bir şeyler ters gitti."
+    }
+  }
+}

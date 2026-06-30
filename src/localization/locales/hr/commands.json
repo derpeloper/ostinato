@@ -111,6 +111,10 @@
           "description": "ukloni trenutni alternativni chat kanal"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "uključivanje/isključivanje automatskog pridruživanja bota glasovnim kanalima"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "glas",
       "description": "promijeni glas za svoj račun"
+    },
+    "inject": {
+      "name": "ubrizgaj",
+      "description": "slanje poruke u glasovni kanal bez pridruživanja",
+      "options": {
+        "message": {
+          "name": "poruka",
+          "description": "poruka za ubrizgavanje (maks. 200 znakova)"
+        }
+      }
     }
   }
 }

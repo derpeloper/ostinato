@@ -43,7 +43,6 @@ module.exports = {
                 const channel = interaction.options.getChannel('channel');
                 db.prepare('INSERT OR REPLACE INTO alt_channels (guild, channel) VALUES (?, ?)').run(guildId, channel.id);
                 await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(`${localize(locale, 'responses.mods.channel.success', {channel: `<#${channel.id}>`})}`))], flags: [ MessageFlags.Ephemeral, MessageFlags.IsComponentsV2 ] });
-// responses.mods.channel.noneSet
             } else if (subcommand === 'remove') {
                 const result = db.prepare('DELETE FROM alt_channels WHERE guild = ?').run(guildId);
                 if (result.changes === 0) {

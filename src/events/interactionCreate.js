@@ -61,11 +61,20 @@ module.exports = {
         try{
             await command.execute(interaction, client);
         } catch (error) {
-            console.log(error);
-            await interaction.reply({
-                components: new ContainerBuilder().addTextDisplayComponents(t => t.setContent('there was an error while executing this command.')), 
-                flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2]
-            });
+            console.error(error);
+            try {
+                const reply = {
+                    components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent('there was an error while executing this command.'))], 
+                    flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2]
+                };
+                if (interaction.replied || interaction.deferred) {
+                    await interaction.followUp(reply);
+                } else {
+                    await interaction.reply(reply);
+                }
+            } catch (replyError) {
+                console.error('[interactionCreate] Failed to send error reply:', replyError);
+            }
         } 
     },
 };

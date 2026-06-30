@@ -62,7 +62,11 @@ function createWavBuffer(audioData, sampleRate) {
     const bitsPerSample = 16;
     const byteRate = sampleRate * numChannels * bitsPerSample / 8;
     const blockAlign = numChannels * bitsPerSample / 8;
-    const dataSize = audioData.length * bitsPerSample / 8;
+    
+    const samplesPer20ms = Math.floor(sampleRate * 20 / 1000);
+    const remainder = audioData.length % samplesPer20ms;
+    const paddedLength = audioData.length + (remainder === 0 ? 0 : samplesPer20ms - remainder);
+    const dataSize = paddedLength * bitsPerSample / 8;
 
     const buffer = Buffer.alloc(44 + dataSize);
     

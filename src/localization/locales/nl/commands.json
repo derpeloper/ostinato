@@ -111,6 +111,10 @@
           "description": "verwijder het huidige alternatieve chatkanaal"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "schakelt het automatisch deelnemen van de bot aan spraakkanalen in of uit"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "stem",
       "description": "verander de stem voor je account"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "stuur een bericht naar het spraakkanaal zonder deel te nemen",
+      "options": {
+        "message": {
+          "name": "bericht",
+          "description": "het te verzenden bericht (max 200 tekens)"
+        }
+      }
     }
   }
 }

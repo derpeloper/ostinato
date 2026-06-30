@@ -39,7 +39,9 @@ module.exports = {
             { id: 'reset', group: 'public' },
             { id: 'guild', group: 'mods' },
             { id: 'message', group: 'mods' },
-            { id: 'channel', group: 'mods' }
+            { id: 'channel', group: 'mods' },
+            { id: 'autojoin', group: 'mods' },
+            { id: 'inject', group: 'public' }
         ];
         
         const locale = interaction.locale;
@@ -62,7 +64,7 @@ module.exports = {
         const locale = interaction.locale;
 
         const getHelpComponent = (cmdName) => {
-            const pubCommands = ['help', 'voice', 'info', 'name', 'speed', 'lang', 'leave', 'tts', 'settings', 'reset'];
+            const pubCommands = ['help', 'voice', 'info', 'name', 'speed', 'lang', 'leave', 'tts', 'settings', 'reset', 'inject'];
             const cmdGroup = pubCommands.includes(cmdName) ? 'public' : 'mods';
             
             const locs = getCommandLocalizations(cmdGroup, cmdName).nameLocalizations;
@@ -90,7 +92,7 @@ module.exports = {
             return;
         }
 
-        const validCommands = ['help', 'voice', 'info', 'name', 'speed', 'lang', 'clear', 'leave', 'restrict', 'unrestrict', 'skip', 'tts', 'settings', 'reset', 'guild', 'message', 'channel'];
+        const validCommands = ['help', 'voice', 'info', 'name', 'speed', 'lang', 'clear', 'leave', 'restrict', 'unrestrict', 'skip', 'tts', 'settings', 'reset', 'guild', 'message', 'channel', 'autojoin', 'inject'];
         
         if (validCommands.includes(command.toLowerCase())) {
             await interaction.reply({

@@ -44,6 +44,11 @@
       "removed": "alternativ chattkanal har tagits bort.",
       "noneSet": "ingen alternativ chattkanal har konfigurerats.",
       "error": "misslyckades med att uppdatera kanalinställning."
+    },
+    "autojoin": {
+      "enabled": "autojoin är nu **aktiverat**. jag kommer att följa den första användaren som ansluter till en röstkanal.",
+      "disabled": "autojoin är nu **inaktiverat**.",
+      "error": "misslyckades med att växla autojoin."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "återställer dina tts-inställningar till standard.\n\n`/reset`: rensar all din data från databasen.\n`/reset <alternativ>`: återställer en specifik inställning (röst, namn, hastighet, språk) för denna server.\n\n-# detta påverkar inte din status för medlemskap.",
         "guild": "hantera serverspecifika inställningar.\n\n`/guild lang set <språk>`: ställ in standardspråket.\n`/guild lang reset`: återställ serverns standardspråk.\n\n-# kräver behörigheten **Hantera server**.",
         "message": "hantera filter för meddelandeinnehåll.\n\n`/message filter add <sträng>`: lägg till ett nytt filter.\n`/message filter list`: lista alla aktiva filter.\n`/message filter edit <gammal> <ny>`: redigera ett filter.\n`/message filter remove <sträng>`: ta bort ett filter.\n\n-# kräver behörigheten **Hantera meddelanden**.",
-        "channel": "hantera serverns alternativa chattkanal.\n\n`/channel set <kanal>`: ställ in en textkanal som den alternativa tts-chatten.\n`/channel remove`: ta bort den nuvarande alternativa kanalen.\n\n-# kräver behörigheten **Hantera kanaler**."
+        "channel": "hantera serverns alternativa chattkanal.\n\n`/channel set <kanal>`: ställ in en textkanal som den alternativa tts-chatten.\n`/channel remove`: ta bort den nuvarande alternativa kanalen.\n\n-# kräver behörigheten **Hantera kanaler**.",
+        "inject": "skicka ett meddelande direkt till röstkanalen utan att ansluta till den.\n\n/inject <meddelande>: skickar ditt meddelande till den aktiva röstkanalen.\n\n-# begränsat till 5 användningar per timme per server. moderatorer kringgår denna gräns.",
+        "autojoin": "växlar om boten automatiskt ansluter till röstkanaler när den första användaren går in.\n\n/autojoin: aktiverar eller inaktiverar detta beteende.\n\n-# kräver behörigheten **Administratör**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## användarvillkor",
       "tosBody": "tillhandahålls \"i befintligt skick\". följ discords villkor. eller låt bli. vi är inte dina föräldrar.",
       "resetWarning": "-# vill du börja om från början? använd `/reset` för att helt rensa din data från vår databas. detta tar bort alla dina sparade inställningar (röst, namn, hastighet, språk) på alla servrar. din status för avanmälan bevaras.",
-      "versionFooter": "-# version: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# buggar? förmodligen. funktioner? definitivt."
+      "versionFooter": "-# version: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# buggar? förmodligen. funktioner? definitivt."
     },
     "lang": {
       "invalid": "den språkkoden är ogiltig.",
@@ -138,6 +145,12 @@
       "single": "din inställning för **{option}** har återställts för denna server.",
       "noData": "du har ingen data att återställa.",
       "error": "misslyckades med att återställa dina inställningar."
+    },
+    "inject": {
+      "success": "ditt meddelande har skickats till röstkanalen.",
+      "noConnection": "jag är för närvarande inte ansluten till en röstkanal på den här servern.",
+      "rateLimited": "du har nått din gräns på {limit} inskickningar per timme. ta en paus.",
+      "error": "misslyckades med att skicka ditt meddelande. något gick fel."
     }
   }
 }

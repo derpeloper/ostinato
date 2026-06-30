@@ -44,6 +44,11 @@
       "removed": "alternativ chatkanal er blevet fjernet.",
       "noneSet": "der er ikke konfigureret nogen alternativ chatkanal.",
       "error": "kunne ikke opdatere kanalindstilling."
+    },
+    "autojoin": {
+      "enabled": "autotilslutning er nu **aktiveret**. jeg vil følge den første bruger, der går ind i en stemmekanal.",
+      "disabled": "autotilslutning er nu **deaktiveret**.",
+      "error": "det lykkedes ikke at ændre autotilslutning."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "nulstiller dine tts-indstillinger til standard.\n\n`/reset`: sletter alle dine data fra databasen.\n`/reset <option>`: nulstiller en specifik indstilling (stemme, navn, hastighed, sprog) for denne server.\n\n-# dette påvirker ikke din tilmeldings-/afmeldingsstatus.",
         "guild": "administrer serverspecifikke indstillinger.\n\n`/guild lang set <language>`: indstil standardsproget for serveren.\n`/guild lang reset`: nulstil serverens standardsprog.\n\n-# kræver **Administrer server** tilladelse.",
         "message": "administrer beskedindholdsfiltre.\n\n`/message filter add <string>`: tilføj et nyt filter.\n`/message filter list`: vis alle aktive filtre.\n`/message filter edit <old> <new>`: rediger et eksisterende filter.\n`/message filter remove <string>`: fjern et filter.\n\n-# kræver **Administrer beskeder** tilladelse.",
-        "channel": "administrer serverens alternative chatkanal.\n\n`/channel set <channel>`: indstil en tekstkanal som den alternative tts-chat.\n`/channel remove`: fjern den aktuelle alternative kanal.\n\n-# kræver **Administrer kanaler** tilladelse."
+        "channel": "administrer serverens alternative chatkanal.\n\n`/channel set <channel>`: indstil en tekstkanal som den alternative tts-chat.\n`/channel remove`: fjern den aktuelle alternative kanal.\n\n-# kræver **Administrer kanaler** tilladelse.",
+        "inject": "send en besked direkte til stemmekanalen uden at deltage i den.\n\n/inject <besked>: sender din besked til den aktive stemmekanal.\n\n-# begrænset til 5 anvendelser i timen pr. server. moderatorer omgår denne grænse.",
+        "autojoin": "slår til/fra om botten automatisk skal deltage i stemmekanaler, når den første bruger går ind.\n\n/autojoin: aktiverer eller deaktiverer denne adfærd.\n\n-# kræver **Administrator** rettighed."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## servicevilkår",
       "tosBody": "leveres \"som beset\". overhold discords servicevilkår. eller lad være. vi er ikke dine forældre.",
       "resetWarning": "-# vil du starte forfra? brug `/reset` til helt at slette dine data fra vores database. dette fjerner alle dine gemte indstillinger (stemme, navn, hastighed, sprog) på tværs af alle servere. din tilmeldings-/afmeldingsstatus bevares.",
-      "versionFooter": "-# version: 2.4.1 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# fejl? sikkert. funktioner? helt sikkert."
+      "versionFooter": "-# version: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# fejl? sikkert. funktioner? helt sikkert."
     },
     "lang": {
       "invalid": "den sprogkode er ugyldig.",
@@ -138,6 +145,12 @@
       "single": "din **{option}** indstilling er blevet nulstillet for denne server.",
       "noData": "du har ingen data at nulstille.",
       "error": "kunne ikke nulstille dine indstillinger."
+    },
+    "inject": {
+      "success": "din besked blev sendt til stemmekanalen.",
+      "noConnection": "jeg er i øjeblikket ikke forbundet til en stemmekanal på denne server.",
+      "rateLimited": "du har nået din grænse på {limit} indsendinger i timen. tag en pause.",
+      "error": "det lykkedes ikke at sende din besked. noget gik galt."
     }
   }
 }

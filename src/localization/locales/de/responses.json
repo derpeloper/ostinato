@@ -44,6 +44,11 @@
       "removed": "alternativer chatkanal wurde entfernt.",
       "noneSet": "kein alternativer chatkanal konfiguriert.",
       "error": "aktualisieren der kanaleinstellung fehlgeschlagen."
+    },
+    "autojoin": {
+      "enabled": "autojoin ist jetzt **aktiviert**. ich werde dem ersten benutzer folgen, der einem sprachkanal beitritt.",
+      "disabled": "autojoin ist jetzt **deaktiviert**.",
+      "error": "autojoin konnte nicht umgeschaltet werden."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "setzt deine tts-einstellungen auf die standardwerte zurück.\n\n`/reset`: löscht alle deine daten aus der datenbank.\n`/reset <option>`: setzt eine spezifische einstellung (stimme, name, geschwindigkeit, sprache) für diesen server zurück.\n\n-# dies hat keinen einfluss auf deinen opt-in/opt-out-status.",
         "guild": "serverbezogene einstellungen verwalten.\n\n`/guild lang set <language>`: die standardsprache festlegen.\n`/guild lang reset`: die standardsprache des servers zurücksetzen.\n\n-# erfordert die berechtigung **Server verwalten**.",
         "message": "nachrichtenfilter verwalten.\n\n`/message filter add <string>`: einen neuen filter hinzufügen.\n`/message filter list`: alle aktiven filter anzeigen.\n`/message filter edit <old> <new>`: einen filter bearbeiten.\n`/message filter remove <string>`: einen filter entfernen.\n\n-# erfordert die berechtigung **Nachrichten verwalten**.",
-        "channel": "alternativen chatkanal des servers verwalten.\n\n`/channel set <channel>`: einen textkanal als alternativen tts-chat festlegen.\n`/channel remove`: den aktuellen alternativen kanal entfernen.\n\n-# erfordert die berechtigung **Kanäle verwalten**."
+        "channel": "alternativen chatkanal des servers verwalten.\n\n`/channel set <channel>`: einen textkanal als alternativen tts-chat festlegen.\n`/channel remove`: den aktuellen alternativen kanal entfernen.\n\n-# erfordert die berechtigung **Kanäle verwalten**.",
+        "inject": "sendet eine nachricht direkt an den sprachkanal, ohne ihm beizutreten.\n\n/inject <nachricht>: sendet deine nachricht in den aktiven sprachkanal.\n\n-# begrenzt auf 5 nutzungen pro stunde und server. moderatoren umgehen dieses limit.",
+        "autojoin": "schaltet um, ob der bot automatisch sprachkanälen beitritt, wenn der erste benutzer eintritt.\n\n/autojoin: aktiviert oder deaktiviert dieses verhalten.\n\n-# erfordert die berechtigung **Administrator**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## nutzungsbedingungen",
       "tosBody": "bereitgestellt \"wie besehen\". halte dich an die discord-nutzungsbedingungen. oder auch nicht. wir sind nicht deine eltern.",
       "resetWarning": "-# willst du von vorne anfangen? benutze `/reset`, um deine daten vollständig aus unserer datenbank zu löschen. dies entfernt alle deine gespeicherten einstellungen (stimme, name, geschwindigkeit, sprache) über alle server hinweg. dein opt-in/opt-out-status bleibt erhalten.",
-      "versionFooter": "-# version: 2.4.1 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? wahrscheinlich. features? definitiv."
+      "versionFooter": "-# version: 2.5.6 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? wahrscheinlich. features? definitiv."
     },
     "lang": {
       "invalid": "dieser sprachencode ist ungültig.",
@@ -138,6 +145,12 @@
       "single": "deine **{option}**-einstellung wurde für diesen server zurückgesetzt.",
       "noData": "du hast keine daten zum zurücksetzen.",
       "error": "zurücksetzen deiner einstellungen fehlgeschlagen."
+    },
+    "inject": {
+      "success": "deine nachricht wurde erfolgreich in den sprachkanal eingespeist.",
+      "noConnection": "ich bin derzeit mit keinem sprachkanal auf diesem server verbunden.",
+      "rateLimited": "du hast dein limit von {limit} einspeisungen pro stunde erreicht. mach eine pause.",
+      "error": "deine nachricht konnte nicht eingespeist werden. etwas ist schiefgelaufen."
     }
   }
 }

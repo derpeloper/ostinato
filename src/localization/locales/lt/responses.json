@@ -44,6 +44,11 @@
       "removed": "alternatyvus susirašinėjimo kanalas pašalintas.",
       "noneSet": "nėra sukonfigūruoto alternatyvaus susirašinėjimo kanalo.",
       "error": "nepavyko atnaujinti kanalo nustatymo."
+    },
+    "autojoin": {
+      "enabled": "automatinis prisijungimas dabar **įjungtas**. aš sekas paskui pirmąjį vartotoją, kuris prisijungs prie balso kanalo.",
+      "disabled": "automatinis prisijungimas dabar **išjungtas**.",
+      "error": "nepavyko perjungti automatinio prisijungimo."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "atstato jūsų tts nustatymus į numatytuosius.\n\n`/reset`: ištrina visus jūsų duomenis iš duomenų bazės.\n`/reset <parinktis>`: atstato konkretų nustatymą (balsas, vardas, greitis, kalba) šiam serveriui.\n\n-# tai neturi įtakos jūsų pasirinkimui dalyvauti ar ne.",
         "guild": "valdyti serverio nustatymus.\n\n`/guild lang set <kalba>`: nustatyti numatytąją kalbą.\n`/guild lang reset`: atstatyti numatytąją serverio kalbą.\n\n-# reikalingas **Valdyti serverį** leidimas.",
         "message": "valdyti žinučių turinio filtrus.\n\n`/message filter add <tekstas>`: pridėti naują filtrą.\n`/message filter list`: išvardyti visus aktyvius filtrus.\n`/message filter edit <senas> <naujas>`: redaguoti filtrą.\n`/message filter remove <tekstas>`: pašalinti filtrą.\n\n-# reikalingas **Valdyti žinutes** leidimas.",
-        "channel": "valdyti serverio alternatyvų susirašinėjimo kanalą.\n\n`/channel set <kanalas>`: nustatyti tekstinį kanalą kaip alternatyvų tts susirašinėjimą.\n`/channel remove`: pašalinti dabartinį alternatyvų kanalų.\n\n-# reikalingas **Valdyti kanalus** leidimas."
+        "channel": "valdyti serverio alternatyvų susirašinėjimo kanalą.\n\n`/channel set <kanalas>`: nustatyti tekstinį kanalą kaip alternatyvų tts susirašinėjimą.\n`/channel remove`: pašalinti dabartinį alternatyvų kanalų.\n\n-# reikalingas **Valdyti kanalus** leidimas.",
+        "inject": "siųsti žinutę tiesiai į balso kanalą neprisijungus prie jo.\n\n/inject <žinutė>: išsiunčia jūsų žinutę į aktyvų balso kanalą.\n\n-# apribota iki 5 panaudojimų per valandą vienam serveriui. moderatoriai šį apribojimą apeina.",
+        "autojoin": "perjungia, ar botas automatiškai prisijungia prie balso kanalų, kai įeina pirmasis vartotojas.\n\n/autojoin: įjungia arba išjungia šį elgesį.\n\n-# reikalingas **Administratorius** leidimas."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## paslaugų teikimo sąlygos",
       "tosBody": "pateikiama „tokia, kokia yra“. laikykitės discord sąlygų. arba ne. mes ne jūsų tėvai.",
       "resetWarning": "-# norite pradėti iš naujo? naudokite `/reset`, kad visiškai ištrintumėte savo duomenis iš mūsų duomenų bazės. tai pašalina visus jūsų išsaugotus nustatymus (balsas, vardas, greitis, kalba) visuose serveriuose. jūsų tts būsena (įjungta/išjungta) išlieka.",
-      "versionFooter": "-# versija: 2.4.1 | variklis: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# klaidos? tikriausiai. funkcijos? tikrai."
+      "versionFooter": "-# versija: 2.5.6 | variklis: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# klaidos? tikriausiai. funkcijos? tikrai."
     },
     "lang": {
       "invalid": "tas kalbos kodas yra neteisingas.",
@@ -138,6 +145,12 @@
       "single": "jūsų **{option}** nustatymas šiam serveriui buvo atstatytas.",
       "noData": "neturite jokių duomenų, kuriuos būtų galima atstatyti.",
       "error": "nepavyko atstatyti nustatymų."
+    },
+    "inject": {
+      "success": "jūsų žinutė sėkmingai įterpta į balso kanalą.",
+      "noConnection": "šiuo metu nesu prisijungęs prie jokio balso kanalo šiame serveryje.",
+      "rateLimited": "pasiekėte savo {limit} įterpimų per valandą limitą. pailsėkite.",
+      "error": "nepavyko įterpti jūsų žinutės. kažkas nutiko ne taip."
     }
   }
 }

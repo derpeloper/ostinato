@@ -44,6 +44,11 @@
       "removed": "kênh chat thay thế đã được xóa.",
       "noneSet": "không có kênh chat thay thế nào được cấu hình.",
       "error": "không thể cập nhật cài đặt kênh."
+    },
+    "autojoin": {
+      "enabled": "tự động tham gia hiện đã được **bật**. tôi sẽ đi theo người dùng đầu tiên tham gia vào kênh thoại.",
+      "disabled": "tự động tham gia hiện đã được **tắt**.",
+      "error": "không thể bật/tắt tự động tham gia."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "đặt lại cài đặt tts của bạn về mặc định.\n\n`/reset`: xóa tất cả dữ liệu của bạn khỏi cơ sở dữ liệu.\n`/reset <tùy chọn>`: đặt lại một cài đặt cụ thể (giọng nói, tên, tốc độ, ngôn ngữ) cho máy chủ này.\n\n-# điều này không ảnh hưởng đến trạng thái chọn tham gia/từ chối của bạn.",
         "guild": "quản lý cài đặt máy chủ.\n\n`/guild lang set <ngôn-ngữ>`: đặt ngôn ngữ mặc định.\n`/guild lang reset`: đặt lại ngôn ngữ mặc định của máy chủ.\n\n-# yêu cầu quyền **Quản lý máy chủ**.",
         "message": "quản lý bộ lọc nội dung tin nhắn.\n\n`/message filter add <chuỗi>`: thêm bộ lọc mới.\n`/message filter list`: liệt kê tất cả các bộ lọc đang hoạt động.\n`/message filter edit <cũ> <mới>`: sửa bộ lọc.\n`/message filter remove <chuỗi>`: xóa bộ lọc.\n\n-# yêu cầu quyền **Quản lý tin nhắn**.",
-        "channel": "quản lý kênh chat thay thế của máy chủ.\n\n`/channel set <kênh>`: đặt một kênh văn bản làm kênh chat tts thay thế.\n`/channel remove`: xóa kênh thay thế hiện tại.\n\n-# yêu cầu quyền **Quản lý kênh**."
+        "channel": "quản lý kênh chat thay thế của máy chủ.\n\n`/channel set <kênh>`: đặt một kênh văn bản làm kênh chat tts thay thế.\n`/channel remove`: xóa kênh thay thế hiện tại.\n\n-# yêu cầu quyền **Quản lý kênh**.",
+        "inject": "gửi tin nhắn trực tiếp đến kênh thoại mà không cần tham gia.\n\n/inject <tin nhắn>: gửi tin nhắn của bạn vào kênh thoại đang hoạt động.\n\n-# giới hạn 5 lần sử dụng mỗi giờ cho mỗi máy chủ. người điều hành được miễn giới hạn này.",
+        "autojoin": "bật/tắt việc bot tự động tham gia các kênh thoại khi có người dùng đầu tiên vào.\n\n/autojoin: bật hoặc tắt hành vi này.\n\n-# yêu cầu quyền **Quản trị viên**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## điều khoản dịch vụ",
       "tosBody": "được cung cấp \"nguyên trạng\". tuân thủ điều khoản dịch vụ của discord. hoặc không. chúng tôi không phải cha mẹ bạn.",
       "resetWarning": "-# muốn bắt đầu lại từ đầu? sử dụng `/reset` để xóa hoàn toàn dữ liệu của bạn khỏi cơ sở dữ liệu của chúng tôi. điều này sẽ xóa tất cả cài đặt đã lưu của bạn (giọng nói, tên, tốc độ, ngôn ngữ) trên mọi máy chủ. trạng thái chọn tham gia/từ chối của bạn được giữ nguyên.",
-      "versionFooter": "-# phiên bản: 2.4.1 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# lỗi? có thể. tính năng? chắc chắn rồi."
+      "versionFooter": "-# phiên bản: 2.5.6 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# lỗi? có thể. tính năng? chắc chắn rồi."
     },
     "lang": {
       "invalid": "mã ngôn ngữ đó không hợp lệ.",
@@ -138,6 +145,12 @@
       "single": "cài đặt **{option}** của bạn đã được đặt lại cho máy chủ này.",
       "noData": "bạn không có bất kỳ dữ liệu nào để đặt lại.",
       "error": "không thể đặt lại cài đặt của bạn."
+    },
+    "inject": {
+      "success": "tin nhắn của bạn đã được tiêm vào kênh thoại thành công.",
+      "noConnection": "tôi hiện không kết nối với kênh thoại nào trong máy chủ này.",
+      "rateLimited": "bạn đã đạt đến giới hạn {limit} lần tiêm mỗi giờ. hãy nghỉ ngơi một chút.",
+      "error": "không thể tiêm tin nhắn của bạn. đã xảy ra lỗi."
     }
   }
 }

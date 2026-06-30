@@ -44,6 +44,11 @@
       "removed": "il canale chat alternativo è stato rimosso.",
       "noneSet": "nessun canale chat alternativo configurato.",
       "error": "impossibile aggiornare l'impostazione del canale."
+    },
+    "autojoin": {
+      "enabled": "l'accesso automatico è ora **abilitato**. seguirò il primo utente che entra in un canale vocale.",
+      "disabled": "l'accesso automatico è ora **disabilitato**.",
+      "error": "impossibile attivare/disattivare l'accesso automatico."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "reimposta le tue impostazioni tts ai valori predefiniti.\n\n`/reset`: cancella tutti i tuoi dati dal database.\n`/reset <opzione>`: reimposta un'impostazione specifica (voce, nome, velocità, lingua) per questo server.\n\n-# questo non influisce sul tuo stato di opt-in/opt-out.",
         "guild": "gestisci le impostazioni specifiche del server.\n\n`/guild lang set <lingua>`: imposta la lingua predefinita.\n`/guild lang reset`: reimposta la lingua predefinita del server.\n\n-# richiede il permesso **Gestire il server**.",
         "message": "gestisci i filtri dei contenuti dei messaggi.\n\n`/message filter add <stringa>`: aggiungi un nuovo filtro.\n`/message filter list`: elenca tutti i filtri attivi.\n`/message filter edit <vecchio> <nuovo>`: modifica un filtro esistente.\n`/message filter remove <stringa>`: rimuovi un filtro.\n\n-# richiede il permesso **Gestire i messaggi**.",
-        "channel": "gestisci il canale chat alternativo del server.\n\n`/channel set <canale>`: imposta un canale testuale come chat tts alternativa.\n`/channel remove`: rimuovi l'attuale canale alternativo.\n\n-# richiede il permesso **Gestire i canali**."
+        "channel": "gestisci il canale chat alternativo del server.\n\n`/channel set <canale>`: imposta un canale testuale come chat tts alternativa.\n`/channel remove`: rimuovi l'attuale canale alternativo.\n\n-# richiede il permesso **Gestire i canali**.",
+        "inject": "invia un messaggio direttamente al canale vocale senza entrarvi.\n\n/inject <messaggio>: invia il tuo messaggio nel canale vocale attivo.\n\n-# limitato a 5 utilizzi all'ora per server. i moderatori bypassano questo limite.",
+        "autojoin": "attiva o disattiva l'accesso automatico del bot ai canali vocali quando entra il primo utente.\n\n/autojoin: abilita o disabilita questo comportamento.\n\n-# richiede il permesso **Amministratore**."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## termini di servizio",
       "tosBody": "fornito \"così com'è\". rispetta i termini di servizio di discord. o non farlo. non siamo i tuoi genitori.",
       "resetWarning": "-# vuoi ricominciare da capo? usa `/reset` per cancellare completamente i tuoi dati dal nostro database. questo rimuove tutte le tue impostazioni salvate (voce, nome, velocità, lingua) in ogni server. il tuo stato di opt-in/opt-out viene conservato.",
-      "versionFooter": "-# versione: 2.4.1 | motore: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bug? probabilmente. funzionalità? decisamente."
+      "versionFooter": "-# versione: 2.5.6 | motore: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bug? probabilmente. funzionalità? decisamente."
     },
     "lang": {
       "invalid": "quel codice lingua non è valido.",
@@ -138,6 +145,12 @@
       "single": "la tua impostazione **{option}** è stata reimpostata per questo server.",
       "noData": "non hai dati da reimpostare.",
       "error": "impossibile reimpostare le tue impostazioni."
+    },
+    "inject": {
+      "success": "il tuo messaggio è stato inviato con successo nel canale vocale.",
+      "noConnection": "non sono attualmente collegato a un canale vocale in questo server.",
+      "rateLimited": "hai raggiunto il limite di {limit} invii all'ora. prenditi una pausa.",
+      "error": "impossibile inviare il tuo messaggio. qualcosa è andato storto."
     }
   }
 }

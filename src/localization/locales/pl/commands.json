@@ -111,6 +111,10 @@
           "description": "usuwa obecny alternatywny kanał czatu"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "przełącza automatyczne dołączanie bota do kanałów głosowych"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "głos",
       "description": "zmienia głos dla twojego konta"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "wyślij wiadomość na kanał głosowy bez dołączania",
+      "options": {
+        "message": {
+          "name": "wiadomość",
+          "description": "wiadomość do wysłania (maks. 200 znaków)"
+        }
+      }
     }
   }
 }

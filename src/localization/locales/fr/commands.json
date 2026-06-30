@@ -111,6 +111,10 @@
           "description": "supprimer le salon de chat alternatif actuel"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "basculer l'entrée automatique du bot dans les salons vocaux"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "voix",
       "description": "modifie la voix pour votre compte"
+    },
+    "inject": {
+      "name": "injecter",
+      "description": "envoyer un message dans le salon vocal sans le rejoindre",
+      "options": {
+        "message": {
+          "name": "message",
+          "description": "le message à injecter (max 200 caractères)"
+        }
+      }
     }
   }
 }

@@ -111,6 +111,10 @@
           "description": "pašalinti dabartinį alternatyvų susirašinėjimo kanalą"
         }
       }
+    },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "perjungti automatinį boto prisijungimą prie balso kanalų"
     }
   },
   "public": {
@@ -245,6 +249,16 @@
     "voice": {
       "name": "balsas",
       "description": "pakeisti balsą jūsų paskyrai"
+    },
+    "inject": {
+      "name": "įterpti",
+      "description": "siųsti žinutę į balso kanalą neprisijungus",
+      "options": {
+        "message": {
+          "name": "žinutė",
+          "description": "žinutė įterpimui (maks. 200 simbolių)"
+        }
+      }
     }
   }
 }

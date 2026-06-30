@@ -44,6 +44,11 @@
       "removed": "vaihtoehtoinen chat-kanava on poistettu.",
       "noneSet": "vaihtoehtoista chat-kanavaa ei ole määritetty.",
       "error": "kanava-asetuksen päivittäminen epäonnistui."
+    },
+    "autojoin": {
+      "enabled": "automaattinen liittyminen on nyt **päällä**. seuraan ensimmäistä käyttäjää, joka liittyy puhekanavalle.",
+      "disabled": "automaattinen liittyminen on nyt **pois päältä**.",
+      "error": "automaattisen liittymisen vaihtaminen epäonnistui."
     }
   },
   "public": {
@@ -66,7 +71,9 @@
         "reset": "nollaa tts-asetuksesi oletusarvoihin.\n\n`/reset`: pyyhkii kaikki tietosi tietokannasta.\n`/reset <valinta>`: nollaa tietyn asetuksen (ääni, nimi, nopeus, kieli) tällä palvelimella.\n\n-# tämä ei vaikuta opt-in/opt-out -statukseesi.",
         "guild": "hallitse palvelinkohtaisia asetuksia.\n\n`/guild lang set <kieli>`: aseta oletuskieli.\n`/guild lang reset`: nollaa palvelimen oletuskieli.\n\n-# vaatii **Hallitse palvelinta** -oikeuden.",
         "message": "hallitse viestien sisältösuodattimia.\n\n`/message filter add <merkkijono>`: lisää uusi suodatin.\n`/message filter list`: listaa kaikki aktiiviset suodattimet.\n`/message filter edit <vanha> <uusi>`: muokkaa suodatinta.\n`/message filter remove <merkkijono>`: poista suodatin.\n\n-# vaatii **Hallitse viestejä** -oikeuden.",
-        "channel": "hallitse palvelimen vaihtoehtoista chat-kanavaa.\n\n`/channel set <kanava>`: aseta tekstikanava vaihtoehtoiseksi tts-chatiksi.\n`/channel remove`: poista nykyinen vaihtoehtoinen kanava.\n\n-# vaatii **Hallitse kanavia** -oikeuden."
+        "channel": "hallitse palvelimen vaihtoehtoista chat-kanavaa.\n\n`/channel set <kanava>`: aseta tekstikanava vaihtoehtoiseksi tts-chatiksi.\n`/channel remove`: poista nykyinen vaihtoehtoinen kanava.\n\n-# vaatii **Hallitse kanavia** -oikeuden.",
+        "inject": "lähetä viesti suoraan puhekanavalle liittymättä siihen.\n\n/inject <viesti>: lähettää viestisi aktiiviselle puhekanavalle.\n\n-# rajoitettu 5 käyttökertaan tunnissa palvelinta kohden. ylläpitäjät voivat ohittaa tämän rajoituksen.",
+        "autojoin": "määrittää, liittyykö botti automaattisesti puhekanaville, kun ensimmäinen käyttäjä saapuu.\n\n/autojoin: ottaa tämän toiminnon käyttöön tai poistaa sen käytöstä.\n\n-# vaatii **Järjestelmänvalvoja**-oikeuden."
       }
     },
     "info": {
@@ -79,7 +86,7 @@
       "tosHeader": "## käyttöehdot",
       "tosBody": "tarjotaan \"sellaisenaan\". noudata discordin käyttöehtoja. tai ole noudattamatta. emme ole vanhempasi.",
       "resetWarning": "-# haluatko aloittaa alusta? käytä `/reset` pyyhkiäksesi tietosi kokonaan tietokannastamme. tämä poistaa kaikki tallennetut asetuksesi (ääni, nimi, nopeus, kieli) kaikilta palvelimilta. opt-in/opt-out -statuksesi säilyy.",
-      "versionFooter": "-# versio: 2.4.1 | moottori: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugeja? luultavasti. ominaisuuksia? ehdottomasti."
+      "versionFooter": "-# versio: 2.5.6 | moottori: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugeja? luultavasti. ominaisuuksia? ehdottomasti."
     },
     "lang": {
       "invalid": "kielikoodi on virheellinen.",
@@ -138,6 +145,12 @@
       "single": "asetuksesi **{option}** on nollattu tällä palvelimella.",
       "noData": "sinulla ei ole nollattavia tietoja.",
       "error": "asetusten nollaaminen epäonnistui."
+    },
+    "inject": {
+      "success": "viestisi lähetettiin onnistuneesti puhekanavalle.",
+      "noConnection": "en ole tällä hetkellä yhdistettynä puhekanavalle tässä palvelimessa.",
+      "rateLimited": "olet saavuttanut {limit} lähetyksen tuntirajan. pidä tauko.",
+      "error": "viestin lähettäminen epäonnistui. jotain meni pieleen."
     }
   }
 }

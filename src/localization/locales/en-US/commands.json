@@ -16,6 +16,10 @@
       "name": "unrestrict",
       "description": "enable tts for users who aren't muted"
     },
+    "autojoin": {
+      "name": "autojoin",
+      "description": "toggle the bot automatically joining voice channels"
+    },
     "guild": {
       "name": "guild",
       "description": "manage guild-specific settings",
@@ -127,6 +131,16 @@
     "info": {
       "name": "info",
       "description": "provides information about the bot"
+    },
+    "inject": {
+      "name": "inject",
+      "description": "send a message to the voice channel without joining",
+      "options": {
+        "message": {
+          "name": "message",
+          "description": "the message to inject (max 200 chars)"
+        }
+      }
     },
     "lang": {
       "name": "lang",
