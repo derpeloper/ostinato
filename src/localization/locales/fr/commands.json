@@ -1,32 +1,32 @@
 {
   "mods": {
     "clear": {
-      "name": "effacer",
-      "description": "vide la file d'attente tts pour ce serveur"
+      "name": "vider",
+      "description": "vide la file d'attente tts de ce serveur"
     },
     "restrict": {
       "name": "restreindre",
-      "description": "désactive le tts pour les utilisateurs qui ne sont pas en sourdine"
+      "description": "désactive le tts pour les utilisateurs non muets"
     },
     "skip": {
       "name": "passer",
-      "description": "passe le message actuellement en cours de lecture"
+      "description": "passe le message en cours de lecture"
     },
     "unrestrict": {
-      "name": "lever-restriction",
-      "description": "active le tts pour les utilisateurs qui ne sont pas en sourdine"
+      "name": "lever-restrictions",
+      "description": "active le tts pour les utilisateurs non muets"
     },
     "guild": {
       "name": "serveur",
-      "description": "gérer les paramètres spécifiques au serveur",
+      "description": "gère les paramètres spécifiques au serveur",
       "groups": {
         "lang": {
           "name": "langue",
-          "description": "gérer la langue par défaut du serveur",
+          "description": "gère la langue par défaut du serveur",
           "subcommands": {
             "set": {
-              "name": "définir",
-              "description": "définir la langue par défaut du serveur",
+              "name": "definir",
+              "description": "définit la langue par défaut du serveur",
               "options": {
                 "language": {
                   "name": "langue",
@@ -35,8 +35,8 @@
               }
             },
             "reset": {
-              "name": "réinitialiser",
-              "description": "réinitialiser la langue par défaut du serveur"
+              "name": "reinitialiser",
+              "description": "réinitialise la langue par défaut du serveur"
             }
           }
         }
@@ -44,29 +44,29 @@
     },
     "message": {
       "name": "message",
-      "description": "gérer les filtres de contenu des messages",
+      "description": "gère les filtres de contenu des messages",
       "groups": {
         "filter": {
           "name": "filtre",
-          "description": "gérer les filtres de contenu",
+          "description": "gère les filtres de contenu",
           "subcommands": {
             "add": {
               "name": "ajouter",
-              "description": "ajouter un nouveau filtre",
+              "description": "ajoute un nouveau filtre",
               "options": {
                 "string": {
                   "name": "texte",
-                  "description": "le texte ou regex du filtre à ajouter"
+                  "description": "le texte ou la regex du filtre à ajouter"
                 }
               }
             },
             "list": {
               "name": "liste",
-              "description": "lister tous les filtres actifs"
+              "description": "affiche la liste de tous les filtres actifs"
             },
             "edit": {
               "name": "modifier",
-              "description": "modifier un filtre existant",
+              "description": "modifie un filtre existant",
               "options": {
                 "old": {
                   "name": "ancien",
@@ -80,11 +80,11 @@
             },
             "remove": {
               "name": "supprimer",
-              "description": "supprimer un filtre",
+              "description": "supprime un filtre",
               "options": {
                 "string": {
                   "name": "texte",
-                  "description": "le texte ou regex du filtre à supprimer"
+                  "description": "le texte ou la regex du filtre à supprimer"
                 }
               }
             }
@@ -94,11 +94,11 @@
     },
     "channel": {
       "name": "salon",
-      "description": "gérer le salon de chat alternatif du serveur",
+      "description": "gère le salon textuel alternatif du serveur",
       "subcommands": {
         "set": {
-          "name": "définir",
-          "description": "définir un salon comme chat alternatif",
+          "name": "definir",
+          "description": "définit un salon comme chat alternatif",
           "options": {
             "channel": {
               "name": "salon",
@@ -108,13 +108,13 @@
         },
         "remove": {
           "name": "supprimer",
-          "description": "supprimer le salon de chat alternatif actuel"
+          "description": "supprime le salon textuel alternatif actuel"
         }
       }
     },
     "autojoin": {
       "name": "autojoin",
-      "description": "basculer l'entrée automatique du bot dans les salons vocaux"
+      "description": "active ou désactive la connexion automatique du bot"
     }
   },
   "public": {
@@ -129,12 +129,12 @@
       }
     },
     "info": {
-      "name": "info",
+      "name": "infos",
       "description": "fournit des informations sur le bot"
     },
     "lang": {
       "name": "langue",
-      "description": "modifie la langue du tts pour votre compte",
+      "description": "change la langue du tts pour votre compte",
       "options": {
         "language": {
           "name": "langue",
@@ -148,11 +148,11 @@
     },
     "name": {
       "name": "nom",
-      "description": "définir votre nom d'affichage ou gérer les filtres de noms",
+      "description": "définit votre pseudo ou gère les filtres de nom",
       "subcommands": {
         "set": {
-          "name": "définir",
-          "description": "définir votre nom d'affichage",
+          "name": "definir",
+          "description": "définit votre nom d'affichage",
           "options": {
             "string": {
               "name": "texte",
@@ -164,25 +164,25 @@
       "groups": {
         "filter": {
           "name": "filtre",
-          "description": "gérer les filtres de noms",
+          "description": "gère les filtres de nom",
           "subcommands": {
             "add": {
               "name": "ajouter",
-              "description": "ajouter un nouveau filtre",
+              "description": "ajoute un nouveau filtre",
               "options": {
                 "string": {
                   "name": "texte",
-                  "description": "le texte ou regex du filtre à ajouter"
+                  "description": "le texte ou la regex du filtre à ajouter"
                 }
               }
             },
             "list": {
               "name": "liste",
-              "description": "lister tous les filtres actifs"
+              "description": "affiche la liste de tous les filtres actifs"
             },
             "edit": {
               "name": "modifier",
-              "description": "modifier un filtre existant",
+              "description": "modifie un filtre existant",
               "options": {
                 "old": {
                   "name": "ancien",
@@ -196,11 +196,11 @@
             },
             "remove": {
               "name": "supprimer",
-              "description": "supprimer un filtre",
+              "description": "supprime un filtre",
               "options": {
                 "string": {
                   "name": "texte",
-                  "description": "le texte ou regex du filtre à supprimer"
+                  "description": "le texte ou la regex du filtre à supprimer"
                 }
               }
             }
@@ -209,7 +209,7 @@
       }
     },
     "reset": {
-      "name": "réinitialiser",
+      "name": "reinitialiser",
       "description": "réinitialise vos paramètres tts par défaut",
       "options": {
         "option": {
@@ -219,8 +219,8 @@
       }
     },
     "settings": {
-      "name": "paramètres",
-      "description": "vérifie vos paramètres tts actuels"
+      "name": "parametres",
+      "description": "consulte vos paramètres tts actuels"
     },
     "speed": {
       "name": "vitesse",
@@ -228,35 +228,35 @@
       "options": {
         "value": {
           "name": "valeur",
-          "description": "le multiplicateur de vitesse (0.5 à 2.0)"
+          "description": "le multiplicateur de vitesse (0,5 à 2,0)"
         }
       }
     },
     "tts": {
       "name": "tts",
-      "description": "gérez vos préférences tts",
+      "description": "gère vos préférences tts",
       "options": {
         "on": {
           "name": "activer",
           "description": "active le tts pour vos messages"
         },
         "off": {
-          "name": "désactiver",
+          "name": "desactiver",
           "description": "désactive le tts pour vos messages"
         }
       }
     },
     "voice": {
       "name": "voix",
-      "description": "modifie la voix pour votre compte"
+      "description": "change la voix pour votre compte"
     },
     "inject": {
       "name": "injecter",
-      "description": "envoyer un message dans le salon vocal sans le rejoindre",
+      "description": "envoie un message dans le salon vocal sans le rejoindre",
       "options": {
         "message": {
           "name": "message",
-          "description": "le message à injecter (max 200 caractères)"
+          "description": "le message à injecter (max 200 car.)"
         }
       }
     }
