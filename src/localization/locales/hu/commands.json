@@ -1,20 +1,20 @@
 {
   "mods": {
     "clear": {
-      "name": "törlés",
-      "description": "törli a tts várólistát ezen a szerveren"
+      "name": "kiürítés",
+      "description": "kiüríti a szerver tts-várólistáját"
     },
     "restrict": {
       "name": "korlátozás",
-      "description": "letiltja a tts-t azon felhasználók számára, akik nincsenek elnémítva"
+      "description": "tts letiltása a nem némított felhasználóknak"
     },
     "skip": {
       "name": "átugrás",
-      "description": "átugorja a jelenleg játszott üzenetet"
+      "description": "kihagyja az éppen játszott üzenetet"
     },
     "unrestrict": {
       "name": "feloldás",
-      "description": "engedélyezi a tts-t azon felhasználók számára, akik nincsenek elnémítva"
+      "description": "tts engedélyezése a nem némított felhasználóknak"
     },
     "guild": {
       "name": "szerver",
@@ -22,11 +22,11 @@
       "groups": {
         "lang": {
           "name": "nyelv",
-          "description": "szerver alapértelmezett nyelvének kezelése",
+          "description": "a szerver alapértelmezett nyelvének kezelése",
           "subcommands": {
             "set": {
               "name": "beállítás",
-              "description": "beállítja az alapértelmezett nyelvet a szerveren",
+              "description": "az alapértelmezett nyelv beállítása a szerverhez",
               "options": {
                 "language": {
                   "name": "nyelv",
@@ -36,7 +36,7 @@
             },
             "reset": {
               "name": "visszaállítás",
-              "description": "visszaállítja az alapértelmezett nyelvet a szerveren"
+              "description": "a szerver alapértelmezett nyelvének visszaállítása"
             }
           }
         }
@@ -62,7 +62,7 @@
             },
             "list": {
               "name": "lista",
-              "description": "az összes aktív szűrő felsorolása"
+              "description": "az összes aktív szűrő listázása"
             },
             "edit": {
               "name": "szerkesztés",
@@ -74,7 +74,7 @@
                 },
                 "new": {
                   "name": "új",
-                  "description": "az új helyettesítő szűrő"
+                  "description": "az új csereszűrő"
                 }
               }
             },
@@ -98,7 +98,7 @@
       "subcommands": {
         "set": {
           "name": "beállítás",
-          "description": "beállít egy csatornát alternatív csevegőként",
+          "description": "csatorna beállítása alternatív csevegőként",
           "options": {
             "channel": {
               "name": "csatorna",
@@ -108,13 +108,13 @@
         },
         "remove": {
           "name": "eltávolítás",
-          "description": "eltávolítja a jelenlegi alternatív csevegőcsatornát"
+          "description": "a jelenlegi alternatív csevegőcsatorna eltávolítása"
         }
       }
     },
     "autojoin": {
-      "name": "automata-csatlakozás",
-      "description": "a bot hangcsatornákhoz való automatikus csatlakozásának be- és kikapcsolása"
+      "name": "automatikus-csatlakozás",
+      "description": "a hangcsatornákhoz való automatikus csatlakozás ki- és bekapcsolása"
     }
   },
   "public": {
@@ -129,12 +129,12 @@
       }
     },
     "info": {
-      "name": "info",
+      "name": "infó",
       "description": "információt nyújt a botról"
     },
     "lang": {
       "name": "nyelv",
-      "description": "megváltoztatja a tts nyelvét a fiókodhoz",
+      "description": "a fiókodhoz tartozó tts nyelvének módosítása",
       "options": {
         "language": {
           "name": "nyelv",
@@ -148,11 +148,11 @@
     },
     "name": {
       "name": "név",
-      "description": "beállítja a megjelenített nevedet vagy kezeli a névszűrőket",
+      "description": "megjelenített neved beállítása vagy névszűrők kezelése",
       "subcommands": {
         "set": {
           "name": "beállítás",
-          "description": "beállítja a megjelenített nevedet",
+          "description": "a megjelenített neved beállítása",
           "options": {
             "string": {
               "name": "szöveg",
@@ -178,7 +178,7 @@
             },
             "list": {
               "name": "lista",
-              "description": "az összes aktív szűrő felsorolása"
+              "description": "az összes aktív szűrő listázása"
             },
             "edit": {
               "name": "szerkesztés",
@@ -190,7 +190,7 @@
                 },
                 "new": {
                   "name": "új",
-                  "description": "az új helyettesítő szűrő"
+                  "description": "az új csereszűrő"
                 }
               }
             },
@@ -210,21 +210,21 @@
     },
     "reset": {
       "name": "visszaállítás",
-      "description": "visszaállítja a tts-beállításaidat az alapértelmezettre",
+      "description": "alapértelmezettre állítja a tts-beállításaidat",
       "options": {
         "option": {
           "name": "beállítás",
-          "description": "a visszaállítandó konkrét beállítás"
+          "description": "a konkrét visszaállítandó beállítás"
         }
       }
     },
     "settings": {
       "name": "beállítások",
-      "description": "ellenőrizd a jelenlegi tts-beállításaidat"
+      "description": "a jelenlegi tts-beállításaid ellenőrzése"
     },
     "speed": {
       "name": "sebesség",
-      "description": "megváltoztatja a tts sebességét a fiókodhoz",
+      "description": "a fiókodhoz tartozó tts sebességének módosítása",
       "options": {
         "value": {
           "name": "érték",
@@ -234,7 +234,7 @@
     },
     "tts": {
       "name": "tts",
-      "description": "tts-beállítások kezelése",
+      "description": "a tts-beállításaid kezelése",
       "options": {
         "on": {
           "name": "be",
@@ -248,15 +248,15 @@
     },
     "voice": {
       "name": "hang",
-      "description": "megváltoztatja a hangot a fiókodhoz"
+      "description": "a fiókodhoz tartozó hang módosítása"
     },
     "inject": {
-      "name": "beillesztés",
-      "description": "üzenet küldése a hangcsatornára csatlakozás nélkül",
+      "name": "beszúrás",
+      "description": "üzenet küldése a hangcsatornába csatlakozás nélkül",
       "options": {
         "message": {
           "name": "üzenet",
-          "description": "a beillesztendő üzenet (max. 200 karakter)"
+          "description": "a beküldendő üzenet (max. 200 karakter)"
         }
       }
     }
