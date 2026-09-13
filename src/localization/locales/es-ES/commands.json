@@ -2,27 +2,27 @@
   "mods": {
     "clear": {
       "name": "limpiar",
-      "description": "limpia la cola de tts para este servidor"
+      "description": "limpia la cola de tts de este servidor"
     },
     "restrict": {
       "name": "restringir",
-      "description": "desactiva el tts para los usuarios que no están silenciados"
+      "description": "desactiva el tts para usuarios no silenciados"
     },
     "skip": {
       "name": "saltar",
-      "description": "salta el mensaje que se está reproduciendo actualmente"
+      "description": "salta el mensaje que se está reproduciendo"
     },
     "unrestrict": {
       "name": "desrestringir",
-      "description": "activa el tts para los usuarios que no están silenciados"
+      "description": "activa el tts para usuarios no silenciados"
     },
     "guild": {
       "name": "servidor",
-      "description": "gestionar ajustes específicos del servidor",
+      "description": "gestiona los ajustes específicos del servidor",
       "groups": {
         "lang": {
           "name": "idioma",
-          "description": "gestionar el idioma predeterminado del servidor",
+          "description": "gestiona el idioma predeterminado del servidor",
           "subcommands": {
             "set": {
               "name": "establecer",
@@ -30,7 +30,7 @@
               "options": {
                 "language": {
                   "name": "idioma",
-                  "description": "el idioma a establecer"
+                  "description": "el idioma que se va a establecer"
                 }
               }
             },
@@ -44,33 +44,33 @@
     },
     "message": {
       "name": "mensaje",
-      "description": "gestionar filtros de contenido de mensajes",
+      "description": "gestiona los filtros de contenido de mensajes",
       "groups": {
         "filter": {
           "name": "filtro",
-          "description": "gestionar filtros de contenido",
+          "description": "gestiona los filtros de contenido",
           "subcommands": {
             "add": {
-              "name": "agregar",
-              "description": "agregar un nuevo filtro",
+              "name": "añadir",
+              "description": "añade un nuevo filtro",
               "options": {
                 "string": {
                   "name": "texto",
-                  "description": "el texto o regex del filtro a agregar"
+                  "description": "el texto o regex del filtro que añadir"
                 }
               }
             },
             "list": {
-              "name": "lista",
-              "description": "listar todos los filtros activos"
+              "name": "listar",
+              "description": "muestra todos los filtros activos"
             },
             "edit": {
               "name": "editar",
-              "description": "editar un filtro existente",
+              "description": "edita un filtro existente",
               "options": {
                 "old": {
-                  "name": "anterior",
-                  "description": "el filtro existente a editar"
+                  "name": "antiguo",
+                  "description": "el filtro existente que se va a editar"
                 },
                 "new": {
                   "name": "nuevo",
@@ -80,7 +80,7 @@
             },
             "remove": {
               "name": "eliminar",
-              "description": "eliminar un filtro",
+              "description": "elimina un filtro",
               "options": {
                 "string": {
                   "name": "texto",
@@ -94,27 +94,27 @@
     },
     "channel": {
       "name": "canal",
-      "description": "gestionar el canal de chat alternativo del servidor",
+      "description": "gestiona el canal de chat alternativo del servidor",
       "subcommands": {
         "set": {
           "name": "establecer",
-          "description": "establecer un canal como chat alternativo",
+          "description": "establece un canal como chat alternativo",
           "options": {
             "channel": {
               "name": "canal",
-              "description": "el canal a establecer"
+              "description": "el canal que se va a establecer"
             }
           }
         },
         "remove": {
           "name": "eliminar",
-          "description": "eliminar el canal de chat alternativo actual"
+          "description": "elimina el canal de chat alternativo actual"
         }
       }
     },
     "autojoin": {
       "name": "autounirse",
-      "description": "alternar si el bot se une automáticamente a los canales de voz"
+      "description": "activa o desactiva que el bot se una automáticamente a canales de voz"
     }
   },
   "public": {
@@ -124,7 +124,7 @@
       "options": {
         "command": {
           "name": "comando",
-          "description": "el comando sobre el que obtener información"
+          "description": "el comando del que obtener información"
         }
       }
     },
@@ -138,7 +138,7 @@
       "options": {
         "language": {
           "name": "idioma",
-          "description": "el idioma a usar"
+          "description": "el idioma que se usará"
         }
       }
     },
@@ -148,15 +148,15 @@
     },
     "name": {
       "name": "nombre",
-      "description": "establece tu nombre o gestiona filtros de nombres",
+      "description": "define tu nombre visible o gestiona filtros de nombres",
       "subcommands": {
         "set": {
           "name": "establecer",
-          "description": "establece tu nombre para mostrar",
+          "description": "establece tu nombre visible",
           "options": {
             "string": {
-              "name": "texto",
-              "description": "el nombre a establecer"
+              "name": "nombre",
+              "description": "el nombre que quieres ponerte"
             }
           }
         }
@@ -164,29 +164,29 @@
       "groups": {
         "filter": {
           "name": "filtro",
-          "description": "gestionar filtros de nombres",
+          "description": "gestiona los filtros de nombres",
           "subcommands": {
             "add": {
-              "name": "agregar",
-              "description": "agregar un nuevo filtro",
+              "name": "añadir",
+              "description": "añade un nuevo filtro",
               "options": {
                 "string": {
                   "name": "texto",
-                  "description": "el texto o regex del filtro a agregar"
+                  "description": "el texto o regex del filtro que añadir"
                 }
               }
             },
             "list": {
-              "name": "lista",
-              "description": "listar todos los filtros activos"
+              "name": "listar",
+              "description": "muestra todos los filtros activos"
             },
             "edit": {
               "name": "editar",
-              "description": "editar un filtro existente",
+              "description": "edita un filtro existente",
               "options": {
                 "old": {
-                  "name": "anterior",
-                  "description": "el filtro existente a editar"
+                  "name": "antiguo",
+                  "description": "el filtro existente que se va a editar"
                 },
                 "new": {
                   "name": "nuevo",
@@ -196,7 +196,7 @@
             },
             "remove": {
               "name": "eliminar",
-              "description": "eliminar un filtro",
+              "description": "elimina un filtro",
               "options": {
                 "string": {
                   "name": "texto",
@@ -210,17 +210,17 @@
     },
     "reset": {
       "name": "restablecer",
-      "description": "restablece tus ajustes de tts a los valores predeterminados",
+      "description": "restablece tus ajustes de tts por defecto",
       "options": {
         "option": {
-          "name": "opción",
-          "description": "el ajuste específico a restablecer"
+          "name": "opcion",
+          "description": "el ajuste específico que quieres restablecer"
         }
       }
     },
     "settings": {
       "name": "ajustes",
-      "description": "comprueba tus ajustes actuales de tts"
+      "description": "consulta tus ajustes actuales de tts"
     },
     "speed": {
       "name": "velocidad",
@@ -252,7 +252,7 @@
     },
     "inject": {
       "name": "inyectar",
-      "description": "enviar un mensaje al canal de voz sin unirse",
+      "description": "envía un mensaje al canal de voz sin unirte",
       "options": {
         "message": {
           "name": "mensaje",

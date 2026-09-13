@@ -2,115 +2,116 @@
   "mods": {
     "clear": {
       "success": "cola vaciada.",
-      "error": "error al vaciar la cola."
+      "error": "no se ha podido vaciar la cola."
     },
     "restrict": {
       "success": "tts restringido solo a usuarios silenciados.",
-      "error": "error al restringir tts."
+      "error": "no se ha podido restringir el tts."
     },
     "skip": {
       "success": "saltado.",
-      "tooShort": "mensaje demasiado corto para saltar (< 35 caracteres).",
-      "notPlaying": "no hay nada reproduciéndose ahora mismo.",
-      "error": "ocurrió un error al intentar saltar.",
-      "unknown": "error al saltar."
+      "tooShort": "el mensaje es demasiado corto para saltarlo (< 35 caracteres).",
+      "notPlaying": "no se está reproduciendo nada ahora mismo.",
+      "error": "ha ocurrido un error al intentar saltar el mensaje.",
+      "unknown": "no se ha podido saltar."
     },
     "unrestrict": {
       "success": "restricciones de tts eliminadas.",
-      "error": "error al eliminar restricciones de tts."
+      "error": "no se ha podido desrestringir el tts."
     },
     "guild": {
       "lang": {
-        "success": "idioma predeterminado del servidor establecido en **{langCode}**.",
-        "reset": "el idioma predeterminado del servidor ha sido restablecido.",
+        "success": "idioma predeterminado del servidor establecido a **{langCode}**.",
+        "reset": "se ha restablecido el idioma predeterminado del servidor.",
         "invalid": "ese código de idioma no es válido.",
-        "error": "error al actualizar el ajuste de idioma del servidor."
+        "error": "no se ha podido actualizar el ajuste de idioma del servidor."
       }
     },
     "message": {
       "filter": {
-        "added": "el filtro `{pattern}` ha sido añadido.",
+        "added": "se ha añadido el filtro `{pattern}`.",
         "exists": "ese filtro ya existe.",
         "list": "**filtros de mensajes activos:**\n{filters}",
         "empty": "no hay filtros de mensajes configurados para este servidor.",
         "edited": "filtro actualizado de `{old}` a `{new}`.",
-        "notFound": "el filtro `{pattern}` no fue encontrado.",
-        "removed": "el filtro `{pattern}` ha sido eliminado.",
-        "error": "error al actualizar los filtros de mensajes."
+        "notFound": "no se ha encontrado el filtro `{pattern}`.",
+        "removed": "se ha eliminado el filtro `{pattern}`.",
+        "error": "no se han podido actualizar los filtros de mensajes."
       }
     },
     "channel": {
-      "success": "canal de chat alternativo establecido en {channel}.",
-      "removed": "el canal de chat alternativo ha sido eliminado.",
+      "success": "canal de chat alternativo establecido a {channel}.",
+      "removed": "se ha eliminado el canal de chat alternativo.",
       "noneSet": "no hay ningún canal de chat alternativo configurado.",
-      "error": "error al actualizar el ajuste del canal."
+      "error": "no se ha podido actualizar el ajuste de canal."
     },
     "autojoin": {
-      "enabled": "la unión automática ahora está **activada**. seguiré al primer usuario que se una a un canal de voz.",
-      "disabled": "la unión automática ahora está **desactivada**.",
-      "error": "error al cambiar la unión automática."
+      "enabled": "la autounión ahora está **activada**. seguiré al primer usuario que se una a un canal de voz.",
+      "disabled": "la autounión ahora está **desactivada**.",
+      "error": "no se ha podido alternar la autounión."
     }
   },
   "public": {
     "help": {
-      "notFound": "información del comando no encontrada.",
+      "notFound": "no se ha encontrado información del comando.",
       "commands": {
-        "help": "estoy bastante seguro de que este comando se explica solo. proporciona información sobre los comandos que ofrece este bot.",
-        "voice": "cambia la voz de tu cuenta. \n\nsi tienes curiosidad por saber cómo suenan las voces, puedes consultar la página de [voces](https://supertone-inc.github.io/supertonic-py/voices/) de supertonic.\n\n-# las preferencias de voz solo afectan al servidor en el que usas el comando, así que puedes tener diferentes preferencias por servidor.",
-        "info": "proporciona información sobre el bot, incluyendo los avisos de los términos de servicio y la política de privacidad.",
-        "name": "establece tu nombre para mostrar o gestiona filtros de nombres.\n\n`/name set <nombre>`: establece el nombre para tus mensajes.\n`/name filter add|list|edit|remove`: gestiona filtros de nombres (admin).\n\n-# las preferencias de nombre son por servidor en lugar de ser universales. esto es para proteger tu privacidad.",
-        "speed": "cambia la velocidad del tts para tu cuenta. \n\nel valor debe estar entre **0.5** y **2.0**. \n\n-# las velocidades son por servidor en lugar de ser universales.",
-        "lang": "cambia el idioma del tts para tu cuenta. \n\nidiomas compatibles: inglés, árabe, búlgaro, checo, danés, alemán, griego, español, estonio, finlandés, francés, hindi, croata, húngaro, indonesio, italiano, japonés, coreano, lituano, letón, holandés, polaco, portugués, rumano, ruso, eslovaco, esloveno, sueco, turco, ucraniano, vietnamita. \n\n-# las preferencias de idioma son por servidor en lugar de ser universales.",
-        "clear": "limpia la cola de tts para el servidor actual. \n\nrequiere el permiso de **Gestionar mensajes**.",
+        "help": "estoy bastante seguro de que este comando se explica por sí solo. proporciona información sobre los comandos que ofrece este bot.",
+        "voice": "cambia la voz para tu cuenta. \n\nsi tienes curiosidad por saber cómo suenan las voces, puedes consultar la página de [voces](https://supertone-inc.github.io/supertonic-py/voices/) de supertonic.\n\n-# las preferencias de voz solo afectan al servidor en el que uses el comando, así que puedes tener preferencias distintas por servidor.",
+        "info": "proporciona información sobre el bot, incluidos los avisos de los términos del servicio y la política de privacidad.",
+        "name": "define tu nombre visible o gestiona filtros de nombres.\n\n`/nombre establecer <nombre>`: establece el nombre para tus mensajes.\n`/nombre filtro añadir|listar|editar|eliminar`: gestiona los filtros de nombres (admin).\n\n-# las preferencias de nombre son por servidor en lugar de universales. esto es para proteger tu privacidad.",
+        "speed": "cambia la velocidad del tts para tu cuenta. \n\nel valor debe estar entre **0.5** y **2.0**. \n\n-# las velocidades son por servidor en vez de universales.",
+        "lang": "cambia el idioma del tts para tu cuenta. \n\nidiomas compatibles: inglés, árabe, búlgaro, checo, danés, alemán, griego, español, estonio, finés, francés, hindi, croata, húngaro, indonesio, italiano, japonés, coreano, lituano, letón, neerlandés, polaco, portugués, rumano, ruso, eslovaco, esloveno, sueco, turco, ucraniano, vietnamita. \n\n-# las preferencias de idioma son por servidor en vez de universales.",
+        "clear": "limpia la cola de tts del servidor actual. \n\nrequiere el permiso **Gestionar mensajes**.",
         "leave": "fuerza al bot a desconectarse del canal de voz.",
-        "restrict": "restringe el uso de tts solo a usuarios silenciados. \n\nrequiere el permiso de **Gestionar canales**.",
-        "unrestrict": "permite que todo el mundo use el tts. \n\nrequiere el permiso de **Gestionar canales**.",
-        "skip": "salta el mensaje de tts que se está reproduciendo actualmente. \n\nrequiere el permiso de **Gestionar mensajes**.",
-        "tts": "gestiona tus preferencias de tts. \n\n`/tts on`: activa el tts para tus mensajes.\n`/tts off`: desactiva el tts para tus mensajes.",
+        "restrict": "restringe el uso de tts solo a usuarios silenciados. \n\nrequiere el permiso **Gestionar canales**.",
+        "unrestrict": "permite a todo el mundo usar el tts. \n\nrequiere el permiso **Gestionar canales**.",
+        "skip": "salta el mensaje de tts que se está reproduciendo actualmente. \n\nrequiere el permiso **Gestionar mensajes**.",
+        "tts": "gestiona tus preferencias de tts. \n\n`/tts activar`: activa el tts para tus mensajes.\n`/tts desactivar`: desactiva el tts para tus mensajes.",
         "settings": "muestra tus ajustes actuales de tts (voz, nombre, velocidad, idioma).",
-        "reset": "restablece tus ajustes de tts a los predeterminados.\n\n`/reset`: borra todos tus datos de la base de datos.\n`/reset <opción>`: restablece un ajuste específico (voz, nombre, velocidad, idioma) para este servidor.\n\n-# esto no afecta a tu estado de activación/desactivación.",
-        "guild": "gestiona ajustes específicos del servidor.\n\n`/guild lang set <idioma>`: establece el idioma predeterminado.\n`/guild lang reset`: restablece el idioma predeterminado del servidor.\n\n-# requiere el permiso de **Gestionar servidor**.",
-        "message": "gestiona filtros de contenido de mensajes.\n\n`/message filter add <texto>`: añade un nuevo filtro.\n`/message filter list`: lista todos los filtros activos.\n`/message filter edit <anterior> <nuevo>`: edita un filtro existente.\n`/message filter remove <texto>`: elimina un filtro.\n\n-# requiere el permiso de **Gestionar mensajes**.",
-        "channel": "gestiona el canal de chat alternativo del servidor.\n\n`/channel set <canal>`: establece un canal de texto como el chat de tts alternativo.\n`/channel remove`: elimina el canal alternativo actual.\n\n-# requiere el permiso de **Gestionar canales**.",
-        "inject": "envía un mensaje directamente al canal de voz sin unirte a él.\n\n/inject <mensaje>: envía tu mensaje al canal de voz activo.\n\n-# limitado a 5 usos por hora por servidor. los moderadores omiten este límite.",
-        "autojoin": "alterna si el bot se une automáticamente a los canales de voz cuando entra el primer usuario.\n\n/autojoin: activa o desactiva este comportamiento.\n\n-# requiere el permiso de **Administrador**."
+        "reset": "restablece tus ajustes de tts a los valores por defecto.\n\n`/restablecer`: borra todos tus datos de la base de datos.\n`/restablecer <opcion>`: restablece un ajuste específico para este servidor.\n\n-# esto no afecta a tu estado de activación/desactivación.",
+        "guild": "gestiona los ajustes específicos del servidor.\n\n`/servidor idioma establecer <idioma>`: establece el idioma predeterminado.\n`/servidor idioma restablecer`: restablece el idioma predeterminado del servidor.\n\n-# requiere el permiso **Gestionar servidor**.",
+        "message": "gestiona los filtros de contenido de mensajes.\n\n`/mensaje filtro añadir <texto>`: añade un nuevo filtro.\n`/mensaje filtro listar`: muestra todos los filtros activos.\n`/mensaje filtro editar <antiguo> <nuevo>`: edita un filtro.\n`/mensaje filtro eliminar <texto>`: elimina un filtro.\n\n-# requiere el permiso **Gestionar mensajes**.",
+        "channel": "gestiona el canal de chat alternativo del servidor.\n\n`/canal establecer <canal>`: establece un canal de texto como chat alternativo de tts.\n`/canal eliminar`: elimina el canal alternativo actual.\n\n-# requiere el permiso **Gestionar canales**.",
+        "inject": "envía un mensaje directamente al canal de voz sin unirte a él.\n\n/inyectar <mensaje>: envía tu mensaje al canal de voz activo.\n\n-# limitado a 5 usos por hora por servidor. los moderadores se saltan este límite.",
+        "autojoin": "alterna si el bot se une automáticamente a los canales de voz cuando entra el primer usuario.\n\n/autounirse: activa o desactiva este comportamiento.\n\n-# requiere el permiso de **Administrador**."
       }
     },
     "info": {
       "title": "# ostinato",
-      "subtitle": "*dando voz a los que no la tienen. y a los socialmente torpes.*",
+      "subtitle": "*dando voz a los que no tienen voz. y a los socialmente torpes.*",
       "privacyHeader": "## política de privacidad",
-      "privacySettings": "**tus cosas** (guardadas localmente por servidor)\n- **voz**: para que no suenes como un robot genérico.\n- **velocidad**: zoom zoom o cámara lenta.\n- **nombre**: tu alter ego.\n- **idioma**: para cuando quieras sonar elegante.",
-      "privacySystem": "**datos aburridos del sistema**\n- **desactivación**: recordamos si nos dijiste que nos calláramos (`/tts off`).\n- **ajustes del servidor**: solo para saber si debemos ignorar a la gente que no está silenciada.",
-      "privacyFooter": "-# no registramos tus mensajes, ni generamos archivos de audio, ni vendemos tus datos. tus secretos están a salvo, principalmente porque probablemente son aburridos.",
-      "tosHeader": "## términos de servicio",
-      "tosBody": "proporcionado \"tal cual\". cumple con los tos de discord. o no. no somos tus padres.",
-      "resetWarning": "-# ¿quieres empezar de cero? usa `/reset` para borrar completamente tus datos de nuestra base de datos. esto elimina todos tus ajustes guardados (voz, nombre, velocidad, idioma) en todos los servidores. tu estado de activación/desactivación se conserva.",
-      "versionFooter": "-# versión: 2.8.4b | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# ¿errores? probablemente. ¿funciones? definitivamente."
+      "privacySettings": "**tus cosas** (guardadas localmente por servidor)\n- **voz**: para que no suenes como un robot genérico.\n- **velocidad**: a toda pastilla o a cámara lenta.\n- **nombre**: tu alter ego.\n- **idioma**: para cuando quieras sonar refinado.",
+      "privacySystem": "**datos aburridos del sistema**\n- **desactivación**: nos acordamos de si nos mandaste a callar (`/tts desactivar`).\n- **ajustes del servidor**: solo para saber si deberíamos ignorar a la gente no silenciada.",
+      "privacyFooter": "-# no registramos tus mensajes, ni generamos archivos de audio ni vendemos tus datos. tus secretos están a salvo, principalmente porque probablemente sean un rollo.",
+      "tosHeader": "## términos del servicio",
+      "tosBody": "proporcionado \"tal cual\". cumple los términos de servicio de discord. o no lo hagas. ni que fuéramos tus padres.",
+      "resetWarning": "-# ¿quieres empezar de cero? usa `/restablecer` para borrar por completo tus datos de nuestra base de datos. esto elimina todos tus ajustes guardados (voz, nombre, velocidad, idioma) en todos los servidores. tu estado de activación/desactivación se conserva.",
+      "versionFooter": "-# versión: 2.8.4b | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# ¿bugs? probablemente. ¿funciones? sin duda."
     },
     "lang": {
       "invalid": "ese código de idioma no es válido.",
-      "success": "preferencias de idioma establecidas en **{langCode}**.",
-      "error": "error al guardar el ajuste de idioma. (error de bd)"
+      "success": "preferencias de idioma establecidas a **{langCode}**.",
+      "error": "no se ha podido guardar el ajuste de idioma. (error de bd)"
     },
     "leave": {
-      "notInVoice": "no estoy en un canal de voz. ¿estás oyendo voces?",
-      "differentVoice": "debes estar en el mismo canal de voz que yo para desconectarme. buen intento.",
+      "notInVoice": "no estoy en ningún canal de voz. ¿es que oyes voces?",
+      "differentVoice": "tienes que estar en el mismo canal de voz que yo para desconectarme. buen intento.",
       "success": "adiós.",
-      "error": "me costó salir. esto es incómodo."
+      "error": "me ha costado salir. qué incómodo."
     },
     "name": {
-      "success": "tu nombre ha sido establecido en **{name}**.",
-      "error": "hubo un error al guardar tu nombre.",
+      "success": "tu nombre se ha establecido a **{name}**.",
+      "error": "ha habido un error al guardar tu nombre.",
+      "filtered": "ese nombre no está permitido por los filtros del servidor.",
       "filter": {
-        "added": "el filtro de nombre `{pattern}` ha sido añadido.",
-        "exists": "ese filtro de nombre ya existe.",
+        "added": "se ha añadido el filtro de nombres `{pattern}`.",
+        "exists": "ese filtro de nombres ya existe.",
         "list": "**filtros de nombres activos:**\n{filters}",
         "empty": "no hay filtros de nombres configurados para este servidor.",
-        "edited": "filtro de nombre actualizado de `{old}` a `{new}`.",
-        "notFound": "el filtro de nombre `{pattern}` no fue encontrado.",
-        "removed": "el filtro de nombre `{pattern}` ha sido eliminado.",
-        "error": "error al actualizar los filtros de nombres."
+        "edited": "filtro de nombres actualizado de `{old}` a `{new}`.",
+        "notFound": "no se ha encontrado el filtro de nombres `{pattern}`.",
+        "removed": "se ha eliminado el filtro de nombres `{pattern}`.",
+        "error": "no se han podido actualizar los filtros de nombres."
       }
     },
     "settings": {
@@ -119,38 +120,38 @@
       "name": "**nombre**: {value}",
       "speed": "**velocidad**: {value}",
       "lang": "**idioma**: {value}",
-      "defaultFormat": "`No establecido` (Predeterminado: `{defaultValue}`)",
-      "setFormat": "`{value}` (Predeterminado: `{defaultValue}`)"
+      "defaultFormat": "`No establecido` (Por defecto: `{defaultValue}`)",
+      "setFormat": "`{value}` (Por defecto: `{defaultValue}`)"
     },
     "speed": {
-      "success": "velocidad establecida en **{speedValue}x**.",
-      "error": "error al guardar el ajuste de velocidad. (error de bd)"
+      "success": "velocidad establecida a **{speedValue}x**.",
+      "error": "no se ha podido guardar el ajuste de velocidad. (error de bd)"
     },
     "tts": {
       "alreadyOff": "el tts ya está **desactivado** para ti.",
       "turnedOff": "el tts ahora está **desactivado** para ti.",
       "alreadyOn": "el tts ya está **activado** para ti.",
       "turnedOn": "el tts ahora está **activado** para ti.",
-      "error": "error al actualizar los ajustes."
+      "error": "no se han podido actualizar los ajustes."
     },
     "voice": {
-      "success": "la voz seleccionada **{voiceId}** ha sido guardada.",
-      "error": "la voz seleccionada **{voiceId}** no se guardó. (error al guardar en la bd).",
+      "success": "se ha guardado la voz seleccionada **{voiceId}**.",
+      "error": "no se ha guardado la voz seleccionada **{voiceId}**. (error al guardar en la bd).",
       "selectPrompt": "selecciona una voz que te guste del menú de abajo.",
       "confirmButton": "Confirmar",
       "noPreview": "no hay vista previa disponible."
     },
     "reset": {
-      "full": "todos tus datos han sido borrados de la base de datos. estás empezando de cero.",
-      "single": "tu ajuste de **{option}** ha sido restablecido para este servidor.",
+      "full": "se han borrado todos tus datos de la base de datos. empiezas de cero.",
+      "single": "se ha restablecido tu ajuste de **{option}** para este servidor.",
       "noData": "no tienes ningún dato que restablecer.",
-      "error": "error al restablecer tus ajustes."
+      "error": "no se han podido restablecer tus ajustes."
     },
     "inject": {
-      "success": "tu mensaje se inyectó correctamente en el canal de voz.",
-      "noConnection": "actualmente no estoy conectado a un canal de voz en este servidor.",
+      "success": "tu mensaje se ha inyectado correctamente en el canal de voz.",
+      "noConnection": "actualmente no estoy conectado a ningún canal de voz en este servidor.",
       "rateLimited": "has alcanzado tu límite de {limit} inyecciones por hora. tómate un respiro.",
-      "error": "error al inyectar tu mensaje. algo salió mal."
+      "error": "no se ha podido inyectar tu mensaje. algo ha ido mal."
     }
   }
 }
