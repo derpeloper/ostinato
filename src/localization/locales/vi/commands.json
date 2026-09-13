@@ -2,7 +2,7 @@
   "mods": {
     "clear": {
       "name": "xóa",
-      "description": "xóa hàng chờ tts cho máy chủ này"
+      "description": "xóa hàng chờ tts của máy chủ này"
     },
     "restrict": {
       "name": "giới-hạn",
@@ -10,7 +10,7 @@
     },
     "skip": {
       "name": "bỏ-qua",
-      "description": "bỏ qua tin nhắn đang phát"
+      "description": "bỏ qua tin nhắn đang được đọc"
     },
     "unrestrict": {
       "name": "bỏ-giới-hạn",
@@ -18,7 +18,7 @@
     },
     "guild": {
       "name": "máy-chủ",
-      "description": "quản lý cài đặt máy chủ",
+      "description": "quản lý các cài đặt riêng của máy chủ",
       "groups": {
         "lang": {
           "name": "ngôn-ngữ",
@@ -48,33 +48,33 @@
       "groups": {
         "filter": {
           "name": "bộ-lọc",
-          "description": "quản lý bộ lọc nội dung",
+          "description": "quản lý các bộ lọc nội dung",
           "subcommands": {
             "add": {
               "name": "thêm",
-              "description": "thêm bộ lọc mới",
+              "description": "thêm một bộ lọc mới",
               "options": {
                 "string": {
                   "name": "chuỗi",
-                  "description": "văn bản bộ lọc hoặc regex cần thêm"
+                  "description": "văn bản hoặc regex bộ lọc cần thêm"
                 }
               }
             },
             "list": {
               "name": "danh-sách",
-              "description": "liệt kê tất cả các bộ lọc đang hoạt động"
+              "description": "liệt kê tất cả bộ lọc đang hoạt động"
             },
             "edit": {
               "name": "sửa",
-              "description": "sửa bộ lọc hiện có",
+              "description": "chỉnh sửa một bộ lọc hiện có",
               "options": {
                 "old": {
                   "name": "cũ",
-                  "description": "bộ lọc hiện có cần sửa"
+                  "description": "bộ lọc hiện có cần chỉnh sửa"
                 },
                 "new": {
                   "name": "mới",
-                  "description": "bộ lọc thay thế mới"
+                  "description": "bộ lọc mới để thay thế"
                 }
               }
             },
@@ -84,7 +84,7 @@
               "options": {
                 "string": {
                   "name": "chuỗi",
-                  "description": "văn bản bộ lọc hoặc regex cần xóa"
+                  "description": "văn bản hoặc regex bộ lọc cần xóa"
                 }
               }
             }
@@ -94,11 +94,11 @@
     },
     "channel": {
       "name": "kênh",
-      "description": "quản lý kênh chat thay thế của máy chủ",
+      "description": "quản lý kênh trò chuyện thay thế của máy chủ",
       "subcommands": {
         "set": {
           "name": "đặt",
-          "description": "đặt một kênh làm kênh chat thay thế",
+          "description": "đặt một kênh làm kênh trò chuyện thay thế",
           "options": {
             "channel": {
               "name": "kênh",
@@ -108,13 +108,13 @@
         },
         "remove": {
           "name": "xóa",
-          "description": "xóa kênh chat thay thế hiện tại"
+          "description": "xóa kênh trò chuyện thay thế hiện tại"
         }
       }
     },
     "autojoin": {
-      "name": "tự-động-tham-gia",
-      "description": "bật/tắt việc bot tự động tham gia các kênh thoại"
+      "name": "tự-vào",
+      "description": "bật/tắt việc bot tự động tham gia kênh thoại"
     }
   },
   "public": {
@@ -124,7 +124,7 @@
       "options": {
         "command": {
           "name": "lệnh",
-          "description": "lệnh cần lấy thông tin"
+          "description": "lệnh cần xem thông tin"
         }
       }
     },
@@ -138,7 +138,7 @@
       "options": {
         "language": {
           "name": "ngôn-ngữ",
-          "description": "ngôn ngữ cần sử dụng"
+          "description": "ngôn ngữ muốn dùng"
         }
       }
     },
@@ -164,33 +164,33 @@
       "groups": {
         "filter": {
           "name": "bộ-lọc",
-          "description": "quản lý bộ lọc tên",
+          "description": "quản lý các bộ lọc tên",
           "subcommands": {
             "add": {
               "name": "thêm",
-              "description": "thêm bộ lọc mới",
+              "description": "thêm một bộ lọc mới",
               "options": {
                 "string": {
                   "name": "chuỗi",
-                  "description": "văn bản bộ lọc hoặc regex cần thêm"
+                  "description": "văn bản hoặc regex bộ lọc cần thêm"
                 }
               }
             },
             "list": {
               "name": "danh-sách",
-              "description": "liệt kê tất cả các bộ lọc đang hoạt động"
+              "description": "liệt kê tất cả bộ lọc đang hoạt động"
             },
             "edit": {
               "name": "sửa",
-              "description": "sửa bộ lọc hiện có",
+              "description": "chỉnh sửa một bộ lọc hiện có",
               "options": {
                 "old": {
                   "name": "cũ",
-                  "description": "bộ lọc hiện có cần sửa"
+                  "description": "bộ lọc hiện có cần chỉnh sửa"
                 },
                 "new": {
                   "name": "mới",
-                  "description": "bộ lọc thay thế mới"
+                  "description": "bộ lọc mới để thay thế"
                 }
               }
             },
@@ -200,7 +200,7 @@
               "options": {
                 "string": {
                   "name": "chuỗi",
-                  "description": "văn bản bộ lọc hoặc regex cần xóa"
+                  "description": "văn bản hoặc regex bộ lọc cần xóa"
                 }
               }
             }
@@ -228,7 +228,7 @@
       "options": {
         "value": {
           "name": "giá-trị",
-          "description": "hệ số tốc độ (0.5 đến 2.0)"
+          "description": "hệ số tốc độ (từ 0.5 đến 2.0)"
         }
       }
     },
@@ -247,16 +247,16 @@
       }
     },
     "voice": {
-      "name": "giọng-nói",
-      "description": "thay đổi giọng nói cho tài khoản của bạn"
+      "name": "giọng",
+      "description": "thay đổi giọng đọc cho tài khoản của bạn"
     },
     "inject": {
-      "name": "tiêm",
-      "description": "gửi tin nhắn đến kênh thoại mà không cần tham gia",
+      "name": "chèn",
+      "description": "gửi tin nhắn vào kênh thoại mà không cần tham gia",
       "options": {
         "message": {
           "name": "tin-nhắn",
-          "description": "tin nhắn để tiêm (tối đa 200 ký tự)"
+          "description": "tin nhắn cần gửi (tối đa 200 ký tự)"
         }
       }
     }
