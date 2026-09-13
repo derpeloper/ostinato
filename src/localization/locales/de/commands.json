@@ -6,27 +6,27 @@
     },
     "restrict": {
       "name": "einschränken",
-      "description": "deaktiviert tts für benutzer, die nicht stummgeschaltet sind"
+      "description": "deaktiviert tts für nutzer, die nicht stummgeschaltet sind"
     },
     "skip": {
       "name": "überspringen",
-      "description": "überspringt die aktuell gespielte nachricht"
+      "description": "überspringt die aktuell abgespielte nachricht"
     },
     "unrestrict": {
       "name": "freigeben",
-      "description": "aktiviert tts für benutzer, die nicht stummgeschaltet sind"
+      "description": "aktiviert tts für nutzer, die nicht stummgeschaltet sind"
     },
     "guild": {
       "name": "server",
-      "description": "serverbezogene einstellungen verwalten",
+      "description": "serverspezifische einstellungen verwalten",
       "groups": {
         "lang": {
           "name": "sprache",
-          "description": "standardsprache des servers verwalten",
+          "description": "standard-serversprache verwalten",
           "subcommands": {
             "set": {
-              "name": "setzen",
-              "description": "standardsprache für den server festlegen",
+              "name": "festlegen",
+              "description": "die standard-sprache für den server festlegen",
               "options": {
                 "language": {
                   "name": "sprache",
@@ -36,7 +36,7 @@
             },
             "reset": {
               "name": "zurücksetzen",
-              "description": "standardsprache des servers zurücksetzen"
+              "description": "die standard-sprache für den server zurücksetzen"
             }
           }
         }
@@ -44,7 +44,7 @@
     },
     "message": {
       "name": "nachricht",
-      "description": "nachrichtenfilter verwalten",
+      "description": "inhaltsfilter für nachrichten verwalten",
       "groups": {
         "filter": {
           "name": "filter",
@@ -56,13 +56,13 @@
               "options": {
                 "string": {
                   "name": "text",
-                  "description": "der filtertext oder regex, der hinzugefügt werden soll"
+                  "description": "filtertext oder regex zum hinzufügen"
                 }
               }
             },
             "list": {
               "name": "liste",
-              "description": "alle aktiven filter anzeigen"
+              "description": "alle aktiven filter auflisten"
             },
             "edit": {
               "name": "bearbeiten",
@@ -70,7 +70,7 @@
               "options": {
                 "old": {
                   "name": "alt",
-                  "description": "der bestehende filter, der bearbeitet werden soll"
+                  "description": "bestehender filter zum bearbeiten"
                 },
                 "new": {
                   "name": "neu",
@@ -84,7 +84,7 @@
               "options": {
                 "string": {
                   "name": "text",
-                  "description": "der filtertext oder regex, der entfernt werden soll"
+                  "description": "filtertext oder regex zum entfernen"
                 }
               }
             }
@@ -94,10 +94,10 @@
     },
     "channel": {
       "name": "kanal",
-      "description": "alternativen chatkanal des servers verwalten",
+      "description": "alternativen chat-kanal des servers verwalten",
       "subcommands": {
         "set": {
-          "name": "setzen",
+          "name": "festlegen",
           "description": "einen kanal als alternativen chat festlegen",
           "options": {
             "channel": {
@@ -108,33 +108,33 @@
         },
         "remove": {
           "name": "entfernen",
-          "description": "den aktuellen alternativen chatkanal entfernen"
+          "description": "aktuellen alternativen chat-kanal entfernen"
         }
       }
     },
     "autojoin": {
       "name": "autojoin",
-      "description": "schaltet das automatische beitreten des bots zu sprachkanälen um"
+      "description": "automatisches beitreten von sprachkanälen umschalten"
     }
   },
   "public": {
     "help": {
       "name": "hilfe",
-      "description": "gibt informationen zu befehlen",
+      "description": "liefert informationen zu den befehlen",
       "options": {
         "command": {
           "name": "befehl",
-          "description": "der befehl, über den informationen abgerufen werden sollen"
+          "description": "der befehl, zu dem informationen gesucht werden"
         }
       }
     },
     "info": {
       "name": "info",
-      "description": "gibt informationen über den bot"
+      "description": "liefert informationen über den bot"
     },
     "lang": {
       "name": "sprache",
-      "description": "ändert die sprache des tts für dein konto",
+      "description": "die tts-sprache für deinen account ändern",
       "options": {
         "language": {
           "name": "sprache",
@@ -144,18 +144,18 @@
     },
     "leave": {
       "name": "verlassen",
-      "description": "trennt den bot vom sprachkanal"
+      "description": "trennt die verbindung des bots zum sprachkanal"
     },
     "name": {
       "name": "name",
-      "description": "lege deinen anzeigenamen fest oder verwalte namensfilter",
+      "description": "anzeigenamen festlegen oder namensfilter verwalten",
       "subcommands": {
         "set": {
-          "name": "setzen",
-          "description": "lege deinen anzeigenamen fest",
+          "name": "festlegen",
+          "description": "deinen anzeigenamen festlegen",
           "options": {
             "string": {
-              "name": "text",
+              "name": "name",
               "description": "der festzulegende name"
             }
           }
@@ -172,13 +172,13 @@
               "options": {
                 "string": {
                   "name": "text",
-                  "description": "der filtertext oder regex, der hinzugefügt werden soll"
+                  "description": "filtertext oder regex zum hinzufügen"
                 }
               }
             },
             "list": {
               "name": "liste",
-              "description": "alle aktiven filter anzeigen"
+              "description": "alle aktiven filter auflisten"
             },
             "edit": {
               "name": "bearbeiten",
@@ -186,7 +186,7 @@
               "options": {
                 "old": {
                   "name": "alt",
-                  "description": "der bestehende filter, der bearbeitet werden soll"
+                  "description": "bestehender filter zum bearbeiten"
                 },
                 "new": {
                   "name": "neu",
@@ -200,7 +200,7 @@
               "options": {
                 "string": {
                   "name": "text",
-                  "description": "der filtertext oder regex, der entfernt werden soll"
+                  "description": "filtertext oder regex zum entfernen"
                 }
               }
             }
@@ -210,53 +210,53 @@
     },
     "reset": {
       "name": "zurücksetzen",
-      "description": "setzt deine tts-einstellungen auf die standardwerte zurück",
+      "description": "setzt deine tts-einstellungen auf standard zurück",
       "options": {
         "option": {
           "name": "option",
-          "description": "die spezifische einstellung, die zurückgesetzt werden soll"
+          "description": "die spezifische einstellung zum zurücksetzen"
         }
       }
     },
     "settings": {
       "name": "einstellungen",
-      "description": "überprüfe deine aktuellen tts-einstellungen"
+      "description": "deine aktuellen tts-einstellungen einsehen"
     },
     "speed": {
-      "name": "geschwindigkeit",
-      "description": "ändert die geschwindigkeit des tts für dein konto",
+      "name": "tempo",
+      "description": "die tts-geschwindigkeit für deinen account ändern",
       "options": {
         "value": {
           "name": "wert",
-          "description": "der geschwindigkeitsmultiplikator (0,5 bis 2,0)"
+          "description": "geschwindigkeitsfaktor (0,5 bis 2,0)"
         }
       }
     },
     "tts": {
       "name": "tts",
-      "description": "verwalte deine tts-einstellungen",
+      "description": "deine tts-einstellungen verwalten",
       "options": {
         "on": {
           "name": "an",
-          "description": "schalte tts für deine nachrichten ein"
+          "description": "tts für deine nachrichten aktivieren"
         },
         "off": {
           "name": "aus",
-          "description": "schalte tts für deine nachrichten aus"
+          "description": "tts für deine nachrichten deaktivieren"
         }
       }
     },
     "voice": {
       "name": "stimme",
-      "description": "ändert die stimme für dein konto"
+      "description": "die stimme für deinen account ändern"
     },
     "inject": {
-      "name": "inject",
-      "description": "sendet eine nachricht an den sprachkanal, ohne beizutreten",
+      "name": "einspeisen",
+      "description": "nachricht in den sprachkanal senden, ohne beizutreten",
       "options": {
         "message": {
           "name": "nachricht",
-          "description": "die einzuspeisende nachricht (max. 200 zeichen)"
+          "description": "einzuspeisende nachricht (max. 200 zeichen)"
         }
       }
     }
