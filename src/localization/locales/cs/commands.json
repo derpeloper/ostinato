@@ -1,20 +1,20 @@
 {
   "mods": {
     "clear": {
-      "name": "vymazat",
-      "description": "vymaže tts frontu pro tento server"
+      "name": "promazat",
+      "description": "promaže frontu tts pro tento server"
     },
     "restrict": {
       "name": "omezit",
-      "description": "zakáže tts pro uživatele, kteří nejsou ztlumeni"
+      "description": "vypne tts pro uživatele, kteří nejsou ztlumení"
     },
     "skip": {
       "name": "přeskočit",
-      "description": "přeskočí aktuálně přehrávanou zprávu"
+      "description": "přeskočí právě přehrávanou zprávu"
     },
     "unrestrict": {
       "name": "zrušit-omezení",
-      "description": "povolí tts pro uživatele, kteří nejsou ztlumeni"
+      "description": "povolí tts pro uživatele, kteří nejsou ztlumení"
     },
     "guild": {
       "name": "server",
@@ -30,13 +30,13 @@
               "options": {
                 "language": {
                   "name": "jazyk",
-                  "description": "jazyk, který se má nastavit"
+                  "description": "jazyk, který chceš nastavit"
                 }
               }
             },
             "reset": {
-              "name": "resetovat",
-              "description": "resetuje výchozí jazyk pro server"
+              "name": "obnovit",
+              "description": "obnoví výchozí jazyk pro server"
             }
           }
         }
@@ -55,22 +55,22 @@
               "description": "přidá nový filtr",
               "options": {
                 "string": {
-                  "name": "řetězec",
-                  "description": "text filtru nebo regulární výraz, který se má přidat"
+                  "name": "text",
+                  "description": "text filtru nebo regex k přidání"
                 }
               }
             },
             "list": {
               "name": "seznam",
-              "description": "vypíše všechny aktivní filtry"
+              "description": "zobrazí všechny aktivní filtry"
             },
             "edit": {
               "name": "upravit",
               "description": "upraví existující filtr",
               "options": {
                 "old": {
-                  "name": "starý",
-                  "description": "existující filtr, který se má upravit"
+                  "name": "původní",
+                  "description": "existující filtr k úpravě"
                 },
                 "new": {
                   "name": "nový",
@@ -83,8 +83,8 @@
               "description": "odebere filtr",
               "options": {
                 "string": {
-                  "name": "řetězec",
-                  "description": "text filtru nebo regulární výraz, který se má odebrat"
+                  "name": "text",
+                  "description": "text filtru nebo regex k odebrání"
                 }
               }
             }
@@ -94,7 +94,7 @@
     },
     "channel": {
       "name": "kanál",
-      "description": "správa alternativního chatovacího kanálu serveru",
+      "description": "správa alternativního textového kanálu serveru",
       "subcommands": {
         "set": {
           "name": "nastavit",
@@ -102,61 +102,61 @@
           "options": {
             "channel": {
               "name": "kanál",
-              "description": "kanál, který se má nastavit"
+              "description": "kanál, který chceš nastavit"
             }
           }
         },
         "remove": {
           "name": "odebrat",
-          "description": "odebere aktuální alternativní chatovací kanál"
+          "description": "odebere aktuální alternativní textový kanál"
         }
       }
     },
     "autojoin": {
-      "name": "autojoin",
+      "name": "autopřipojení",
       "description": "přepne automatické připojování bota do hlasových kanálů"
     }
   },
   "public": {
     "help": {
       "name": "nápověda",
-      "description": "poskytuje informace o příkazech",
+      "description": "poskytne informace o příkazech",
       "options": {
         "command": {
           "name": "příkaz",
-          "description": "příkaz, o kterém chcete získat informace"
+          "description": "příkaz, o kterém chceš zjistit informace"
         }
       }
     },
     "info": {
       "name": "info",
-      "description": "poskytuje informace o botovi"
+      "description": "poskytne informace o botovi"
     },
     "lang": {
       "name": "jazyk",
-      "description": "změní jazyk tts pro váš účet",
+      "description": "změní jazyk tts pro tvůj účet",
       "options": {
         "language": {
           "name": "jazyk",
-          "description": "jazyk, který se má použít"
+          "description": "jazyk, který chceš použít"
         }
       }
     },
     "leave": {
-      "name": "odejít",
+      "name": "odpojit",
       "description": "odpojí bota z hlasového kanálu"
     },
     "name": {
       "name": "jméno",
-      "description": "nastaví vaše zobrazované jméno nebo spravuje filtry jmen",
+      "description": "nastaví zobrazované jméno nebo spravuje filtry jmen",
       "subcommands": {
         "set": {
           "name": "nastavit",
-          "description": "nastaví vaše zobrazované jméno",
+          "description": "nastaví tvé zobrazované jméno",
           "options": {
             "string": {
-              "name": "řetězec",
-              "description": "jméno, které se má nastavit"
+              "name": "text",
+              "description": "jméno, které chceš nastavit"
             }
           }
         }
@@ -171,22 +171,22 @@
               "description": "přidá nový filtr",
               "options": {
                 "string": {
-                  "name": "řetězec",
-                  "description": "text filtru nebo regulární výraz, který se má přidat"
+                  "name": "text",
+                  "description": "text filtru nebo regex k přidání"
                 }
               }
             },
             "list": {
               "name": "seznam",
-              "description": "vypíše všechny aktivní filtry"
+              "description": "zobrazí všechny aktivní filtry"
             },
             "edit": {
               "name": "upravit",
               "description": "upraví existující filtr",
               "options": {
                 "old": {
-                  "name": "starý",
-                  "description": "existující filtr, který se má upravit"
+                  "name": "původní",
+                  "description": "existující filtr k úpravě"
                 },
                 "new": {
                   "name": "nový",
@@ -199,8 +199,8 @@
               "description": "odebere filtr",
               "options": {
                 "string": {
-                  "name": "řetězec",
-                  "description": "text filtru nebo regulární výraz, který se má odebrat"
+                  "name": "text",
+                  "description": "text filtru nebo regex k odebrání"
                 }
               }
             }
@@ -209,50 +209,50 @@
       }
     },
     "reset": {
-      "name": "resetovat",
-      "description": "resetuje vaše nastavení tts na výchozí",
+      "name": "reset",
+      "description": "obnoví tvé nastavení tts na výchozí hodnoty",
       "options": {
         "option": {
-          "name": "volba",
-          "description": "konkrétní nastavení, které se má resetovat"
+          "name": "položka",
+          "description": "konkrétní nastavení, které chceš obnovit"
         }
       }
     },
     "settings": {
       "name": "nastavení",
-      "description": "zkontroluje vaše aktuální nastavení tts"
+      "description": "zkontroluje tvé aktuální nastavení tts"
     },
     "speed": {
       "name": "rychlost",
-      "description": "změní rychlost tts pro váš účet",
+      "description": "změní rychlost tts pro tvůj účet",
       "options": {
         "value": {
           "name": "hodnota",
-          "description": "násobitel rychlosti (0,5 až 2,0)"
+          "description": "násobitel rychlosti (0.5 až 2.0)"
         }
       }
     },
     "tts": {
       "name": "tts",
-      "description": "správa vašich předvoleb tts",
+      "description": "správa tvých předvoleb tts",
       "options": {
         "on": {
           "name": "zapnout",
-          "description": "zapne tts pro vaše zprávy"
+          "description": "zapne tts pro tvé zprávy"
         },
         "off": {
           "name": "vypnout",
-          "description": "vypne tts pro vaše zprávy"
+          "description": "vypne tts pro tvé zprávy"
         }
       }
     },
     "voice": {
       "name": "hlas",
-      "description": "změní hlas pro váš účet"
+      "description": "změní hlas pro tvůj účet"
     },
     "inject": {
-      "name": "inject",
-      "description": "odešle zprávu do hlasového kanálu bez připojení",
+      "name": "injektovat",
+      "description": "odešle zprávu do hlasového kanálu bez nutnosti připojení",
       "options": {
         "message": {
           "name": "zpráva",
