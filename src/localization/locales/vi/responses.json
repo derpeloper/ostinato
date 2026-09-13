@@ -1,121 +1,122 @@
 {
   "mods": {
     "clear": {
-      "success": "hàng chờ đã được xóa.",
-      "error": "không thể xóa hàng chờ."
+      "success": "đã xóa hàng chờ.",
+      "error": "xóa hàng chờ thất bại."
     },
     "restrict": {
-      "success": "tts đã được giới hạn cho người dùng bị tắt tiếng.",
-      "error": "không thể giới hạn tts."
+      "success": "đã giới hạn tts, chỉ dành cho người dùng bị tắt tiếng.",
+      "error": "giới hạn tts thất bại."
     },
     "skip": {
       "success": "đã bỏ qua.",
       "tooShort": "tin nhắn quá ngắn để bỏ qua (< 35 ký tự).",
       "notPlaying": "hiện không có gì đang phát.",
       "error": "đã xảy ra lỗi khi cố gắng bỏ qua.",
-      "unknown": "không thể bỏ qua."
+      "unknown": "bỏ qua thất bại."
     },
     "unrestrict": {
-      "success": "các giới hạn tts đã được dỡ bỏ.",
-      "error": "không thể dỡ bỏ giới hạn tts."
+      "success": "đã gỡ bỏ giới hạn tts.",
+      "error": "gỡ bỏ giới hạn tts thất bại."
     },
     "guild": {
       "lang": {
         "success": "ngôn ngữ mặc định của máy chủ đã được đặt thành **{langCode}**.",
         "reset": "ngôn ngữ mặc định của máy chủ đã được đặt lại.",
         "invalid": "mã ngôn ngữ đó không hợp lệ.",
-        "error": "không thể cập nhật cài đặt ngôn ngữ máy chủ."
+        "error": "cập nhật cài đặt ngôn ngữ máy chủ thất bại."
       }
     },
     "message": {
       "filter": {
         "added": "bộ lọc `{pattern}` đã được thêm.",
-        "exists": "bộ lọc đó đã tồn tại.",
+        "exists": "bộ lọc đó đã tồn tại rồi.",
         "list": "**các bộ lọc tin nhắn đang hoạt động:**\n{filters}",
-        "empty": "không có bộ lọc tin nhắn nào được cấu hình cho máy chủ này.",
-        "edited": "bộ lọc đã được cập nhật từ `{old}` thành `{new}`.",
+        "empty": "chưa có bộ lọc tin nhắn nào được thiết lập cho máy chủ này.",
+        "edited": "bộ lọc đã được cập nhật từ `{old}` sang `{new}`.",
         "notFound": "không tìm thấy bộ lọc `{pattern}`.",
-        "removed": "bộ lọc `{pattern}` đã được xóa.",
-        "error": "không thể cập nhật bộ lọc tin nhắn."
+        "removed": "bộ lọc `{pattern}` đã bị xóa.",
+        "error": "cập nhật bộ lọc tin nhắn thất bại."
       }
     },
     "channel": {
-      "success": "kênh chat thay thế đã được đặt thành {channel}.",
-      "removed": "kênh chat thay thế đã được xóa.",
-      "noneSet": "không có kênh chat thay thế nào được cấu hình.",
-      "error": "không thể cập nhật cài đặt kênh."
+      "success": "đã đặt kênh trò chuyện thay thế thành {channel}.",
+      "removed": "kênh trò chuyện thay thế đã bị gỡ bỏ.",
+      "noneSet": "chưa có kênh trò chuyện thay thế nào được thiết lập.",
+      "error": "cập nhật cài đặt kênh thất bại."
     },
     "autojoin": {
-      "enabled": "tự động tham gia hiện đã được **bật**. tôi sẽ đi theo người dùng đầu tiên tham gia vào kênh thoại.",
-      "disabled": "tự động tham gia hiện đã được **tắt**.",
-      "error": "không thể bật/tắt tự động tham gia."
+      "enabled": "tự vào kênh hiện đã **bật**. tôi sẽ đi theo người dùng đầu tiên tham gia kênh thoại.",
+      "disabled": "tự vào kênh hiện đã **tắt**.",
+      "error": "bật/tắt tự vào kênh thất bại."
     }
   },
   "public": {
     "help": {
       "notFound": "không tìm thấy thông tin lệnh.",
       "commands": {
-        "help": "tôi khá chắc chắn rằng lệnh này tự giải thích được. nó cung cấp thông tin về các lệnh mà bot này cung cấp.",
-        "voice": "thay đổi giọng nói cho tài khoản của bạn. \n\nnếu bạn tò mò về âm thanh của các giọng nói, bạn có thể tham khảo trang [voices](https://supertone-inc.github.io/supertonic-py/voices/) của supertonic.\n\n-# tùy chọn giọng nói chỉ ảnh hưởng đến máy chủ bạn sử dụng lệnh, vì vậy bạn có thể có các tùy chọn khác nhau cho mỗi máy chủ.",
-        "info": "cung cấp thông tin về bot, bao gồm các thông báo về điều khoản dịch vụ và chính sách bảo mật.",
-        "name": "đặt tên hiển thị của bạn hoặc quản lý bộ lọc tên.\n\n`/name set <tên>`: đặt tên cho tin nhắn của bạn.\n`/name filter add|list|edit|remove`: quản lý bộ lọc tên (admin).\n\n-# tùy chọn tên là cho mỗi máy chủ thay vì phổ biến. điều này là để bảo vệ quyền riêng tư của bạn.",
-        "speed": "thay đổi tốc độ tts cho tài khoản của bạn. \n\ngiá trị phải nằm trong khoảng từ **0.5** đến **2.0**. \n\n-# tốc độ là cho mỗi máy chủ.",
-        "lang": "thay đổi ngôn ngữ tts cho tài khoản của bạn. \n\ncác ngôn ngữ được hỗ trợ: tiếng Anh, tiếng Ả Rập, tiếng Bulgaria, tiếng Séc, tiếng Đan Mạch, tiếng Đức, tiếng Hy Lạp, tiếng Tây Ban Nha, tiếng Estonia, tiếng Phần Lan, tiếng Pháp, tiếng Hindi, tiếng Croatia, tiếng Hungary, tiếng Indonesia, tiếng Ý, tiếng Nhật, tiếng Hàn, tiếng Lithuania, tiếng Latvia, tiếng Hà Lan, tiếng Ba Lan, tiếng Bồ Đào Nha, tiếng Romania, tiếng Nga, tiếng Slovak, tiếng Slovenia, tiếng Thụy Điển, tiếng Thổ Nhĩ Kỳ, tiếng Ukraine, tiếng Việt. \n\n-# tùy chọn ngôn ngữ là cho mỗi máy chủ.",
-        "clear": "xóa hàng chờ tts cho máy chủ hiện tại. \n\nyêu cầu quyền **Quản lý tin nhắn**.",
+        "help": "khá chắc là lệnh này tự nó đã dễ hiểu rồi. nó cung cấp thông tin về các lệnh mà bot này có.",
+        "voice": "thay đổi giọng đọc cho tài khoản của bạn. \n\nnếu bạn tò mò các giọng đọc nghe như thế nào, bạn có thể tham khảo trang [voices](https://supertone-inc.github.io/supertonic-py/voices/) của supertonic.\n\n-# tùy chọn giọng đọc chỉ áp dụng cho máy chủ bạn dùng lệnh, nên bạn có thể cài đặt tùy chọn khác nhau cho từng máy chủ.",
+        "info": "cung cấp thông tin về bot, bao gồm các thông báo về điều khoản dịch vụ và chính sách quyền riêng tư.",
+        "name": "đặt tên hiển thị hoặc quản lý bộ lọc tên.\n\n`/name set <name>`: đặt tên cho các tin nhắn của bạn.\n`/name filter add|list|edit|remove`: quản lý bộ lọc tên (admin).\n\n-# tùy chọn tên là theo từng máy chủ thay vì áp dụng toàn bộ. điều này là để bảo vệ quyền riêng tư của bạn.",
+        "speed": "thay đổi tốc độ tts cho tài khoản của bạn. \n\ngiá trị phải nằm trong khoảng từ **0.5** đến **2.0**. \n\n-# tốc độ là theo từng máy chủ thay vì áp dụng toàn bộ.",
+        "lang": "thay đổi ngôn ngữ tts cho tài khoản của bạn. \n\ncác ngôn ngữ được hỗ trợ: tiếng anh, tiếng ả rập, tiếng bulgaria, tiếng séc, tiếng đan mạch, tiếng đức, tiếng hy lạp, tiếng tây ban nha, tiếng estonia, tiếng phần lan, tiếng pháp, tiếng hindi, tiếng croatia, tiếng hungary, tiếng indonesia, tiếng ý, tiếng nhật, tiếng hàn, tiếng lithuania, tiếng latvia, tiếng hà lan, tiếng ba lan, tiếng bồ đào nha, tiếng romania, tiếng nga, tiếng slovakia, tiếng slovenia, tiếng thụy điển, tiếng thổ nhĩ kỳ, tiếng ukraina, tiếng việt. \n\n-# tùy chọn ngôn ngữ là theo từng máy chủ thay vì áp dụng toàn bộ.",
+        "clear": "xóa hàng chờ tts của máy chủ hiện tại. \n\nyêu cầu quyền **Quản lý Tin nhắn**.",
         "leave": "buộc bot ngắt kết nối khỏi kênh thoại.",
-        "restrict": "giới hạn việc sử dụng tts chỉ dành cho người dùng bị tắt tiếng. \n\nyêu cầu quyền **Quản lý kênh**.",
-        "unrestrict": "cho phép mọi người sử dụng tts. \n\nyêu cầu quyền **Quản lý kênh**.",
-        "skip": "bỏ qua tin nhắn tts đang phát. \n\nyêu cầu quyền **Quản lý tin nhắn**.",
+        "restrict": "giới hạn việc sử dụng tts chỉ dành cho người dùng bị tắt tiếng. \n\nyêu cầu quyền **Quản lý Kênh**.",
+        "unrestrict": "cho phép mọi người sử dụng tts. \n\nyêu cầu quyền **Quản lý Kênh**.",
+        "skip": "bỏ qua tin nhắn tts đang phát. \n\nyêu cầu quyền **Quản lý Tin nhắn**.",
         "tts": "quản lý tùy chọn tts của bạn. \n\n`/tts on`: bật tts cho tin nhắn của bạn.\n`/tts off`: tắt tts cho tin nhắn của bạn.",
-        "settings": "hiển thị cài đặt tts hiện tại của bạn (giọng nói, tên, tốc độ, ngôn ngữ).",
-        "reset": "đặt lại cài đặt tts của bạn về mặc định.\n\n`/reset`: xóa tất cả dữ liệu của bạn khỏi cơ sở dữ liệu.\n`/reset <tùy chọn>`: đặt lại một cài đặt cụ thể (giọng nói, tên, tốc độ, ngôn ngữ) cho máy chủ này.\n\n-# điều này không ảnh hưởng đến trạng thái chọn tham gia/từ chối của bạn.",
-        "guild": "quản lý cài đặt máy chủ.\n\n`/guild lang set <ngôn-ngữ>`: đặt ngôn ngữ mặc định.\n`/guild lang reset`: đặt lại ngôn ngữ mặc định của máy chủ.\n\n-# yêu cầu quyền **Quản lý máy chủ**.",
-        "message": "quản lý bộ lọc nội dung tin nhắn.\n\n`/message filter add <chuỗi>`: thêm bộ lọc mới.\n`/message filter list`: liệt kê tất cả các bộ lọc đang hoạt động.\n`/message filter edit <cũ> <mới>`: sửa bộ lọc.\n`/message filter remove <chuỗi>`: xóa bộ lọc.\n\n-# yêu cầu quyền **Quản lý tin nhắn**.",
-        "channel": "quản lý kênh chat thay thế của máy chủ.\n\n`/channel set <kênh>`: đặt một kênh văn bản làm kênh chat tts thay thế.\n`/channel remove`: xóa kênh thay thế hiện tại.\n\n-# yêu cầu quyền **Quản lý kênh**.",
-        "inject": "gửi tin nhắn trực tiếp đến kênh thoại mà không cần tham gia.\n\n/inject <tin nhắn>: gửi tin nhắn của bạn vào kênh thoại đang hoạt động.\n\n-# giới hạn 5 lần sử dụng mỗi giờ cho mỗi máy chủ. người điều hành được miễn giới hạn này.",
-        "autojoin": "bật/tắt việc bot tự động tham gia các kênh thoại khi có người dùng đầu tiên vào.\n\n/autojoin: bật hoặc tắt hành vi này.\n\n-# yêu cầu quyền **Quản trị viên**."
+        "settings": "hiển thị các cài đặt tts hiện tại của bạn (giọng đọc, tên, tốc độ, ngôn ngữ).",
+        "reset": "đặt lại các cài đặt tts của bạn về mặc định.\n\n`/reset`: xóa sạch toàn bộ dữ liệu của bạn khỏi cơ sở dữ liệu.\n`/reset <option>`: đặt lại một cài đặt cụ thể cho máy chủ này.\n\n-# điều này không ảnh hưởng đến trạng thái chọn bật/tắt của bạn.",
+        "guild": "quản lý các cài đặt riêng của máy chủ.\n\n`/guild lang set <language>`: đặt ngôn ngữ mặc định.\n`/guild lang reset`: đặt lại ngôn ngữ mặc định của máy chủ.\n\n-# yêu cầu quyền **Quản lý Máy chủ**.",
+        "message": "quản lý các bộ lọc nội dung tin nhắn.\n\n`/message filter add <string>`: thêm một bộ lọc mới.\n`/message filter list`: liệt kê tất cả bộ lọc đang hoạt động.\n`/message filter edit <old> <new>`: chỉnh sửa một bộ lọc.\n`/message filter remove <string>`: xóa một bộ lọc.\n\n-# yêu cầu quyền **Quản lý Tin nhắn**.",
+        "channel": "quản lý kênh trò chuyện thay thế của máy chủ.\n\n`/channel set <channel>`: đặt một kênh văn bản làm kênh trò chuyện tts thay thế.\n`/channel remove`: gỡ bỏ kênh thay thế hiện tại.\n\n-# yêu cầu quyền **Quản lý Kênh**.",
+        "inject": "gửi tin nhắn trực tiếp vào kênh thoại mà không cần tham gia.\n\n/inject <message>: gửi tin nhắn của bạn vào kênh thoại đang hoạt động.\n\n-# giới hạn 5 lần dùng mỗi giờ cho mỗi máy chủ. điều hành viên không bị giới hạn này.",
+        "autojoin": "bật/tắt việc bot tự động tham gia kênh thoại khi có người dùng đầu tiên bước vào.\n\n/autojoin: bật hoặc tắt hành vi này.\n\n-# yêu cầu quyền **Quản trị viên**."
       }
     },
     "info": {
       "title": "# ostinato",
-      "subtitle": "*mang lại tiếng nói cho những người không có tiếng nói. và cho những người vụng về trong xã hội.*",
-      "privacyHeader": "## chính sách bảo mật",
-      "privacySettings": "**đồ của bạn** (được lưu trữ cục bộ theo máy chủ)\n- **giọng nói**: để bạn không giống như một robot thông thường.\n- **tốc độ**: nhanh vèo vèo hoặc chuyển động chậm.\n- **tên**: bản ngã thay thế của bạn.\n- **ngôn ngữ**: cho những lúc bạn muốn nghe thật sang chảnh.",
-      "privacySystem": "**dữ liệu hệ thống nhàm chán**\n- **từ chối**: chúng tôi nhớ nếu bạn bảo chúng tôi im lặng (`/tts off`).\n- **cài đặt máy chủ**: chỉ để biết chúng tôi có nên bỏ qua những người không bị tắt tiếng hay không.",
-      "privacyFooter": "-# chúng tôi không ghi lại tin nhắn của bạn, tạo tệp âm thanh hoặc bán dữ liệu của bạn. bí mật của bạn được an toàn, chủ yếu là vì chúng có thể nhàm chán.",
+      "subtitle": "*trao giọng nói cho người không thể cất lời. và cả những ai ngại giao tiếp.*",
+      "privacyHeader": "## chính sách quyền riêng tư",
+      "privacySettings": "**thông tin của bạn** (được lưu trữ cục bộ theo từng máy chủ)\n- **giọng đọc**: để bạn không nghe như một con robot đại trà.\n- **tốc độ**: nhanh như chớp hoặc quay chậm.\n- **tên**: bản ngã thứ hai của bạn.\n- **ngôn ngữ**: dành cho những lúc bạn muốn nghe thật sang chảnh.",
+      "privacySystem": "**mấy dữ liệu hệ thống nhàm chán**\n- **từ chối sử dụng**: chúng tôi ghi nhớ nếu bạn từng bảo chúng tôi im đi (`/tts off`).\n- **cài đặt máy chủ**: chỉ để biết liệu chúng tôi có nên ngó lơ những người không bị tắt tiếng hay không.",
+      "privacyFooter": "-# chúng tôi không ghi nhật ký tin nhắn, không tạo tệp âm thanh, cũng không bán dữ liệu của bạn. bí mật của bạn hoàn toàn an toàn, chủ yếu là vì chúng có lẽ cũng khá tẻ nhạt.",
       "tosHeader": "## điều khoản dịch vụ",
-      "tosBody": "được cung cấp \"nguyên trạng\". tuân thủ điều khoản dịch vụ của discord. hoặc không. chúng tôi không phải cha mẹ bạn.",
-      "resetWarning": "-# muốn bắt đầu lại từ đầu? sử dụng `/reset` để xóa hoàn toàn dữ liệu của bạn khỏi cơ sở dữ liệu của chúng tôi. điều này sẽ xóa tất cả cài đặt đã lưu của bạn (giọng nói, tên, tốc độ, ngôn ngữ) trên mọi máy chủ. trạng thái chọn tham gia/từ chối của bạn được giữ nguyên.",
-      "versionFooter": "-# phiên bản: 2.8.4b | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# lỗi? có thể. tính năng? chắc chắn rồi."
+      "tosBody": "được cung cấp theo nguyên trạng (\"as-is\"). hãy tuân thủ điều khoản dịch vụ của discord. hoặc là không. chúng tôi đâu phải phụ huynh của bạn.",
+      "resetWarning": "-# muốn làm lại từ đầu? dùng `/reset` để xóa sạch toàn bộ dữ liệu của bạn khỏi cơ sở dữ liệu của chúng tôi. thao tác này sẽ xóa tất cả cài đặt đã lưu (giọng đọc, tên, tốc độ, ngôn ngữ) trên mọi máy chủ. trạng thái chọn bật/tắt của bạn vẫn được giữ nguyên.",
+      "versionFooter": "-# phiên bản: 2.8.4b | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# lỗi á? chắc là có. tính năng á? chắc chắn luôn."
     },
     "lang": {
       "invalid": "mã ngôn ngữ đó không hợp lệ.",
-      "success": "tùy chọn ngôn ngữ được đặt thành **{langCode}**.",
-      "error": "không thể lưu cài đặt ngôn ngữ. (lỗi db)"
+      "success": "tùy chọn ngôn ngữ đã được đặt thành **{langCode}**.",
+      "error": "lưu cài đặt ngôn ngữ thất bại. (lỗi cơ sở dữ liệu)"
     },
     "leave": {
-      "notInVoice": "tôi không ở trong kênh thoại. bạn đang nghe thấy tiếng nói à?",
-      "differentVoice": "bạn phải ở cùng kênh thoại với tôi để ngắt kết nối tôi. thử hay đấy.",
+      "notInVoice": "tôi đâu có ở trong kênh thoại nào. bạn đang nghe thấy ảo thanh à?",
+      "differentVoice": "bạn phải ở cùng kênh thoại với tôi mới ngắt kết nối được tôi. tính lừa ai cơ.",
       "success": "tạm biệt.",
-      "error": "tôi đã gặp khó khăn khi rời đi. thật khó xử."
+      "error": "tôi loay hoay mãi không rời được. ngại ghê."
     },
     "name": {
       "success": "tên của bạn đã được đặt thành **{name}**.",
       "error": "đã xảy ra lỗi khi lưu tên của bạn.",
+      "filtered": "tên đó không được phép do bộ lọc của máy chủ.",
       "filter": {
         "added": "bộ lọc tên `{pattern}` đã được thêm.",
-        "exists": "bộ lọc tên đó đã tồn tại.",
+        "exists": "bộ lọc tên đó đã tồn tại rồi.",
         "list": "**các bộ lọc tên đang hoạt động:**\n{filters}",
-        "empty": "không có bộ lọc tên nào được cấu hình cho máy chủ này.",
-        "edited": "bộ lọc tên đã được cập nhật từ `{old}` thành `{new}`.",
+        "empty": "chưa có bộ lọc tên nào được thiết lập cho máy chủ này.",
+        "edited": "bộ lọc tên đã được cập nhật từ `{old}` sang `{new}`.",
         "notFound": "không tìm thấy bộ lọc tên `{pattern}`.",
-        "removed": "bộ lọc tên `{pattern}` đã được xóa.",
-        "error": "không thể cập nhật bộ lọc tên."
+        "removed": "bộ lọc tên `{pattern}` đã bị xóa.",
+        "error": "cập nhật bộ lọc tên thất bại."
       }
     },
     "settings": {
       "title": "# cài đặt",
-      "voice": "**giọng nói**: {value}",
+      "voice": "**giọng đọc**: {value}",
       "name": "**tên**: {value}",
       "speed": "**tốc độ**: {value}",
       "lang": "**ngôn ngữ**: {value}",
@@ -123,34 +124,34 @@
       "setFormat": "`{value}` (Mặc định: `{defaultValue}`)"
     },
     "speed": {
-      "success": "tốc độ được đặt thành **{speedValue}x**.",
-      "error": "không thể lưu cài đặt tốc độ. (lỗi db)"
+      "success": "tốc độ đã được đặt thành **{speedValue}x**.",
+      "error": "lưu cài đặt tốc độ thất bại. (lỗi cơ sở dữ liệu)"
     },
     "tts": {
-      "alreadyOff": "tts đã **tắt** đối với bạn rồi.",
+      "alreadyOff": "tts đã ở trạng thái **tắt** đối với bạn rồi.",
       "turnedOff": "tts hiện đã **tắt** đối với bạn.",
-      "alreadyOn": "tts đã **bật** đối với bạn rồi.",
+      "alreadyOn": "tts đã ở trạng thái **bật** đối với bạn rồi.",
       "turnedOn": "tts hiện đã **bật** đối với bạn.",
-      "error": "không thể cập nhật cài đặt."
+      "error": "cập nhật cài đặt thất bại."
     },
     "voice": {
-      "success": "giọng nói đã chọn **{voiceId}** đã được lưu.",
-      "error": "giọng nói đã chọn **{voiceId}** không được lưu. (lỗi khi lưu vào db).",
-      "selectPrompt": "chọn một giọng nói bạn thích từ menu bên dưới.",
+      "success": "giọng đọc đã chọn **{voiceId}** đã được lưu.",
+      "error": "giọng đọc đã chọn **{voiceId}** chưa được lưu. (lỗi khi lưu vào cơ sở dữ liệu).",
+      "selectPrompt": "chọn giọng đọc bạn thích từ menu bên dưới.",
       "confirmButton": "Xác nhận",
-      "noPreview": "không có bản xem trước."
+      "noPreview": "không có bản nghe thử."
     },
     "reset": {
-      "full": "tất cả dữ liệu của bạn đã được xóa khỏi cơ sở dữ liệu. bạn đang bắt đầu lại từ đầu.",
+      "full": "toàn bộ dữ liệu của bạn đã bị xóa khỏi cơ sở dữ liệu. bạn đang bắt đầu lại từ đầu.",
       "single": "cài đặt **{option}** của bạn đã được đặt lại cho máy chủ này.",
-      "noData": "bạn không có bất kỳ dữ liệu nào để đặt lại.",
-      "error": "không thể đặt lại cài đặt của bạn."
+      "noData": "bạn không có dữ liệu nào để đặt lại.",
+      "error": "đặt lại cài đặt của bạn thất bại."
     },
     "inject": {
-      "success": "tin nhắn của bạn đã được tiêm vào kênh thoại thành công.",
-      "noConnection": "tôi hiện không kết nối với kênh thoại nào trong máy chủ này.",
-      "rateLimited": "bạn đã đạt đến giới hạn {limit} lần tiêm mỗi giờ. hãy nghỉ ngơi một chút.",
-      "error": "không thể tiêm tin nhắn của bạn. đã xảy ra lỗi."
+      "success": "tin nhắn của bạn đã được gửi thành công vào kênh thoại.",
+      "noConnection": "hiện tại tôi không kết nối với bất kỳ kênh thoại nào trong máy chủ này.",
+      "rateLimited": "bạn đã chạm giới hạn {limit} lần gửi mỗi giờ. nghỉ lấy hơi tí đi.",
+      "error": "gửi tin nhắn của bạn thất bại. đã có lỗi xảy ra."
     }
   }
 }

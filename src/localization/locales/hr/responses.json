@@ -1,116 +1,117 @@
 {
   "mods": {
     "clear": {
-      "success": "red je očišćen.",
-      "error": "neuspješno čišćenje reda."
+      "success": "red čekanja je očišćen.",
+      "error": "brisanje reda čekanja nije uspjelo."
     },
     "restrict": {
-      "success": "tts ograničen za utišane korisnike.",
-      "error": "neuspješno ograničavanje tts-a."
+      "success": "tts je ograničen samo na utišane korisnike.",
+      "error": "ograničavanje tts-a nije uspjelo."
     },
     "skip": {
       "success": "preskočeno.",
       "tooShort": "poruka je prekratka za preskakanje (< 35 znakova).",
-      "notPlaying": "trenutno se ništa ne reproducira.",
-      "error": "dogodila se pogreška prilikom pokušaja preskakanja.",
-      "unknown": "neuspješno preskakanje."
+      "notPlaying": "trenutačno se ništa ne reproducira.",
+      "error": "došlo je do pogreške pri pokušaju preskakanja.",
+      "unknown": "preskakanje nije uspjelo."
     },
     "unrestrict": {
-      "success": "tts ograničenja su uklonjena.",
-      "error": "neuspješno uklanjanje tts ograničenja."
+      "success": "ograničenja za tts su uklonjena.",
+      "error": "uklanjanje ograničenja za tts nije uspjelo."
     },
     "guild": {
       "lang": {
-        "success": "zadani jezik poslužitelja postavljen na **{langCode}**.",
-        "reset": "zadani jezik poslužitelja je resetiran.",
-        "invalid": "taj kod jezika je nevaljan.",
-        "error": "neuspješno ažuriranje postavke jezika poslužitelja."
+        "success": "zadani jezik poslužitelja postavljen je na **{langCode}**.",
+        "reset": "zadani jezik poslužitelja je poništen.",
+        "invalid": "taj jezični kôd nije valjan.",
+        "error": "ažuriranje jezične postavke poslužitelja nije uspjelo."
       }
     },
     "message": {
       "filter": {
-        "added": "filter `{pattern}` je dodan.",
-        "exists": "taj filter već postoji.",
+        "added": "filtar `{pattern}` je dodan.",
+        "exists": "taj filtar već postoji.",
         "list": "**aktivni filtri poruka:**\n{filters}",
-        "empty": "nema konfiguriranih filtera poruka za ovaj poslužitelj.",
-        "edited": "filter ažuriran iz `{old}` u `{new}`.",
-        "notFound": "filter `{pattern}` nije pronađen.",
-        "removed": "filter `{pattern}` je uklonjen.",
-        "error": "neuspješno ažuriranje filtara poruka."
+        "empty": "za ovaj poslužitelj nisu konfigurirani filtri poruka.",
+        "edited": "filtar je ažuriran s `{old}` na `{new}`.",
+        "notFound": "filtar `{pattern}` nije pronađen.",
+        "removed": "filtar `{pattern}` je uklonjen.",
+        "error": "ažuriranje filtara poruka nije uspjelo."
       }
     },
     "channel": {
-      "success": "alternativni chat kanal postavljen na {channel}.",
-      "removed": "alternativni chat kanal je uklonjen.",
-      "noneSet": "nije konfiguriran alternativni chat kanal.",
-      "error": "neuspješno ažuriranje postavke kanala."
+      "success": "zamjenski kanal za tekst postavljen je na {channel}.",
+      "removed": "zamjenski kanal za tekst je uklonjen.",
+      "noneSet": "nema konfiguriranog zamjenskog kanala za tekst.",
+      "error": "ažuriranje postavke kanala nije uspjelo."
     },
     "autojoin": {
-      "enabled": "automatsko pridruživanje je sada **omogućeno**. pratit ću prvog korisnika koji se pridruži glasovnom kanalu.",
-      "disabled": "automatsko pridruživanje je sada **onemogućeno**.",
-      "error": "neuspješna promjena postavke automatskog pridruživanja."
+      "enabled": "automatsko pridruživanje je sada **uključeno**. pratit ću prvog korisnika koji uđe u glasovni kanal.",
+      "disabled": "automatsko pridruživanje je sada **isključeno**.",
+      "error": "promjena stanja automatskog pridruživanja nije uspjela."
     }
   },
   "public": {
     "help": {
       "notFound": "informacije o naredbi nisu pronađene.",
       "commands": {
-        "help": "prilično sam siguran da je ova naredba sama po sebi razumljiva. pruža informacije o naredbama koje ovaj bot nudi.",
-        "voice": "mijenja glas za tvoj račun. \n\nako te zanima kako glasovi zvuče, možeš pogledati supertonic-ovu stranicu s [glasovima](https://supertone-inc.github.io/supertonic-py/voices/).\n\n-# postavke glasa utječu samo na poslužitelj na kojem koristiš naredbu, pa možeš imati različite postavke po poslužitelju.",
+        "help": "prilično sam siguran da je ova naredba sama po sebi jasna. pruža informacije o naredbama koje ovaj bot nudi.",
+        "voice": "mijenja glas za tvoj račun. \n\nako te zanima kako glasovi zvuče, možeš pogledati supertonicovu stranicu s [glasovima](https://supertone-inc.github.io/supertonic-py/voices/).\n\n-# postavke glasa utječu samo na poslužitelj na kojem upotrijebiš naredbu, pa možeš imati različite postavke po poslužitelju.",
         "info": "pruža informacije o botu, uključujući obavijesti o uvjetima pružanja usluge i politici privatnosti.",
-        "name": "postavi svoje ime za prikaz ili upravljaj filtrima imena.\n\n`/name set <ime>`: postavlja ime za tvoje poruke.\n`/name filter add|list|edit|remove`: upravljaj filtrima imena (admin).\n\n-# postavke imena su po poslužitelju umjesto da su univerzalne. to je radi zaštite tvoje privatnosti.",
-        "speed": "mijenja brzinu tts-a za tvoj račun. \n\nvrijednost mora biti između **0.5** i **2.0**. \n\n-# brzine su po poslužitelju umjesto da su univerzalne.",
-        "lang": "mijenja jezik tts-a za tvoj račun. \n\npodržani jezici: engleski, arapski, bugarski, češki, danski, njemački, grčki, španjolski, estonski, finski, francuski, hindi, hrvatski, mađarski, indonezijski, talijanski, japanski, korejski, litvanski, letonski, nizozemski, poljski, portugalski, rumunjski, ruski, slovački, slovenski, švedski, turski, ukrajinski, vijetnamski. \n\n-# postavke jezika su po poslužitelju.",
-        "clear": "čisti tts red za trenutni poslužitelj. \n\nzahtijeva dopuštenje **Upravljanje porukama**.",
-        "leave": "prisiljava bota da se odspoji s glasovnog kanala.",
-        "restrict": "ograničava upotrebu tts-a samo na utišane korisnike. \n\nzahtijeva dopuštenje **Upravljanje kanalima**.",
+        "name": "postavi svoje prikazano ime ili upravljaj filtrima imena.\n\n`/ime postavi <ime>`: postavlja ime za tvoje poruke.\n`/ime filtar dodaj|popis|uredi|ukloni`: upravljanje filtrima imena (admin).\n\n-# postavke imena vrijede po poslužitelju umjesto univerzalno. to je radi zaštite tvoje privatnosti.",
+        "speed": "mijenja brzinu tts-a za tvoj račun. \n\nvrijednost mora biti između **0.5** i **2.0**. \n\n-# brzine vrijede po poslužitelju umjesto univerzalno.",
+        "lang": "mijenja jezik tts-a za tvoj račun. \n\npodržani jezici: engleski, arapski, bugarski, češki, danski, njemački, grčki, španjolski, estonski, finski, francuski, hindski, hrvatski, mađarski, indonezijski, talijanski, japanski, korejski, litavski, latvijski, nizozemski, poljski, portugalski, rumunjski, ruski, slovački, slovenski, švedski, turski, ukrajinski, vijetnamski. \n\n-# jezične postavke vrijede po poslužitelju umjesto univerzalno.",
+        "clear": "čisti tts red čekanja za trenutačni poslužitelj. \n\nzahtijeva dopuštenje **Upravljanje porukama**.",
+        "leave": "prisilno odspaja bota iz glasovnog kanala.",
+        "restrict": "ograničava korištenje tts-a samo na utišane korisnike. \n\nzahtijeva dopuštenje **Upravljanje kanalima**.",
         "unrestrict": "omogućuje svima korištenje tts-a. \n\nzahtijeva dopuštenje **Upravljanje kanalima**.",
-        "skip": "preskače tts poruku koja se trenutno reproducira. \n\nzahtijeva dopuštenje **Upravljanje porukama**.",
-        "tts": "upravljaj svojim tts postavkama. \n\n`/tts on`: uključi tts za svoje poruke.\n`/tts off`: isključi tts za svoje poruke.",
-        "settings": "prikazuje tvoje trenutne tts postavke (glas, ime, brzina, jezik).",
-        "reset": "resetira tvoje tts postavke na zadane.\n\n`/reset`: briše sve tvoje podatke iz baze podataka.\n`/reset <opcija>`: resetira određenu postavku (glas, ime, brzina, jezik) za ovaj poslužitelj.\n\n-# ovo ne utječe na tvoj status prijave/odjave.",
-        "guild": "upravljanje postavkama poslužitelja.\n\n`/guild lang set <jezik>`: postavi zadani jezik.\n`/guild lang reset`: resetiraj zadani jezik poslužitelja.\n\n-# zahtijeva dopuštenje **Upravljanje poslužiteljem**.",
-        "message": "upravljanje filtrima sadržaja poruka.\n\n`/message filter add <tekst>`: dodaj novi filtar.\n`/message filter list`: prikaži sve aktivne filtre.\n`/message filter edit <stari> <novi>`: uredi postojeći filtar.\n`/message filter remove <tekst>`: ukloni filtar.\n\n-# zahtijeva dopuštenje **Upravljanje porukama**.",
-        "channel": "upravljanje alternativnim chat kanalom poslužitelja.\n\n`/channel set <kanal>`: postavi tekstualni kanal kao alternativni tts chat.\n`/channel remove`: ukloni trenutni alternativni kanal.\n\n-# zahtijeva dopuštenje **Upravljanje kanalima**.",
-        "inject": "pošaljite poruku izravno u glasovni kanal bez pridruživanja.\n\n/inject <poruka>: šalje vašu poruku u aktivni glasovni kanal.\n\n-# ograničeno na 5 korištenja po satu po poslužitelju. moderatori zaobilaze ovo ograničenje.",
-        "autojoin": "određuje hoće li se bot automatski pridružiti glasovnim kanalima kada uđe prvi korisnik.\n\n/autojoin: omogućuje ili onemogućuje ovo ponašanje.\n\n-# zahtijeva dozvolu **Administrator**."
+        "skip": "preskače tts poruku koja se trenutačno reproducira. \n\nzahtijeva dopuštenje **Upravljanje porukama**.",
+        "tts": "upravljaj svojim tts preferencijama. \n\n`/tts uključi`: uključi tts za svoje poruke.\n`/tts isključi`: isključi tts za svoje poruke.",
+        "settings": "prikazuje tvoje trenutačne tts postavke (glas, ime, brzina, jezik).",
+        "reset": "vraća tvoje tts postavke na zadane.\n\n`/poništi`: briše sve tvoje podatke iz baze podataka.\n`/poništi <opcija>`: poništava određenu postavku za ovaj poslužitelj.\n\n-# ovo ne utječe na tvoj status uključivanja/isključivanja.",
+        "guild": "upravljanje postavkama specifičnim za poslužitelj.\n\n`/poslužitelj jezik postavi <jezik>`: postavi zadani jezik.\n`/poslužitelj jezik poništi`: poništi zadani jezik poslužitelja.\n\n-# zahtijeva dopuštenje **Upravljanje poslužiteljem**.",
+        "message": "upravljanje filtrima sadržaja poruka.\n\n`/poruka filtar dodaj <tekst>`: dodaj novi filtar.\n`/poruka filtar popis`: prikaži sve aktivne filtre.\n`/poruka filtar uredi <stari> <novi>`: uredi filtar.\n`/poruka filtar ukloni <tekst>`: ukloni filtar.\n\n-# zahtijeva dopuštenje **Upravljanje porukama**.",
+        "channel": "upravljanje zamjenskim kanalom za tekst poslužitelja.\n\n`/kanal postavi <kanal>`: postavi tekstualni kanal kao zamjenski tts chat.\n`/kanal ukloni`: ukloni trenutačni zamjenski kanal.\n\n-# zahtijeva dopuštenje **Upravljanje kanalima**.",
+        "inject": "pošalji poruku izravno u glasovni kanal bez pridruživanja.\n\n/ubaci <poruka>: šalje tvoju poruku u aktivni glasovni kanal.\n\n-# ograničeno na 5 upotreba po satu po poslužitelju. moderatori zaobilaze ovo ograničenje.",
+        "autojoin": "određuje hoće li bot automatski ući u glasovne kanale kada uđe prvi korisnik.\n\n/autopridruživanje: uključuje ili isključuje ovo ponašanje.\n\n-# zahtijeva dopuštenje **Administrator**."
       }
     },
     "info": {
       "title": "# ostinato",
-      "subtitle": "*davanje glasa onima bez glasa. i onima koji su društveno nespretni.*",
+      "subtitle": "*davanje glasa onima bez glasa. i društveno nespretnima.*",
       "privacyHeader": "## politika privatnosti",
-      "privacySettings": "**tvoje stvari** (pohranjene lokalno po poslužitelju)\n- **glas**: da ne zvučiš kao obični robot.\n- **brzina**: brzo brzo ili usporena snimka.\n- **ime**: tvoj alter ego.\n- **jezik**: za slučajeve kada želiš zvučati otmjeno.",
-      "privacySystem": "**dosadni sistemski podaci**\n- **odjava**: pamtimo ako si nam rekao da zašutimo (`/tts off`).\n- **postavke poslužitelja**: samo da znamo trebamo li ignorirati ljude koji nisu utišani.",
-      "privacyFooter": "-# ne bilježimo tvoje poruke, ne generiramo audio datoteke niti prodajemo tvoje podatke. tvoje tajne su sigurne, uglavnom zato što su vjerojatno dosadne.",
+      "privacySettings": "**tvoje stvari** (spremljeno lokalno po poslužitelju)\n- **glas**: da ne zvučiš kao obični robot.\n- **brzina**: jurcanje ili usporena snimka.\n- **ime**: tvoj alter ego.\n- **jezik**: za kad želiš zvučati otmjeno.",
+      "privacySystem": "**dosadni sustavni podaci**\n- **isključivanje**: pamtimo ako nam kažeš da ušutimo (`/tts isključi`).\n- **postavke poslužitelja**: samo da znamo trebamo li ignorirati neutišane ljude.",
+      "privacyFooter": "-# ne bilježimo tvoje poruke, ne generiramo audiodatoteke niti prodajemo tvoje podatke. tvoje su tajne na sigurnom, uglavnom zato što su vjerojatno dosadne.",
       "tosHeader": "## uvjeti pružanja usluge",
-      "tosBody": "pruža se \"kakvo jest\". pridržavaj se uvjeta pružanja usluge discord-a. ili nemoj. nismo ti roditelji.",
-      "resetWarning": "-# želiš početi ispočetka? koristi `/reset` kako bi potpuno obrisao svoje podatke iz naše baze podataka. ovo uklanja sve tvoje spremljene postavke (glas, ime, brzina, jezik) na svim poslužiteljima. tvoj status prijave/odjave je sačuvan.",
-      "versionFooter": "-# verzija: 2.8.4b | pogon: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugovi? vjerojatno. značajke? definitivno."
+      "tosBody": "pruženo \"kakvo jest\". pridržavaj se discordovih uvjeta korištenja. ili nemoj. nismo ti roditelji.",
+      "resetWarning": "-# želiš početi ispočetka? upotrijebi `/poništi` kako bi u potpunosti izbrisao svoje podatke iz naše baze podataka. ovo uklanja sve tvoje spremljene postavke (glas, ime, brzina, jezik) na svim poslužiteljima. tvoj status uključivanja/isključivanja ostaje sačuvan.",
+      "versionFooter": "-# verzija: 2.8.4b | pokretač: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# greške? vjerojatno. značajke? definitivno."
     },
     "lang": {
-      "invalid": "taj kod jezika je nevaljan.",
-      "success": "postavke jezika postavljene na **{langCode}**.",
-      "error": "neuspješno spremanje postavke jezika. (pogreška baze podataka)"
+      "invalid": "taj jezični kôd nije valjan.",
+      "success": "jezične postavke postavljene na **{langCode}**.",
+      "error": "spremanje jezične postavke nije uspjelo. (pogreška baze podataka)"
     },
     "leave": {
-      "notInVoice": "nisam u glasovnom kanalu. čuješ li glasove?",
-      "differentVoice": "moraš biti u istom glasovnom kanalu kao i ja da bi me odspojio. dobar pokušaj.",
-      "success": "zbogom.",
-      "error": "imao sam poteškoća s odlaskom. ovo je neugodno."
+      "notInVoice": "nisam u glasovnom kanalu. čuješ li ti to glasove?",
+      "differentVoice": "moraš biti u istom glasovnom kanalu kao i ja da me odspojiš. dobar pokušaj.",
+      "success": "doviđenja.",
+      "error": "bilo mi je teško otići. ovo je neugodno."
     },
     "name": {
       "success": "tvoje ime je postavljeno na **{name}**.",
-      "error": "dogodila se pogreška pri spremanju tvog imena.",
+      "error": "došlo je do pogreške pri spremanju tvog imena.",
+      "filtered": "to ime nije dopušteno prema filtrima poslužitelja.",
       "filter": {
         "added": "filtar imena `{pattern}` je dodan.",
         "exists": "taj filtar imena već postoji.",
         "list": "**aktivni filtri imena:**\n{filters}",
-        "empty": "nema konfiguriranih filtara imena za ovaj poslužitelj.",
-        "edited": "filtar imena ažuriran iz `{old}` u `{new}`.",
+        "empty": "za ovaj poslužitelj nisu konfigurirani filtri imena.",
+        "edited": "filtar imena je ažuriran s `{old}` na `{new}`.",
         "notFound": "filtar imena `{pattern}` nije pronađen.",
         "removed": "filtar imena `{pattern}` je uklonjen.",
-        "error": "neuspješno ažuriranje filtara imena."
+        "error": "ažuriranje filtara imena nije uspjelo."
       }
     },
     "settings": {
@@ -123,34 +124,34 @@
       "setFormat": "`{value}` (Zadano: `{defaultValue}`)"
     },
     "speed": {
-      "success": "brzina postavljena na **{speedValue}x**.",
-      "error": "neuspješno spremanje postavke brzine. (pogreška baze podataka)"
+      "success": "brzina je postavljena na **{speedValue}x**.",
+      "error": "spremanje postavke brzine nije uspjelo. (pogreška baze podataka)"
     },
     "tts": {
-      "alreadyOff": "tts je tebi već **isključen**.",
-      "turnedOff": "tts je tebi sada **isključen**.",
-      "alreadyOn": "tts je tebi već **uključen**.",
-      "turnedOn": "tts je tebi sada **uključen**.",
-      "error": "neuspješno ažuriranje postavki."
+      "alreadyOff": "tts je za tebe već **isključen**.",
+      "turnedOff": "tts je sada za tebe **isključen**.",
+      "alreadyOn": "tts je za tebe već **uključen**.",
+      "turnedOn": "tts je sada za tebe **uključen**.",
+      "error": "ažuriranje postavki nije uspjelo."
     },
     "voice": {
       "success": "odabrani glas **{voiceId}** je spremljen.",
       "error": "odabrani glas **{voiceId}** nije spremljen. (pogreška pri spremanju u bazu podataka).",
-      "selectPrompt": "odaberi glas koji ti se sviđa iz izbornika ispod.",
+      "selectPrompt": "odaberi glas koji ti se sviđa s izbornika u nastavku.",
       "confirmButton": "Potvrdi",
       "noPreview": "pretpregled nije dostupan."
     },
     "reset": {
-      "full": "svi tvoji podaci su obrisani iz baze podataka. počinješ ispočetka.",
-      "single": "tvoja postavka **{option}** je resetirana za ovaj poslužitelj.",
-      "noData": "nemaš nikakve podatke za resetiranje.",
-      "error": "neuspješno resetiranje tvojih postavki."
+      "full": "svi tvoji podaci izbrisani su iz baze podataka. počinješ ispočetka.",
+      "single": "tvoja postavka **{option}** je poništena za ovaj poslužitelj.",
+      "noData": "nemaš nikakve podatke za poništavanje.",
+      "error": "poništavanje tvojih postavki nije uspjelo."
     },
     "inject": {
-      "success": "vaša poruka je uspješno ubrizgana u glasovni kanal.",
-      "noConnection": "trenutno nisam povezan s glasovnim kanalom na ovom poslužitelju.",
-      "rateLimited": "dosegli ste ograničenje od {limit} ubrizgavanja po satu. odmorite se malo.",
-      "error": "neuspješno ubrizgavanje vaše poruke. nešto je pošlo po zlu."
+      "success": "tvoja poruka je uspješno ubačena u glasovni kanal.",
+      "noConnection": "trenutačno nisam povezan s glasovnim kanalom na ovom poslužitelju.",
+      "rateLimited": "dosegao si svoje ograničenje od {limit} ubacivanja po satu. predahni malo.",
+      "error": "ubacivanje tvoje poruke nije uspjelo. nešto je pošlo po zlu."
     }
   }
 }

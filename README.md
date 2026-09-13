@@ -188,28 +188,31 @@ our custom-trained models were built using speech audio from the **LibriTTS** da
 
 ### localization
 
-all base translations were automatically generated via [**Gemini 3.5 Flash**](https://deepmind.google/models/model-cards/gemini-3-5-flash/) (with plans to migrate to **Gemini 3.8 Flash**) and may not be fully accurate.
-
-> **status on localization updates:**
-> all localizations are currently undergoing a major rework, and no updated translations will be added to ostinato until further notice. maintaining 25+ locales is a two-way street: it requires me re-running strings through Gemini 3.5 Flash (soon Gemini 3.8 Flash) and, crucially, checking contributor availability to have human eyes review them. until i can coordinate with contributors and align schedules, locale updates are on hold.
+all base translations are officially generated via [**Gemini 3.8 Flash (high)**](https://deepmind.google/models/model-cards/gemini-3-8-flash/) and may not be fully accurate.
 
 _note: contributors who helped verify locales may be listed by their alias rather than their Discord username._
 
-#### awaiting human verification (reworks & cross-checks)
+#### current version (v2.8.4)
 
-because all localizations are currently under rework and strings have shifted across updates, **all supported languages are currently awaiting human verification or re-verification**—including all languages last verified in v2.5.6 along with those that were only ever AI cross-checked:
+| contributor | language locale
+| :--- | :--- 
+| **salty** | Croatian
 
-Bulgarian, Chinese (China), Chinese (Taiwan), Croatian, Czech, Danish, Dutch, Finnish, French, German, Greek, Hindi, Hungarian, Italian, Japanese, Korean, Lithuanian, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese.
+#### awaiting human verification (AI cross-checked)
 
-> **want to help?** if you speak any of these languages and have some free time to help review reworked strings, please [open an issue](https://github.com/derpeloper/ostinato/issues) with the label **`locale feedback`** so we can coordinate!
+the following languages have been cross-checked for consistency using independent, isolated Gemini 3.8 Flash (high) sessions (one dedicated session per language). however, they have not yet been reviewed by a human:
 
-#### legacy
+Bulgarian, Chinese (China), Chinese (Taiwan), Czech, Danish, Dutch, Finnish, French, German, Greek, Hindi, Hungarian, Italian, Japanese, Korean, Lithuanian, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese.
+
+> **want to help?** if you speak any of these languages and notice something off, please [open an issue](https://github.com/derpeloper/ostinato/issues) with the label **`locale feedback`** so we can move it up to the verified list.
+
+#### legacy 
 
 > **disclaimer:** these locales were verified for previous versions of the bot. translations for newer features or modified strings may not be fully accurate.
 
 | Contributor | Language Locale | Last Verified |
-| :---------- | :-------------- | :------------ |
-| **9am1n\_** | Hindi | v2.5.6 |
+| :--- | :--- | :--- |
+| **9am1n_** | Hindi | v2.5.6 |
 | **croi** | Lithuanian | v2.5.6 |
 | **Daniel** | Korean | v2.5.6 |
 | **dash** | Ukrainian | v2.5.6 |
@@ -220,6 +223,5 @@ Bulgarian, Chinese (China), Chinese (Taiwan), Croatian, Czech, Danish, Dutch, Fi
 | **orbital** | Turkish | v2.5.6 |
 | **p** | Vietnamese | v2.5.6 |
 | **rascage** | Portuguese | v2.5.6 |
-| **salty** | Croatian | v2.5.6 |
 | **sentry** | Polish | v2.5.6 |
 | **cat lover**<br>**steff** | Romanian | v2.5.6 |

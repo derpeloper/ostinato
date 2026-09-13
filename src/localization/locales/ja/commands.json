@@ -1,12 +1,12 @@
 {
   "mods": {
     "clear": {
-      "name": "消去",
-      "description": "このサーバーのttsキューを消去します"
+      "name": "クリア",
+      "description": "このサーバーのTTSキューを消去します"
     },
     "restrict": {
       "name": "制限",
-      "description": "ミュートされていないユーザーのttsを無効にします"
+      "description": "ミュートされていないユーザーのTTSを無効化します"
     },
     "skip": {
       "name": "スキップ",
@@ -14,10 +14,10 @@
     },
     "unrestrict": {
       "name": "制限解除",
-      "description": "ミュートされていないユーザーのttsを有効にします"
+      "description": "ミュートされていないユーザーのTTSを有効化します"
     },
     "guild": {
-      "name": "サーバー",
+      "name": "ギルド",
       "description": "サーバー固有の設定を管理します",
       "groups": {
         "lang": {
@@ -44,11 +44,11 @@
     },
     "message": {
       "name": "メッセージ",
-      "description": "メッセージ内容のフィルターを管理します",
+      "description": "メッセージのコンテンツフィルターを管理します",
       "groups": {
         "filter": {
           "name": "フィルター",
-          "description": "内容フィルターを管理します",
+          "description": "コンテンツフィルターを管理します",
           "subcommands": {
             "add": {
               "name": "追加",
@@ -56,24 +56,24 @@
               "options": {
                 "string": {
                   "name": "文字列",
-                  "description": "追加するフィルターテキストまたは正規表現"
+                  "description": "追加するフィルター文字列または正規表現"
                 }
               }
             },
             "list": {
               "name": "一覧",
-              "description": "すべてのアクティブなフィルターを表示します"
+              "description": "有効な全フィルターを一覧表示します"
             },
             "edit": {
               "name": "編集",
               "description": "既存のフィルターを編集します",
               "options": {
                 "old": {
-                  "name": "旧",
-                  "description": "編集する既存のフィルター"
+                  "name": "変更前",
+                  "description": "編集対象の既存フィルター"
                 },
                 "new": {
-                  "name": "新",
+                  "name": "変更後",
                   "description": "新しい置換フィルター"
                 }
               }
@@ -84,7 +84,7 @@
               "options": {
                 "string": {
                   "name": "文字列",
-                  "description": "削除するフィルターテキストまたは正規表現"
+                  "description": "削除するフィルター文字列または正規表現"
                 }
               }
             }
@@ -108,33 +108,33 @@
         },
         "remove": {
           "name": "削除",
-          "description": "現在の代替チャットチャンネルを削除します"
+          "description": "現在の代替チャットチャンネルを解除します"
         }
       }
     },
     "autojoin": {
       "name": "自動参加",
-      "description": "ボットがボイスチャンネルに自動的に参加するかどうかを切り替えます"
+      "description": "ボットのボイスチャンネル自動参加を切り替えます"
     }
   },
   "public": {
     "help": {
       "name": "ヘルプ",
-      "description": "コマンドに関する情報を提供します",
+      "description": "コマンドの情報を表示します",
       "options": {
         "command": {
           "name": "コマンド",
-          "description": "情報を取得したいコマンド"
+          "description": "情報を確認したいコマンド"
         }
       }
     },
     "info": {
       "name": "情報",
-      "description": "ボットに関する情報を提供します"
+      "description": "ボットに関する情報を表示します"
     },
     "lang": {
       "name": "言語",
-      "description": "あなたのアカウントのtts言語を変更します",
+      "description": "アカウントのTTS言語を変更します",
       "options": {
         "language": {
           "name": "言語",
@@ -148,14 +148,14 @@
     },
     "name": {
       "name": "名前",
-      "description": "表示名を設定または名前フィルターを管理します",
+      "description": "表示名の設定または名前フィルターの管理を行います",
       "subcommands": {
         "set": {
           "name": "設定",
           "description": "表示名を設定します",
           "options": {
             "string": {
-              "name": "文字列",
+              "name": "名前",
               "description": "設定する名前"
             }
           }
@@ -172,24 +172,24 @@
               "options": {
                 "string": {
                   "name": "文字列",
-                  "description": "追加するフィルターテキストまたは正規表現"
+                  "description": "追加するフィルター文字列または正規表現"
                 }
               }
             },
             "list": {
               "name": "一覧",
-              "description": "すべてのアクティブなフィルターを表示します"
+              "description": "有効な全フィルターを一覧表示します"
             },
             "edit": {
               "name": "編集",
               "description": "既存のフィルターを編集します",
               "options": {
                 "old": {
-                  "name": "旧",
-                  "description": "編集する既存のフィルター"
+                  "name": "変更前",
+                  "description": "編集対象の既存フィルター"
                 },
                 "new": {
-                  "name": "新",
+                  "name": "変更後",
                   "description": "新しい置換フィルター"
                 }
               }
@@ -200,7 +200,7 @@
               "options": {
                 "string": {
                   "name": "文字列",
-                  "description": "削除するフィルターテキストまたは正規表現"
+                  "description": "削除するフィルター文字列または正規表現"
                 }
               }
             }
@@ -210,49 +210,49 @@
     },
     "reset": {
       "name": "リセット",
-      "description": "tts設定をデフォルトにリセットします",
+      "description": "TTS設定をデフォルトにリセットします",
       "options": {
         "option": {
-          "name": "オプション",
-          "description": "リセットする特定の設定"
+          "name": "項目",
+          "description": "リセットする特定の設定項目"
         }
       }
     },
     "settings": {
-      "name": "設定",
-      "description": "現在のtts設定を確認します"
+      "name": "設定確認",
+      "description": "現在のTTS設定を確認します"
     },
     "speed": {
       "name": "速度",
-      "description": "あなたのアカウントのtts速度を変更します",
+      "description": "アカウントのTTS読み上げ速度を変更します",
       "options": {
         "value": {
-          "name": "値",
-          "description": "速度倍率 (0.5 から 2.0)"
+          "name": "倍率",
+          "description": "速度の倍率（0.5〜2.0）"
         }
       }
     },
     "tts": {
       "name": "tts",
-      "description": "ttsの基本設定を管理します",
+      "description": "TTS設定を管理します",
       "options": {
         "on": {
           "name": "オン",
-          "description": "メッセージのttsをオンにします"
+          "description": "自分のメッセージのTTSを有効にします"
         },
         "off": {
           "name": "オフ",
-          "description": "メッセージのttsをオフにします"
+          "description": "自分のメッセージのTTSを無効にします"
         }
       }
     },
     "voice": {
-      "name": "音声",
-      "description": "あなたのアカウントの音声を変更します"
+      "name": "ボイス",
+      "description": "アカウントの声（ボイス）を変更します"
     },
     "inject": {
       "name": "インジェクト",
-      "description": "参加せずにボイスチャンネルにメッセージを送信します",
+      "description": "ボイスチャンネルに参加せずにメッセージを送信します",
       "options": {
         "message": {
           "name": "メッセージ",

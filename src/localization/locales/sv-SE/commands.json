@@ -2,15 +2,15 @@
   "mods": {
     "clear": {
       "name": "rensa",
-      "description": "rensar tts-kön för denna server"
+      "description": "rensar tts-kön för den här servern"
     },
     "restrict": {
       "name": "begränsa",
       "description": "inaktivera tts för användare som inte är mutade"
     },
     "skip": {
-      "name": "hoppa-över",
-      "description": "hoppar över det meddelande som spelas för tillfället"
+      "name": "skippa",
+      "description": "hoppar över meddelandet som spelas upp just nu"
     },
     "unrestrict": {
       "name": "häv-begränsning",
@@ -25,18 +25,18 @@
           "description": "hantera serverns standardspråk",
           "subcommands": {
             "set": {
-              "name": "ställ-in",
-              "description": "ställ in standardspråket för servern",
+              "name": "ange",
+              "description": "ange standardspråket för servern",
               "options": {
                 "language": {
                   "name": "språk",
-                  "description": "språket som ska ställas in"
+                  "description": "språket som ska anges"
                 }
               }
             },
             "reset": {
               "name": "återställ",
-              "description": "återställ standardspråket för servern"
+              "description": "återställ serverns standardspråk"
             }
           }
         }
@@ -44,7 +44,7 @@
     },
     "message": {
       "name": "meddelande",
-      "description": "hantera filter för meddelandeinnehåll",
+      "description": "hantera innehållsfilter för meddelanden",
       "groups": {
         "filter": {
           "name": "filter",
@@ -55,25 +55,25 @@
               "description": "lägg till ett nytt filter",
               "options": {
                 "string": {
-                  "name": "sträng",
-                  "description": "filtertexten eller regexet som ska läggas till"
+                  "name": "text",
+                  "description": "filtertexten eller regexen som ska läggas till"
                 }
               }
             },
             "list": {
               "name": "lista",
-              "description": "lista alla aktiva filter"
+              "description": "visa alla aktiva filter"
             },
             "edit": {
               "name": "redigera",
               "description": "redigera ett befintligt filter",
               "options": {
                 "old": {
-                  "name": "gammal",
+                  "name": "gammalt",
                   "description": "det befintliga filtret som ska redigeras"
                 },
                 "new": {
-                  "name": "ny",
+                  "name": "nytt",
                   "description": "det nya ersättningsfiltret"
                 }
               }
@@ -83,8 +83,8 @@
               "description": "ta bort ett filter",
               "options": {
                 "string": {
-                  "name": "sträng",
-                  "description": "filtertexten eller regexet som ska tas bort"
+                  "name": "text",
+                  "description": "filtertexten eller regexen som ska tas bort"
                 }
               }
             }
@@ -97,12 +97,12 @@
       "description": "hantera serverns alternativa chattkanal",
       "subcommands": {
         "set": {
-          "name": "ställ-in",
-          "description": "ställ in en kanal som alternativ chatt",
+          "name": "ange",
+          "description": "ange en kanal som alternativ chatt",
           "options": {
             "channel": {
               "name": "kanal",
-              "description": "kanalen som ska ställas in"
+              "description": "kanalen som ska anges"
             }
           }
         },
@@ -113,14 +113,14 @@
       }
     },
     "autojoin": {
-      "name": "autojoin",
-      "description": "växla om boten automatiskt ska ansluta till röstkanaler"
+      "name": "autoanslut",
+      "description": "växla automatisk anslutning till röstkanaler för botten"
     }
   },
   "public": {
     "help": {
       "name": "hjälp",
-      "description": "ger information om kommandon",
+      "description": "visar information om kommandon",
       "options": {
         "command": {
           "name": "kommando",
@@ -130,7 +130,7 @@
     },
     "info": {
       "name": "info",
-      "description": "ger information om botten"
+      "description": "visar information om botten"
     },
     "lang": {
       "name": "språk",
@@ -148,15 +148,15 @@
     },
     "name": {
       "name": "namn",
-      "description": "ställ in ditt visningsnamn eller hantera namnfilter",
+      "description": "ange ditt visningsnamn eller hantera namnfilter",
       "subcommands": {
         "set": {
-          "name": "ställ-in",
-          "description": "ställ in ditt visningsnamn",
+          "name": "ange",
+          "description": "ange ditt visningsnamn",
           "options": {
             "string": {
-              "name": "sträng",
-              "description": "namnet som ska ställas in"
+              "name": "namn",
+              "description": "namnet som ska anges"
             }
           }
         }
@@ -171,25 +171,25 @@
               "description": "lägg till ett nytt filter",
               "options": {
                 "string": {
-                  "name": "sträng",
-                  "description": "filtertexten eller regexet som ska läggas till"
+                  "name": "text",
+                  "description": "filtertexten eller regexen som ska läggas till"
                 }
               }
             },
             "list": {
               "name": "lista",
-              "description": "lista alla aktiva filter"
+              "description": "visa alla aktiva filter"
             },
             "edit": {
               "name": "redigera",
               "description": "redigera ett befintligt filter",
               "options": {
                 "old": {
-                  "name": "gammal",
+                  "name": "gammalt",
                   "description": "det befintliga filtret som ska redigeras"
                 },
                 "new": {
-                  "name": "ny",
+                  "name": "nytt",
                   "description": "det nya ersättningsfiltret"
                 }
               }
@@ -199,8 +199,8 @@
               "description": "ta bort ett filter",
               "options": {
                 "string": {
-                  "name": "sträng",
-                  "description": "filtertexten eller regexet som ska tas bort"
+                  "name": "text",
+                  "description": "filtertexten eller regexen som ska tas bort"
                 }
               }
             }
@@ -213,7 +213,7 @@
       "description": "återställer dina tts-inställningar till standard",
       "options": {
         "option": {
-          "name": "alternativ",
+          "name": "inställning",
           "description": "den specifika inställningen som ska återställas"
         }
       }
@@ -224,7 +224,7 @@
     },
     "speed": {
       "name": "hastighet",
-      "description": "ändra hastigheten på tts för ditt konto",
+      "description": "ändra tts-hastigheten för ditt konto",
       "options": {
         "value": {
           "name": "värde",
@@ -238,11 +238,11 @@
       "options": {
         "on": {
           "name": "på",
-          "description": "slå på tts för dina meddelanden"
+          "description": "aktivera tts för dina meddelanden"
         },
         "off": {
           "name": "av",
-          "description": "slå av tts för dina meddelanden"
+          "description": "inaktivera tts för dina meddelanden"
         }
       }
     },
@@ -251,12 +251,12 @@
       "description": "ändra rösten för ditt konto"
     },
     "inject": {
-      "name": "inject",
+      "name": "injicera",
       "description": "skicka ett meddelande till röstkanalen utan att ansluta",
       "options": {
         "message": {
           "name": "meddelande",
-          "description": "meddelandet som ska skickas (max 200 tecken)"
+          "description": "meddelandet som ska injiceras (max 200 tecken)"
         }
       }
     }

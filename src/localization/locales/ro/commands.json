@@ -1,20 +1,20 @@
 {
   "mods": {
     "clear": {
-      "name": "șterge",
-      "description": "șterge coada tts pentru acest server"
+      "name": "golește",
+      "description": "golește coada tts pentru acest server"
     },
     "restrict": {
       "name": "restricționează",
-      "description": "dezactivează tts pentru utilizatorii care nu sunt amuțiți"
+      "description": "dezactivează tts pentru utilizatorii fără mute"
     },
     "skip": {
-      "name": "sari",
-      "description": "sare peste mesajul care se redă în prezent"
+      "name": "omite",
+      "description": "omite mesajul care se redă în prezent"
     },
     "unrestrict": {
-      "name": "elimină-restricția",
-      "description": "activează tts pentru utilizatorii care nu sunt amuțiți"
+      "name": "derestricționează",
+      "description": "activează tts pentru utilizatorii fără mute"
     },
     "guild": {
       "name": "server",
@@ -26,17 +26,17 @@
           "subcommands": {
             "set": {
               "name": "setează",
-              "description": "setează limba implicită pentru server",
+              "description": "setează limba implicită a serverului",
               "options": {
                 "language": {
                   "name": "limbă",
-                  "description": "limba de setat"
+                  "description": "limba care va fi setată"
                 }
               }
             },
             "reset": {
               "name": "resetează",
-              "description": "resetează limba implicită pentru server"
+              "description": "resetează limba implicită a serverului"
             }
           }
         }
@@ -56,13 +56,13 @@
               "options": {
                 "string": {
                   "name": "text",
-                  "description": "textul filtrului sau regex-ul de adăugat"
+                  "description": "textul sau regex-ul filtrului de adăugat"
                 }
               }
             },
             "list": {
               "name": "listă",
-              "description": "listează toate filtrele active"
+              "description": "afișează toate filtrele active"
             },
             "edit": {
               "name": "editează",
@@ -84,7 +84,7 @@
               "options": {
                 "string": {
                   "name": "text",
-                  "description": "textul filtrului sau regex-ul de eliminat"
+                  "description": "textul sau regex-ul filtrului de eliminat"
                 }
               }
             }
@@ -98,23 +98,23 @@
       "subcommands": {
         "set": {
           "name": "setează",
-          "description": "setează un canal ca chat alternativ",
+          "description": "setează un canal drept chat alternativ",
           "options": {
             "channel": {
               "name": "canal",
-              "description": "canalul de setat"
+              "description": "canalul care va fi setat"
             }
           }
         },
         "remove": {
           "name": "elimină",
-          "description": "elimină canalul de chat alternativ actual"
+          "description": "elimină canalul curent de chat alternativ"
         }
       }
     },
     "autojoin": {
-      "name": "autojoin",
-      "description": "comută alăturarea automată a botului la canalele vocale"
+      "name": "autoconectare",
+      "description": "comută intrarea automată a botului pe canale vocale"
     }
   },
   "public": {
@@ -124,7 +124,7 @@
       "options": {
         "command": {
           "name": "comandă",
-          "description": "comanda despre care doriți informații"
+          "description": "comanda despre care dorești informații"
         }
       }
     },
@@ -138,25 +138,25 @@
       "options": {
         "language": {
           "name": "limbă",
-          "description": "limba de utilizat"
+          "description": "limba pe care dorești să o folosești"
         }
       }
     },
     "leave": {
       "name": "părăsește",
-      "description": "deconectează botul de la canalul vocal"
+      "description": "deconectează botul de pe canalul vocal"
     },
     "name": {
       "name": "nume",
-      "description": "setează numele tău de afișare sau gestionează filtrele de nume",
+      "description": "setează numele afișat sau gestionează filtrele de nume",
       "subcommands": {
         "set": {
           "name": "setează",
-          "description": "setează numele tău de afișare",
+          "description": "setează-ți numele afișat",
           "options": {
             "string": {
               "name": "text",
-              "description": "numele de setat"
+              "description": "numele care va fi setat"
             }
           }
         }
@@ -172,13 +172,13 @@
               "options": {
                 "string": {
                   "name": "text",
-                  "description": "textul filtrului sau regex-ul de adăugat"
+                  "description": "textul sau regex-ul filtrului de adăugat"
                 }
               }
             },
             "list": {
               "name": "listă",
-              "description": "listează toate filtrele active"
+              "description": "afișează toate filtrele active"
             },
             "edit": {
               "name": "editează",
@@ -200,7 +200,7 @@
               "options": {
                 "string": {
                   "name": "text",
-                  "description": "textul filtrului sau regex-ul de eliminat"
+                  "description": "textul sau regex-ul filtrului de eliminat"
                 }
               }
             }
@@ -214,13 +214,13 @@
       "options": {
         "option": {
           "name": "opțiune",
-          "description": "setarea specifică de resetat"
+          "description": "setarea specifică pe care vrei să o resetezi"
         }
       }
     },
     "settings": {
       "name": "setări",
-      "description": "verifică setările tts actuale"
+      "description": "verifică setările tale tts actuale"
     },
     "speed": {
       "name": "viteză",
@@ -228,20 +228,20 @@
       "options": {
         "value": {
           "name": "valoare",
-          "description": "multiplicatorul de viteză (0.5 până la 2.0)"
+          "description": "multiplicatorul de viteză (între 0.5 și 2.0)"
         }
       }
     },
     "tts": {
       "name": "tts",
-      "description": "gestionează preferințele tts",
+      "description": "gestionează-ți preferințele tts",
       "options": {
         "on": {
-          "name": "pornit",
+          "name": "activare",
           "description": "activează tts pentru mesajele tale"
         },
         "off": {
-          "name": "oprit",
+          "name": "dezactivare",
           "description": "dezactivează tts pentru mesajele tale"
         }
       }
@@ -251,12 +251,12 @@
       "description": "schimbă vocea pentru contul tău"
     },
     "inject": {
-      "name": "injectare",
-      "description": "trimite un mesaj pe canalul vocal fără a te alătura",
+      "name": "injectează",
+      "description": "trimite un mesaj pe canalul vocal fără să intri",
       "options": {
         "message": {
           "name": "mesaj",
-          "description": "mesajul de injectat (max. 200 caractere)"
+          "description": "mesajul de injectat (maximum 200 de caractere)"
         }
       }
     }

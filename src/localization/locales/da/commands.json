@@ -6,15 +6,15 @@
     },
     "restrict": {
       "name": "begræns",
-      "description": "deaktiver tts for brugere der ikke er muted"
+      "description": "deaktiver tts for brugere, der ikke er mutet"
     },
     "skip": {
-      "name": "spring-over",
-      "description": "springer den aktuelle besked over"
+      "name": "skip",
+      "description": "springer den aktuelle afspillede besked over"
     },
     "unrestrict": {
-      "name": "fjern-begrænsning",
-      "description": "aktiver tts for brugere der ikke er muted"
+      "name": "ophæv-begrænsning",
+      "description": "aktiver tts for brugere, der ikke er mutet"
     },
     "guild": {
       "name": "server",
@@ -22,7 +22,7 @@
       "groups": {
         "lang": {
           "name": "sprog",
-          "description": "administrer standardsprog for serveren",
+          "description": "administrer serverens standardsprog",
           "subcommands": {
             "set": {
               "name": "indstil",
@@ -30,7 +30,7 @@
               "options": {
                 "language": {
                   "name": "sprog",
-                  "description": "sproget der skal indstilles"
+                  "description": "sproget, der skal indstilles"
                 }
               }
             },
@@ -44,7 +44,7 @@
     },
     "message": {
       "name": "besked",
-      "description": "administrer beskedindholdsfiltre",
+      "description": "administrer indholdsfiltre for beskeder",
       "groups": {
         "filter": {
           "name": "filter",
@@ -56,7 +56,7 @@
               "options": {
                 "string": {
                   "name": "tekst",
-                  "description": "filterteksten eller regex der skal tilføjes"
+                  "description": "filterteksten eller det regex, der skal tilføjes"
                 }
               }
             },
@@ -70,7 +70,7 @@
               "options": {
                 "old": {
                   "name": "gammel",
-                  "description": "det eksisterende filter der skal redigeres"
+                  "description": "det eksisterende filter, der skal redigeres"
                 },
                 "new": {
                   "name": "ny",
@@ -84,7 +84,7 @@
               "options": {
                 "string": {
                   "name": "tekst",
-                  "description": "filterteksten eller regex der skal fjernes"
+                  "description": "filterteksten eller det regex, der skal fjernes"
                 }
               }
             }
@@ -98,65 +98,65 @@
       "subcommands": {
         "set": {
           "name": "indstil",
-          "description": "indstil en kanal som alternativ chat",
+          "description": "indstil en kanal som den alternative chat",
           "options": {
             "channel": {
               "name": "kanal",
-              "description": "kanalen der skal indstilles"
+              "description": "kanalen, der skal indstilles"
             }
           }
         },
         "remove": {
           "name": "fjern",
-          "description": "fjern den aktuelle alternative chatkanal"
+          "description": "fjern den nuværende alternative chatkanal"
         }
       }
     },
     "autojoin": {
-      "name": "autotilslut",
-      "description": "slå til/fra om botten automatisk skal deltage i stemmekanaler"
+      "name": "autojoin",
+      "description": "slå automatisk tilslutning til talekanaler til/fra"
     }
   },
   "public": {
     "help": {
       "name": "hjælp",
-      "description": "giver information om kommandoer",
+      "description": "viser oplysninger om kommandoer",
       "options": {
         "command": {
           "name": "kommando",
-          "description": "kommandoen at få information om"
+          "description": "kommandoen, du vil have oplysninger om"
         }
       }
     },
     "info": {
       "name": "info",
-      "description": "giver information om botten"
+      "description": "viser oplysninger om botten"
     },
     "lang": {
       "name": "sprog",
-      "description": "skift sproget for tts på din konto",
+      "description": "skift tts-sproget for din konto",
       "options": {
         "language": {
           "name": "sprog",
-          "description": "sproget der skal bruges"
+          "description": "sproget, der skal bruges"
         }
       }
     },
     "leave": {
       "name": "forlad",
-      "description": "afbryder botten fra stemmekanalen"
+      "description": "afbryder bottens forbindelse til talekanalen"
     },
     "name": {
       "name": "navn",
-      "description": "indstil dit visningsnavn eller administrer navnefiltre",
+      "description": "indstil dit viste navn eller administrer navnefiltre",
       "subcommands": {
         "set": {
           "name": "indstil",
-          "description": "indstil dit visningsnavn",
+          "description": "indstil dit viste navn",
           "options": {
             "string": {
-              "name": "tekst",
-              "description": "navnet der skal indstilles"
+              "name": "navn",
+              "description": "navnet, der skal indstilles"
             }
           }
         }
@@ -172,7 +172,7 @@
               "options": {
                 "string": {
                   "name": "tekst",
-                  "description": "filterteksten eller regex der skal tilføjes"
+                  "description": "filterteksten eller det regex, der skal tilføjes"
                 }
               }
             },
@@ -186,7 +186,7 @@
               "options": {
                 "old": {
                   "name": "gammel",
-                  "description": "det eksisterende filter der skal redigeres"
+                  "description": "det eksisterende filter, der skal redigeres"
                 },
                 "new": {
                   "name": "ny",
@@ -200,7 +200,7 @@
               "options": {
                 "string": {
                   "name": "tekst",
-                  "description": "filterteksten eller regex der skal fjernes"
+                  "description": "filterteksten eller det regex, der skal fjernes"
                 }
               }
             }
@@ -214,21 +214,21 @@
       "options": {
         "option": {
           "name": "indstilling",
-          "description": "den specifikke indstilling der skal nulstilles"
+          "description": "den specifikke indstilling, der skal nulstilles"
         }
       }
     },
     "settings": {
       "name": "indstillinger",
-      "description": "tjek dine aktuelle tts-indstillinger"
+      "description": "tjek dine nuværende tts-indstillinger"
     },
     "speed": {
       "name": "hastighed",
-      "description": "skift hastigheden for tts på din konto",
+      "description": "skift tts-hastigheden for din konto",
       "options": {
         "value": {
           "name": "værdi",
-          "description": "hastighedsmultiplikatoren (0.5 til 2.0)"
+          "description": "hastighedsmultiplikatoren (0,5 til 2,0)"
         }
       }
     },
@@ -238,11 +238,11 @@
       "options": {
         "on": {
           "name": "til",
-          "description": "tænd tts for dine beskeder"
+          "description": "slå tts til for dine beskeder"
         },
         "off": {
           "name": "fra",
-          "description": "sluk tts for dine beskeder"
+          "description": "slå tts fra for dine beskeder"
         }
       }
     },
@@ -252,11 +252,11 @@
     },
     "inject": {
       "name": "inject",
-      "description": "send en besked til stemmekanalen uden at deltage",
+      "description": "send en besked til talekanalen uden at deltage",
       "options": {
         "message": {
           "name": "besked",
-          "description": "beskeden der skal sendes (maks 200 tegn)"
+          "description": "beskeden, der skal sendes ind (maks. 200 tegn)"
         }
       }
     }

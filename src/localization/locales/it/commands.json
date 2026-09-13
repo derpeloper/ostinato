@@ -2,11 +2,11 @@
   "mods": {
     "clear": {
       "name": "svuota",
-      "description": "svuota la coda tts per questo server"
+      "description": "svuota la coda del tts per questo server"
     },
     "restrict": {
       "name": "limita",
-      "description": "disabilita il tts per gli utenti che non sono silenziati"
+      "description": "disattiva il tts per gli utenti non mutati"
     },
     "skip": {
       "name": "salta",
@@ -14,7 +14,7 @@
     },
     "unrestrict": {
       "name": "sblocca",
-      "description": "abilita il tts per gli utenti che non sono silenziati"
+      "description": "abilita il tts per gli utenti non mutati"
     },
     "guild": {
       "name": "server",
@@ -44,7 +44,7 @@
     },
     "message": {
       "name": "messaggio",
-      "description": "gestisci i filtri dei contenuti dei messaggi",
+      "description": "gestisci i filtri per i contenuti dei messaggi",
       "groups": {
         "filter": {
           "name": "filtro",
@@ -55,14 +55,14 @@
               "description": "aggiungi un nuovo filtro",
               "options": {
                 "string": {
-                  "name": "testo",
-                  "description": "il testo del filtro o regex da aggiungere"
+                  "name": "stringa",
+                  "description": "il testo o regex del filtro da aggiungere"
                 }
               }
             },
             "list": {
-              "name": "lista",
-              "description": "elenca tutti i filtri attivi"
+              "name": "elenco",
+              "description": "mostra tutti i filtri attivi"
             },
             "edit": {
               "name": "modifica",
@@ -83,8 +83,8 @@
               "description": "rimuovi un filtro",
               "options": {
                 "string": {
-                  "name": "testo",
-                  "description": "il testo del filtro o regex da rimuovere"
+                  "name": "stringa",
+                  "description": "il testo o regex del filtro da rimuovere"
                 }
               }
             }
@@ -94,7 +94,7 @@
     },
     "channel": {
       "name": "canale",
-      "description": "gestisci il canale chat alternativo del server",
+      "description": "gestisci il canale di chat alternativo del server",
       "subcommands": {
         "set": {
           "name": "imposta",
@@ -108,13 +108,13 @@
         },
         "remove": {
           "name": "rimuovi",
-          "description": "rimuovi l'attuale canale chat alternativo"
+          "description": "rimuovi l'attuale canale di chat alternativo"
         }
       }
     },
     "autojoin": {
       "name": "autojoin",
-      "description": "attiva/disattiva l'accesso automatico del bot ai canali vocali"
+      "description": "attiva o disattiva l'accesso automatico ai canali vocali"
     }
   },
   "public": {
@@ -148,14 +148,14 @@
     },
     "name": {
       "name": "nome",
-      "description": "imposta il tuo nome visualizzato o gestisci i filtri dei nomi",
+      "description": "imposta il nome visualizzato o gestisci i filtri dei nomi",
       "subcommands": {
         "set": {
           "name": "imposta",
           "description": "imposta il tuo nome visualizzato",
           "options": {
             "string": {
-              "name": "testo",
+              "name": "stringa",
               "description": "il nome da impostare"
             }
           }
@@ -171,14 +171,14 @@
               "description": "aggiungi un nuovo filtro",
               "options": {
                 "string": {
-                  "name": "testo",
-                  "description": "il testo del filtro o regex da aggiungere"
+                  "name": "stringa",
+                  "description": "il testo o regex del filtro da aggiungere"
                 }
               }
             },
             "list": {
-              "name": "lista",
-              "description": "elenca tutti i filtri attivi"
+              "name": "elenco",
+              "description": "mostra tutti i filtri attivi"
             },
             "edit": {
               "name": "modifica",
@@ -199,8 +199,8 @@
               "description": "rimuovi un filtro",
               "options": {
                 "string": {
-                  "name": "testo",
-                  "description": "il testo del filtro o regex da rimuovere"
+                  "name": "stringa",
+                  "description": "il testo o regex del filtro da rimuovere"
                 }
               }
             }
@@ -210,20 +210,20 @@
     },
     "reset": {
       "name": "reimposta",
-      "description": "reimposta le tue impostazioni tts ai valori predefiniti",
+      "description": "ripristina le impostazioni del tts ai valori predefiniti",
       "options": {
         "option": {
           "name": "opzione",
-          "description": "l'impostazione specifica da reimpostare"
+          "description": "l'impostazione specifica da ripristinare"
         }
       }
     },
     "settings": {
       "name": "impostazioni",
-      "description": "controlla le tue attuali impostazioni tts"
+      "description": "controlla le tue attuali impostazioni del tts"
     },
     "speed": {
-      "name": "velocità",
+      "name": "velocita",
       "description": "cambia la velocità del tts per il tuo account",
       "options": {
         "value": {
@@ -234,7 +234,7 @@
     },
     "tts": {
       "name": "tts",
-      "description": "gestisci le tue preferenze tts",
+      "description": "gestisci le tue preferenze del tts",
       "options": {
         "on": {
           "name": "attiva",
@@ -251,12 +251,12 @@
       "description": "cambia la voce per il tuo account"
     },
     "inject": {
-      "name": "inject",
-      "description": "invia un messaggio al canale vocale senza entrare",
+      "name": "inietta",
+      "description": "invia un messaggio al canale vocale senza entrarci",
       "options": {
         "message": {
           "name": "messaggio",
-          "description": "il messaggio da inviare (max 200 caratteri)"
+          "description": "il messaggio da iniettare (max 200 caratteri)"
         }
       }
     }
