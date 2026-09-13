@@ -13,7 +13,7 @@
       "description": "pomija aktualnie odtwarzaną wiadomość"
     },
     "unrestrict": {
-      "name": "zdejmij-ograniczenie",
+      "name": "znieś-ograniczenie",
       "description": "włącza tts dla użytkowników, którzy nie są wyciszeni"
     },
     "guild": {
@@ -35,8 +35,8 @@
               }
             },
             "reset": {
-              "name": "resetuj",
-              "description": "resetuje domyślny język dla serwera"
+              "name": "zresetuj",
+              "description": "resetuje domyślny język serwera"
             }
           }
         }
@@ -62,7 +62,7 @@
             },
             "list": {
               "name": "lista",
-              "description": "lista wszystkich aktywnych filtrów"
+              "description": "wyświetla listę wszystkich aktywnych filtrów"
             },
             "edit": {
               "name": "edytuj",
@@ -74,7 +74,7 @@
                 },
                 "new": {
                   "name": "nowy",
-                  "description": "nowy filtr zastępczy"
+                  "description": "nowy, zastępczy filtr"
                 }
               }
             },
@@ -108,29 +108,29 @@
         },
         "remove": {
           "name": "usuń",
-          "description": "usuwa obecny alternatywny kanał czatu"
+          "description": "usuwa bieżący alternatywny kanał czatu"
         }
       }
     },
     "autojoin": {
-      "name": "autojoin",
+      "name": "autodołączanie",
       "description": "przełącza automatyczne dołączanie bota do kanałów głosowych"
     }
   },
   "public": {
     "help": {
       "name": "pomoc",
-      "description": "dostarcza informacji o komendach",
+      "description": "wyświetla informacje o poleceniach",
       "options": {
         "command": {
-          "name": "komenda",
-          "description": "komenda, o której chcesz uzyskać informacje"
+          "name": "polecenie",
+          "description": "polecenie, o którym chcesz uzyskać informacje"
         }
       }
     },
     "info": {
       "name": "info",
-      "description": "dostarcza informacji o bocie"
+      "description": "wyświetla informacje o bocie"
     },
     "lang": {
       "name": "język",
@@ -138,24 +138,24 @@
       "options": {
         "language": {
           "name": "język",
-          "description": "język do użycia"
+          "description": "język, którego chcesz użyć"
         }
       }
     },
     "leave": {
-      "name": "opuść",
+      "name": "wyjdź",
       "description": "rozłącza bota z kanału głosowego"
     },
     "name": {
       "name": "nazwa",
-      "description": "ustaw swoją nazwę wyświetlaną lub zarządzaj filtrami nazw",
+      "description": "ustaw nazwę wyświetlaną lub zarządzaj filtrami nazw",
       "subcommands": {
         "set": {
           "name": "ustaw",
-          "description": "ustawia twoją nazwę wyświetlaną",
+          "description": "ustawia twoją wyświetlaną nazwę",
           "options": {
             "string": {
-              "name": "tekst",
+              "name": "nazwa",
               "description": "nazwa do ustawienia"
             }
           }
@@ -178,7 +178,7 @@
             },
             "list": {
               "name": "lista",
-              "description": "lista wszystkich aktywnych filtrów"
+              "description": "wyświetla listę wszystkich aktywnych filtrów"
             },
             "edit": {
               "name": "edytuj",
@@ -190,7 +190,7 @@
                 },
                 "new": {
                   "name": "nowy",
-                  "description": "nowy filtr zastępczy"
+                  "description": "nowy, zastępczy filtr"
                 }
               }
             },
@@ -209,8 +209,8 @@
       }
     },
     "reset": {
-      "name": "resetuj",
-      "description": "resetuje twoje ustawienia tts do domyślnych",
+      "name": "zresetuj",
+      "description": "przywraca domyślne ustawienia tts",
       "options": {
         "option": {
           "name": "opcja",
@@ -220,7 +220,7 @@
     },
     "settings": {
       "name": "ustawienia",
-      "description": "sprawdź swoje obecne ustawienia tts"
+      "description": "sprawdza twoje bieżące ustawienia tts"
     },
     "speed": {
       "name": "prędkość",
@@ -228,7 +228,7 @@
       "options": {
         "value": {
           "name": "wartość",
-          "description": "mnożnik prędkości (0.5 do 2.0)"
+          "description": "mnożnik prędkości (od 0.5 do 2.0)"
         }
       }
     },
@@ -251,12 +251,12 @@
       "description": "zmienia głos dla twojego konta"
     },
     "inject": {
-      "name": "inject",
-      "description": "wyślij wiadomość na kanał głosowy bez dołączania",
+      "name": "wstrzyknij",
+      "description": "wysyła wiadomość na kanał głosowy bez dołączania",
       "options": {
         "message": {
           "name": "wiadomość",
-          "description": "wiadomość do wysłania (maks. 200 znaków)"
+          "description": "wiadomość do wstrzyknięcia (maks. 200 znaków)"
         }
       }
     }
