@@ -13,7 +13,7 @@
       "description": "slaat het momenteel afspelende bericht over"
     },
     "unrestrict": {
-      "name": "beperking-opheffen",
+      "name": "vrijgeven",
       "description": "schakel tts in voor gebruikers die niet gedempt zijn"
     },
     "guild": {
@@ -35,8 +35,8 @@
               }
             },
             "reset": {
-              "name": "resetten",
-              "description": "reset de standaardtaal voor de server"
+              "name": "reset",
+              "description": "herstel de standaardtaal voor de server"
             }
           }
         }
@@ -44,11 +44,11 @@
     },
     "message": {
       "name": "bericht",
-      "description": "beheer berichtinhoudfilters",
+      "description": "beheer inhoudsfilters voor berichten",
       "groups": {
         "filter": {
           "name": "filter",
-          "description": "beheer inhoudfilters",
+          "description": "beheer inhoudsfilters",
           "subcommands": {
             "add": {
               "name": "toevoegen",
@@ -56,13 +56,13 @@
               "options": {
                 "string": {
                   "name": "tekst",
-                  "description": "de filtertekst of regex om toe te voegen"
+                  "description": "de toe te voegen filtertekst of regex"
                 }
               }
             },
             "list": {
               "name": "lijst",
-              "description": "toon alle actieve filters"
+              "description": "toon een lijst van alle actieve filters"
             },
             "edit": {
               "name": "bewerken",
@@ -70,7 +70,7 @@
               "options": {
                 "old": {
                   "name": "oud",
-                  "description": "het te bewerken bestaande filter"
+                  "description": "het bestaande filter om te bewerken"
                 },
                 "new": {
                   "name": "nieuw",
@@ -84,7 +84,7 @@
               "options": {
                 "string": {
                   "name": "tekst",
-                  "description": "de filtertekst of regex om te verwijderen"
+                  "description": "de te verwijderen filtertekst of regex"
                 }
               }
             }
@@ -98,7 +98,7 @@
       "subcommands": {
         "set": {
           "name": "instellen",
-          "description": "stel een kanaal in als alternatieve chat",
+          "description": "stel een kanaal in als de alternatieve chat",
           "options": {
             "channel": {
               "name": "kanaal",
@@ -114,17 +114,17 @@
     },
     "autojoin": {
       "name": "autojoin",
-      "description": "schakelt het automatisch deelnemen van de bot aan spraakkanalen in of uit"
+      "description": "schakel het automatisch meegaan naar spraakkanalen in/uit"
     }
   },
   "public": {
     "help": {
-      "name": "hulp",
+      "name": "help",
       "description": "geeft informatie over commando's",
       "options": {
         "command": {
           "name": "commando",
-          "description": "het commando waarover je informatie wilt"
+          "description": "het commando waar je informatie over wilt"
         }
       }
     },
@@ -134,7 +134,7 @@
     },
     "lang": {
       "name": "taal",
-      "description": "verander de taal van de tts voor je account",
+      "description": "verander de tts-taal voor je account",
       "options": {
         "language": {
           "name": "taal",
@@ -143,7 +143,7 @@
       }
     },
     "leave": {
-      "name": "vertrekken",
+      "name": "verlaten",
       "description": "verbreekt de verbinding van de bot met het spraakkanaal"
     },
     "name": {
@@ -155,7 +155,7 @@
           "description": "stel je weergavenaam in",
           "options": {
             "string": {
-              "name": "tekst",
+              "name": "naam",
               "description": "de in te stellen naam"
             }
           }
@@ -172,13 +172,13 @@
               "options": {
                 "string": {
                   "name": "tekst",
-                  "description": "de filtertekst of regex om toe te voegen"
+                  "description": "de toe te voegen filtertekst of regex"
                 }
               }
             },
             "list": {
               "name": "lijst",
-              "description": "toon alle actieve filters"
+              "description": "toon een lijst van alle actieve filters"
             },
             "edit": {
               "name": "bewerken",
@@ -186,7 +186,7 @@
               "options": {
                 "old": {
                   "name": "oud",
-                  "description": "het te bewerken bestaande filter"
+                  "description": "het bestaande filter om te bewerken"
                 },
                 "new": {
                   "name": "nieuw",
@@ -200,7 +200,7 @@
               "options": {
                 "string": {
                   "name": "tekst",
-                  "description": "de filtertekst of regex om te verwijderen"
+                  "description": "de te verwijderen filtertekst of regex"
                 }
               }
             }
@@ -209,8 +209,8 @@
       }
     },
     "reset": {
-      "name": "resetten",
-      "description": "reset je tts-instellingen naar standaard",
+      "name": "reset",
+      "description": "herstelt je tts-instellingen naar standaard",
       "options": {
         "option": {
           "name": "optie",
@@ -224,11 +224,11 @@
     },
     "speed": {
       "name": "snelheid",
-      "description": "verander de snelheid van de tts voor je account",
+      "description": "verander de tts-snelheid voor je account",
       "options": {
         "value": {
           "name": "waarde",
-          "description": "de snelheidsfactor (0.5 tot 2.0)"
+          "description": "de snelheidsvermenigvuldiger (0.5 tot 2.0)"
         }
       }
     },
@@ -238,11 +238,11 @@
       "options": {
         "on": {
           "name": "aan",
-          "description": "zet tts aan voor je berichten"
+          "description": "schakel tts in voor je berichten"
         },
         "off": {
           "name": "uit",
-          "description": "zet tts uit voor je berichten"
+          "description": "schakel tts uit voor je berichten"
         }
       }
     },
@@ -251,12 +251,12 @@
       "description": "verander de stem voor je account"
     },
     "inject": {
-      "name": "inject",
+      "name": "injecteren",
       "description": "stuur een bericht naar het spraakkanaal zonder deel te nemen",
       "options": {
         "message": {
           "name": "bericht",
-          "description": "het te verzenden bericht (max 200 tekens)"
+          "description": "het te injecteren bericht (max 200 tekens)"
         }
       }
     }
