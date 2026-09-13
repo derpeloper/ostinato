@@ -86,7 +86,7 @@
       "tosHeader": "## uvjeti pružanja usluge",
       "tosBody": "pruža se \"kakvo jest\". pridržavaj se uvjeta pružanja usluge discord-a. ili nemoj. nismo ti roditelji.",
       "resetWarning": "-# želiš početi ispočetka? koristi `/reset` kako bi potpuno obrisao svoje podatke iz naše baze podataka. ovo uklanja sve tvoje spremljene postavke (glas, ime, brzina, jezik) na svim poslužiteljima. tvoj status prijave/odjave je sačuvan.",
-      "versionFooter": "-# verzija: 2.5.6 | pogon: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugovi? vjerojatno. značajke? definitivno."
+      "versionFooter": "-# verzija: 2.8.4b | pogon: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugovi? vjerojatno. značajke? definitivno."
     },
     "lang": {
       "invalid": "taj kod jezika je nevaljan.",

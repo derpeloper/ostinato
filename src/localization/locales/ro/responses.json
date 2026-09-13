@@ -86,7 +86,7 @@
       "tosHeader": "## termeni de utilizare",
       "tosBody": "furnizat „ca atare”. respectă tosul discord. sau nu. nu suntem părinții tăi.",
       "resetWarning": "-# vrei să începi de la zero? folosește `/reset` pentru a-ți șterge complet datele din baza noastră de date. acest lucru elimină toate setările salvate (voce, nume, viteză, limbă) pe fiecare server. starea de opt-in/opt-out este păstrată.",
-      "versionFooter": "-# versiune: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bug-uri? probabil. funcții? cu siguranță."
+      "versionFooter": "-# versiune: 2.8.4b | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bug-uri? probabil. funcții? cu siguranță."
     },
     "lang": {
       "invalid": "acel cod de limbă este nevalid.",

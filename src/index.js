@@ -53,6 +53,7 @@ const commandFolders = fs.readdirSync("./src/commands");
 const ostinato = require('./services/OstinatoTTS');
 require('./data/db'); 
 
+// --- Watchdog Mechanism ---
 let consecutiveErrors = 0;
 const WATCHDOG_THRESHOLD = 5;
 
@@ -87,8 +88,23 @@ function handlePotentialConnectionError(error) {
     }
 }
 
-client.on('ready', () => {
+client.on('clientReady', () => {
     consecutiveErrors = 0;
+    if (process.send && client.guilds?.cache) {
+        process.send({ type: 'server_count', count: client.guilds.cache.size });
+    }
+});
+
+client.on('guildCreate', () => {
+    if (process.send && client.guilds?.cache) {
+        process.send({ type: 'server_count', count: client.guilds.cache.size });
+    }
+});
+
+client.on('guildDelete', () => {
+    if (process.send && client.guilds?.cache) {
+        process.send({ type: 'server_count', count: client.guilds.cache.size });
+    }
 });
 
 client.on('messageCreate', () => {
@@ -97,9 +113,39 @@ client.on('messageCreate', () => {
     }
 });
 
+if (process.send) {
+    process.on('message', async (msg) => {
+        if (!msg || !msg.type) return;
+        if (msg.type === 'stop_worker') {
+            ostinato.stopWorker(msg.index);
+        } else if (msg.type === 'start_worker') {
+            ostinato.startWorker(msg.index);
+        } else if (msg.type === 'restart_worker') {
+            ostinato.restartWorker(msg.index);
+        } else if (msg.type === 'restart_all_workers') {
+            for (let i = 0; i < ostinato.workers.length; i++) {
+                ostinato.restartWorker(i);
+            }
+        } else if (msg.type === 'stop_bot') {
+            client.destroy();
+            process.exit(0);
+        } else if (msg.type === 'get_status') {
+            process.send({ type: 'workers_status', workers: ostinato.getWorkersStatus() });
+            if (client.guilds?.cache) {
+                process.send({ type: 'server_count', count: client.guilds.cache.size });
+            }
+        }
+    });
+
+    ostinato.notifyWorkersStatus = () => {
+        process.send({ type: 'workers_status', workers: ostinato.getWorkersStatus() });
+    };
+}
+
 (async () => {
     try {
         await ostinato.initialize();
+        if (ostinato.notifyWorkersStatus) ostinato.notifyWorkersStatus();
     } catch (e) {
         console.error('Failed to initialize OstinatoTTS:', e);
     }
@@ -140,7 +186,7 @@ function logMemoryUsage(context = 'Process') {
 setInterval(() => {
     logMemoryUsage('Main');
     if (ostinato.initialized) ostinato.logAggregatedMemory();
-}, 5 * 60 * 1000);
+}, 30 * 1000);
 logMemoryUsage('MainInit');
 
 process.on('SIGINT', () => {

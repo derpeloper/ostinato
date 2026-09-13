@@ -86,7 +86,7 @@
       "tosHeader": "## nutzungsbedingungen",
       "tosBody": "bereitgestellt \"wie besehen\". halte dich an die discord-nutzungsbedingungen. oder auch nicht. wir sind nicht deine eltern.",
       "resetWarning": "-# willst du von vorne anfangen? benutze `/reset`, um deine daten vollständig aus unserer datenbank zu löschen. dies entfernt alle deine gespeicherten einstellungen (stimme, name, geschwindigkeit, sprache) über alle server hinweg. dein opt-in/opt-out-status bleibt erhalten.",
-      "versionFooter": "-# version: 2.5.6 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? wahrscheinlich. features? definitiv."
+      "versionFooter": "-# version: 2.8.4b | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? wahrscheinlich. features? definitiv."
     },
     "lang": {
       "invalid": "dieser sprachencode ist ungültig.",

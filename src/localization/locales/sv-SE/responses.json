@@ -86,7 +86,7 @@
       "tosHeader": "## användarvillkor",
       "tosBody": "tillhandahålls \"i befintligt skick\". följ discords villkor. eller låt bli. vi är inte dina föräldrar.",
       "resetWarning": "-# vill du börja om från början? använd `/reset` för att helt rensa din data från vår databas. detta tar bort alla dina sparade inställningar (röst, namn, hastighet, språk) på alla servrar. din status för avanmälan bevaras.",
-      "versionFooter": "-# version: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# buggar? förmodligen. funktioner? definitivt."
+      "versionFooter": "-# version: 2.8.4b | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# buggar? förmodligen. funktioner? definitivt."
     },
     "lang": {
       "invalid": "den språkkoden är ogiltig.",

@@ -86,7 +86,7 @@
       "tosHeader": "## servicevoorwaarden",
       "tosBody": "geleverd \"as-is\". houd je aan de discord voorwaarden. of niet. we zijn je ouders niet.",
       "resetWarning": "-# wil je opnieuw beginnen? gebruik `/reset` om je gegevens volledig uit onze database te wissen. dit verwijdert al je opgeslagen instellingen (stem, naam, snelheid, taal) op elke server. je opt-in/opt-out status blijft behouden.",
-      "versionFooter": "-# versie: 2.5.6 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? waarschijnlijk. features? zeker."
+      "versionFooter": "-# versie: 2.8.4b | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? waarschijnlijk. features? zeker."
     },
     "lang": {
       "invalid": "die taalcode is ongeldig.",

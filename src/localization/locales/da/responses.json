@@ -86,7 +86,7 @@
       "tosHeader": "## servicevilkår",
       "tosBody": "leveres \"som beset\". overhold discords servicevilkår. eller lad være. vi er ikke dine forældre.",
       "resetWarning": "-# vil du starte forfra? brug `/reset` til helt at slette dine data fra vores database. dette fjerner alle dine gemte indstillinger (stemme, navn, hastighed, sprog) på tværs af alle servere. din tilmeldings-/afmeldingsstatus bevares.",
-      "versionFooter": "-# version: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# fejl? sikkert. funktioner? helt sikkert."
+      "versionFooter": "-# version: 2.8.4b | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# fejl? sikkert. funktioner? helt sikkert."
     },
     "lang": {
       "invalid": "den sprogkode er ugyldig.",

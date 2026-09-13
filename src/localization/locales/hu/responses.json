@@ -86,7 +86,7 @@
       "tosHeader": "## szolgáltatási feltételek",
       "tosBody": "\"úgy, ahogy van\". tartsd be a discord aszf-et. vagy ne. nem mi vagyunk a szüleid.",
       "resetWarning": "-# tiszta lappal akarsz indulni? használd a `/reset` parancsot az adataid teljes törléséhez az adatbázisunkból. ez eltávolítja az összes mentett beállításodat (hang, név, sebesség, nyelv) minden szerverről. az opt-in/opt-out állapotod megmarad.",
-      "versionFooter": "-# verzió: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugok? valószínűleg. funkciók? biztosan."
+      "versionFooter": "-# verzió: 2.8.4b | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugok? valószínűleg. funkciók? biztosan."
     },
     "lang": {
       "invalid": "ez a nyelvkód érvénytelen.",

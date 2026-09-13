@@ -17,6 +17,7 @@ module.exports = {
              }
         }
         
+        // Handle Autojoin Logic
         if (!oldState.channelId && newState.channelId && !newState.member.user.bot) {
             const guildId = newState.guild.id;
             const connection = getVoiceConnection(guildId);
@@ -37,6 +38,7 @@ module.exports = {
                         await entersState(newConnection, VoiceConnectionStatus.Ready, 20_000);
                         console.log('[voiceStateUpdate] Autojoin Voice Connection Ready.');
 
+                        // Initialize the playback queue directly
                         if (!ostinato.playbackQueues.has(guildId)) {
                             const { createAudioPlayer, AudioPlayerStatus } = require('@discordjs/voice');
                             const player = createAudioPlayer();

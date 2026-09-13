@@ -23,13 +23,23 @@ module.exports = {
         }
 
         if (interaction.isButton()) {
-            if (interaction.customId === 'voice_confirm') {
+            if (interaction.customId.startsWith('voice_')) {
                 const voiceCommand = client.commands.get('voice');
-                if (voiceCommand && voiceCommand.handleButton) {
+                if (voiceCommand) {
                     try {
-                        await voiceCommand.handleButton(interaction);
+                        if (interaction.customId.startsWith('voice_preview:')) {
+                            const voiceId = interaction.customId.split(':')[1];
+                            if (voiceCommand.handlePreview) {
+                                await voiceCommand.handlePreview(interaction, voiceId);
+                            }
+                        } else if (interaction.customId.startsWith('voice_confirm:')) {
+                            const voiceId = interaction.customId.split(':')[1];
+                            if (voiceCommand.handleConfirm) {
+                                await voiceCommand.handleConfirm(interaction, voiceId);
+                            }
+                        }
                     } catch (error) {
-                        console.error('[interactionCreate] voice confirm button error:', error);
+                        console.error('[interactionCreate] voice button error:', error);
                     }
                 }
             }

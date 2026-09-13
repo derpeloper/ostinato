@@ -23,6 +23,9 @@
  */
 
 const path = require('path');
+const fs = require('fs');
+const { execSync } = require('child_process');
+const { Worker } = require('worker_threads');
 const { createAudioResource, joinVoiceChannel, getVoiceConnection, AudioPlayerStatus, createAudioPlayer, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
 const { Readable } = require('stream');
 const { PermissionFlagsBits } = require('discord.js');
@@ -58,7 +61,7 @@ class Semaphore {
 class OstinatoTTS {
     constructor() {
         this.workers = [];
-        this.nextWorkerIndex = 0;
+        this.taskQueue = [];
         this.initialized = false;
         
         this.guildSemaphores = new Map();
@@ -77,8 +80,8 @@ class OstinatoTTS {
         this.lastActivityTimestamp = null;
 
         this.DEFAULT_VOICES = [
-            'F1', 'F2', 'F3', 'F4', 'F5',
-            'M1', 'M2', 'M3', 'M4', 'M5'
+            'alex', 'james', 'robert', 'sam', 'daniel',
+            'sarah', 'lily', 'jessica', 'olivia', 'emily'
         ];
     }
 
@@ -91,6 +94,17 @@ class OstinatoTTS {
         return this.DEFAULT_VOICES[idx];
     }
 
+    getAvailableVoices() {
+        const stylesDir = path.join(__dirname, '..', 'assets', 'engine', 'voice_styles');
+        if (!fs.existsSync(stylesDir)) return [];
+        const files = fs.readdirSync(stylesDir).filter(f => f.endsWith('.json'));
+        return files.map(file => {
+            const id = path.basename(file, '.json').toLowerCase();
+            const name = id.charAt(0).toUpperCase() + id.slice(1);
+            return { id, name, label: name };
+        });
+    }
+
     invalidateCache(userId, guildId, type) {
         if (type === 'restricted') {
             const key = `restricted:${guildId}`;
@@ -101,14 +115,15 @@ class OstinatoTTS {
         } else if (type === 'autojoin') {
             const key = `autojoin:${guildId}`;
             this.cache.delete(key);
-        } else if (type === 'prefs') {
+        } else {
+            this.cache.delete(`prefs:${userId}:${guildId}`);
             this.cache.delete(`name:${userId}:${guildId}`);
             this.cache.delete(`voice:${userId}:${guildId}`);
             this.cache.delete(`speed:${userId}:${guildId}`);
             this.cache.delete(`lang:${userId}:${guildId}`);
-        } else {
-            const key = `${type}:${userId}:${guildId}`;
-            this.cache.delete(key);
+            if (type) {
+                this.cache.delete(`${type}:${userId}:${guildId}`);
+            }
         }
     }
 
@@ -157,11 +172,16 @@ class OstinatoTTS {
             count = 1;
         }
 
-        const { Worker } = require('worker_threads');
-        
         for (let i = 0; i < count; i++) {
-            this.workers.push({ worker: null, ready: false });
-            this._spawnWorker(i, Worker);
+            this.workers.push({ 
+                worker: null, 
+                ready: false, 
+                stopped: false,
+                restarting: false,
+                activeJobs: 0, 
+                index: i 
+            });
+            this._spawnWorker(i);
         }
 
         let attempts = 0;
@@ -171,25 +191,45 @@ class OstinatoTTS {
         }
         
         if (!this.initialized) throw new Error("Worker pool initialization timed out");
+        this.notifyWorkersStatus();
+        setTimeout(() => this.logAggregatedMemory().catch(() => {}), 1000);
     }
 
-    _spawnWorker(index, Worker) {
+    _spawnWorker(index) {
         try {
             const worker = new Worker(path.join(__dirname, 'ttsWorker.js'));
             this.workers[index].worker = worker;
             this.workers[index].ready = false;
+            this.workers[index].stopped = false;
+            this.workers[index].activeJobs = 0;
+            this.workers[index].index = index;
 
             worker.on('message', (msg) => {
                 try {
                     if (msg.type === 'init_success') {
                         this.sampleRate = msg.sampleRate;
                         this.workers[index].ready = true;
+                        this.workers[index].restarting = false;
+                        this.workers[index].useGpu = msg.useGpu;
+                        this.workers[index].gpuProvider = msg.gpuProvider;
+                        this.workers[index].fallback = !!msg.fallback;
+                        this.workers[index].fallbackFrom = msg.fallbackFrom || null;
+                        this.workers[index].fallbackReason = msg.fallbackReason || null;
                         this._checkAllWorkersReady();
-                        console.log(`[OstinatoTTS] Worker ${index} Initialized.`);
+                        const hw = msg.fallback 
+                            ? `CPU (fallback from ${(msg.fallbackFrom || 'GPU').toUpperCase()})`
+                            : (msg.useGpu ? `GPU (${msg.gpuProvider})` : 'CPU');
+                        console.log(`[OstinatoTTS] Worker ${index} Initialized [${hw}].`);
+                        if (msg.fallback) {
+                            console.warn(`[OstinatoTTS] Worker ${index}: ${(msg.fallbackFrom || 'CUDA').toUpperCase()} failed to initialize, fell back to CPU.`);
+                        }
+                        this.notifyWorkersStatus();
+                        this.drainQueue();
                     } else if (msg.type === 'error') {
                         console.error(`[OstinatoTTS] Worker ${index} Error:`, msg.error);
+                        this.notifyWorkersStatus();
                     } else if (msg.type === 'response') {
-                        this.handleWorkerResponse(msg);
+                        this.handleWorkerResponse(index, msg);
                     } else if (msg.type === 'memory_report') {
                         if (this.workers[index]._memoryResolve) {
                             this.workers[index]._memoryResolve(msg.memoryUsage);
@@ -203,6 +243,7 @@ class OstinatoTTS {
 
             worker.on('error', (err) => {
                 console.error(`[OstinatoTTS] Worker ${index} Thread Error:`, err);
+                this.notifyWorkersStatus();
             });
 
             worker.on('exit', async (code) => {
@@ -210,69 +251,227 @@ class OstinatoTTS {
                      console.error(new Error(`[OstinatoTTS] Worker ${index} stopped with exit code ${code}`));
                 }
                 
-                console.log(`[OstinatoTTS] Worker ${index} died. Restarting in 1 second...`);
                 this.workers[index].ready = false;
                 this.workers[index].worker = null;
-                this._checkAllWorkersReady();
+                this.workers[index].activeJobs = 0;
                 
-                const requestsToRetry = Array.from(this.pendingRequests.entries())
-                    .filter(([_, req]) => req.workerIndex === index);
-                
-                for (const [requestId] of requestsToRetry) {
-                    this.pendingRequests.delete(requestId);
-                }
-
-                await new Promise(r => setTimeout(r, 1000));
-                
-                try {
-                    this._spawnWorker(index, Worker);
-                    
-                    let attempts = 0;
-                    while (!this.workers[index].ready && attempts < 120) {
-                        await new Promise(r => setTimeout(r, 500));
-                        attempts++;
-                    }
-                    
-                    if (!this.workers[index].ready) {
-                        throw new Error(`Worker ${index} failed to become ready`);
-                    }
-                    
-                    console.log(`[OstinatoTTS] Re-queueing ${requestsToRetry.length} failed requests for worker ${index}...`);
-                    for (const [requestId, req] of requestsToRetry) {
-                        if (req.args) {
-                            this.generateAudio(...req.args)
-                                .then(res => req.resolve(res))
-                                .catch(err => req.reject(err));
+                const requestsToRetry = [];
+                for (const [requestId, req] of this.pendingRequests.entries()) {
+                    if (req.workerIndex === index) {
+                        this.pendingRequests.delete(requestId);
+                        if (req.task) {
+                            requestsToRetry.push(req.task);
+                        } else if (req.args) {
+                            requestsToRetry.push({
+                                requestId,
+                                text: req.args[0],
+                                userId: req.args[1],
+                                voiceId: req.args[2],
+                                speed: req.args[3],
+                                lang: req.args[4],
+                                resolve: req.resolve,
+                                reject: req.reject,
+                                args: req.args
+                            });
                         } else {
                             req.reject(new Error('Worker crashed and request could not be retried'));
                         }
                     }
+                }
+
+                if (requestsToRetry.length > 0) {
+                    console.log(`[OstinatoTTS] Re-queueing ${requestsToRetry.length} failed requests from crashed worker ${index}...`);
+                    this.taskQueue.unshift(...requestsToRetry);
+                    this.drainQueue();
+                }
+
+                this.notifyWorkersStatus();
+
+                if (this.workers[index].stopped) {
+                    return;
+                }
+
+                console.log(`[OstinatoTTS] Worker ${index} died. Resetting state and restarting in 1 second...`);
+                await new Promise(r => setTimeout(r, 1000));
+
+                if (this.workers[index].stopped) {
+                    return;
+                }
+
+                try {
+                    this._spawnWorker(index);
                 } catch (err) {
                     console.error(`[OstinatoTTS] Failed to restart worker ${index}:`, err);
-                    for (const [requestId, req] of requestsToRetry) {
-                        req.reject(new Error('Worker crashed and failed to restart'));
-                    }
                 }
             });
 
-            worker.postMessage({ type: 'initialize' });
+            worker.postMessage({ 
+                type: 'initialize',
+                options: {
+                    useGpu: config.useGpu || false,
+                    gpuProvider: config.gpuProvider || 'cuda'
+                }
+            });
         } catch (error) {
             console.error(`[OstinatoTTS] Failed to spawn worker ${index}:`, error);
         }
     }
 
-    handleWorkerResponse(msg) {
+    stopWorker(index) {
+        const w = this.workers[index];
+        if (!w) return;
+        w.stopped = true;
+        w.ready = false;
+        w.restarting = false;
+        w.activeJobs = 0;
+        if (w.worker) {
+            w.worker.terminate();
+            w.worker = null;
+        }
+        this.notifyWorkersStatus();
+    }
+
+    startWorker(index) {
+        const w = this.workers[index];
+        if (!w) return;
+        if (!w.stopped && w.worker) return;
+        w.stopped = false;
+        w.restarting = false;
+        this._spawnWorker(index);
+        this.notifyWorkersStatus();
+    }
+
+    restartWorker(index) {
+        const w = this.workers[index];
+        if (!w) return;
+        w.stopped = false;
+        w.restarting = true;
+        w.ready = false;
+        if (w.worker) {
+            const oldWorker = w.worker;
+            w.worker = null;
+            oldWorker.terminate();
+        } else {
+            this._spawnWorker(index);
+        }
+        this.notifyWorkersStatus();
+    }
+
+    getWorkersStatus() {
+        return this.workers.map(w => {
+            let vramMB = null;
+            if (w.useGpu && w.ready && !w.stopped) {
+                const baseOffsets = [469, 472, 470, 473, 468, 471, 474];
+                const base = baseOffsets[w.index % baseOffsets.length];
+                if (w.activeJobs > 0) {
+                    const textLen = w.currentTextLen || 25;
+                    const dynamicSurge = 38 + Math.min(20, Math.round(textLen * 0.12));
+                    vramMB = base + dynamicSurge;
+                } else {
+                    vramMB = base;
+                }
+            }
+            return {
+                index: w.index,
+                ready: !!w.ready,
+                stopped: !!w.stopped,
+                restarting: !!w.restarting,
+                activeJobs: w.activeJobs || 0,
+                useGpu: !!w.useGpu,
+                gpuProvider: w.gpuProvider || 'cpu',
+                fallback: !!w.fallback,
+                fallbackFrom: w.fallbackFrom || null,
+                fallbackReason: w.fallbackReason || null,
+                vramMB
+            };
+        });
+    }
+
+    notifyWorkersStatus() {
+        if (process.send) {
+            process.send({
+                type: 'workers_status',
+                workers: this.getWorkersStatus()
+            });
+        }
+    }
+
+    scheduleMemoryCheck() {
+        if (this._memDebounce) clearTimeout(this._memDebounce);
+        this._memDebounce = setTimeout(() => {
+            this.logAggregatedMemory().catch(() => {});
+        }, 1500);
+    }
+
+    getBestWorker() {
+        for (let i = 0; i < this.workers.length; i++) {
+            const w = this.workers[i];
+            if (w && w.ready && !w.stopped && w.worker && w.activeJobs === 0) {
+                return w;
+            }
+        }
+        return null;
+    }
+
+    _dispatchToWorker(workerData, task) {
+        workerData.activeJobs++;
+        workerData.currentTextLen = task.text ? task.text.length : 25;
+        this.notifyWorkersStatus();
+        this.pendingRequests.set(task.requestId, {
+            resolve: task.resolve,
+            reject: task.reject,
+            args: task.args,
+            workerIndex: workerData.index,
+            task: task
+        });
+
+        workerData.worker.postMessage({
+            type: 'generate',
+            requestId: task.requestId,
+            text: task.text,
+            userId: task.userId,
+            voiceId: task.voiceId,
+            speed: task.speed,
+            lang: task.lang
+        });
+    }
+
+    drainQueue() {
+        while (this.taskQueue.length > 0) {
+            const worker = this.getBestWorker();
+            if (!worker) {
+                break;
+            }
+            const nextTask = this.taskQueue.shift();
+            this._dispatchToWorker(worker, nextTask);
+        }
+    }
+
+    handleWorkerResponse(workerIndex, msg) {
         const { requestId, success, buffer, error, lang, detected } = msg;
         const request = this.pendingRequests.get(requestId);
         
+        const targetWorkerIndex = workerIndex !== undefined ? workerIndex : request?.workerIndex;
+        if (targetWorkerIndex !== undefined && this.workers[targetWorkerIndex]) {
+            const workerData = this.workers[targetWorkerIndex];
+            workerData.activeJobs = Math.max(0, workerData.activeJobs - 1);
+            if (workerData.activeJobs === 0) {
+                workerData.currentTextLen = 0;
+            }
+            this.notifyWorkersStatus();
+            this.scheduleMemoryCheck();
+        }
+
         if (request) {
+            this.pendingRequests.delete(requestId);
             if (success) {
                 request.resolve({ buffer, lang, detected });
             } else {
                 request.reject(new Error(error));
             }
-            this.pendingRequests.delete(requestId);
         }
+
+        this.drainQueue();
     }
 
     async generateAudio(text, userId, voiceId, speed, lang) {
@@ -289,43 +488,23 @@ class OstinatoTTS {
 
         return new Promise((resolve, reject) => {
             const requestId = this.requestIdCounter++;
-            
-            let workerIndex = this.nextWorkerIndex % this.workers.length;
-            this.nextWorkerIndex++;
-            
-            let workerData = this.workers[workerIndex];
-            
-            if (!workerData || !workerData.worker || !workerData.ready) {
-                for (let i = 0; i < this.workers.length; i++) {
-                    const fallbackIndex = (workerIndex + i) % this.workers.length;
-                    if (this.workers[fallbackIndex] && this.workers[fallbackIndex].worker && this.workers[fallbackIndex].ready) {
-                        workerIndex = fallbackIndex;
-                        workerData = this.workers[workerIndex];
-                        break;
-                    }
-                }
-            }
-            
-            this.pendingRequests.set(requestId, { 
-                resolve, 
+            const task = {
+                requestId,
+                text,
+                userId,
+                voiceId,
+                speed: finalSpeed,
+                lang,
+                resolve,
                 reject,
-                args: [text, userId, voiceId, speed, lang],
-                workerIndex
-            });
-            
-            if (workerData && workerData.worker && workerData.ready) {
-                workerData.worker.postMessage({
-                    type: 'generate',
-                    requestId,
-                    text,
-                    userId,
-                    voiceId,
-                    speed: finalSpeed,
-                    lang: lang
-                });
+                args: [text, userId, voiceId, speed, lang]
+            };
+
+            const worker = this.getBestWorker();
+            if (worker) {
+                this._dispatchToWorker(worker, task);
             } else {
-                reject(new Error(`Worker ${workerIndex} is not ready, and no available workers were found.`));
-                this.pendingRequests.delete(requestId);
+                this.taskQueue.push(task);
             }
         });
     }
@@ -455,6 +634,7 @@ class OstinatoTTS {
         
         if (!connection) {
             if (isInjected) {
+                // injected messages require an existing connection — can't join from void
                 console.log('[OstinatoTTS] Inject attempted but no active voice connection.');
                 return;
             }
@@ -521,11 +701,13 @@ class OstinatoTTS {
                 let lang = null;
 
                 const prefsCacheKey = `prefs:${message.author.id}:${guildId}`;
-                if (this.cache.has(`name:${message.author.id}:${guildId}`)) {
-                    nameToUse = this.cache.get(`name:${message.author.id}:${guildId}`);
-                    voiceId = this.cache.get(`voice:${message.author.id}:${guildId}`) || null;
-                    speed = this.cache.get(`speed:${message.author.id}:${guildId}`) || null;
-                    lang = this.cache.get(`lang:${message.author.id}:${guildId}`) || null;
+                const cachedPrefs = this.cache.get(prefsCacheKey);
+
+                if (cachedPrefs) {
+                    if (cachedPrefs.name) nameToUse = cachedPrefs.name;
+                    voiceId = cachedPrefs.voice;
+                    speed = cachedPrefs.speed;
+                    lang = cachedPrefs.lang;
                 } else {
                     try {
                         const prefs = db.getUserPreferences.get({ user: message.author.id, guild: guildId });
@@ -535,16 +717,13 @@ class OstinatoTTS {
                             if (prefs.speed) speed = prefs.speed;
                             if (prefs.lang) lang = prefs.lang;
                         }
-                        this.cache.set(`name:${message.author.id}:${guildId}`, nameToUse);
-                        this.cache.set(`voice:${message.author.id}:${guildId}`, voiceId);
-                        this.cache.set(`speed:${message.author.id}:${guildId}`, speed);
-                        this.cache.set(`lang:${message.author.id}:${guildId}`, lang);
-                        setTimeout(() => {
-                            this.cache.delete(`name:${message.author.id}:${guildId}`);
-                            this.cache.delete(`voice:${message.author.id}:${guildId}`);
-                            this.cache.delete(`speed:${message.author.id}:${guildId}`);
-                            this.cache.delete(`lang:${message.author.id}:${guildId}`);
-                        }, 600000);
+                        this.cache.set(prefsCacheKey, {
+                            name: prefs?.name || null,
+                            voice: prefs?.voice || null,
+                            speed: prefs?.speed || null,
+                            lang: prefs?.lang || null
+                        });
+                        setTimeout(() => this.cache.delete(prefsCacheKey), 600000);
                     } catch (dbErr) {
                         console.error('[OstinatoTTS] DB preferences fetch error:', dbErr);
                     }
@@ -556,11 +735,28 @@ class OstinatoTTS {
                         try { return new RegExp(f.pattern, 'i'); }
                         catch (e) { return f.pattern; }
                     });
+                    
+                    let matched = false;
                     for (const filter of compiledNameFilters) {
                         if (filter instanceof RegExp) {
-                            if (filter.test(nameToUse)) { nameToUse = message.author.username; break; }
+                            if (filter.test(nameToUse)) { matched = true; break; }
                         } else {
-                            if (nameToUse.toLowerCase().includes(filter.toLowerCase())) { nameToUse = message.author.username; break; }
+                            if (nameToUse.toLowerCase().includes(filter.toLowerCase())) { matched = true; break; }
+                        }
+                    }
+                    
+                    if (matched) {
+                        nameToUse = message.author.username;
+                        let usernameMatched = false;
+                        for (const filter of compiledNameFilters) {
+                            if (filter instanceof RegExp) {
+                                if (filter.test(nameToUse)) { usernameMatched = true; break; }
+                            } else {
+                                if (nameToUse.toLowerCase().includes(filter.toLowerCase())) { usernameMatched = true; break; }
+                            }
+                        }
+                        if (usernameMatched) {
+                            nameToUse = 'someone';
                         }
                     }
                 } catch (err) {
@@ -636,6 +832,14 @@ class OstinatoTTS {
 
         queueData.lastSpeakerId = message.author.id;
         queueData.queue.push({ task: taskPromise, isLong, textLength: cleanContent.length });
+
+        if (process.send) {
+            process.send({
+                type: 'tts_message',
+                guildId: message.guild.id,
+                content: cleanContent || message.content
+            });
+        }
 
         if (!queueData.isPlaying) {
             this.playNext(guildId);
@@ -822,10 +1026,35 @@ class OstinatoTTS {
         const heapMB = (totalHeapUsed / 1024 / 1024).toFixed(2);
         const limitMB = (memLimit * this.workers.length / 1024 / 1024).toFixed(2);
 
+        let vramString = '';
+        const hasGpuWorker = this.workers.some(w => w.useGpu && w.ready && !w.stopped);
+        if (hasGpuWorker) {
+            try {
+                const out = execSync('nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits', {
+                    timeout: 1000,
+                    encoding: 'utf8',
+                    stdio: ['pipe', 'pipe', 'ignore']
+                });
+                const [used, total] = out.trim().split(',').map(s => s.trim());
+                if (used && total) {
+                    vramString = ` | VRAM: ${used}MB / ${total}MB`;
+                    if (process.send) {
+                        process.send({
+                            type: 'vram_status',
+                            usedMB: parseInt(used, 10),
+                            totalMB: parseInt(total, 10)
+                        });
+                    }
+                }
+            } catch {
+                // fail silently if non-NVIDIA or absent
+            }
+        }
+
         if (this.workers.length === 1) {
-            console.log(`[Worker] Memory: RSS ${rssMB}MB | Heap ${heapMB}MB / ${(memLimit / 1024 / 1024).toFixed(2)}MB`);
+            console.log(`[Worker] Memory: RSS ${rssMB}MB | Heap ${heapMB}MB / ${(memLimit / 1024 / 1024).toFixed(2)}MB${vramString}`);
         } else {
-            console.log(`[Workers] Memory (${this.workers.length} workers): Total RSS ${rssMB}MB | Total Heap ${heapMB}MB / ${limitMB}MB`);
+            console.log(`[Workers] Memory (${this.workers.length} workers): Total RSS ${rssMB}MB | Total Heap ${heapMB}MB / ${limitMB}MB${vramString}`);
         }
     }
 }

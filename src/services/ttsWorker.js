@@ -23,7 +23,9 @@
  */
 
 const { parentPort } = require('worker_threads');
+const { pathToFileURL } = require('url');
 const path = require('path');
+const fs = require('fs');
 const config = require('../config');
 
 let ttsEngine = null;
@@ -53,9 +55,9 @@ const supportedLangs3 = Object.keys(iso3to1);
 
 let sampleRate = 24000;
 
-const supertonicPath = path.join(process.cwd(), 'supertonic');
-const onnxPath = path.join(supertonicPath, 'assets', 'onnx');
-const voiceStylesPath = path.join(supertonicPath, 'assets', 'voice_styles');
+const engineAssetsPath = path.join(__dirname, '..', 'assets', 'engine');
+const onnxPath = path.join(engineAssetsPath, 'onnx');
+const voiceStylesPath = path.join(engineAssetsPath, 'voice_styles');
 
 function createWavBuffer(audioData, sampleRate) {
     const numChannels = 1;
@@ -95,35 +97,48 @@ function createWavBuffer(audioData, sampleRate) {
     return buffer;
 }
 
-async function initialize() {
+async function initialize(options = {}) {
     if (initialized) return;
 
     try {
-        const helperPath = path.join(supertonicPath, 'nodejs', 'helper.js');
-        helper = await import('file://' + helperPath.replace(/\\/g, '/'));
+        const helperPath = path.join(__dirname, '..', 'engine', 'helper.mjs');
+        helper = await import(pathToFileURL(helperPath).href);
         
         const francModule = await import('franc');
         francDetect = francModule.franc || francModule.default;
 
-        ttsEngine = await helper.loadTextToSpeech(onnxPath, false);
-        sampleRate = ttsEngine.sampleRate;
+        const useGpu = options.useGpu !== undefined ? options.useGpu : (config.useGpu || false);
+        const gpuProvider = options.gpuProvider || config.gpuProvider || 'cuda';
 
-        const styleFiles = [
-            'F1.json', 'F2.json', 'F3.json', 'F4.json', 'F5.json',
-            'M1.json', 'M2.json', 'M3.json', 'M4.json', 'M5.json'
-        ];
+        ttsEngine = await helper.loadTextToSpeech(onnxPath, useGpu, gpuProvider);
+        sampleRate = ttsEngine.sampleRate;
+        const fallback = !!ttsEngine.fallback;
+        const fallbackFrom = ttsEngine.fallbackFrom || (fallback ? gpuProvider : null);
+        const fallbackReason = ttsEngine.fallbackReason || null;
+        const activeProvider = ttsEngine.executionProvider || (fallback ? 'cpu' : (useGpu ? gpuProvider : 'cpu'));
+        const activeGpu = ttsEngine.useGpu !== undefined ? ttsEngine.useGpu : (activeProvider !== 'cpu');
+
+        const styleFiles = fs.existsSync(voiceStylesPath)
+            ? fs.readdirSync(voiceStylesPath).filter(f => f.endsWith('.json'))
+            : [];
 
         for (const file of styleFiles) {
             const stylePath = path.join(voiceStylesPath, file);
             const style = helper.loadVoiceStyle([stylePath], false);
-            voiceStyles.push(style);
-            
-            const styleName = file.replace('.json', '');
+            const styleName = path.basename(file, '.json').toLowerCase();
             voiceStyleMap[styleName] = style;
         }
 
         initialized = true;
-        parentPort.postMessage({ type: 'init_success', sampleRate });
+        parentPort.postMessage({ 
+            type: 'init_success', 
+            sampleRate, 
+            useGpu: activeGpu, 
+            gpuProvider: activeProvider,
+            fallback,
+            fallbackFrom,
+            fallbackReason
+        });
     } catch (error) {
         parentPort.postMessage({ type: 'error', error: error.message });
     }
@@ -136,17 +151,50 @@ function detectLanguage(text) {
     return iso3to1[result] || null;
 }
 
+const LEGACY_VOICE_MAP = {
+    'm1': 'alex', 'm2': 'james', 'm3': 'robert', 'm4': 'sam', 'm5': 'daniel',
+    'f1': 'sarah', 'f2': 'lily', 'f3': 'jessica', 'f4': 'olivia', 'f5': 'emily'
+};
+
 function getVoiceStyle(userId, voiceId) {
-    if (voiceId && voiceStyleMap[voiceId]) {
-        return voiceStyleMap[voiceId];
+    if (voiceId) {
+        let id = voiceId.toLowerCase();
+        if (LEGACY_VOICE_MAP[id]) {
+            id = LEGACY_VOICE_MAP[id];
+        }
+        if (voiceStyleMap[id]) {
+            return voiceStyleMap[id];
+        }
+        const candidatePath = path.join(voiceStylesPath, `${id}.json`);
+        if (fs.existsSync(candidatePath)) {
+            try {
+                const style = helper.loadVoiceStyle([candidatePath], false);
+                voiceStyleMap[id] = style;
+                return style;
+            } catch (err) {
+                console.error(`[TTSWorker] Failed to load voice style ${id}:`, err);
+            }
+        }
     }
-    const idx = Number(BigInt(userId) % 10n);
-    return voiceStyles[idx];
+    const CORE_DEFAULT_VOICES = [
+        'alex', 'james', 'robert', 'sam', 'daniel',
+        'sarah', 'lily', 'jessica', 'olivia', 'emily'
+    ];
+    const defaultName = CORE_DEFAULT_VOICES[Number(BigInt(userId) % 10n)];
+    if (!voiceStyleMap[defaultName]) {
+        const defaultPath = path.join(voiceStylesPath, `${defaultName}.json`);
+        if (fs.existsSync(defaultPath)) {
+            try {
+                voiceStyleMap[defaultName] = helper.loadVoiceStyle([defaultPath], false);
+            } catch (_) {}
+        }
+    }
+    return voiceStyleMap[defaultName] || Object.values(voiceStyleMap)[0];
 }
 
 parentPort.on('message', async (msg) => {
     if (msg.type === 'initialize') {
-        await initialize();
+        await initialize(msg.options || {});
     } else if (msg.type === 'generate') {
         const { requestId, text, userId, voiceId, speed, lang: forcedLang } = msg;
 

@@ -39,10 +39,32 @@ module.exports = {
     defaultLang: 'en',
 
 
+    // -- hardware acceleration ------------------------------------------------
+    // speed up inference using your graphics card.
+
+    useGpu:      true,   // acceleration: toggle GPU acceleration (CUDA / DirectML).
+    gpuProvider: 'dml',  // provider: 'cuda' for NVIDIA (Linux/Windows), 'dml' for DirectML (Windows).
+
+
     // -- resource safety ------------------------------------------------------
     // limits to keep the machine from melting under load.
 
-    workerCount:            7,           // workers: number of TTS inference workers. each uses ~300-400mb of ram.
+    /*
+     * workers: number of TTS inference workers in the pool.
+     *
+     * dual-memory footprint (per worker):
+     *   - Dedicated VRAM: ~470 MB 
+     *   - Host System RAM (RSS): ~270 MB 
+     *   - Process bootstrap overhead: ~70–120 MB
+     *
+     * recommended worker tiers:
+     *   - CPU Mode:       2 workers (lightweight, ~300–400 MB RAM each).
+     *   - 4 GB VRAM GPUs: 2 workers (fits static weights + desktop OS overhead safely).
+     *   - 8 GB VRAM GPUs: 5 to 7 workers (optimal balance; 7 workers approaches ~96% capacity under full load).
+     *   - 16 GB+ GPUs:    10 to 14 workers (complete and overkill unless you're trying to run a small
+     *                      call center from your bedroom).
+     */
+    workerCount:            2,
     maxConcurrency:         100,         // queue: total requests to the engine at any given time.
     maxPerGuildConcurrency: 20,          // queue: per-guild. how many jobs can run at the same time per server.
     workerMemoryLimit:      1610612736,  // memory: 1.5gb cap to prevent crashing.
@@ -60,9 +82,9 @@ module.exports = {
     statusMessages: [
         'active in {guilds} servers',
         'a voice for the voiceless',
-        'v2.5.6 - /help'
+        'v2.8.4 - /help'
     ],
-    statusRotationInterval: 3500,  // ms: how often the status rotates.
+    statusRotationInterval: 4500,  // ms: how often the status rotates.
     autoIdle: true,                 // idle: automatically go idle after inactivity.
     autoIdleDuration: 300           // seconds: how long before the bot goes idle (default: 5 minutes).
 

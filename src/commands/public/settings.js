@@ -22,11 +22,13 @@ module.exports = {
 
         // -- VOICE --
         let voiceDisplay = "";
-        const defaultVoice = ostinato.getDefaultVoice(userId);
+        const defaultVoiceRaw = ostinato.getDefaultVoice(userId);
+        const defaultVoice = defaultVoiceRaw ? defaultVoiceRaw.charAt(0).toUpperCase() + defaultVoiceRaw.slice(1) : "";
         try {
             const row = db.prepare('SELECT voice FROM voices WHERE user = ? AND guild = ? ORDER BY rowid DESC LIMIT 1').get(userId, guildId);
             if (row) {
-                voiceDisplay = localize(interaction.locale, 'responses.public.settings.setFormat', { value: row.voice, defaultValue: defaultVoice });
+                const voiceVal = row.voice ? row.voice.charAt(0).toUpperCase() + row.voice.slice(1) : row.voice;
+                voiceDisplay = localize(interaction.locale, 'responses.public.settings.setFormat', { value: voiceVal, defaultValue: defaultVoice });
             } else {
                 voiceDisplay = localize(interaction.locale, 'responses.public.settings.defaultFormat', { defaultValue: defaultVoice });
             }

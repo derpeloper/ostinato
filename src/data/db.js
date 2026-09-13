@@ -1,9 +1,3 @@
-/**
- * @file db.js
- * @description initializes the better-sqlite3 database and sets up the schema.
- * "data! data! data! i can't make bricks without clay."
- */
-
 const Database = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
@@ -16,10 +10,15 @@ if (!fs.existsSync(dataDir)) {
 
 const dbPath = path.join(dataDir, 'database.db');
 
+/**
+ * opens the database and validates it isn't corrupt.
+ * if corrupt, backs up the damaged file and starts fresh.
+ */
 function openDatabase() {
     let db;
     try {
         db = new Database(dbPath);
+        // test that the database is actually readable
         db.pragma('integrity_check');
         db.pragma('journal_mode = WAL');
         return { db, wasCorrupt: false };
@@ -28,6 +27,7 @@ function openDatabase() {
             console.error('[Database] Corrupt database detected. Backing up and creating a fresh one...');
             try { db?.close(); } catch (_) { }
 
+            // back up the corrupt file so nothing is lost permanently
             const backupName = `database.corrupt.${Date.now()}.db`;
             const backupPath = path.join(dataDir, backupName);
             try {
@@ -37,6 +37,7 @@ function openDatabase() {
                 console.error('[Database] Failed to back up corrupt database:', copyErr.message);
             }
 
+            // also back up any WAL/SHM files
             for (const ext of ['-wal', '-shm']) {
                 const walPath = dbPath + ext;
                 if (fs.existsSync(walPath)) {
@@ -46,6 +47,7 @@ function openDatabase() {
                 }
             }
 
+            // remove the corrupt file and start fresh
             try { fs.unlinkSync(dbPath); } catch (_) { }
             try { fs.unlinkSync(dbPath + '-wal'); } catch (_) { }
             try { fs.unlinkSync(dbPath + '-shm'); } catch (_) { }
@@ -54,11 +56,17 @@ function openDatabase() {
             freshDb.pragma('journal_mode = WAL');
             return { db: freshDb, wasCorrupt: true, backupPath };
         }
-        throw err;
+        throw err; // re-throw non-corruption errors
     }
 }
 
 const { db, wasCorrupt, backupPath } = openDatabase();
+
+// ---------------------------------------------------------------------------
+// Desired schema definition.
+// Each table is defined with its columns, types, constraints, and primary key.
+// The migration system uses this as the source of truth.
+// ---------------------------------------------------------------------------
 
 const SCHEMA = [
     {
@@ -127,7 +135,7 @@ const SCHEMA = [
             { name: 'guild', type: 'TEXT', constraints: 'NOT NULL' },
             { name: 'pattern', type: 'TEXT', constraints: 'NOT NULL' }
         ],
-        primaryKey: null
+        primaryKey: null // handled by AUTOINCREMENT column
     },
     {
         name: 'name_filters',
@@ -164,6 +172,10 @@ const SCHEMA = [
         primaryKey: null
     }
 ];
+
+// ---------------------------------------------------------------------------
+// Migration engine
+// ---------------------------------------------------------------------------
 
 /**
  * builds a CREATE TABLE statement from a schema definition.
@@ -203,30 +215,36 @@ function migrateSchema() {
 
     for (const tableDef of SCHEMA) {
         if (!existingTables.has(tableDef.name)) {
+            // table doesn't exist at all — create it
             const sql = buildCreateTableSQL(tableDef);
             db.exec(sql);
             console.log(`[Database Migration] Created table: ${tableDef.name}`);
             continue;
         }
 
+        // table exists — check for missing columns
         const liveColumns = db.prepare(`PRAGMA table_info(${tableDef.name})`).all();
         const liveColumnNames = new Set(liveColumns.map(c => c.name));
 
         for (const col of tableDef.columns) {
             if (!liveColumnNames.has(col.name)) {
+                // column is missing — add it
+                // NOT NULL columns need a DEFAULT so existing rows survive the migration.
                 let alterSQL = `ALTER TABLE ${tableDef.name} ADD COLUMN ${col.name} ${col.type}`;
 
                 if (col.constraints) {
+                    // strip NOT NULL from the ALTER (we'll add a DEFAULT instead to be safe)
                     const hasNotNull = /NOT NULL/i.test(col.constraints);
                     const cleanedConstraints = col.constraints
                         .replace(/NOT NULL/i, '')
-                        .replace(/PRIMARY KEY AUTOINCREMENT/i, '')
+                        .replace(/PRIMARY KEY AUTOINCREMENT/i, '') // can't add autoincrement via ALTER
                         .trim();
 
                     if (cleanedConstraints) {
                         alterSQL += ` ${cleanedConstraints}`;
                     }
 
+                    // if the column was NOT NULL and doesn't already have a DEFAULT, add one
                     if (hasNotNull && !/DEFAULT/i.test(col.constraints)) {
                         alterSQL += ` DEFAULT ${getDefaultForType(col.type)}`;
                     }
@@ -239,6 +257,7 @@ function migrateSchema() {
     }
 }
 
+// run migration on startup
 try {
     migrateSchema();
     console.log('[Database] Schema migration complete.');
@@ -247,7 +266,7 @@ try {
 }
 
 // ---------------------------------------------------------------------------
-// data recovery: if we started from a corrupt database, try to salvage data
+// Data recovery: if we started from a corrupt database, try to salvage data
 // ---------------------------------------------------------------------------
 
 if (wasCorrupt && backupPath && fs.existsSync(backupPath)) {
@@ -273,7 +292,7 @@ if (wasCorrupt && backupPath && fs.existsSync(backupPath)) {
                         try {
                             const values = colNames.map(c => row[c] !== undefined ? row[c] : null);
                             insert.run(...values);
-                        } catch (_) {  }
+                        } catch (_) { /* skip individual bad rows */ }
                     }
                 });
 
@@ -292,6 +311,10 @@ if (wasCorrupt && backupPath && fs.existsSync(backupPath)) {
         try { corruptDb?.close(); } catch (_) { }
     }
 }
+
+// ---------------------------------------------------------------------------
+// Prepared statements (compiled AFTER migration so schema is guaranteed current)
+// ---------------------------------------------------------------------------
 
 db.getUserPreferences = db.prepare(`
     SELECT 

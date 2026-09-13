@@ -86,7 +86,7 @@
       "tosHeader": "## terms of service",
       "tosBody": "provided \"as-is\". adhere to discord tos. or don't. we aren't your parents.",
       "resetWarning": "-# want to start fresh? use `/reset` to completely wipe your data from our database. this removes all your saved settings (voice, name, speed, language) across every server. your opt-in/opt-out status is preserved.",
-      "versionFooter": "-# version: 2.5.6 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
+      "versionFooter": "-# version: 2.8.4b | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# bugs? probably. features? definitely."
     },
     "inject": {
       "success": "your message was successfully injected into the voice channel.",

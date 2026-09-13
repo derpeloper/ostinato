@@ -97,6 +97,23 @@ module.exports = {
             const userId = interaction.user.id;
 
             try {
+                const nameFilters = db.prepare('SELECT pattern FROM name_filters WHERE guild = ?').all(guildId);
+                const compiledNameFilters = nameFilters.map(f => {
+                    try { return new RegExp(f.pattern, 'i'); }
+                    catch (e) { return f.pattern; }
+                });
+                for (const filter of compiledNameFilters) {
+                    if (filter instanceof RegExp) {
+                        if (filter.test(name)) {
+                            return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filtered')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
+                        }
+                    } else {
+                        if (name.toLowerCase().includes(filter.toLowerCase())) {
+                            return await interaction.reply({ components: [new ContainerBuilder().addTextDisplayComponents(t => t.setContent(localize(locale, 'responses.public.name.filtered')))], flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
+                        }
+                    }
+                }
+
                 const updateName = db.transaction(() => {
                     db.prepare('DELETE FROM names WHERE user = ? AND guild = ?').run(userId, guildId);
                     return db.prepare('INSERT INTO names (user, guild, name) VALUES (?, ?, ?)').run(userId, guildId, name);

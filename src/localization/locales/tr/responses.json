@@ -86,7 +86,7 @@
       "tosHeader": "## kullanım koşulları",
       "tosBody": "\"olduğu gibi\" sağlanmıştır. discord kullanım koşullarına uyun. ya da uymayın. ebeveyniniz değiliz.",
       "resetWarning": "-# temiz bir sayfa açmak mı istiyorsunuz? verilerinizi veritabanımızdan tamamen silmek için `/reset` komutunu kullanın. bu, her sunucudaki tüm kayıtlı ayarlarınızı (ses, isim, hız, dil) kaldırır. katılım/ayrılma durumunuz korunur.",
-      "versionFooter": "-# sürüm: 2.5.6 | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# hatalar? muhtemelen. özellikler? kesinlikle."
+      "versionFooter": "-# sürüm: 2.8.4b | motor: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# hatalar? muhtemelen. özellikler? kesinlikle."
     },
     "lang": {
       "invalid": "bu dil kodu geçersiz.",

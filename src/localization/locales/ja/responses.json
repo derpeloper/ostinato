@@ -86,7 +86,7 @@
       "tosHeader": "## 利用規約",
       "tosBody": "「現状有姿」で提供されます。Discordの規約を守ってください。守らなくてもいいですが、私たちはあなたの親ではありません。",
       "resetWarning": "-# 最初からやり直したいですか？ `/reset` を使うと、データベースからあなたのデータを完全に消去できます。これにより、すべてのサーバーでの保存された設定 (音声、名前、速度、言語) が削除されます。オン/オフの状態は維持されます。",
-      "versionFooter": "-# バージョン: 2.5.6 | エンジン: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# バグ？おそらくね。機能？間違いなく。"
+      "versionFooter": "-# バージョン: 2.8.4bb | エンジン: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# バグ？おそらくね。機能？間違いなく。"
     },
     "lang": {
       "invalid": "その言語コードは無効です。",

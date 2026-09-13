@@ -86,7 +86,7 @@
       "tosHeader": "## conditions d'utilisation",
       "tosBody": "fourni \"tel quel\". respectez les cgu de discord. ou pas. nous ne sommes pas vos parents.",
       "resetWarning": "-# envie de repartir à zéro ? utilisez `/reset` pour effacer complètement vos données de notre base de données. cela supprime tous vos paramètres enregistrés (voix, nom, vitesse, langue) sur tous les serveurs. votre statut d'activation/désactivation est préservé.",
-      "versionFooter": "-# version : 2.5.6 | moteur : supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# des bugs ? probablement. des fonctionnalités ? certainement."
+      "versionFooter": "-# version : 2.8.4bb | moteur : supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# des bugs ? probablement. des fonctionnalités ? certainement."
     },
     "lang": {
       "invalid": "ce code de langue est invalide.",

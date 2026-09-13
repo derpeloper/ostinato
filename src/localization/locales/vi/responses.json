@@ -86,7 +86,7 @@
       "tosHeader": "## điều khoản dịch vụ",
       "tosBody": "được cung cấp \"nguyên trạng\". tuân thủ điều khoản dịch vụ của discord. hoặc không. chúng tôi không phải cha mẹ bạn.",
       "resetWarning": "-# muốn bắt đầu lại từ đầu? sử dụng `/reset` để xóa hoàn toàn dữ liệu của bạn khỏi cơ sở dữ liệu của chúng tôi. điều này sẽ xóa tất cả cài đặt đã lưu của bạn (giọng nói, tên, tốc độ, ngôn ngữ) trên mọi máy chủ. trạng thái chọn tham gia/từ chối của bạn được giữ nguyên.",
-      "versionFooter": "-# phiên bản: 2.5.6 | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# lỗi? có thể. tính năng? chắc chắn rồi."
+      "versionFooter": "-# phiên bản: 2.8.4b | engine: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# lỗi? có thể. tính năng? chắc chắn rồi."
     },
     "lang": {
       "invalid": "mã ngôn ngữ đó không hợp lệ.",

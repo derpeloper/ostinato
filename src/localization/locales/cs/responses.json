@@ -86,7 +86,7 @@
       "tosHeader": "## podmínky služby",
       "tosBody": "poskytováno „tak, jak je“. dodržujte podmínky služby discord. nebo ne. nejsme vaši rodiče.",
       "resetWarning": "-# chcete začít znovu? použijte `/reset` k úplnému vymazání dat z naší databáze. tím se odstraní všechna vaše uložená nastavení (hlas, jméno, rychlost, jazyk) na všech serverech. váš status tts (zapnuto/vypnuto) zůstane zachován.",
-      "versionFooter": "-# verze: 2.5.6 | jádro: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# chyby? pravděpodobně. funkce? určitě."
+      "versionFooter": "-# verze: 2.8.4b | jádro: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# chyby? pravděpodobně. funkce? určitě."
     },
     "lang": {
       "invalid": "tento kód jazyka je neplatný.",

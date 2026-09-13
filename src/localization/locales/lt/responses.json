@@ -86,7 +86,7 @@
       "tosHeader": "## paslaugų teikimo sąlygos",
       "tosBody": "pateikiama „tokia, kokia yra“. laikykitės discord sąlygų. arba ne. mes ne jūsų tėvai.",
       "resetWarning": "-# norite pradėti iš naujo? naudokite `/reset`, kad visiškai ištrintumėte savo duomenis iš mūsų duomenų bazės. tai pašalina visus jūsų išsaugotus nustatymus (balsas, vardas, greitis, kalba) visuose serveriuose. jūsų tts būsena (įjungta/išjungta) išlieka.",
-      "versionFooter": "-# versija: 2.5.6 | variklis: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# klaidos? tikriausiai. funkcijos? tikrai."
+      "versionFooter": "-# versija: 2.8.4bb | variklis: supertonic v3 | [github](https://github.com/derpeloper/ostinato)\n-# klaidos? tikriausiai. funkcijos? tikrai."
     },
     "lang": {
       "invalid": "tas kalbos kodas yra neteisingas.",
