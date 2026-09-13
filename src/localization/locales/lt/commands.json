@@ -6,19 +6,19 @@
     },
     "restrict": {
       "name": "apriboti",
-      "description": "išjungia tts naudotojams, kurie nėra nutildyti"
+      "description": "išjungti tts naudotojams, kurie nėra nutildyti"
     },
     "skip": {
       "name": "praleisti",
-      "description": "praleidžia šiuo metu skaitomą žinutę"
+      "description": "praleidžia šiuo metu grojamą pranešimą"
     },
     "unrestrict": {
-      "name": "atšaukti-apribojimą",
-      "description": "įjungia tts naudotojams, kurie nėra nutildyti"
+      "name": "panaikinti-apribojimą",
+      "description": "įjungti tts naudotojams, kurie nėra nutildyti"
     },
     "guild": {
       "name": "serveris",
-      "description": "valdyti serverio nustatymus",
+      "description": "valdyti konkretaus serverio nustatymus",
       "groups": {
         "lang": {
           "name": "kalba",
@@ -30,21 +30,21 @@
               "options": {
                 "language": {
                   "name": "kalba",
-                  "description": "kalba, kurią norite nustatyti"
+                  "description": "norima nustatyti kalba"
                 }
               }
             },
             "reset": {
-              "name": "atstatyti",
-              "description": "atstatyti numatytąją serverio kalbą"
+              "name": "atkurti",
+              "description": "atkurti numatytąją serverio kalbą"
             }
           }
         }
       }
     },
     "message": {
-      "name": "žinutė",
-      "description": "valdyti žinučių turinio filtrus",
+      "name": "pranešimas",
+      "description": "valdyti pranešimų turinio filtrus",
       "groups": {
         "filter": {
           "name": "filtras",
@@ -56,13 +56,13 @@
               "options": {
                 "string": {
                   "name": "tekstas",
-                  "description": "filtro tekstas arba regex"
+                  "description": "pridedamas filtro tekstas arba regex"
                 }
               }
             },
             "list": {
               "name": "sąrašas",
-              "description": "išvardyti visus aktyvius filtrus"
+              "description": "pateikti visų aktyvių filtrų sąrašą"
             },
             "edit": {
               "name": "redaguoti",
@@ -74,7 +74,7 @@
                 },
                 "new": {
                   "name": "naujas",
-                  "description": "naujas pakaitinis filtras"
+                  "description": "naujas pakeičiantis filtras"
                 }
               }
             },
@@ -84,7 +84,7 @@
               "options": {
                 "string": {
                   "name": "tekstas",
-                  "description": "filtro tekstas arba regex, kurį norite pašalinti"
+                  "description": "šalinamas filtro tekstas arba regex"
                 }
               }
             }
@@ -94,11 +94,11 @@
     },
     "channel": {
       "name": "kanalas",
-      "description": "valdyti serverio alternatyvų susirašinėjimo kanalą",
+      "description": "valdyti serverio alternatyvų pokalbių kanalą",
       "subcommands": {
         "set": {
           "name": "nustatyti",
-          "description": "nustatyti kanalą kaip alternatyvų susirašinėjimą",
+          "description": "nustatyti kanalą kaip alternatyvų pokalbiams",
           "options": {
             "channel": {
               "name": "kanalas",
@@ -108,37 +108,37 @@
         },
         "remove": {
           "name": "pašalinti",
-          "description": "pašalinti dabartinį alternatyvų susirašinėjimo kanalą"
+          "description": "pašalinti dabartinį alternatyvų pokalbių kanalą"
         }
       }
     },
     "autojoin": {
-      "name": "autojoin",
-      "description": "perjungti automatinį boto prisijungimą prie balso kanalų"
+      "name": "automatinis-prisijungimas",
+      "description": "perjungti automatinį boto jungimąsi prie balso kanalų"
     }
   },
   "public": {
     "help": {
       "name": "pagalba",
-      "description": "suteikia informaciją apie komandas",
+      "description": "pateikia informaciją apie komandas",
       "options": {
         "command": {
           "name": "komanda",
-          "description": "komanda, apie kurią norite gauti informaciją"
+          "description": "komanda, apie kurią norite sužinoti"
         }
       }
     },
     "info": {
-      "name": "info",
-      "description": "suteikia informaciją apie botą"
+      "name": "informacija",
+      "description": "pateikia informaciją apie botą"
     },
     "lang": {
       "name": "kalba",
-      "description": "pakeisti tts kalbą jūsų paskyrai",
+      "description": "pakeisti savo paskyros tts kalbą",
       "options": {
         "language": {
           "name": "kalba",
-          "description": "kalba, kurią naudoti"
+          "description": "norima naudoti kalba"
         }
       }
     },
@@ -152,11 +152,11 @@
       "subcommands": {
         "set": {
           "name": "nustatyti",
-          "description": "nustatyti rodomą vardą",
+          "description": "nustatyti savo rodomą vardą",
           "options": {
             "string": {
               "name": "tekstas",
-              "description": "vardas, kurį norite nustatyti"
+              "description": "norimas nustatyti vardas"
             }
           }
         }
@@ -172,13 +172,13 @@
               "options": {
                 "string": {
                   "name": "tekstas",
-                  "description": "filtro tekstas arba regex"
+                  "description": "pridedamas filtro tekstas arba regex"
                 }
               }
             },
             "list": {
               "name": "sąrašas",
-              "description": "išvardyti visus aktyvius filtrus"
+              "description": "pateikti visų aktyvių filtrų sąrašą"
             },
             "edit": {
               "name": "redaguoti",
@@ -190,7 +190,7 @@
                 },
                 "new": {
                   "name": "naujas",
-                  "description": "naujas pakaitinis filtras"
+                  "description": "naujas pakeičiantis filtras"
                 }
               }
             },
@@ -200,7 +200,7 @@
               "options": {
                 "string": {
                   "name": "tekstas",
-                  "description": "filtro tekstas arba regex, kurį norite pašalinti"
+                  "description": "šalinamas filtro tekstas arba regex"
                 }
               }
             }
@@ -209,54 +209,54 @@
       }
     },
     "reset": {
-      "name": "atstatyti",
-      "description": "atstato tts nustatymus į numatytuosius",
+      "name": "atkurti",
+      "description": "atkuria numatytuosius tts nustatymus",
       "options": {
         "option": {
           "name": "parinktis",
-          "description": "konkretus nustatymas, kurį norite atstatyti"
+          "description": "konkretus nustatymas, kurį norite atkurti"
         }
       }
     },
     "settings": {
       "name": "nustatymai",
-      "description": "patikrinti esamus tts nustatymus"
+      "description": "peržiūrėti dabartinius tts nustatymus"
     },
     "speed": {
       "name": "greitis",
-      "description": "pakeisti tts greitį jūsų paskyrai",
+      "description": "pakeisti savo paskyros tts greitį",
       "options": {
         "value": {
           "name": "reikšmė",
-          "description": "greičio daugiklis (nuo 0.5 iki 2.0)"
+          "description": "greičio daugiklis (nuo 0,5 iki 2,0)"
         }
       }
     },
     "tts": {
       "name": "tts",
-      "description": "valdyti tts nustatymus",
+      "description": "valdyti savo tts nuostatas",
       "options": {
         "on": {
           "name": "įjungti",
-          "description": "įjungti tts jūsų žinutėms"
+          "description": "įjungti tts savo pranešimams"
         },
         "off": {
           "name": "išjungti",
-          "description": "išjungti tts jūsų žinutėms"
+          "description": "išjungti tts savo pranešimams"
         }
       }
     },
     "voice": {
       "name": "balsas",
-      "description": "pakeisti balsą jūsų paskyrai"
+      "description": "pakeisti savo paskyros balsą"
     },
     "inject": {
       "name": "įterpti",
-      "description": "siųsti žinutę į balso kanalą neprisijungus",
+      "description": "siųsti pranešimą į balso kanalą neprisijungus",
       "options": {
         "message": {
-          "name": "žinutė",
-          "description": "žinutė įterpimui (maks. 200 simbolių)"
+          "name": "pranešimas",
+          "description": "pranešimas įterpimui (iki 200 simb.)"
         }
       }
     }
