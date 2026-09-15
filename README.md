@@ -197,6 +197,7 @@ _note: contributors who helped verify locales may be listed by their alias rathe
 | contributor | language locale
 | :--- | :--- 
 | **9am1n_** | Hindi
+| **exskrime** | Russian
 | **salty** | Croatian
 
 #### awaiting human verification (AI cross-checked)
@@ -216,7 +217,7 @@ Bulgarian, Chinese (China), Chinese (Taiwan), Czech, Danish, Dutch, Finnish, Fre
 | **croi** | Lithuanian | v2.5.6 |
 | **Daniel** | Korean | v2.5.6 |
 | **dash** | Ukrainian | v2.5.6 |
-| **dash**<br>**exskrime** | Russian | v2.5.6 |
+| **dash** | Russian | v2.5.6 |
 | **malios71** | French | v2.5.6 |
 | **marac** | Dutch | v2.5.6 |
 | **michael** | Spanish | v2.5.6 |
