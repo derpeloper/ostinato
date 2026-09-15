@@ -207,7 +207,7 @@ _note: contributors who helped verify locales may be listed by their alias rathe
 
 the following languages have been cross-checked for consistency using independent, isolated Gemini 3.8 Flash (high) sessions (one dedicated session per language). however, they have not yet been reviewed by a human:
 
-Bulgarian, Chinese (China), Chinese (Taiwan), Czech, Dutch, Finnish, French, German, Greek, Hungarian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese.
+Bulgarian, Chinese (China), Chinese (Taiwan), Czech, Dutch, Finnish, French, German, Greek, Hungarian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Romanian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese.
 
 > **want to help?** if you speak any of these languages and notice something off, please [open an issue](https://github.com/derpeloper/ostinato/issues) with the label **`locale feedback`** so we can move it up to the verified list.
 
