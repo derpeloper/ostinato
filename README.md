@@ -196,13 +196,14 @@ _note: contributors who helped verify locales may be listed by their alias rathe
 
 | contributor | language locale
 | :--- | :--- 
+| **9am1n_** | Hindi
 | **salty** | Croatian
 
 #### awaiting human verification (AI cross-checked)
 
 the following languages have been cross-checked for consistency using independent, isolated Gemini 3.8 Flash (high) sessions (one dedicated session per language). however, they have not yet been reviewed by a human:
 
-Bulgarian, Chinese (China), Chinese (Taiwan), Czech, Danish, Dutch, Finnish, French, German, Greek, Hindi, Hungarian, Italian, Japanese, Korean, Lithuanian, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese.
+Bulgarian, Chinese (China), Chinese (Taiwan), Czech, Danish, Dutch, Finnish, French, German, Greek, Hungarian, Italian, Japanese, Korean, Lithuanian, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese.
 
 > **want to help?** if you speak any of these languages and notice something off, please [open an issue](https://github.com/derpeloper/ostinato/issues) with the label **`locale feedback`** so we can move it up to the verified list.
 
@@ -212,7 +213,6 @@ Bulgarian, Chinese (China), Chinese (Taiwan), Czech, Danish, Dutch, Finnish, Fre
 
 | Contributor | Language Locale | Last Verified |
 | :--- | :--- | :--- |
-| **9am1n_** | Hindi | v2.5.6 |
 | **croi** | Lithuanian | v2.5.6 |
 | **Daniel** | Korean | v2.5.6 |
 | **dash** | Ukrainian | v2.5.6 |
